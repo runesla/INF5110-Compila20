@@ -1,4 +1,4 @@
-package parser;   
+package cmp20parser;   
 import java_cup.runtime.*;
 import syntaxtree.*;
 import java.util.*;
@@ -97,7 +97,7 @@ start with program;
 
 program         ::= PROGRAM ID:name BEGIN decl_list:dl END SEMI {: RESULT = new Program(name, dl); :};
 
-decl_list       ::= decl:d SEMI {: List<ClassDecl> l = new LinkedList<ClassDecl>(); l.add(d); RESULT = l; :} 
+decl_list       ::= decl:d SEMI {: List<ClassDecl> l = new ArrayList<ClassDecl>(); l.add(d); RESULT = l; :} 
 		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
 
 decl            ::= class_decl:cd {: RESULT = cd; :}
@@ -116,17 +116,17 @@ var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name
 
 
 proc_decl	::= PROCEDURE ID:name LPAR param_list:pl RPAR BEGIN decl_list:dl IN stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, pl, dl, sl); :}
-		| PROCEDURE ID:name LPAR param_list:pl RPAR COLON type:t BEGIN decl_list:dl IN stmt_list:sl END SEMI {: RESULT = new ProcDec(name, pl, t, dl, sl); :}; 
+		| PROCEDURE ID:name LPAR param_list:pl RPAR COLON type:t BEGIN decl_list:dl IN stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, pl, t, dl, sl); :}; 
 
 rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
-param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
+param_list	::= param_decl:pd {: List<ParamDecl> l = new ArrayList<ParamDecl>(); l.add(pd); RESULT = l; :}
 		| param_list:pl COMMA param_decl:pd {: pl:add(pd); RESULT = pl; :}
-		| {: RESULT = new LinkedList<ParamDecl>(); :};
+		| {: RESULT = new ArrayList<ParamDecl>(); :};
 
 param_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};
 
-stmt_list	::= stmt:s SEMI {: List<Stmt> l = new LinkedList<Stmt>(); l.add(s); RESULT = l; :}
+stmt_list	::= stmt:s SEMI {: List<Stmt> l = new ArrayList<Stmt>(); l.add(s); RESULT = l; :}
 		| stmt_list:sl stmt:s SEMI {: sl.add(s); RESULT = sl; :};
 
 stmt		::= assign_stmt:as {: RESULT = as; :}
@@ -137,11 +137,11 @@ stmt		::= assign_stmt:as {: RESULT = as; :}
 
 assign_stmt	::= var_decl:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
 
-if_stmt		::= IF expr:e1 THEN decl_list:dl1 FI {: RESULT = new IfStmt(e1, dl1); :}
-		| IF expr:e2 THEN decl_list:dl ELSE decl_list:dl2 FI {: RESULT = new IfStmt(e2, dl2); :};
+if_stmt		::= IF expr:e THEN stmt_list:sl FI {: RESULT = new IfStmt(e, sl); :}
+		| IF expr:e THEN stmt_list:sl1 ELSE stmt_list:sl2 FI {: RESULT = new IfStmt(e, sl1, sl2); :};
 
 
-while_stmt	::= WHILE expr:e DO decl_list:dl OD {: RESULT = new WhileStmt(e, dl); :};
+while_stmt	::= WHILE expr:e DO stmt_list:sl OD {: RESULT = new WhileStmt(e, sl); :};
 
 return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :};
 
@@ -154,7 +154,7 @@ type		::= TYPE_FLOAT {: RESULT = new Type("float"); :}
 		| ID:name {: RESULT = new Type(name); :}
 		| REF LPAR type:t RPAR {: RESULT = new RefType(t); :};
 
-expr_list	::= expr:e {: List<Expr> el = new LinkedList<Expr>(); el.add(e); RESULT = el; :}
+expr_list	::= expr:e {: List<Expr> el = new ArrayList<Expr>(); el.add(e); RESULT = el; :}
 		| expr_list:el COMMA expr:e {: el.add(e); RESULT = el; :};
 
 expr		::= binary_expr:e {: RESULT = e; :}
