@@ -3,6 +3,7 @@ Buildfile: /mnt/c/Users/Rune/Desktop/workspace/compila09/build.xml
 init:
 
 mkdir:
+    [mkdir] Created dir: /mnt/c/Users/Rune/Desktop/workspace/compila09/build/classes
 
 generate:
       [cup] This is CUP v0.11a beta 20060608
@@ -16,7 +17,35 @@ generate:
       [cup] use option force="true" to override
 
 compile:
-    [javac] Compiling 40 source files to /mnt/c/Users/Rune/Desktop/workspace/compila09/build/classes
+    [javac] Compiling 97 source files to /mnt/c/Users/Rune/Desktop/workspace/compila09/build/classes
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1006: error: incompatible types: RefType cannot be converted to Type
+    [javac] 		 RESULT = new RefType(t); 
+    [javac] 		          ^
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1321: error: incompatible types: List<ClassDecl> cannot be converted to List<Decl>
+    [javac] 		 RESULT = new ProcDecl(name, t, pl, dl, sl); 
+    [javac] 		                                    ^
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1342: error: incompatible types: List<ClassDecl> cannot be converted to List<Decl>
+    [javac] 		 RESULT = new ProcDecl(name, pl, dl, sl); 
+    [javac] 		                                 ^
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1369: error: no suitable constructor found for VarExpr(String)
+    [javac] 		 RESULT = new VarExpr(name); 
+    [javac] 		          ^
+    [javac]     constructor VarExpr.VarExpr(String,Expr) is not applicable
+    [javac]       (actual and formal argument lists differ in length)
+    [javac]     constructor VarExpr.VarExpr(String,Type,Expr) is not applicable
+    [javac]       (actual and formal argument lists differ in length)
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1417: error: incompatible types: Type cannot be converted to Expr
+    [javac] 		 RESULT = new VarExpr(name, t); 
+    [javac] 		                            ^
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1441: error: incompatible types: RecDecl cannot be converted to ClassDecl
+    [javac] 		 RESULT = rl; 
+    [javac] 		          ^
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1453: error: incompatible types: ProcDecl cannot be converted to ClassDecl
+    [javac] 		 RESULT = pl; 
+    [javac] 		          ^
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java:1465: error: incompatible types: VarDecl cannot be converted to ClassDecl
+    [javac] 		 RESULT = vd; 
+    [javac] 		          ^
     [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/ParamDecl.java:8: error: constructor Decl in class Decl cannot be applied to given types;
     [javac] 		super(name);
     [javac] 		^
@@ -53,14 +82,13 @@ compile:
     [javac]   required: no arguments
     [javac]   found: String
     [javac]   reason: actual and formal argument lists differ in length
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/RefType.java:7: error: constructor Type in class Type cannot be applied to given types;
-    [javac] 	public RefType(Type type) {
-    [javac] 	                          ^
-    [javac]   required: String
-    [javac]   found: no arguments
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/VarDecl.java:8: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
+    [javac] 		^
+    [javac]   required: no arguments
+    [javac]   found: String
     [javac]   reason: actual and formal argument lists differ in length
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/VarDecl.java:8: error: cannot find symbol
-    [javac] 		this.name = name;
-    [javac] 		    ^
-    [javac]   symbol: variable name
-    [javac] 8 errors
+    [javac] Note: /mnt/c/Users/Rune/Desktop/workspace/compila09/src/cmp20parser/parser.java uses unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+    [javac] 15 errors

@@ -121,7 +121,7 @@ proc_decl	::= PROCEDURE ID:name LPAR param_list:pl RPAR BEGIN decl_list:dl IN st
 rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
 param_list	::= param_decl:pd {: List<ParamDecl> l = new ArrayList<ParamDecl>(); l.add(pd); RESULT = l; :}
-		| param_list:pl COMMA param_decl:pd {: pl:add(pd); RESULT = pl; :}
+		| param_list:pl COMMA param_decl:pd {: pl.add(pd); RESULT = pl; :}
 		| {: RESULT = new ArrayList<ParamDecl>(); :};
 
 param_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};
