@@ -1,0 +1,14 @@
+*~
+*.vrb
+*.nav
+*.toc
+*.log
+*.dvi
+*.aux
+*.snm
+*.out
+auto
+*.idx
+*.ps
+*.DS_Store
+*.swp

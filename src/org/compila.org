@@ -1,0 +1,281 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+options: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t
+#+options: tags:nil tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+title: Organizational file (for internal use)
+#+date: <2020-02-05 Wed>
+#+author: Martin Steffen
+#+email: msteffen@ifi.uio.no
+#+language: en
+#+select_tags: export slides B_frame B_againframe
+#+exclude_tags: private noexport B_note todo handout ARCHIVE script
+#+creator: Emacs 24.3.1 (Org mode 9.3.1)
+
+* Misc
+
+** Build file
+
+*** TODO go through the handout again <2020-02-05 Wed 12:08>
+
+*** TODO go through the Readme again <2020-02-05 Wed 12:08>
+
+*** DONE install javac on the laptop <2020-02-05 Wed 09:01>
+    CLOSED: [2020-02-05 Wed 09:36]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2020-02-05 Wed 09:36] \\
+      dnf java-devel
+    :END:
+
+
+
+*** DONE test the material on the laptop <2020-02-05 Wed 08:59>
+    CLOSED: [2020-02-05 Wed 09:38]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2020-02-05 Wed 09:38] \\
+      ok, worked
+    :END:
+*** FIXED make it buildable again <2020-02-05 Wed 08:45>   
+    CLOSED: [2020-02-05 Wed 12:08]
+    :LOGBOOK:
+    - CLOSING NOTE [2020-02-05 Wed 12:08] \\
+      ok
+    :END:
+
+  - [X]  clean
+  - [X]  build: now ok
+  - [X]  run
+
+
+
+**** DONE check last year, perhaps there was a zip <2020-02-05 Wed 08:45>
+     CLOSED: [2020-02-05 Wed 09:46]
+     :LOGBOOK:
+     - State "DONE"       from "TODO"       [2020-02-05 Wed 09:46] \\
+       not really
+     :END:
+
+*** DONE find the first tests. <2020-02-05 Wed 10:31>
+    CLOSED: [2020-02-05 Wed 12:05]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2020-02-05 Wed 12:05] \\
+      oblig 1 did not have tests
+    :END:
+
+There is stuff in [[../../previoussemesters/2017-start]] ~inf5110_mandatory1_starting_point.zip~
+
+But there is no tester file.
+
+**** DONE does it build without the test directory?  <2020-02-05 Wed 11:40>
+     CLOSED: [2020-02-05 Wed 11:46]
+     :LOGBOOK:
+     - State "DONE"       from "TODO"       [2020-02-05 Wed 11:46] \\
+       ok
+     :END:
+Renaming does not do it. It must be moved out of the directory.
+
+**** DONE where was the test directory earlier <2020-02-05 Wed 11:40>
+     CLOSED: [2020-02-05 Wed 12:05]
+     :LOGBOOK:
+     - State "DONE"       from "TODO"       [2020-02-05 Wed 12:05] \\
+       it was not part of oblig 1
+     :END:
+
+
+**** DONE should there be even a tester file? check the original build <2020-02-05 Wed 10:37>'''
+     CLOSED: [2020-02-05 Wed 11:03]
+     :LOGBOOK:
+     - State "DONE"       from "TODO"       [2020-02-05 Wed 11:03] \\
+       No, the starting point has no test fil.
+     :END:
+
+**** CANCELLED what's the diff's <2020-02-05 Wed 11:00>
+     CLOSED: [2020-02-05 Wed 11:03]
+     :LOGBOOK:
+     - CLOSING NOTE [2020-02-05 Wed 11:03] \\
+       maybe egal
+     :END:
+
+ Comare the new build.xml the new patch one and the old start on
+
+
+
+
+
+*** DONE check also the other file in the test subdir  <2020-02-05 Wed 10:23>
+    CLOSED: [2020-02-05 Wed 10:31]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2020-02-05 Wed 10:31]
+    :END:
+
+The file ~FileEndingFilter.java~. Yes, that also for the patch  for o2
+
+*** DONE test a fresh checkedout simple examples <2019-02-12 Tue 07:31>
+    CLOSED: [2019-02-12 Tue 07:45]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2019-02-12 Tue 07:45]
+    :END:
+**** FIXED running does not work <2019-02-12 Tue 07:40>
+     CLOSED: [2019-02-12 Tue 07:45]
+     :LOGBOOK:
+     - CLOSING NOTE [2019-02-12 Tue 07:45]
+     :END:
+
+
+./input-examples/test-eval.txt (No such file or directory)
+**** FIXED the par example does not compile <2019-02-12 Tue 07:34>
+     CLOSED: [2019-02-12 Tue 07:40]
+     :LOGBOOK:
+     - CLOSING NOTE [2019-02-12 Tue 07:40]
+     :END:
+     - ./src-examples missing
+     -     [javac] import exampletree.*;
+*** DONE compile the program inside the document <2019-02-12 Tue 06:59>
+    CLOSED: [2019-02-12 Tue 07:30]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2019-02-12 Tue 07:30]
+    :END:
+
+*** CANCELLED remove dir.desc <2019-02-11 Mon 15:12>
+    CLOSED: [2019-11-26 Tue 10:49]
+    :LOGBOOK:
+    - CLOSING NOTE [2019-11-26 Tue 10:49] \\
+      I don't know what that was
+    :END:
+
+
+** Compiler 
+
+*** TODO find complexaddition.ast <2020-02-05 Wed 08:50>
+*** DONE Error in the test files
+    CLOSED: [2018-03-19 Mon 07:54]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2018-03-19 Mon 07:54]
+    :END:
+<2018-03-19 Mon 07:45>
+
+
+[[../../oblig1-starting-point/compila-code/compila.cmp  
+Are there any available test program to validate the correctness of our
+compiler? The repo provided "compila.cmp" seem to not fully cover all
+functionality of compila 18. 
+
+Also from the languange spec:
+
+REC_DECL -> "struct" NAME "{" { VAR_DECL ";" } "}"
+
+compila.cmp: 
+
+struct Complex
+begin
+var Real : float;
+var Imag : float;
+end;​
+
+begin and end has been switched out by brackets.
+
+
+
+
+
+
+
+** This to do (compila)
+
+
+
+*** CANCELLED Repair the thing from the test file (by group06)
+    CLOSED: [2020-01-14 Tue 10:18]
+    :LOGBOOK:
+    - CLOSING NOTE [2020-01-14 Tue 10:18] \\
+      Outdated
+    :END:
+
+    #+begin_example
+    
+    #+end_example
+*** DONE Error in the test files
+    CLOSED: [2018-03-19 Mon 07:54]
+    :LOGBOOK:
+    - State "DONE"       from "TODO"       [2018-03-19 Mon 07:54]
+    :END:
+<2018-03-19 Mon 07:45>
+
+
+[[../../oblig1-starting-point/compila-code/compila.cmp  
+Are there any available test program to validate the correctness of our
+compiler? The repo provided "compila.cmp" seem to not fully cover all
+functionality of compila 18. 
+
+Also from the languange spec:
+
+#+begin_example
+REC_DECL -> "struct" NAME "{" { VAR_DECL ";" } "}"
+
+compila.cmp: 
+
+struct Complex
+begin
+var Real : float;
+var Imag : float;
+end;​
+#+end_example
+
+begin and end has been switched out by brackets.
+
+
+
+
+*** DONE integrate to org <2019-02-07 Thu 09:31>
+   CLOSED: [2019-02-07 Thu 09:40]
+   :LOGBOOK:
+   - State "DONE"       from "TODO"       [2019-02-07 Thu 09:40]
+   :END:
+
+*** CANCELLED Typo in the laguage spec
+   CLOSED: [2019-02-07 Thu 09:40]
+   :LOGBOOK:
+   - CLOSING NOTE [2019-02-07 Thu 09:40] \\
+     Can't remember
+   :END:
+<2018-03-27 Tue 15:21>
+
+
+
+* What to do better next year.
+
+Remarks per semester, especially list of things that I did /not/ like (but
+perhaps also positive things).
+
+
+
+** 2020 
+
+** 2018 (I guess)
+
+
+- Grammar: call_stmt -> call_expr
+
+
+- maybe better structure of the starting point
+
+- make the handout for the oblig contain all the stuff
+   which is also on the slides
+- check the examples better.
+- perhaps don't do the stupid ant-stuff (or at least
+   get a better grip on it)
+
+- perhaps don't call it starting-point
+
+
+- I don't like the clause for ~VAR~ (at least the name), it's not a ``variable''
+
+** Grammar
+
+  - I don't like the call-statements: it's unclear
+    how to give back return values
+
+
+
+
+* This to do (compila)
+

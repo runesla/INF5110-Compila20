@@ -1,0 +1,26 @@
+Buildfile: /mnt/c/Users/Rune/Desktop/workspace/compila/build.xml
+
+init:
+
+mkdir:
+
+generate:
+      [cup] This is CUP v0.11a beta 20060608
+      [cup] Authors : Scott E. Hudson, Frank Flannery, Andrea Flexeder, Michael Petter and C. Scott Ananian
+      [cup] Bugreports to petter@cs.tum.edu
+      [cup] checking, whether this run is necessary
+      [cup] Parserfile and symbolfile are existing
+      [cup] Parserfile src-gen/parser/parser.java is actual
+      [cup] Symbolfilesrc-gen/parser/sym.java is actual
+      [cup] skipping generation of ./src/grammars/compila.cup
+      [cup] use option force="true" to override
+
+compile:
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila/build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila/build.xml:75: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to /mnt/c/Users/Rune/Desktop/workspace/compila/build/classes
+
+build:
+
+BUILD SUCCESSFUL
+Total time: 1 second
