@@ -1,4 +1,4 @@
-Buildfile: /mnt/c/Users/Rune/Desktop/workspace/compila/build.xml
+Buildfile: /mnt/c/Users/Rune/Desktop/workspace/compila09/build.xml
 
 init:
 
@@ -9,18 +9,413 @@ generate:
       [cup] Authors : Scott E. Hudson, Frank Flannery, Andrea Flexeder, Michael Petter and C. Scott Ananian
       [cup] Bugreports to petter@cs.tum.edu
       [cup] checking, whether this run is necessary
-      [cup] Parserfile and symbolfile are existing
-      [cup] Parserfile src-gen/parser/parser.java is actual
-      [cup] Symbolfilesrc-gen/parser/sym.java is actual
-      [cup] skipping generation of ./src/grammars/compila.cup
-      [cup] use option force="true" to override
-
-compile:
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila/build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila/build.xml:75: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 1 source file to /mnt/c/Users/Rune/Desktop/workspace/compila/build/classes
-
-build:
-
-BUILD SUCCESSFUL
-Total time: 1 second
+      [cup] Either Parserfile or Symbolfile didn't exist
+      [cup] Parserfile src-gen/cmp20parser/parser.java isn't actual
+      [cup] Symbolfile src-gen/cmp20parser/sym.java isn't actual
+      [cup] Warning : *** Reduce/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   and     var_expr ::= expr DOT ID (*) 
+      [cup]   under symbols: {THEN, DO, RPAR, DOT, MULOP, DIVOP, ADDOP, SUBOP, EXP, SEMI, EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL, ASSIGN}
+      [cup]   Resolved in favor of the second production.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol THEN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol DO
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol RPAR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol DOT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol MULOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol DIVOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol ADDOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol SUBOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol EXP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol SEMI
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol EQ
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol GT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol GTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LOG_AND
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LOG_OR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol NEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol ASSIGN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol THEN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol DO
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol RPAR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol DOT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol MULOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol DIVOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol ADDOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol SUBOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol EXP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol SEMI
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol EQ
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol GT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol GTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LOG_AND
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol LOG_OR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol NEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #105
+      [cup]   between var_expr ::= expr DOT ID (*) 
+      [cup]   under symbol ASSIGN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Reduce/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   and     var_expr ::= ID (*) 
+      [cup]   under symbols: {THEN, DO, RPAR, DOT, MULOP, DIVOP, ADDOP, SUBOP, EXP, SEMI, EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL, ASSIGN}
+      [cup]   Resolved in favor of the second production.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol THEN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol DO
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol RPAR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol DOT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol MULOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol DIVOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol ADDOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol SUBOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol EXP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol SEMI
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol EQ
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol GT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol GTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LOG_AND
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LOG_OR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol NEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol ASSIGN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol THEN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol DO
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol RPAR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol DOT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol MULOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol DIVOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol ADDOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol SUBOP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol EXP
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol SEMI
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol EQ
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol GT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LT
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol GTEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LOG_AND
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol LOG_OR
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol NEQUAL
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Shift/Reduce conflict found in state #56
+      [cup]   between var_expr ::= ID (*) 
+      [cup]   under symbol ASSIGN
+      [cup]   Resolved in favor of shifting.
+      [cup] 
+      [cup] Warning : *** Production "var_expr ::= expr DOT ID " never reduced
+      [cup] Warning : *** Production "var_expr ::= ID " never reduced
+      [cup] Warning : *** Production "expr_list ::= expr_list COMMA expr " never reduced
+      [cup] Warning : *** Production "expr_list ::= expr " never reduced
+      [cup] Error : *** More conflicts encountered than expected -- parser generation aborted
+      [cup] ------- CUP v0.11a beta 20060608 Parser Generation Summary -------
+      [cup]   1 error and 82 warnings
+      [cup]   54 terminals, 28 non-terminals, and 77 productions declared, 
+      [cup]   producing 163 unique parse states.
+      [cup]   0 terminals declared but not used.
+      [cup]   0 non-terminals declared but not used.
+      [cup]   0 productions never reduced.
+      [cup]   78 conflicts detected (0 expected).
+      [cup]   No code produced.
+      [cup] ---------------------------------------------------- (v0.11a beta 20060608)

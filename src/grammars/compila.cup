@@ -135,7 +135,7 @@ stmt		::= assign_stmt:as {: RESULT = as; :}
 		| return_stmt:rs {: RESULT = rs; :}
 		| call_stmt:cs {: RESULT = cs; :};
 
-assign_stmt	::= var_decl:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
+assign_stmt	::= var_expr:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
 
 if_stmt		::= IF expr:e THEN stmt_list:sl FI {: RESULT = new IfStmt(e, sl); :}
 		| IF expr:e THEN stmt_list:sl1 ELSE stmt_list:sl2 FI {: RESULT = new IfStmt(e, sl1, sl2); :};
@@ -145,7 +145,7 @@ while_stmt	::= WHILE expr:e DO stmt_list:sl OD {: RESULT = new WhileStmt(e, sl);
 
 return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :};
 
-call_stmt	::= ID:name LPAR expr_list:el RPAR {: RESULT = new CallStmt(name, el); :};
+call_stmt	::= ID:name LPAR expr:e RPAR {: RESULT = new CallStmt(name, el); :};
 
 type		::= TYPE_FLOAT {: RESULT = new Type("float"); :}
 		| TYPE_INT {: RESULT = new Type("int"); :}
@@ -165,7 +165,7 @@ binary_expr	::= log_op_expr:e {: RESULT = e; :}
 		| arith_op_expr:e {: RESULT = e; :};
 
 unary_expr	::= NOT expr:e {: RESULT = new NotExpr(e); :}
-		| literal:l {: RESULT = l; :}
+		| literal:l {: RESULT = new LiteralExpr(l); :}
 		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
 		| NEW ID:name {: RESULT = new NewExpr(new Type(name)); :}
 		| var_expr:v {: RESULT = v; :}
@@ -189,12 +189,9 @@ arith_op_expr	::= expr:e1 ADDOP expr:e2 {: RESULT = new ArithOpExpr(e1, "+", e2)
 		| expr:e1 DIVOP expr:e2 {: RESULT = new ArithOpExpr(e1, "/", e2); :}
 		| expr:e1 EXP expr:e2 {: RESULT = new ArithOpExpr(e1, "^", e2); :};
 
-ref_var		::= REF LPAR ID:name RPAR {: RESULT = new RefVarExpr(name); :};
+ref_var		::= REF LPAR var_expr:e RPAR {: RESULT = new RefVarExpr(e); :};
 
-deref_var	::= DEREF LPAR ID:name RPAR {: RESULT = new DerefVarExpr(name); :};
-
-/*var_expr	::= ID:name {: RESULT = new VarExpr(name); :} 
-		| expr:e DOT ID:name {: RESULT = new VarExpr(e, name); :};*/
+deref_var	::= DEREF LPAR var_expr:e RPAR {: RESULT = new DerefVarExpr(e); :};
 
 literal		::= FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
 		| INT_LITERAL:il {: RESULT = new IntLiteral(il); :}

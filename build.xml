@@ -3,11 +3,13 @@
 	<target name="menu" >
 		<echo>Targets                             </echo>
 		<echo>clean                		- Cleans up the project</echo>
-		<echo>build                		- Build compiler</echo>
-		<echo>run                  		- Run compiler</echo>
-		<echo>generate-complex-addition		- Generate complexaddition example</echo>
-		<echo>compile-complex-addition		- Compile complexaddition example</echo>
-		<echo>run-complex-addition		- Run complexaddition example</echo>
+		<echo>build-basecode           		- Build compiler for basecode</echo>
+		<echo>run-basecode            		- Run compiler for basecode</echo>
+		<echo>generate-basecode			- Generate for basecode</echo>
+		<echo>compile-basecode			- Compile for basecode</echo>
+		<echo>generate				- Generate</echo>
+		<echo>compile				- Compile</echo>
+		<echo>run					- Run</echo>
 	</target>
 
 	<!-- Path definitions -->
@@ -31,7 +33,7 @@
 		<property name="dir.base" value="${basedir}"/>
 		<property name="dir.build" value="${dir.base}/build"/>
 		<property name="dir.src-gen" value="${dir.base}/src-gen"/>
-		<property name="dir.src-examples" value="${dir.base}/src-examples"/>
+	<!--	<property name="dir.src-examples" value="${dir.base}/src-examples"/>-->
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
 
@@ -64,42 +66,54 @@
         
 
 
-
+<!-- ========================================================================================================== -->
+<!-- 							BASE CODE						-->
+<!-- ========================================================================================================== -->
 
 	<!-- Generate scanner and parser using JFlex and CUP  -->
-	<target name="generate" depends="mkdir">
+	<target name="generate-basecode" depends="mkdir">
 		<jflex file="./src/grammars/compila-basecode.lex" destdir="src-gen"/>
 		<cup srcfile="./src/grammars/compila-basecode.cup" destdir="src-gen" interface="true" />
 	</target>
 
 	<!-- Compile Java Files and store in /build/classes directory  -->
-	<target name="compile" depends="generate">
+	<target name="compile-basecode" depends="generate-basecode">
 		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src-gen}"/>
 		<javac srcdir="${dir.src-gen}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
 	</target>
 
 	<!-- Main target  -->
-	<target name="build" depends="compile"/>
+	<target name="build-basecode" depends="compile-basecode"/>
 
 	<!-- Run the system  -->
-	<target name="run" depends="init">
+	<target name="run-basecode" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="src/tests/dummyprograms/simpledummy.cmp"/> 
 			<arg value="src/tests/outputs/ast/simpledummy.ast"/>
 		</java>
 	</target>
 
-	<!-- Generate scanner and parser for complexaddition -->
-	<target name="generate-complex-addition" depends="init, mkdir">
+
+<!-- ========================================================================================================== -->
+<!-- 							CMP20 CODE						-->
+<!-- ========================================================================================================== -->
+
+	<!-- Generate scanner and parser -->
+	<target name="generate" depends="init, mkdir">
 		<jflex file="./src/grammars/compila.lex" destdir="src-gen" />
 		<cup srcfile="./src/grammars/compila.cup" destdir="src-gen" interface="true" />
 	</target>
 	
-	<!-- Compile code for complexaddition -->
-	<target name="compile-complex-addition" depends="generate-complex-addition">
-		<javac srcdir="${dir.src}" destdir="${dir.classes}" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src-gen}" />
-		<javac srcdir="${dir.src-gen}" destdir="${dir.classes}" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
+	<!-- Compile -->
+	<target name="compile" depends="generate">
+<!--		<antcall target="generic-compile-ast" />-->
+		<antcall target="generic-compile">
+			<param name="package-name" value="cmp20parser" />
+		</antcall>
 	</target>
+
+	<!-- Main target -->
+	<target name="build" depends="compile" />
 	
 	<!-- Run complexaddition -->
 	<target name="run-complex-addition" depends="init">

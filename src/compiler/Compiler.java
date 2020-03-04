@@ -4,7 +4,7 @@ package compiler;
 
 import java.io.*;
 import syntaxtree.*;
-import parser.*;
+import cmp20parser.*;
 
 public class Compiler {
     private String inFilename = null;
