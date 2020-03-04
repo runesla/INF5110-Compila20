@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import java.util.*;
+
 public class IfStmt extends Stmt {
 	
 	private Expr e;

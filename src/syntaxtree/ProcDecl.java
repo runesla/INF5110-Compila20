@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import java.util.*;
+
 public class ProcDecl extends Decl {
 
 	private Type returnType;

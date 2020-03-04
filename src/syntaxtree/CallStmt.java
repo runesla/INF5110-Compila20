@@ -6,7 +6,7 @@ public class CallStmt extends Stmt {
 	private Expr e;
 
 	public CallStmt(String name, Expr e) {
-		super(name);
+		this.name = name;
 		this.e = e;
 	}
 }

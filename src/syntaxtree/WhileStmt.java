@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import java.util.*;
+
 public class WhileStmt extends Stmt {
 	
 	private Expr e;

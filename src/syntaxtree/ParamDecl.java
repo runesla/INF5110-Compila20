@@ -6,7 +6,7 @@ public class ParamDecl extends Decl {
 
 	public ParamDecl(String name, Type type) {
 		super(name);
-		this.type = type
+		this.type = type;
 		this.type = type;
 	}
 	

@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import java.util.*;
+
 public class RecDecl extends Decl {
 
 	private List<ParamDecl> params;

@@ -4,7 +4,7 @@ public class BoolLiteral extends LiteralExpr {
 
 	private Boolean literal;
 
-	public BoolLiteral(literal) {
+	public BoolLiteral(Boolean literal) {
 		this.literal = literal;
 	}
 

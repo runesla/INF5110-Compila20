@@ -10,512 +10,57 @@ generate:
       [cup] Bugreports to petter@cs.tum.edu
       [cup] checking, whether this run is necessary
       [cup] Parserfile and symbolfile are existing
-      [cup] Parserfile src-gen/cmp20parser/parser.java is actual
-      [cup] Symbolfilesrc-gen/cmp20parser/sym.java is actual
+      [cup] Parserfile src/cmp20parser/parser.java is actual
+      [cup] Symbolfilesrc/cmp20parser/sym.java is actual
       [cup] skipping generation of ./src/grammars/compila.cup
       [cup] use option force="true" to override
 
 compile:
-
-generic-compile:
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/build.xml:59: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 3 source files to /mnt/c/Users/Rune/Desktop/workspace/compila09/build/classes
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:10: error: package syntaxtree does not exist
-    [javac] import syntaxtree.*;
-    [javac] ^
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:543: error: cannot find symbol
-    [javac]               LiteralExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LiteralExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:544: error: cannot find symbol
-    [javac] 		 RESULT = new NullLiteral(); 
-    [javac] 		              ^
-    [javac]   symbol:   class NullLiteral
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:552: error: cannot find symbol
-    [javac]               LiteralExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LiteralExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:555: error: cannot find symbol
-    [javac] 		Bool bl = (Bool)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+    [javac] Compiling 40 source files to /mnt/c/Users/Rune/Desktop/workspace/compila09/build/classes
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/ParamDecl.java:8: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
     [javac] 		^
-    [javac]   symbol:   class Bool
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:555: error: cannot find symbol
-    [javac] 		Bool bl = (Bool)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Bool
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:556: error: cannot find symbol
-    [javac] 		 RESULT = new BoolLiteral(bl); 
-    [javac] 		              ^
-    [javac]   symbol:   class BoolLiteral
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:564: error: cannot find symbol
-    [javac]               LiteralExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LiteralExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:568: error: cannot find symbol
-    [javac] 		 RESULT = new StringLiteral(sl); 
-    [javac] 		              ^
-    [javac]   symbol:   class StringLiteral
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:576: error: cannot find symbol
-    [javac]               LiteralExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LiteralExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:580: error: cannot find symbol
-    [javac] 		 RESULT = new IntLiteral(il); 
-    [javac] 		              ^
-    [javac]   symbol:   class IntLiteral
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:588: error: cannot find symbol
-    [javac]               LiteralExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LiteralExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:592: error: cannot find symbol
-    [javac] 		 RESULT = new FloatLiteral(fl); 
-    [javac] 		              ^
-    [javac]   symbol:   class FloatLiteral
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:600: error: cannot find symbol
-    [javac]               DerefVarExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class DerefVarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:603: error: cannot find symbol
-    [javac] 		VarExpr e = (VarExpr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+    [javac]   required: no arguments
+    [javac]   found: String
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/ProcDecl.java:14: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
     [javac] 		^
-    [javac]   symbol:   class VarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:603: error: cannot find symbol
-    [javac] 		VarExpr e = (VarExpr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-    [javac] 		             ^
-    [javac]   symbol:   class VarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:604: error: cannot find symbol
-    [javac] 		 RESULT = new DerefVarExpr(e); 
-    [javac] 		              ^
-    [javac]   symbol:   class DerefVarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:612: error: cannot find symbol
-    [javac]               RefVarExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RefVarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:615: error: cannot find symbol
-    [javac] 		VarExpr e = (VarExpr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+    [javac]   required: no arguments
+    [javac]   found: String
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/ProcDecl.java:22: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
     [javac] 		^
-    [javac]   symbol:   class VarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:615: error: cannot find symbol
-    [javac] 		VarExpr e = (VarExpr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-    [javac] 		             ^
-    [javac]   symbol:   class VarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:616: error: cannot find symbol
-    [javac] 		 RESULT = new RefVarExpr(e); 
-    [javac] 		              ^
-    [javac]   symbol:   class RefVarExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:624: error: cannot find symbol
-    [javac]               ArithOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:627: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+    [javac]   required: no arguments
+    [javac]   found: String
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/ProcDecl.java:30: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
     [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:627: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:630: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+    [javac]   required: no arguments
+    [javac]   found: String
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/RecDecl.java:11: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
     [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:630: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:631: error: cannot find symbol
-    [javac] 		 RESULT = new ArithOpExpr(e1, "^", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:639: error: cannot find symbol
-    [javac]               ArithOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:642: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+    [javac]   required: no arguments
+    [javac]   found: String
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/RecDecl.java:17: error: constructor Decl in class Decl cannot be applied to given types;
+    [javac] 		super(name);
     [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:642: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:645: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:645: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:646: error: cannot find symbol
-    [javac] 		 RESULT = new ArithOpExpr(e1, "/", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:654: error: cannot find symbol
-    [javac]               ArithOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:657: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:657: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:660: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:660: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:661: error: cannot find symbol
-    [javac] 		 RESULT = new ArithOpExpr(e1, "*", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:669: error: cannot find symbol
-    [javac]               ArithOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:672: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:672: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:675: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:675: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:676: error: cannot find symbol
-    [javac] 		 RESULT = new ArithOpExpr(e1, "-", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:684: error: cannot find symbol
-    [javac]               ArithOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:687: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:687: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:690: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:690: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:691: error: cannot find symbol
-    [javac] 		 RESULT = new ArithOpExpr(e1, "+", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class ArithOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:699: error: cannot find symbol
-    [javac]               RelOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:702: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:702: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:705: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:705: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:706: error: cannot find symbol
-    [javac] 		 RESULT = new RelOpExpr(e1, "<>", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:714: error: cannot find symbol
-    [javac]               RelOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:717: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:717: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:720: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:720: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:721: error: cannot find symbol
-    [javac] 		 RESULT = new RelOpExpr(e1, "=", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:729: error: cannot find symbol
-    [javac]               RelOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:732: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:732: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:735: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:735: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:736: error: cannot find symbol
-    [javac] 		 RESULT = new RelOpExpr(e1, "<=", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:744: error: cannot find symbol
-    [javac]               RelOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:747: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:747: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:750: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:750: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:751: error: cannot find symbol
-    [javac] 		 RESULT = new RelOpExpr(e1, ">=", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:759: error: cannot find symbol
-    [javac]               RelOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:762: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:762: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:765: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:765: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:766: error: cannot find symbol
-    [javac] 		 RESULT = new RelOpExpr(e1, "<", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:774: error: cannot find symbol
-    [javac]               RelOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:777: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:777: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:780: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:780: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:781: error: cannot find symbol
-    [javac] 		 RESULT = new RelOpExpr(e1, ">", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class RelOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:789: error: cannot find symbol
-    [javac]               LogOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LogOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:792: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:792: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:795: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:795: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:796: error: cannot find symbol
-    [javac] 		 RESULT = new LogOpExpr(e1, "||", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class LogOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:804: error: cannot find symbol
-    [javac]               LogOpExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class LogOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:807: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:807: error: cannot find symbol
-    [javac] 		Expr e1 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:810: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:810: error: cannot find symbol
-    [javac] 		Expr e2 = (Expr)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-    [javac] 		           ^
-    [javac]   symbol:   class Expr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:811: error: cannot find symbol
-    [javac] 		 RESULT = new LogOpExpr(e1, "&&", e2); 
-    [javac] 		              ^
-    [javac]   symbol:   class LogOpExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src-gen/cmp20parser/parser.java:819: error: cannot find symbol
-    [javac]               UnaryExpr RESULT =null;
-    [javac]               ^
-    [javac]   symbol:   class UnaryExpr
-    [javac]   location: class CUP$parser$actions
-    [javac] 100 errors
+    [javac]   required: no arguments
+    [javac]   found: String
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/RefType.java:7: error: constructor Type in class Type cannot be applied to given types;
+    [javac] 	public RefType(Type type) {
+    [javac] 	                          ^
+    [javac]   required: String
+    [javac]   found: no arguments
+    [javac]   reason: actual and formal argument lists differ in length
+    [javac] /mnt/c/Users/Rune/Desktop/workspace/compila09/src/syntaxtree/VarDecl.java:8: error: cannot find symbol
+    [javac] 		this.name = name;
+    [javac] 		    ^
+    [javac]   symbol: variable name
+    [javac] 8 errors

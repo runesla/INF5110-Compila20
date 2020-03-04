@@ -2,9 +2,9 @@ package syntaxtree;
 
 public class ParExpr extends UnaryExpr {
 
-	private VarExpr e;
+	private Expr e;
 
-	public ParExpr(VarExpr e) {
+	public ParExpr(Expr e) {
 		this.e = e;
 	}
 }
