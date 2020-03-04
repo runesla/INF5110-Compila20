@@ -49,7 +49,7 @@ terminal Null			NULL;
 
 /* Declarations */
 non terminal Program            program;
-non terminal ClassDecl		class_decl, decl;
+non terminal Decl		decl;
 non terminal VarDecl		var_decl;
 non terminal ProcDecl		proc_decl;
 non terminal RecDecl		rec_decl;
@@ -97,15 +97,12 @@ start with program;
 
 program         ::= PROGRAM ID:name BEGIN decl_list:dl END SEMI {: RESULT = new Program(name, dl); :};
 
-decl_list       ::= decl:d SEMI {: List<ClassDecl> l = new ArrayList<ClassDecl>(); l.add(d); RESULT = l; :} 
+decl_list       ::= decl:d SEMI {: List<Decl> l = new ArrayList<Decl>(); l.add(d); RESULT = l; :} 
 		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
 
-decl            ::= class_decl:cd {: RESULT = cd; :}
-		| var_decl:vd {: RESULT = vd; :}
+decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
 		| rec_decl:rl {: RESULT = rl; :};                                  
-
-class_decl	::= CLASS ID:name BEGIN END {: RESULT = new ClassDecl(name); :};
 
 var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarExpr(name, t); :};
 
