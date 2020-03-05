@@ -54,9 +54,6 @@ non terminal VarDecl		var_decl;
 non terminal ProcDecl		proc_decl;
 non terminal RecDecl		rec_decl;
 non terminal ParamDecl		param_decl;
-non terminal List<ParamDecl>	proc_param_list;
-non terminal List<ParamDecl>	rec_param_list;
-non terminal List<Decl>		proc_decl_list;
 non terminal List<ParamDecl>	param_list;
 non terminal List<Decl>		decl_list;
 
@@ -98,7 +95,8 @@ start with program;
 program         ::= PROGRAM ID:name BEGIN decl_list:dl END {: RESULT = new Program(name, dl); :};
 
 decl_list       ::= decl:d {: List<Decl> l = new LinkedList<Decl>(); l.add(d); RESULT = l; :} 
-		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
+		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :}
+		| {: RESULT = new LinkedList<Decl>(); :};
 
 decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
@@ -111,27 +109,19 @@ var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name
 		| ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
-/* ...BEGIN decl_list:dl IN */
-proc_decl	::= PROCEDURE ID:name LPAR proc_param_list:pl RPAR BEGIN proc_decl_list:dl stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, pl, dl, sl); :}
-		| PROCEDURE ID:name LPAR proc_param_list:pl RPAR COLON type:t BEGIN proc_decl_list:dl stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
+proc_decl	::= PROCEDURE ID:name LPAR param_list:pl RPAR BEGIN decl_list:dl IN stmt_list:dl END SEMI {: RESULT = new ProcDecl(name, pl, dl, sl); :}
+		| PROCEDURE ID:name LPAR param_list:pl RPAR COLON type:t BEGIN decl_list:dl IN stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
 
-proc_decl_list	::= decl_list:dl IN {: RESULT = dl; :};
+rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
-/*rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};*/
-rec_decl	::= STRUCT ID:name LCURLY rec_param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
-
-proc_param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
-		| param_list:pl COMMA param_decl:pd {: pl.add(pd); RESULT = pl; :}
-		| {: RESULT = new LinkedList<ParamDecl>(); :};
-
-rec_param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
-		| param_list:pl SEMI param_decl:pd {: pl.add(pd); RESULT = pl; :}
-		| {: RESULT = new LinkedList<ParamDecl>(); :};
+param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
+		| {: RESULT = new LinkedList<ParamDecl>();  :};
 
 param_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};
 
 stmt_list	::= stmt:s SEMI {: List<Stmt> l = new LinkedList<Stmt>(); l.add(s); RESULT = l; :}
-		| stmt_list:sl stmt:s SEMI {: sl.add(s); RESULT = sl; :};
+		| stmt_list:sl stmt:s SEMI {: sl.add(s); RESULT = sl; :}
+		| {: RESULT = new LinkedList<Stmt>();  :};
 
 stmt		::= assign_stmt:as {: RESULT = as; :}
 		| if_stmt:is {: RESULT = is; :}
