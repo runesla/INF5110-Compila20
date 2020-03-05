@@ -19,12 +19,14 @@ public class Compiler {
 		inputStream = new FileInputStream(this.inFilename);
 		Lexer lexer = new Lexer(inputStream);
 		parser parser = new parser(lexer);
-		Program program = (Program)parser.parse().value;
-		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(this.outFilename));
-		bufferedWriter.write(program.printAst());
-		bufferedWriter.close();
-
-		createAST(program);
+		
+		try {
+			Program program = (Program)parser.parse().value;
+			createAST(program);
+		} catch(Exception e) {
+			System.err.println("ERROR: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	public void createAST(Program program) {
@@ -34,6 +36,7 @@ public class Compiler {
             buf.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.err.println("ERROR: " + e.getMessage());
 		}
 	}
 
@@ -42,6 +45,7 @@ public class Compiler {
 		try {
 			compiler.compile();
 		} catch (Exception e) {
+			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

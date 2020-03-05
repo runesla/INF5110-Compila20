@@ -1,8 +1,7 @@
-<project name="INF5110/INF9110 Obligatory exercise" default="menu" basedir=".">
+<project name="Compila20" default="menu" basedir=".">
 	<target name="menu" >
 		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
-		<echo>					</echo>
 		<echo>build				- Build CMP20</echo>
 		<echo>generate				- Generate parser for CMP20</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
@@ -45,16 +44,6 @@
 
 	<target name="mkdir" depends="init">
 		<mkdir dir="${dir.classes}"/>
-	</target>
-
-    <!-- Generic compile target -->
-	<target name="generic-compile" depends="">
-		<javac srcdir="${dir.src-gen}" destdir="${dir.classes}" debug="true" includes="${package-name}/*.java" classpathref="path-cup"/>
-	</target>
-		
-	<!-- Generic compile AST-nodes target -->
-	<target name="generic-compile-ast" depends="">
-		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup"/>
 	</target>
 	
 	<!-- Generate scanner and parser -->

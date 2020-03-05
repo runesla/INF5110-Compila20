@@ -92,9 +92,9 @@ precedence left DOT;
 /* The grammar */
 start with program;
 
-program         ::= PROGRAM ID:name BEGIN decl_list:dl END SEMI {: RESULT = new Program(name, dl); :};
+program         ::= PROGRAM ID:name BEGIN decl_list:dl END {: RESULT = new Program(name, dl); :};
 
-decl_list       ::= decl:d {: List<Decl> l = new ArrayList<Decl>(); l.add(d); RESULT = l; :} 
+decl_list       ::= decl:d {: List<Decl> l = new LinkedList<Decl>(); l.add(d); RESULT = l; :} 
 		|   decl_list:dl decl:d {: dl.add(d); RESULT = dl; :};
 
 decl            ::= var_decl:vd {: RESULT = vd; :}
@@ -114,13 +114,13 @@ proc_decl	::= PROCEDURE ID:name LPAR param_list:pl RPAR BEGIN decl_list:dl IN st
 
 rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
-param_list	::= param_decl:pd {: List<ParamDecl> l = new ArrayList<ParamDecl>(); l.add(pd); RESULT = l; :}
+param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
 		| param_list:pl COMMA param_decl:pd {: pl.add(pd); RESULT = pl; :}
-		| {: RESULT = new ArrayList<ParamDecl>(); :};
+		| {: RESULT = new LinkedList<ParamDecl>(); :};
 
 param_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};
 
-stmt_list	::= stmt:s SEMI {: List<Stmt> l = new ArrayList<Stmt>(); l.add(s); RESULT = l; :}
+stmt_list	::= stmt:s SEMI {: List<Stmt> l = new LinkedList<Stmt>(); l.add(s); RESULT = l; :}
 		| stmt_list:sl stmt:s SEMI {: sl.add(s); RESULT = sl; :};
 
 stmt		::= assign_stmt:as {: RESULT = as; :}
