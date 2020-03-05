@@ -78,6 +78,7 @@ non terminal List<Stmt>		stmt_list;
 
 /* Misc */
 non terminal Type		type;
+non terminal Var		var;
 
 /* Associativity and precedence */
 precedence left LOG_OR;
@@ -95,7 +96,7 @@ start with program;
 program         ::= PROGRAM ID:name BEGIN decl_list:dl END {: RESULT = new Program(name, dl); :};
 
 decl_list       ::= decl:d {: List<Decl> l = new LinkedList<Decl>(); l.add(d); RESULT = l; :} 
-		|   decl_list:dl decl:d {: dl.add(d); RESULT = dl; :};
+		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
 
 decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
@@ -104,8 +105,9 @@ decl            ::= var_decl:vd {: RESULT = vd; :}
 var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarDecl(name, t); :};
 
 var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name, t, e); :}
-		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :}
-		| ID:name {: RESULT = new VarExpr(name); :}
+		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :};
+
+var		::= ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
 
