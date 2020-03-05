@@ -37,7 +37,6 @@ FloatLiteral = {IntLiteral} \. {IntLiteral}
 
 	/* Keywords */
         "program"                       { return symbol(sym.PROGRAM); }
-        "class"                         { return symbol(sym.CLASS); }
         "begin"                         { return symbol(sym.BEGIN); }
 	"procedure"			{ return symbol(sym.PROCEDURE); }
         "end"                           { return symbol(sym.END); }

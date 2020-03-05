@@ -8,7 +8,7 @@ parser code {:
 :};
 
 /* Keywords */
-terminal                        PROGRAM, CLASS;
+terminal                        PROGRAM;
 terminal                        BEGIN, END;
 terminal                        RETURN;
 terminal                        PROCEDURE;
@@ -66,7 +66,6 @@ non terminal LogOpExpr		log_op_expr;
 non terminal RelOpExpr		rel_op_expr;
 non terminal ArithOpExpr	arith_op_expr;
 non terminal LiteralExpr	literal;
-non terminal List<Expr>		expr_list;
 
 /* Statements  */
 non terminal Stmt		stmt;
@@ -148,9 +147,6 @@ type		::= TYPE_FLOAT {: RESULT = new Type("float"); :}
 		| TYPE_BOOL {: RESULT = new Type("bool"); :}
 		| ID:name {: RESULT = new Type(name); :}
 		| REF LPAR type:t RPAR {: RESULT = new RefType(t); :};
-
-expr_list	::= expr:e {: List<Expr> el = new ArrayList<Expr>(); el.add(e); RESULT = el; :}
-		| expr_list:el COMMA expr:e {: el.add(e); RESULT = el; :};
 
 expr		::= log_op_expr:e {: RESULT = e; :}
 		| rel_op_expr:e {: RESULT = e; :}
