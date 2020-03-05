@@ -102,6 +102,30 @@
 
 
 <!-- ========================================================================================================== -->
+<!-- 							TEST EVAL						-->
+<!-- ========================================================================================================== -->
+
+	<!-- Generate scanner and parser -->
+	<target name="generate-eval" depends="mkdir">
+		<jflex file="./src/grammars/compila.lex" destdir="src" />
+		<cup srcfile="./src/grammars/compila.cup" destdir="src" interface="true" />
+	</target>
+
+	<!-- Compile -->
+	<target name="compile-eval" depends="generate-eval">
+		<antcall target="generic-compile">
+			<param name="package-name" value="" />
+		</antcall>
+	</target>
+
+	<!-- Run eval -->
+	<target name="run eval" depends="compile-eval">
+		<java classname="test_eval.parser" classpathref="path-run">
+			<arg value="" />
+		</java>
+	</target>
+
+<!-- ========================================================================================================== -->
 <!-- 							CMP20 CODE						-->
 <!-- ========================================================================================================== -->
 
@@ -128,7 +152,7 @@
 	<target name="run-complex-addition" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
-			<arg value="./src/tests/outputs/ast/complexaddition.ast" />
+			<arg value="./output/ast/complexaddition.ast" />
 		</java>
 	</target>
 
