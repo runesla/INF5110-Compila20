@@ -3,11 +3,9 @@
 		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
 		<echo>					</echo>
-		<echo>CMP20:				</echo>
-		<echo>===============================================================</echo>
 		<echo>build				- Build CMP20</echo>
-		<echo>generate				- Generate CMP20</echo>
-		<echo>compile				- Compile CMP20</echo>
+		<echo>generate				- Generate parser for CMP20</echo>
+		<echo>compile				- Compile Java files for CMP20</echo>
 		<echo>run-complexaddition			- Run example complexaddition</echo>
 
 	</target>
@@ -32,7 +30,6 @@
 		<!-- Directories and files that exist. -->
 		<property name="dir.base" value="${basedir}"/>
 		<property name="dir.build" value="${dir.base}/build"/>
-		<property name="dir.src-gen" value="${dir.base}/src-gen"/>
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
 
@@ -44,16 +41,13 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${dir.build}" includes="**/*"/>
 		</delete>
-		<delete includeemptydirs="true">
-			<fileset dir="${dir.src-gen}" includes="**/*"/>
-		</delete>
 	</target>
 
 	<target name="mkdir" depends="init">
 		<mkdir dir="${dir.classes}"/>
 	</target>
 
-        <!-- Generic compile target -->
+    <!-- Generic compile target -->
 	<target name="generic-compile" depends="">
 		<javac srcdir="${dir.src-gen}" destdir="${dir.classes}" debug="true" includes="${package-name}/*.java" classpathref="path-cup"/>
 	</target>
@@ -62,38 +56,7 @@
 	<target name="generic-compile-ast" depends="">
 		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup"/>
 	</target>
-
-<!-- ========================================================================================================== -->
-<!-- 							BASE CODE						-->
-<!-- ========================================================================================================== -->
-
-	<!-- Generate scanner and parser using JFlex and CUP  -->
-	<target name="generate-basecode" depends="mkdir">
-		<jflex file="./src/grammars/compila-basecode.lex" destdir="src-gen"/>
-		<cup srcfile="./src/grammars/compila-basecode.cup" destdir="src-gen" interface="true" />
-	</target>
-
-	<!-- Compile Java Files and store in /build/classes directory  -->
-	<target name="compile-basecode" depends="generate-basecode">
-		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src-gen}"/>
-		<javac srcdir="${dir.src-gen}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
-	</target>
-
-	<!-- Main target  -->
-	<target name="build-basecode" depends="compile-basecode"/>
-
-	<!-- Run the system  -->
-	<target name="run-basecode" depends="init">
-		<java classname="compiler.Compiler" classpathref="path-run">
-			<arg value="src/tests/dummyprograms/simpledummy.cmp"/> 
-			<arg value="src/tests/outputs/ast/simpledummy.ast"/>
-		</java>
-	</target>
-
-<!-- ========================================================================================================== -->
-<!-- 							CMP20 CODE						-->
-<!-- ========================================================================================================== -->
-
+	
 	<!-- Generate scanner and parser -->
 	<target name="generate" depends="init, mkdir">
 		<jflex file="./src/grammars/compila.lex" destdir="src" />
