@@ -18,7 +18,10 @@ public class ProcDecl extends Decl {
 	}
 
 	// No return type, given params, decl and stmts
-	public ProcDecl(String name, List<ParamDecl> params, List<Decl> declarations, List<Stmt> statements) {
+	public ProcDecl(String name, 
+			List<ParamDecl> params, 
+			List<Decl> declarations, 
+			List<Stmt> statements) {
 		super(name);
 		this.params = params;
 		this.declarations = declarations;
@@ -26,7 +29,11 @@ public class ProcDecl extends Decl {
 	}
 
 	// Given return type, params, decl and stmts
-	public ProcDecl(String name, Type returnType, List<ParamDecl> params, List<Decl> declarations, List<Stmt> statements) {
+	public ProcDecl(String name, 
+			Type returnType, 
+			List<ParamDecl> params, 
+			List<Decl> declarations, 
+			List<Stmt> statements) {
 		super(name);
 		this.returnType = returnType;
 		this.params = params;

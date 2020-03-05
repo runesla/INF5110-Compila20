@@ -3,10 +3,10 @@ import java.util.List;
 
 public class Program {
 
-    List<ClassDecl> decls;
+    List<Decl> decls;
     String name;
 
-    public Program(String name, List<ClassDecl> decls) {
+    public Program(String name, List<Decl> decls) {
         this.decls = decls;
         this.name = name;
     }
@@ -17,10 +17,12 @@ public class Program {
         sb.append("(NAME ");
         sb.append(this.name);
         sb.append(")\n");
-        for (ClassDecl decl : decls) {
+/*
+        for (Decl decl : decls) {
             sb.append("\t" + decl.printAst());
             sb.append("\n");
         }
+*/
         sb.append(")");
         return sb.toString();
         

@@ -107,7 +107,7 @@
 	<!-- Compile -->
 	<target name="compile" depends="generate">
 		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src-gen}" />
-		<javac includeantruntime="false" srcdir="${src-gen}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="$dir.src}" />
+		<javac includeantruntime="false" srcdir="${dir.src-gen}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="$dir.src}" />
 	<!--	<antcall target="generic-compile-ast" />
 		<antcall target="generic-compile">
 			<param name="package-name" value="cmp20parser" />

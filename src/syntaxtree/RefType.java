@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class RefType {
+public class RefType extends Type {
 
 	private Type type;
 

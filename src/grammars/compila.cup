@@ -55,7 +55,7 @@ non terminal ProcDecl		proc_decl;
 non terminal RecDecl		rec_decl;
 non terminal ParamDecl		param_decl;
 non terminal List<ParamDecl>	param_list;
-non terminal List<ClassDecl>	decl_list;
+non terminal List<Decl>		decl_list;
 
 /* Expressions  */
 non terminal Expr		expr;
@@ -104,7 +104,7 @@ decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
 		| rec_decl:rl {: RESULT = rl; :};                                  
 
-var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarExpr(name, t); :};
+var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarDecl(name, t); :};
 
 var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name, t, e); :}
 		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :}
