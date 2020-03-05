@@ -104,14 +104,20 @@ FloatLiteral = {IntLiteral} \. {IntLiteral}
 	/* Int literal */
 	{IntLiteral}			{ return symbol(sym.INT_LITERAL, new Integer(yytext())); }
 
-        {Identifier}                    { return symbol(sym.ID,yytext()); }
+	/* Identifier */
+        {Identifier}                    { return symbol(sym.ID, yytext()); }
 }
 
 <STRING> {
 
 	\"				{ yybegin(YYINITIAL); return symbol(sym.STRING_LITERAL, string.toString()); }
 
-	{LineTerminator}		{ throw new Error("Unterminated string at end of line"); }
+	[^\n\r\"\\]+			{ string.append(yytext()); }
+	\\t				{ string.append('\t'); }
+	\\n				{ string.append('\n'); }
+	\\r				{ string.append('\r'); }
+	\\				{ string.append('\\'); }
+	\\\"				{ string.append('\"'); }
 
 }
 

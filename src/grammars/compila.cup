@@ -62,8 +62,6 @@ non terminal Expr		expr;
 non terminal RefVarExpr		ref_var;
 non terminal DerefVarExpr	deref_var;
 non terminal VarExpr		var_expr;
-non terminal BinaryExpr		binary_expr;
-non terminal UnaryExpr		unary_expr;
 non terminal LogOpExpr		log_op_expr;
 non terminal RelOpExpr		rel_op_expr;
 non terminal ArithOpExpr	arith_op_expr;
@@ -97,8 +95,8 @@ start with program;
 
 program         ::= PROGRAM ID:name BEGIN decl_list:dl END SEMI {: RESULT = new Program(name, dl); :};
 
-decl_list       ::= decl:d SEMI {: List<Decl> l = new ArrayList<Decl>(); l.add(d); RESULT = l; :} 
-		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
+decl_list       ::= decl:d {: List<Decl> l = new ArrayList<Decl>(); l.add(d); RESULT = l; :} 
+		|   decl_list:dl decl:d {: dl.add(d); RESULT = dl; :};
 
 decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
@@ -154,14 +152,10 @@ type		::= TYPE_FLOAT {: RESULT = new Type("float"); :}
 expr_list	::= expr:e {: List<Expr> el = new ArrayList<Expr>(); el.add(e); RESULT = el; :}
 		| expr_list:el COMMA expr:e {: el.add(e); RESULT = el; :};
 
-expr		::= binary_expr:e {: RESULT = e; :}
-		| unary_expr:e {: RESULT = e; :};
-
-binary_expr	::= log_op_expr:e {: RESULT = e; :}
+expr		::= log_op_expr:e {: RESULT = e; :}
 		| rel_op_expr:e {: RESULT = e; :}
-		| arith_op_expr:e {: RESULT = e; :};
-
-unary_expr	::= NOT expr:e {: RESULT = new NotExpr(e); :}
+		| arith_op_expr:e {: RESULT = e; :}
+		| NOT expr:e {: RESULT = new NotExpr(e); :}
 		| literal:l {: RESULT = l; :}
 		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
 		| NEW ID:name {: RESULT = new NewExpr(new Type(name)); :}

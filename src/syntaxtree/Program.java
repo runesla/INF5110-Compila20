@@ -17,12 +17,12 @@ public class Program {
         sb.append("(NAME ");
         sb.append(this.name);
         sb.append(")\n");
-/*
+
         for (Decl decl : decls) {
             sb.append("\t" + decl.printAst());
             sb.append("\n");
         }
-*/
+
         sb.append(")");
         return sb.toString();
         

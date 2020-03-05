@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class NotExpr extends UnaryExpr {
+public class NotExpr extends Expr {
 
 	private Expr e;
 

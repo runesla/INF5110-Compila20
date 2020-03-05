@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class CallExpr extends UnaryExpr {
+public class CallExpr extends Expr {
 	
 	private CallStmt callStatement;
 

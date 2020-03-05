@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class VarExpr extends UnaryExpr {
+public class VarExpr extends Expr {
 
 	private String name;
 	private Expr e;

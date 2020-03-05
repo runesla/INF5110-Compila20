@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class DerefVarExpr extends UnaryExpr {
+public class DerefVarExpr extends Expr {
 
 	private VarExpr e;
 

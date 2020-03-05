@@ -7,7 +7,7 @@
 		<echo>run-basecode            		- Run compiler for basecode</echo>
 		<echo>generate-basecode			- Generate for basecode</echo>
 		<echo>compile-basecode			- Compile for basecode</echo>
-		<echo>generate				- Generate</echo>
+		<echo>generate				- Generate CMP20</echo>
 		<echo>compile				- Compile CMP20</echo>
 		<echo>run-complex-addition		- Run example complexaddition</echo>
 	</target>
@@ -121,6 +121,7 @@
 	<target name="run-complex-addition" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
+			<arg value="./src/tests/outputs/ast/complexaddition.ast" />
 		</java>
 	</target>
 

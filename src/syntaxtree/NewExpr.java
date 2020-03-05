@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class NewExpr extends UnaryExpr {
+public class NewExpr extends Expr {
 
 	private Type type;
 	

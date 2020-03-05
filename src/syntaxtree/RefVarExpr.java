@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class RefVarExpr extends UnaryExpr {
+public class RefVarExpr extends Expr {
 	
 	private VarExpr e;
 

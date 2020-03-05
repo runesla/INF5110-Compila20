@@ -1,6 +1,6 @@
 package syntaxtree;
 
-public class RelOpExpr extends BinaryExpr {
+public class RelOpExpr extends Expr {
 
 	private String operator;
 	private Expr e1;
