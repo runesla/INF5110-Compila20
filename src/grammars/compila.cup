@@ -54,6 +54,7 @@ non terminal VarDecl		var_decl;
 non terminal ProcDecl		proc_decl;
 non terminal RecDecl		rec_decl;
 non terminal ParamDecl		param_decl;
+non terminal List<Decl>		proc_decl_list;
 non terminal List<ParamDecl>	param_list;
 non terminal List<Decl>		decl_list;
 
@@ -78,7 +79,6 @@ non terminal List<Stmt>		stmt_list;
 
 /* Misc */
 non terminal Type		type;
-non terminal Var		var;
 
 /* Associativity and precedence */
 precedence left LOG_OR;
@@ -105,19 +105,25 @@ decl            ::= var_decl:vd {: RESULT = vd; :}
 var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarDecl(name, t); :};
 
 var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name, t, e); :}
-		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :};
-
-var		::= ID:name {: RESULT = new VarExpr(name); :}
+		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :}
+		| ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
+/* ...BEGIN decl_list:dl IN */
+proc_decl	::= PROCEDURE ID:name LPAR proc_param_list:pl RPAR BEGIN proc_decl_list:dl stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, pl, dl, sl); :}
+		| PROCEDURE ID:name LPAR proc_param_list:pl RPAR COLON type:t BEGIN proc_decl_list:dl stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
 
-proc_decl	::= PROCEDURE ID:name LPAR param_list:pl RPAR BEGIN decl_list:dl IN stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, pl, dl, sl); :}
-		| PROCEDURE ID:name LPAR param_list:pl RPAR COLON type:t BEGIN decl_list:dl IN stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, t, pl, dl, sl); :}; 
+proc_decl_list	::= decl_list:dl IN {: RESULT = dl; :};
 
-rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
+/*rec_decl	::= STRUCT ID:name LCURLY param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};*/
+rec_decl	::= STRUCT ID:name LCURLY rec_param_list:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
-param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
+proc_param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
 		| param_list:pl COMMA param_decl:pd {: pl.add(pd); RESULT = pl; :}
+		| {: RESULT = new LinkedList<ParamDecl>(); :};
+
+rec_param_list	::= param_decl:pd {: List<ParamDecø> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
+		| param_list:pl SEMI param_decl:pd {: pl.add(pd); RESULT = pl; :}
 		| {: RESULT = new LinkedList<ParamDecl>(); :};
 
 param_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};
