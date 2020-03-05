@@ -1,4 +1,4 @@
-package cmp20parser;
+package parser;
 import java_cup.runtime.*;
 %%
 

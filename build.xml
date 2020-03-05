@@ -1,22 +1,15 @@
-<!-- Build file (as inspiration) for INF5110/INF9110 Obligatory exercise -->
 <project name="INF5110/INF9110 Obligatory exercise" default="menu" basedir=".">
 	<target name="menu" >
-		<echo>Targets                             </echo>
+		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
-		<echo></echo>
-		<echo>BASE CODE:</echo>
-		<echo>================================================================</echo>
-		<echo>build-basecode           		- Build compiler for basecode</echo>
-		<echo>run-basecode            		- Run compiler for basecode</echo>
-		<echo>generate-basecode			- Generate for basecode</echo>
-		<echo>compile-basecode			- Compile for basecode</echo>
-		<echo></echo>
-		<echo>CMP20:</echo>
-		<echo>================================================================</echo>
+		<echo>					</echo>
+		<echo>CMP20:				</echo>
+		<echo>===============================================================</echo>
 		<echo>build				- Build CMP20</echo>
 		<echo>generate				- Generate CMP20</echo>
 		<echo>compile				- Compile CMP20</echo>
-		<echo>run-complex-addition		- Run example complexaddition</echo>
+		<echo>run-complexaddition			- Run example complexaddition</echo>
+
 	</target>
 
 	<!-- Path definitions -->
@@ -40,7 +33,6 @@
 		<property name="dir.base" value="${basedir}"/>
 		<property name="dir.build" value="${dir.base}/build"/>
 		<property name="dir.src-gen" value="${dir.base}/src-gen"/>
-		<property name="dir.src-examples" value="${dir.base}/src-examples"/>
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
 
@@ -68,10 +60,8 @@
 		
 	<!-- Generic compile AST-nodes target -->
 	<target name="generic-compile-ast" depends="">
-		<javac srcdir="${dir.src-examples}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup"/>
+		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup"/>
 	</target>
-        
-
 
 <!-- ========================================================================================================== -->
 <!-- 							BASE CODE						-->
@@ -100,31 +90,6 @@
 		</java>
 	</target>
 
-
-<!-- ========================================================================================================== -->
-<!-- 							TEST EVAL						-->
-<!-- ========================================================================================================== -->
-
-	<!-- Generate scanner and parser -->
-	<target name="generate-eval" depends="mkdir">
-		<jflex file="./src/grammars/compila.lex" destdir="src" />
-		<cup srcfile="./src/grammars/compila.cup" destdir="src" interface="true" />
-	</target>
-
-	<!-- Compile -->
-	<target name="compile-eval" depends="generate-eval">
-		<antcall target="generic-compile">
-			<param name="package-name" value="" />
-		</antcall>
-	</target>
-
-	<!-- Run eval -->
-	<target name="run eval" depends="compile-eval">
-		<java classname="test_eval.parser" classpathref="path-run">
-			<arg value="" />
-		</java>
-	</target>
-
 <!-- ========================================================================================================== -->
 <!-- 							CMP20 CODE						-->
 <!-- ========================================================================================================== -->
@@ -137,23 +102,18 @@
 	
 	<!-- Compile -->
 	<target name="compile" depends="generate">
-		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src-gen}" />
-		<javac includeantruntime="false" srcdir="${dir.src-gen}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="$dir.src}" />
-	<!--	<antcall target="generic-compile-ast" />
-		<antcall target="generic-compile">
-			<param name="package-name" value="cmp20parser" />
-		</antcall>-->
+		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
 	</target>
 
 	<!-- Main target -->
 	<target name="build" depends="compile" />
 	
 	<!-- Run complexaddition -->
-	<target name="run-complex-addition" depends="init">
+	<target name="run-complexaddition" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
-			<arg value="./output/ast/complexaddition.ast" />
+			<arg value="./output/complexaddition/complexaddition.ast" />
 		</java>
 	</target>
-
+	
 </project>

@@ -2,7 +2,7 @@ package compiler;
 
 import java.io.*;
 import syntaxtree.*;
-import cmp20parser.*;
+import parser.*;
 
 public class Compiler {
 
@@ -30,8 +30,8 @@ public class Compiler {
 	public void createAST(Program program) {
 		try {
 			BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
-                        buf.write(program.printAst());
-                        buf.close();
+            buf.write(program.printAst());
+            buf.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
