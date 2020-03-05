@@ -3,10 +3,17 @@
 	<target name="menu" >
 		<echo>Targets                             </echo>
 		<echo>clean                		- Cleans up the project</echo>
+		<echo></echo>
+		<echo>BASE CODE:</echo>
+		<echo>================================================================</echo>
 		<echo>build-basecode           		- Build compiler for basecode</echo>
 		<echo>run-basecode            		- Run compiler for basecode</echo>
 		<echo>generate-basecode			- Generate for basecode</echo>
 		<echo>compile-basecode			- Compile for basecode</echo>
+		<echo></echo>
+		<echo>CMP20:</echo>
+		<echo>================================================================</echo>
+		<echo>build				- Build CMP20</echo>
 		<echo>generate				- Generate CMP20</echo>
 		<echo>compile				- Compile CMP20</echo>
 		<echo>run-complex-addition		- Run example complexaddition</echo>

@@ -1,5 +1,3 @@
-// Inspiration for oblig1, for oblig2 there will be an update
-
 package compiler;
 
 import java.io.*;
@@ -7,12 +5,15 @@ import syntaxtree.*;
 import cmp20parser.*;
 
 public class Compiler {
+
 	private String inFilename = null;
 	private String outFilename = null;
-	public Compiler(String inFilename, String outFilename){  // 
+
+	public Compiler(String inFilename, String outFilename){
 		this.inFilename = inFilename;
 		this.outFilename = outFilename;
 	}
+
 	public void compile() throws Exception {
 		InputStream inputStream = null;
 		inputStream = new FileInputStream(this.inFilename);
@@ -25,21 +26,21 @@ public class Compiler {
 
 		createAST(program);
 	}
-	public static void main(String[] args) {
-		Compiler compiler = new Compiler(args[0], args[1]);
+	
+	public void createAST(Program program) {
 		try {
-			compiler.compile();
+			BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
+                        buf.write(program.printAst());
+                        buf.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void createAST(Program program) {
-
+	public static void main(String[] args) {
+		Compiler compiler = new Compiler(args[0], args[1]);
 		try {
-			BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
-			buf.write(program.printAst());
-			buf.close();
+			compiler.compile();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
