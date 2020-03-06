@@ -6,7 +6,7 @@
 		<echo>generate				- Generate parser for CMP20</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
 		<echo>run-complexaddition			- Run example complexaddition</echo>
-
+		<echo>run-test				- Run test example</echo>
 	</target>
 
 	<!-- Path definitions -->
@@ -64,7 +64,14 @@
 	<target name="run-complexaddition" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
-			<arg value="./output/complexaddition/complexaddition.ast" />
+			<arg value="./output/complexaddition.ast" />
+		</java>
+	</target>
+
+	<target name="run-test" depends="init">
+		<java classname="compiler.Compiler" classpathref="path-run">
+			<arg value="./src/tests/parsing/test01.cmp" />
+			<arg value="./output/test.ast" />
 		</java>
 	</target>
 	

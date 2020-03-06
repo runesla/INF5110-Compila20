@@ -23,6 +23,7 @@ public class Compiler {
 		try {
 			Program program = (Program)parser.parse().value;
 			createAST(program);
+			System.out.println("Program compiled");
 		} catch(Exception e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
@@ -32,8 +33,9 @@ public class Compiler {
 	public void createAST(Program program) {
 		try {
 			BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
-            buf.write(program.printAst());
-            buf.close();
+        		buf.write(program.printAst());
+            		buf.close();
+			System.out.println("AST created");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
