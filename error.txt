@@ -3,6 +3,7 @@ Buildfile: /mnt/c/Users/Rune/Desktop/workspace/compila09/build.xml
 init:
 
 mkdir:
+    [mkdir] Created dir: /mnt/c/Users/Rune/Desktop/workspace/compila09/build/classes
 
 generate:
       [cup] This is CUP v0.11a beta 20060608
