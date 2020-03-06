@@ -17,6 +17,12 @@ public class Compiler {
 	public void compile() throws Exception {
 		InputStream inputStream = null;
 		inputStream = new FileInputStream(this.inFilename);
+
+		if(inFilename == null)
+			System.out.println("File not found");
+		else
+			System.out.println("Filename: " + inFilename);
+
 		Lexer lexer = new Lexer(inputStream);
 		parser parser = new parser(lexer);
 		

@@ -70,7 +70,7 @@
 
 	<target name="run-test" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
-			<arg value="./src/tests/parsing/test01.cmp" />
+			<arg value="./src/tests/parsing/test03.cmp" />
 			<arg value="./output/test.ast" />
 		</java>
 	</target>
