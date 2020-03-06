@@ -27,6 +27,18 @@ public class ProcDecl extends Decl {
 		this.statements = statements;
 	}
 
+	// Given return type, given params and statements
+	public ProcDecl(String name,
+			Type returnType,
+       			List<ParamFieldDecl> params,
+       			List<Stmt> statements) {
+       		super(name);
+		this.returnType = returnType;
+       		this.params = params;
+       		this.declarations = declarations;
+       		this.statements = statements;
+       	}
+
 	// No return type, given params, decl and stmts
 	public ProcDecl(String name, 
 			List<ParamFieldDecl> params, 
