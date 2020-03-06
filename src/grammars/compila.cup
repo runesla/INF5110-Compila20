@@ -54,11 +54,13 @@ non terminal Decl		decl;
 non terminal VarDecl		var_decl;
 non terminal ProcDecl		proc_decl;
 non terminal RecDecl		rec_decl;
-non terminal ParamDecl		param_decl;
 non terminal ParamFieldDecl	paramfield_decl;
-non terminal List<ParamDecl>	param_list, proc_params, rec_params;
-non terminal List<Decl>		decl_list;
-non terminal List<Decl>		opt_decl_list;
+/*
+non terminal OptProcParams	opt_proc_params;
+non terminal OptRecParams	opt_rec_params;
+*/
+non terminal List<ParamFieldDecl>	param_list, proc_params, rec_params, opt_proc_params, opt_rec_params;
+non terminal List<Decl>		decl_list, opt_decl_list;
 non terminal List<Stmt>		opt_stmt_list;
 
 /* Expressions  */
@@ -93,14 +95,13 @@ precedence left DOT;
 /* The grammar */
 start with program;
 
-program         ::= PROGRAM ID:name BEGIN decl_list:dl END {: RESULT = new Program(name, dl); :};
+program         ::= PROGRAM ID:name BEGIN opt_decl_list:dl END {: RESULT = new Program(name, dl); :};
 
 opt_decl_list	::= decl_list:dl {: RESULT = dl; :}
 		| {: RESULT = new LinkedList<Decl>(); :};
 
 decl_list       ::= decl:d {: List<Decl> l = new LinkedList<Decl>(); l.add(d); RESULT = l; :} 
 		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
-/*		| {: RESULT = new LinkedList<Decl>(); :};*/
 
 decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
@@ -113,30 +114,34 @@ var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name
 		| ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
-proc_decl	::= PROCEDURE ID:name LPAR proc_params:pl RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:dl END SEMI {: RESULT = new ProcDecl(name, pl, dl, sl); :}
-		| PROCEDURE ID:name LPAR proc_params:pl RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:sl END SEMI {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
+proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:pl RPAR BEGIN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, pl, sl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR BEGIN decl_list:dl IN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, pl, dl, sl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR COLON type:t BEGIN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, t, pl, sl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
 
-rec_decl	::= STRUCT ID:name LCURLY rec_params:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
+rec_decl	::= STRUCT ID:name LCURLY opt_rec_params:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
-proc_params	::= paramfield_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
+opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
+		| {: RESULT = new LinkedList<ParamFieldDecl>();  :};
+
+proc_params	::= paramfield_decl:pd {: List<ParamFieldDecl> l = new LinkedList<ParamFieldDecl>(); l.add(pd); RESULT = l; :}
 		| param_list:pl paramfield_decl:pd COMMA {: pl.add(pd); RESULT = pl; :};
 
-rec_params	::= paramfield_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
+opt_rec_params	::= rec_params:rp {: RESULT = rp;  :}
+		| {: RESULT = new LinkedList<ParamFieldDecl>();  :};
+
+rec_params	::= paramfield_decl:pd {: List<ParamFieldDecl> l = new LinkedList<ParamFieldDecl>(); l.add(pd); RESULT = l; :}
 		| param_list:pl paramfield_decl:pd SEMI {: pl.add(pd); RESULT = pl; :};
 
-paramfield_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};
+param_list	::= paramfield_decl:pd {: List<ParamFieldDecl> l = new LinkedList<ParamFieldDecl>(); l.add(pd); RESULT = l; :};
 
-param_list	::= param_decl:pd {: List<ParamDecl> l = new LinkedList<ParamDecl>(); l.add(pd); RESULT = l; :}
-		| {: RESULT = new LinkedList<ParamDecl>();  :};
+paramfield_decl	::= ID:name COLON type:t {: RESULT = new ParamFieldDecl(name, t); :};
 
-/*param_decl	::= ID:name COLON type:t {: RESULT = new ParamDecl(name, t); :};*/
-
-opt_stmt_list	::= stmt_list:sl {: RESULT = sl; };
+opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}
 		| {: RESULT = new LinkedList<Stmt>(); :};
 
 stmt_list	::= stmt:s SEMI {: List<Stmt> l = new LinkedList<Stmt>(); l.add(s); RESULT = l; :}
 		| stmt_list:sl stmt:s SEMI {: sl.add(s); RESULT = sl; :};
-/*		| {: RESULT = new LinkedList<Stmt>();  :};*/
 
 stmt		::= assign_stmt:as {: RESULT = as; :}
 		| if_stmt:is {: RESULT = is; :}
@@ -146,8 +151,8 @@ stmt		::= assign_stmt:as {: RESULT = as; :}
 
 assign_stmt	::= var_expr:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
 
-if_stmt		::= IF expr:e THEN stmt_list:sl FI {: RESULT = new IfStmt(e, sl); :}
-		| IF expr:e THEN stmt_list:sl1 ELSE stmt_list:sl2 FI {: RESULT = new IfStmt(e, sl1, sl2); :};
+if_stmt		::= IF expr:e THEN opt_stmt_list:sl FI {: RESULT = new IfStmt(e, sl); :}
+		| IF expr:e THEN opt_stmt_list:sl1 ELSE opt_stmt_list:sl2 FI {: RESULT = new IfStmt(e, sl1, sl2); :};
 
 
 while_stmt	::= WHILE expr:e DO stmt_list:sl OD {: RESULT = new WhileStmt(e, sl); :};
