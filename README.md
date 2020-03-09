@@ -1,6 +1,6 @@
 # Compila20
 
-## Contributors
+## Author
 
 Rune Langleite, runesla@ifi.uio.no
 

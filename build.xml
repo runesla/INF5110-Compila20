@@ -49,7 +49,7 @@
 	<!-- Generate scanner and parser -->
 	<target name="generate" depends="init, mkdir">
 		<jflex file="./src/grammars/compila.lex" destdir="src" />
-		<cup srcfile="./src/grammars/compila-min.cup" destdir="src" interface="true" />
+		<cup srcfile="./src/grammars/compila.cup" destdir="src" interface="true" />
 	</target>
 	
 	<!-- Compile -->
