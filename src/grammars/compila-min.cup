@@ -118,13 +118,14 @@ rec_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<
 
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :};
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, osl); :};
 
 opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
 		| {: RESULT = new LinkedList<ParamFieldDecl>(); :};
 
-proc_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); RESULT = pfl; :}
-		| proc_params:pp COMMA paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); :};
+proc_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pp = new LinkedList<ParamFieldDecl>(); pp.add(pfd); RESULT = pp; :}
+		| proc_params:pp COMMA paramfield_decl:pfd {: pp.add(pfd); RESULT = pp; :};
 
 paramfield_decl	::= ID:name COLON type:t {: RESULT = new ParamFieldDecl(name, t); :};
 
