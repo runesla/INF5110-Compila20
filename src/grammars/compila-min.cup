@@ -1,0 +1,122 @@
+package parser;   
+import java_cup.runtime.*;
+import syntaxtree.*;
+import java.util.*;
+
+parser code {:
+
+:};
+
+/* Keywords */
+terminal                        PROGRAM;
+terminal                        BEGIN, END;
+terminal                        RETURN;
+terminal                        PROCEDURE;
+terminal			IF, THEN, ELSE, FI;
+terminal			WHILE, DO, OD;
+terminal			NOT;
+terminal			NEW;
+terminal			REF, DEREF;
+terminal			IN;
+terminal			STRUCT;
+
+/* Symbols */
+terminal			LPAR, RPAR;
+terminal 			LCURLY, RCURLY;
+terminal 			COMMA;
+terminal			DOT;
+terminal			MULOP, DIVOP, ADDOP, SUBOP;
+terminal			EXP;
+terminal			COLON;
+terminal			SEMI;
+terminal			EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL;
+terminal			VAR;
+terminal			ASSIGN;
+
+/* Types */
+terminal                        TYPE_INT;
+terminal                        TYPE_FLOAT;
+terminal                        TYPE_STRING;
+terminal                        TYPE_BOOL;
+terminal String			ID;
+non terminal Type		type;
+
+/* Literals  */
+terminal Float			FLOAT_LITERAL;
+terminal String			STRING_LITERAL;
+terminal Integer		INT_LITERAL;
+terminal Boolean		BOOL_LITERAL;
+terminal Null			NULL;
+
+/* Declarations */
+non terminal Program            program;
+non terminal Decl		decl;
+non terminal VarDecl		var_decl;
+non terminal ProcDecl		proc_decl;
+non terminal RecDecl		rec_decl;
+non terminal ParamFieldDecl	paramfield_decl;
+/*
+non terminal OptProcParams	opt_proc_params;
+non terminal OptRecParams	opt_rec_params;
+*/
+non terminal List<ParamFieldDecl>	param_list, proc_params, rec_params, opt_proc_params, opt_rec_params;
+non terminal List<Decl>		decl_list, opt_decl_list;
+non terminal List<Stmt>		opt_stmt_list;
+non terminal List<VarDecl>	var_decl_list, opt_var_decl_list;
+
+/* Expressions  */
+non terminal Expr		expr;
+non terminal RefVarExpr		ref_var;
+non terminal DerefVarExpr	deref_var;
+non terminal VarExpr		var;
+non terminal LogOpExpr		log_op_expr;
+non terminal RelOpExpr		rel_op_expr;
+non terminal ArithOpExpr	arith_op_expr;
+non terminal LiteralExpr	literal_expr;
+
+/* Statements  */
+non terminal Stmt		stmt;
+non terminal AssignStmt		assign_stmt;
+non terminal IfStmt		if_stmt;
+non terminal WhileStmt		while_stmt;
+non terminal ReturnStmt		return_stmt;
+non terminal CallStmt		call_stmt;
+non terminal List<Stmt>		stmt_list;
+
+/* Associativity and precedence */
+precedence left LOG_OR;
+precedence left LOG_AND;
+precedence right NOT;
+precedence nonassoc GT, LT, LTEQUAL, GTEQUAL, NEQUAL, EQ;
+precedence left ADDOP, SUBOP;
+precedence left MULOP, DIVOP;
+precedence right EXP;
+precedence left DOT;
+
+/* The grammar */
+start with program;
+
+program         ::= PROGRAM ID:name BEGIN opt_decl_list:dl END {: RESULT = new Program(name, dl); :};
+
+opt_decl_list	::= decl_list:dl {: RESULT = dl; :}
+		| {: RESULT = new LinkedList<Decl>(); :};
+
+decl_list	::= decl:d {: List<Decl> dl = new LinkedList<Decl>(); dl.add(d); RESULT = dl; :}
+		| decl_list:dl SEMI decl:d {: dl.add(d); RESULT = dl; :};
+
+decl		::= var_decl:vd {: RESULT = vd; :}
+		| rec_decl:rl {: RESULT = rl; :};
+
+var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarDecl(name, t); :}
+		| VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarDecl(name, t, e); :}
+		| VAR ID:name ASSIGN expr:e {: RESULT = new VarDecl(name, e); :};
+
+expr		::= ref_var:rv {: RESULT = rv; :};
+
+ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
+
+var		::= ID:name {: RESULT = new VarExpr(name); :}
+		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
+
+type		::= REF LPAR type:t RPAR {: RESULT = new RefType(t); :}
+		| ID:name {: RESULT = new Type(name); :};
