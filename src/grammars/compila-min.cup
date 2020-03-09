@@ -158,7 +158,8 @@ arith_op_expr	::= expr:e1 ADDOP expr:e2 {: RESULT = new ArithOpExpr(e1, "+", e2)
 
 ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 
-deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :};
+deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :}
+		| DEREF LPAR deref_var:dv RPAR {: RESULT = dv; :};
 
 var		::= ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
