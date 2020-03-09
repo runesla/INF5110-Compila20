@@ -20,4 +20,9 @@ public class VarDecl extends Decl {
 		this.type = type;
 		this.expr = expr;
 	}
+
+	@Override
+	public String printAst(int level) {
+		return "(VAR_DECL " + this.type.printAst(level + 1) + " (NAME " + this.getName() + "))";
+	}
 }

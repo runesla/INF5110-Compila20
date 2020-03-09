@@ -7,4 +7,9 @@ public class IntLiteral extends LiteralExpr {
 	public IntLiteral(Integer literal) {
 		this.literal = literal;
 	}
+	
+	@Override
+	public String printAst(int level) {
+		return "(INT_LITERAL " + this.literal.toString() + ")";
+	}
 }

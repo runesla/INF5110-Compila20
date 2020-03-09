@@ -20,4 +20,22 @@ public class IfStmt extends Stmt {
 		this.stmt1 = stmt1;
 		this.stmt2 = stmt2;
 	}
+	
+	@Override
+	public String printAst(int level) {
+		String print = "(IF_STMT " + e.printAst(level);
+		
+		for(Stmt s : stmt1) {
+			print += "\t" + s.printAst(level + 1) + "\n";
+		}
+		
+		if(stmt2 != null) {
+			for(Stmt s: stmt2) {
+				print += "\t" + s.printAst(level + 1) + "\n";
+			}
+		}
+		
+		return print;
+	}
+	
 }

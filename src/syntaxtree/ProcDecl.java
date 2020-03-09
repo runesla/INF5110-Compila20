@@ -63,4 +63,33 @@ public class ProcDecl extends Decl {
 		this.statements = statements;
 	}
 	
+	@Override
+	public String printAst(int level) {
+		String print = "(PROCEDURE " + this.getName();
+		
+		if(params != null) {
+			for(ParamFieldDecl p: params) {
+				print += "\t" + p.printAst(level + 1) + "\n";
+			}
+		}
+		
+		if(returnType != null)
+			print += this.returnType.toString();
+		
+		if(declarations != null) {
+			for(Decl d: declarations) {
+				print += "\t" + d.printAst(level + 1) + "\n";
+			}
+		}
+		
+		if(statements != null) {
+			for(Stmt s: statements) {
+				print += "\t" + s.printAst(level + 1) + "\n";
+			}
+		}
+		
+		print += ")";
+		
+		return print;
+	}
 }

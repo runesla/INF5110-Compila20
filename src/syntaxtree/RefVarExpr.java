@@ -8,4 +8,8 @@ public class RefVarExpr extends Expr {
 		this.e = e;
 	}
 
+	@Override
+	public String printAst(int level) {
+		return "(REF_VAR " + e.printAst(level) + ")";
+	}
 }

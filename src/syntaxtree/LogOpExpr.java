@@ -11,4 +11,10 @@ public class LogOpExpr extends Expr {
 		this.operator = operator;
 		this.e2 = e2;
 	}
+	
+	@Override
+	public String printAst(int level) {
+		String print = "(LOG_OP_EXPR " + e1.printAst(level) + operator + e2.printAst(level) + ")";
+		return print;
+	}
 }

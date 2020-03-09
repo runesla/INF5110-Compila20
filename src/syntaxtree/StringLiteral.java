@@ -8,4 +8,8 @@ public class StringLiteral extends LiteralExpr {
 		this.literal = literal;
 	}
 	
+	@Override
+	public String printAst(int level) {
+		return "(STRING_LITERAL " + this.literal + ")";
+	}
 }

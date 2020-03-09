@@ -17,4 +17,10 @@ public class Type extends Node {
 	public Type(TypeName t_name) {
 		this.t_name = t_name;
 	}
+
+	@Override
+	public String printAst(int level) {
+		String print = "(TYPE " + ((this.name == null) ? this.t_name.toString() : this.name.toString()) + ")";
+		return print;
+	}
 }

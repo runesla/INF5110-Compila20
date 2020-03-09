@@ -15,4 +15,18 @@ public class AssignStmt extends Stmt {
 		this.deref_e = deref_e;
 		this.e = e;
 	}
+	
+	@Override
+	public String printAst(int level) {
+		String print = "(ASSIGN_STMT " + this.e.printAst(level);
+		
+		if(this.var_e != null)
+			print += var_e.printAst(level);
+		else
+			print += deref_e.printAst(level);
+		
+		print += ")";
+		
+		return print;
+	}
 }

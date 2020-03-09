@@ -8,4 +8,8 @@ public class FloatLiteral extends LiteralExpr {
 		this.literal = literal;
 	}
 
+	@Override
+	public String printAst(int level) {
+		return "(FLOAT_LITERAL " + this.literal.toString() + ")";	
+	}
 }

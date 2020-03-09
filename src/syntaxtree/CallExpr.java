@@ -7,4 +7,10 @@ public class CallExpr extends Expr {
 	public CallExpr(CallStmt callStatement) {
 		this.callStatement = callStatement;
 	}
+	
+	@Override
+	public String printAst(int level) {
+		String print = "(CALL_EXPR " + callStatement.toString() + ")";
+		return print;
+	}
 }

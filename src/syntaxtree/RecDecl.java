@@ -18,4 +18,14 @@ public class RecDecl extends Decl {
 		this.params = params;
 	}
 
+	@Override
+	public String printAst(int level) {
+		String print = "(STRUCT ";
+		
+		for(ParamFieldDecl p: params) {
+			print += "\t" + p.printAst(level + 1) + "\n";
+		}
+		
+		return print;
+	}
 }

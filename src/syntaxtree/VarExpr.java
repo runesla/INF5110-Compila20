@@ -26,4 +26,8 @@ public class VarExpr extends Expr {
 		this.e = e;
 	}
 
+	public String printAst(int level) {
+		String print = "(VAR " + this.name + ((e != null) ? e.printAst(level) : "" ) + ":" + ((type != null) ? type.printAst(level) : "" ) + ")";
+		return print;
+	}
 }

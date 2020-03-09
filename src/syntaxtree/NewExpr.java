@@ -8,4 +8,9 @@ public class NewExpr extends Expr {
 		this.type = type;
 	}
 
+	@Override
+	public String printAst(int level) {
+		String print = "(NEW_EXPR " + this.type.toString() + ")";
+		return print;
+	}
 }

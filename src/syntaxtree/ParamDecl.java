@@ -9,4 +9,9 @@ public class ParamDecl extends Decl {
 		this.type = type;
 	}
 	
+	@Override
+	public String printAst(int level) {
+		String print = "(PARAM_DECL " + this.getName() + ":" + this.type.toString() + ")";
+		return print;
+	}
 }

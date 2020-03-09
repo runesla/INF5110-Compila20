@@ -2,7 +2,7 @@ package syntaxtree;
 
 import java.util.List;
 
-public class Program {
+public class Program extends Node {
 
     List<Decl> decls;
     String name;
@@ -12,7 +12,8 @@ public class Program {
         this.name = name;
     }
 
-    public String printAst(){
+    @Override
+    public String printAst(int level){
         StringBuilder sb = new StringBuilder();
         sb.append("(PROGRAM ");
         sb.append("(NAME ");
@@ -20,7 +21,7 @@ public class Program {
         sb.append(")\n");
 
         for (Decl decl : decls) {
-            sb.append("\t" + decl.printAst());
+            sb.append("\t" + decl.printAst(level + 1));
             sb.append("\n");
         }
 

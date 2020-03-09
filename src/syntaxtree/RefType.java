@@ -8,4 +8,8 @@ public class RefType extends Type {
 		this.type = type;
 	}
 
+	@Override
+	public String printAst(int level) {
+		return "(REF_TYPE " + type.printAst(level) + ")";
+	}
 }

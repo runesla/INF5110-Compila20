@@ -7,7 +7,12 @@ public class ParamFieldDecl extends Decl {
 	public ParamFieldDecl(String name, Type type) {
 		super(name);
 		this.type = type;
-		this.type = type;
 	}
 	
+	@Override
+	public String printAst(int level) {
+		String print = "(PARAMFIELD_DECL " + this.getName() + ":" + this.type.toString() + ")";
+		
+		return print;
+	}
 }

@@ -12,4 +12,9 @@ public class RelOpExpr extends Expr {
 		this.e2 = e2;
 	}
 
+	@Override
+	public String printAst(int level) {
+		String print = "(REL_OPR_EXPR " + e1.printAst(level) + operator + e2.printAst(level) + ")";
+		return print;
+	}
 }

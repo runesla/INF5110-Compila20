@@ -1,8 +1,5 @@
 package syntaxtree;
 
-public abstract class Node {
+public abstract class Node implements PrintAst {
 
-	public String printAst() {
-		return "I'm a node";
-	}
 }

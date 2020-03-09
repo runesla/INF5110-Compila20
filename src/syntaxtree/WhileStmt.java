@@ -11,4 +11,15 @@ public class WhileStmt extends Stmt {
 		this.e = e;
 		this.statements = statements;
 	}
+	
+	@Override
+	public String printAst(int level) {
+		String print = "(WHILE_STMT " + e.printAst(level);
+		
+		for(Stmt s: statements) {
+			print += "\t + " + s.printAst(level + 1) + "\n";
+		}
+		
+		return print;
+	}
 }
