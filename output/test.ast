@@ -1,8 +1,3 @@
-(PROGRAM (NAME R)
-	I'm a node
-	I'm a node
-	I'm a node
-	I'm a node
-	I'm a node
+(PROGRAM (NAME p)
 	I'm a node
 )

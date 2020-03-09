@@ -4,16 +4,16 @@ import java.util.*;
 
 public class ProcDecl extends Decl {
 
-	private Type returnType;
 	List<ParamFieldDecl> params;
-	List<VarDecl> declarations;
+	private Type returnType;
+	List<Decl> declarations;
 	List<Stmt> statements;
 	
 	// No return type, "default" constructor
 	public ProcDecl(String name) {
 		super(name);
 		this.params = new ArrayList<ParamFieldDecl>();
-		this.declarations = new ArrayList<VarDecl>();
+		this.declarations = new ArrayList<Decl>();
 		this.statements = new ArrayList<Stmt>();
 	}
 
@@ -29,8 +29,8 @@ public class ProcDecl extends Decl {
 
 	// Given return type, given params and statements
 	public ProcDecl(String name,
-			Type returnType,
        			List<ParamFieldDecl> params,
+				Type returnType,
        			List<Stmt> statements) {
        		super(name);
 		this.returnType = returnType;
@@ -42,7 +42,7 @@ public class ProcDecl extends Decl {
 	// No return type, given params, decl and stmts
 	public ProcDecl(String name, 
 			List<ParamFieldDecl> params, 
-			List<VarDecl> declarations, 
+			List<Decl> declarations, 
 			List<Stmt> statements) {
 		super(name);
 		this.params = params;
@@ -52,9 +52,9 @@ public class ProcDecl extends Decl {
 
 	// Given return type, params, decl and stmts
 	public ProcDecl(String name, 
-			Type returnType, 
 			List<ParamFieldDecl> params, 
-			List<VarDecl> declarations, 
+			Type returnType, 
+			List<Decl> declarations, 
 			List<Stmt> statements) {
 		super(name);
 		this.returnType = returnType;

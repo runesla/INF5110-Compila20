@@ -1,16 +1,17 @@
 program p begin             (* some procedure declarations *)
   procedure a () begin      (* some with "in" some without *)
   end;
-  procedure a () : int 
+procedure a () : int 
   begin 
   in 
   end;
-
-  procedure a (a:int) : int 
+  
+  
+procedure a (a:int) : int 
   begin
   end;
 
-  procedure a (a:int,b:bool) : int 
+procedure a (a:int,b:bool) : int 
   begin
   end;
 
@@ -26,4 +27,6 @@ program p begin             (* some procedure declarations *)
     x := 5;
     x := 5
   end
+
+  
 end  
