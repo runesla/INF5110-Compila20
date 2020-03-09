@@ -62,16 +62,17 @@ non terminal OptRecParams	opt_rec_params;
 non terminal List<ParamFieldDecl>	param_list, proc_params, rec_params, opt_proc_params, opt_rec_params;
 non terminal List<Decl>		decl_list, opt_decl_list;
 non terminal List<Stmt>		opt_stmt_list;
+non terminal List<VarDecl>	var_decl_list, opt_var_decl_list;
 
 /* Expressions  */
 non terminal Expr		expr;
 non terminal RefVarExpr		ref_var;
 non terminal DerefVarExpr	deref_var;
-non terminal VarExpr		var_expr;
+non terminal VarExpr		var;
 non terminal LogOpExpr		log_op_expr;
 non terminal RelOpExpr		rel_op_expr;
 non terminal ArithOpExpr	arith_op_expr;
-non terminal LiteralExpr	literal;
+non terminal LiteralExpr	literal_expr;
 
 /* Statements  */
 non terminal Stmt		stmt;
@@ -100,24 +101,31 @@ program         ::= PROGRAM ID:name BEGIN opt_decl_list:dl END {: RESULT = new P
 opt_decl_list	::= decl_list:dl {: RESULT = dl; :}
 		| {: RESULT = new LinkedList<Decl>(); :};
 
-decl_list       ::= decl:d {: List<Decl> l = new LinkedList<Decl>(); l.add(d); RESULT = l; :} 
+decl_list       ::= decl:d SEMI {: List<Decl> l = new LinkedList<Decl>(); l.add(d); RESULT = l; :} 
 		|   decl_list:dl decl:d SEMI {: dl.add(d); RESULT = dl; :};
 
 decl            ::= var_decl:vd {: RESULT = vd; :}
 		| proc_decl:pl {: RESULT = pl; :}
 		| rec_decl:rl {: RESULT = rl; :};                                  
 
+opt_var_decl_list	::= var_decl_list:vdl {: RESULT = vdl; :}
+			| {: RESULT = new LinkedList<VarDecl>(); :};
+
+var_decl_list	::= var_decl:vd SEMI {: List<VarDecl> vdl = new LinkedList<VarDecl>(); vdl.add(vd); RESULT = vdl; :}
+		| var_decl_list:vdl var_decl:vd SEMI {: vdl.add(vd); RESULT = vdl; :};
+
 var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarDecl(name, t); :};
 
-var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name, t, e); :}
-		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :}
-		| ID:name {: RESULT = new VarExpr(name); :}
+/*var_expr	::= VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarExpr(name, t, e); :}
+		| VAR ID:name ASSIGN expr:e {: RESULT = new VarExpr(name, e); :}*/
+
+var		::= ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:pl RPAR BEGIN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, pl, sl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR BEGIN decl_list:dl IN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, pl, dl, sl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR BEGIN opt_var_decl_list:dl IN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, pl, dl, sl); :}
 		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR COLON type:t BEGIN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, t, pl, sl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
+		| PROCEDURE ID:name LPAR opt_proc_params:pl RPAR COLON type:t BEGIN opt_var_decl_list:dl IN opt_stmt_list:sl END {: RESULT = new ProcDecl(name, t, pl, dl, sl); :};
 
 rec_decl	::= STRUCT ID:name LCURLY opt_rec_params:pl RCURLY SEMI {: RESULT = new RecDecl(name, pl); :};
 
@@ -149,7 +157,7 @@ stmt		::= assign_stmt:as {: RESULT = as; :}
 		| return_stmt:rs {: RESULT = rs; :}
 		| call_stmt:cs {: RESULT = cs; :};
 
-assign_stmt	::= var_expr:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
+assign_stmt	::= var:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
 
 if_stmt		::= IF expr:e THEN opt_stmt_list:sl FI {: RESULT = new IfStmt(e, sl); :}
 		| IF expr:e THEN opt_stmt_list:sl1 ELSE opt_stmt_list:sl2 FI {: RESULT = new IfStmt(e, sl1, sl2); :};
@@ -172,10 +180,10 @@ expr		::= log_op_expr:e {: RESULT = e; :}
 		| rel_op_expr:e {: RESULT = e; :}
 		| arith_op_expr:e {: RESULT = e; :}
 		| NOT expr:e {: RESULT = new NotExpr(e); :}
-		| literal:l {: RESULT = l; :}
+		| literal_expr:l {: RESULT = l; :}
 		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
 		| NEW ID:name {: RESULT = new NewExpr(new Type(name)); :}
-		| var_expr:v {: RESULT = v; :}
+		| var:v {: RESULT = v; :}
 		| ref_var:rv {: RESULT = rv; :}
 		| deref_var:dv {: RESULT = dv; :}
 		| LPAR expr:e RPAR {: RESULT = new ParExpr(e); :};
@@ -196,11 +204,11 @@ arith_op_expr	::= expr:e1 ADDOP expr:e2 {: RESULT = new ArithOpExpr(e1, "+", e2)
 		| expr:e1 DIVOP expr:e2 {: RESULT = new ArithOpExpr(e1, "/", e2); :}
 		| expr:e1 EXP expr:e2 {: RESULT = new ArithOpExpr(e1, "^", e2); :};
 
-ref_var		::= REF LPAR var_expr:e RPAR {: RESULT = new RefVarExpr(e); :};
+ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 
-deref_var	::= DEREF LPAR var_expr:e RPAR {: RESULT = new DerefVarExpr(e); :};
+deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :};
 
-literal		::= FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
+literal_expr		::= FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
 		| INT_LITERAL:il {: RESULT = new IntLiteral(il); :}
 		| STRING_LITERAL:sl {: RESULT = new StringLiteral(sl); :}
 		| BOOL_LITERAL:bl {: RESULT = new BoolLiteral(bl); :}
