@@ -55,10 +55,9 @@ non terminal VarDecl		var_decl;
 non terminal ProcDecl		proc_decl;
 non terminal RecDecl		rec_decl;
 non terminal ParamFieldDecl	paramfield_decl;
-non terminal List<ParamFieldDecl>	param_list, proc_params, rec_params, opt_proc_params, opt_rec_params;
+non terminal List<ParamFieldDecl>	proc_params, rec_params, opt_proc_params, opt_rec_params;
 non terminal List<Decl>		decl_list, opt_decl_list;
 non terminal List<Stmt>		opt_stmt_list;
-non terminal List<VarDecl>	var_decl_list, opt_var_decl_list;
 
 /* Expressions  */
 non terminal Expr		expr;
@@ -129,9 +128,37 @@ proc_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pp = new LinkedList<
 
 paramfield_decl	::= ID:name COLON type:t {: RESULT = new ParamFieldDecl(name, t); :};
 
-expr		::= ref_var:rv {: RESULT = rv; :};
+expr		::= log_op_expr:e {: RESULT = e; :}
+		| NOT expr:e {: RESULT = new NotExpr(e); :} 
+		| rel_op_expr:e {: RESULT = e; :}
+		| arith_op_expr:e {: RESULT = e; :}
+		| literal_expr:le {: RESULT = le; :}
+		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
+		| NEW ID:name {: RESULT = new NewExpr(new Type(name)); :}
+		| var:v {: RESULT = v; :}
+		| ref_var:rv {: RESULT = rv; :}
+		| deref_var:dv {: RESULT = dv; :}
+		| LPAR expr:e RPAR {: RESULT = new ParExpr(e); :};
+
+log_op_expr	::= expr:e1 LOG_AND expr:e2 {: RESULT = new LogOpExpr(e1, "&&", e2); :}
+		| expr:e1 LOG_OR expr:e2 {: RESULT = new LogOpExpr(e1, "||", e2); :};
+
+rel_op_expr	::= expr:e1 GT expr:e2 {: RESULT = new RelOpExpr(e1, ">", e2); :}
+		| expr:e1 LT expr:e2 {: RESULT = new RelOpExpr(e1, "<", e2); :}
+		| expr:e1 GTEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, ">=", e2); :}
+		| expr:e1 LTEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, "<=", e2); :}
+		| expr:e1 EQ expr:e2 {: RESULT = new RelOpExpr(e1, "=", e2); :}
+		| expr:e1 NEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, "<>", e2); :};
+
+arith_op_expr	::= expr:e1 ADDOP expr:e2 {: RESULT = new ArithOpExpr(e1, "+", e2); :}
+		| expr:e1 SUBOP expr:e2 {: RESULT = new ArithOpExpr(e1, "-", e2); :}
+		| expr:e1 MULOP expr:e2 {: RESULT = new ArithOpExpr(e1, "*", e2); :}
+		| expr:e1 DIVOP expr:e2 {: RESULT = new ArithOpExpr(e1, "/", e2); :}
+		| expr:e1 EXP expr:e2 {: RESULT = new ArithOpExpr(e1, "^", e2); :};
 
 ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
+
+deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :};
 
 var		::= ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
@@ -142,11 +169,32 @@ opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}
 stmt_list	::= stmt:s {: List<Stmt> sl = new LinkedList<Stmt>(); sl.add(s); RESULT = sl; :}
 		| stmt_list:sl SEMI stmt:s {: sl.add(s); RESULT = sl; :};
 
-stmt		::= assign_stmt:as {: RESULT = as; :};
+stmt		::= assign_stmt:as {: RESULT = as; :}
+		| if_stmt:ifs {: RESULT = ifs; :}
+		| while_stmt:ws {: RESULT = ws; :}
+		| return_stmt:rs {: RESULT = rs; :}
+		| call_stmt:cs {: RESULT = cs; :};
 
 assign_stmt	::= var:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
 
+if_stmt		::= IF expr:e THEN opt_stmt_list:osl FI {: RESULT = new IfStmt(e, osl); :}
+		| IF expr:e THEN opt_stmt_list:osl1 ELSE opt_stmt_list:osl2 FI {: RESULT = new IfStmt(e, osl1, osl2); :};
+
+while_stmt	::= WHILE expr:e DO stmt_list:sl OD {: RESULT = new WhileStmt(e, sl); :};
+
+return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :};
+
+call_stmt	::= ID:name LPAR expr:e RPAR {: RESULT = new CallStmt(name, e); :};
+
 type		::= TYPE_INT {: RESULT = new Type("int"); :} 
 		| TYPE_BOOL {: RESULT = new Type("bool"); :}
+		| TYPE_FLOAT {: RESULT = new Type("float"); :}
+		| TYPE_STRING {: RESULT = new Type("string"); :}
 		| REF LPAR type:t RPAR {: RESULT = new RefType(t); :}
 		| ID:name {: RESULT = new Type(name); :};
+
+literal_expr	::= INT_LITERAL:il {: RESULT = new IntLiteral(il); :}
+		| FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
+		| STRING_LITERAL:sl {: RESULT = new StringLiteral(sl); :}
+		| BOOL_LITERAL:bl {: RESULT = new BoolLiteral(bl); :}
+		| NULL {: RESULT = new NullLiteral(); :};
