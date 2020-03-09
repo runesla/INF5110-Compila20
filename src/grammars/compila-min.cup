@@ -117,15 +117,14 @@ rec_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<
 		| rec_params:rp SEMI paramfield_decl:pfd {: rp.add(pfd); RESULT = rp; :};
 
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN IN opt_stmt_list:osl {: RESULT = new ProcDecl(name, opp, osl);  :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN decl_list:dl IN opt_stmt_list:osl {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN decl_list:dl IN opt_stmt_list:osl {: RESULT = new ProcDecl(name, opp, t, dl, osl); :};
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :};
 
 opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
 		| {: RESULT = new LinkedList<ParamFieldDecl>(); :};
 
 proc_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); RESULT = pfl; :}
-		| proc_params:pp COMMA paramfield_decl:pfc {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); :};
+		| proc_params:pp COMMA paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); :};
 
 paramfield_decl	::= ID:name COLON type:t {: RESULT = new ParamFieldDecl(name, t); :};
 
@@ -135,6 +134,16 @@ ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 
 var		::= ID:name {: RESULT = new VarExpr(name); :}
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
+
+opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}
+		| {: RESULT = new LinkedList<Stmt>(); :};
+
+stmt_list	::= stmt:s {: List<Stmt> sl = new LinkedList<Stmt>(); sl.add(s); RESULT = sl; :}
+		| stmt_list:sl SEMI stmt:s {: sl.add(s); RESULT = sl; :};
+
+stmt		::= assign_stmt:as {: RESULT = as; :};
+
+assign_stmt	::= var:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :};
 
 type		::= TYPE_INT {: RESULT = new Type("int"); :} 
 		| TYPE_BOOL {: RESULT = new Type("bool"); :}
