@@ -24,7 +24,7 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 SingleLineComment = "//" [^\r\n]* {LineTerminator}
 MultiLineComment = "(*" [^*] ~"*)"
 Identifier = [:jletter:] [:jletterdigit:]*
-IntLiteral = 0 | [1-9][0-9]*
+IntLiteral = [0-9]* | [1-9][0-9]*
 FloatLiteral = {IntLiteral} \. {IntLiteral}
 
 %state STRING
