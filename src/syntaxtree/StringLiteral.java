@@ -10,6 +10,10 @@ public class StringLiteral extends LiteralExpr {
 	
 	@Override
 	public String printAst(int level) {
-		return "(STRING_LITERAL " + this.literal + ")";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(STRING_LITERAL ");
+		builder.append(this.literal);
+		builder.append(")");
+		return builder.toString();
 	}
 }

@@ -1,16 +1,21 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class CallExpr extends Expr {
 	
-	private CallStmt callStatement;
+	private CallStmt callStmt;
 
-	public CallExpr(CallStmt callStatement) {
-		this.callStatement = callStatement;
+	public CallExpr(CallStmt callStmt) {
+		this.callStmt = callStmt;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(CALL_EXPR " + callStatement.toString() + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(CALL_EXPR ");
+		builder.append("\n" + repeat("\t", level + 1) + callStmt.printAst(level + 1));
+		builder.append("\n" + repeat("\t", level) + ")");
+		return builder.toString();
 	}
 }

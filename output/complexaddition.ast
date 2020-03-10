@@ -1,115 +1,120 @@
 (PROGRAM (NAME ComplexAddition)
 	(STRUCT (NAME Complex)
-		(PARAMFIELD_DECL
-			(NAME Real : syntaxtree.Type@3a82f6ef)
+		(VAR_DECL 
+			(TYPE float): (NAME Real)
 		)
-		(PARAMFIELD_DECL
-			(NAME Imag : syntaxtree.Type@100fc185)
+		(VAR_DECL 
+			(TYPE float): (NAME Imag)
 		)
 	)
 	(PROCEDURE (NAME Swap)
-		(PARAMFIELD_DECL
-			(NAME a : syntaxtree.RefType@643b1d11)
+		(PARAM_DECL 
+			(REF_TYPE (TYPE int)): (NAME a)
 		)
-		(PARAMFIELD_DECL
-			(NAME b : syntaxtree.RefType@2ef5e5e3)
+		(PARAM_DECL 
+			(REF_TYPE (TYPE int)): (NAME b)
 		)
 		(VAR_DECL 
 			(TYPE int) :  (NAME tmp)
 		)
 		(ASSIGN_STMT 
-			(VAR a
-			)(VAR tmp
-			)
+			(NAME tmp)
+			 := 
+			(NAME a)
 		)
 		(ASSIGN_STMT 
-			(VAR b
-			)(VAR a
-			)
+			(NAME a)
+			 := 
+			(NAME b)
 		)
 		(ASSIGN_STMT 
-			(VAR tmp
-			)(VAR b
-			)
+			(NAME b)
+			 := 
+			(NAME tmp)
 		)
+	)
 	(PROCEDURE (NAME Add) : (TYPE Complex)
-		(PARAMFIELD_DECL
-			(NAME a : syntaxtree.Type@36d4b5c)
+		(PARAM_DECL 
+			(TYPE Complex): (NAME a)
 		)
-		(PARAMFIELD_DECL
-			(NAME b : syntaxtree.Type@6d00a15d)
+		(PARAM_DECL 
+			(TYPE Complex): (NAME b)
 		)
 		(VAR_DECL 
 			(TYPE Complex) :  (NAME retval)
 		)
 		(ASSIGN_STMT 
-			(NEW_EXPR 
-				(TYPE Complex))(VAR retval
+			(NAME retval)
+			 := 
+			(NEW (TYPE Complex))
+		)
+		(ASSIGN_STMT 
+			(NAME retval) . (NAME Real)
+			 := 
+			(ARITH_OP_EXPR 
+				(NAME a) . (NAME Real)
+				+
+				(NAME b) . (NAME Real)
 			)
 		)
 		(ASSIGN_STMT 
-			(ARITH_OP_EXPR (VAR Real
-				(VAR a
-				)
-			)+(VAR Real
-				(VAR b
-				)
-			))(VAR Real
-				(VAR retval
-				)
+			(NAME retval) . (NAME Imag)
+			 := 
+			(ARITH_OP_EXPR 
+				(NAME a) . (NAME Imag)
+				+
+				(NAME b) . (NAME Imag)
 			)
 		)
-		(ASSIGN_STMT 
-			(ARITH_OP_EXPR (VAR Imag
-				(VAR a
-				)
-			)+(VAR Imag
-				(VAR b
-				)
-			))(VAR Imag
-				(VAR retval
-				)
-			)
-		)
-		(RETURN_STMT (VAR retval
-		))
+		(RETURN_STMT (NAME retval))
+	)
 	(PROCEDURE (NAME Max) : (TYPE int)
-		(PARAMFIELD_DECL
-			(NAME a : syntaxtree.Type@51efea79)
+		(PARAM_DECL 
+			(TYPE int): (NAME a)
 		)
-		(PARAMFIELD_DECL
-			(NAME b : syntaxtree.Type@5034c75a)
+		(PARAM_DECL 
+			(TYPE int): (NAME b)
 		)
-		(IF_STMT (REL_OPR_EXPR (VAR a
-		)>(VAR b
-		))	(RETURN_STMT (VAR a
-			))
-
-		(RETURN_STMT (VAR b
-		))
+		(IF_STMT (REL_OPR_EX 
+			(NAME a)
+			>
+			(NAME b)
+			(RETURN_STMT (NAME a))
+		)
+		(RETURN_STMT (NAME b))
+	)
 	(PROCEDURE (NAME main)
 		(PROCEDURE (NAME Square) : (TYPE float)
-			(PARAMFIELD_DECL
-				(NAME val : syntaxtree.Type@396a51ab)
+			(PARAM_DECL 
+				(TYPE float): (NAME val)
 			)
-			(RETURN_STMT (ARITH_OP_EXPR (VAR val
-			)^(FLOAT_LITERAL 2.0)))
+			(RETURN_STMT (ARITH_OP_EXPR 
+					(NAME val)
+					^
+					(FLOAT_LITERAL 2.0)
+				))
+		)
 		(VAR_DECL 
 			(TYPE float) :  (NAME num)
 		)
 		(ASSIGN_STMT 
-			(FLOAT_LITERAL 6.48074)(VAR num
-			)
+			(NAME num)
+			 := 
+			(FLOAT_LITERAL 6.48074)
 		)
 		(CALL_STMT print_float
-	(VAR num
-			)
-
+			(NAME num)
+		)
 		(CALL_STMT print_str
-	(STRING_LITERAL null)
-
+			(STRING_LITERAL null)
+		)
 		(CALL_STMT print_float
-	(CALL_EXPR syntaxtree.CallStmt@51081592)
-
+			(CALL_EXPR 
+				(CALL_STMT Square
+					(NAME num)
+				)
+			)
+		)
 		(RETURN_STMT )
+	)
 )

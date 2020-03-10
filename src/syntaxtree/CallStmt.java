@@ -1,25 +1,30 @@
 package syntaxtree;
 
 import java.util.*;
+import static syntaxtree.StringUtil.*;
 
 public class CallStmt extends Stmt {
 
 	private String name;
-	private List<Expr> e;
+	private List<Expr> expr;
 
-	public CallStmt(String name, List<Expr> e) {
+	public CallStmt(String name, List<Expr> expr) {
 		this.name = name;
-		this.e = e;
+		this.expr = expr;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(CALL_STMT " + this.name + "\n";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(CALL_STMT ");
+		builder.append(this.name);
 		
-		for(Expr exp: e) {
-			print += "\t" + exp.printAst(level + 1) + "\n";
+		for(Expr e: expr) {
+			builder.append("\n" + repeat("\t", level + 1) + e.printAst(level + 1));
 		}
 		
-		return print;
+		builder.append("\n" + repeat("\t", level) + ")");		
+		
+		return builder.toString();
 	}
 }

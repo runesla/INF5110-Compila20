@@ -10,6 +10,10 @@ public class FloatLiteral extends LiteralExpr {
 
 	@Override
 	public String printAst(int level) {
-		return "(FLOAT_LITERAL " + this.literal.toString() + ")";	
+		StringBuilder builder = new StringBuilder();
+		builder.append("(FLOAT_LITERAL ");
+		builder.append(this.literal.toString());
+		builder.append(")");
+		return builder.toString();
 	}
 }

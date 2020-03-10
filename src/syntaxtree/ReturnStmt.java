@@ -2,17 +2,25 @@ package syntaxtree;
 
 public class ReturnStmt extends Stmt {
 	
-	private Expr e;
+	private Expr expr;
 
 	// Empty constructor for empty return types
 	public ReturnStmt() { }
 	
-	public ReturnStmt(Expr e) {
-		this.e = e;
+	public ReturnStmt(Expr expr) {
+		this.expr = expr;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		return "(RETURN_STMT " + ((e != null) ? e.printAst(level) : "" ) + ")";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(RETURN_STMT ");
+	
+		if(expr != null)
+			builder.append(expr.printAst(level + 1));
+
+		builder.append(")");		
+
+		return builder.toString();
 	}
 }

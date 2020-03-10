@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class LogOpExpr extends Expr {
 
 	private String operator;
@@ -14,7 +16,12 @@ public class LogOpExpr extends Expr {
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(LOG_OP_EXPR " + e1.printAst(level) + operator + e2.printAst(level) + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(LOG_OP_EXPR ");
+		builder.append("\n" + repeat("\t", level + 1) + e1.printAst(level + 1));
+		builder.append("\n" + repeat("\t", level + 1) + operator);
+		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level + 1));
+
+		return builder.toString();
 	}
 }

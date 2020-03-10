@@ -10,6 +10,7 @@ public class TypeName {
 	
 	@Override
 	public String toString() {
-		return this.typeNameValue;
+/*		return this.typeNameValue;*/
+		return "typeNameValue";
 	}
 }

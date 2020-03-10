@@ -1,41 +1,50 @@
 package syntaxtree;
 
 import java.util.*;
+import static syntaxtree.StringUtil.*;
 
 public class IfStmt extends Stmt {
 	
-	private Expr e;
+	private Expr expr;
 	private List<Stmt> stmt1;
 	private List<Stmt> stmt2;
 
 	// No ELSE-part constructor
-	public IfStmt(Expr e, List<Stmt> stmt1) {
-		this.e = e;
+	public IfStmt(Expr expr, 
+			List<Stmt> stmt1) {
+		this.expr = expr;
 		this.stmt1 = stmt1;
 	}
 
 	// ELSE-part constructor
-	public IfStmt(Expr e, List<Stmt> stmt1, List<Stmt> stmt2) {
-		this.e = e;
+	public IfStmt(Expr expr, 
+			List<Stmt> stmt1, 
+			List<Stmt> stmt2) {
+		this.expr = expr;
 		this.stmt1 = stmt1;
 		this.stmt2 = stmt2;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(IF_STMT " + e.printAst(level);
-		
+		StringBuilder builder = new StringBuilder();
+		builder.append("(IF_STMT ");
+		builder.append(expr.printAst(level));	
+
 		for(Stmt s : stmt1) {
-			print += "\t" + s.printAst(level + 1) + "\n";
+			builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 		}
 		
 		if(stmt2 != null) {
 			for(Stmt s: stmt2) {
-				print += "\t" + s.printAst(level + 1) + "\n";
+				builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 			}
 		}
 		
-		return print;
+		builder.append("\n" + repeat("\t", level) + ")");
+		
+		return builder.toString();		
+
 	}
 	
 }

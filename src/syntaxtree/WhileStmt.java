@@ -1,25 +1,30 @@
 package syntaxtree;
 
 import java.util.*;
+import static syntaxtree.StringUtil.*;
 
 public class WhileStmt extends Stmt {
 	
-	private Expr e;
+	private Expr expr;
 	private List<Stmt> statements;
 
-	public WhileStmt(Expr e, List<Stmt> statements) {
-		this.e = e;
+	public WhileStmt(Expr expr, List<Stmt> statements) {
+		this.expr = expr;
 		this.statements = statements;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(WHILE_STMT " + e.printAst(level);
+		StringBuilder builder = new StringBuilder();
+		builder.append("(WHILE_STMT ");
+		builder.append(this.expr.printAst(level));
 		
 		for(Stmt s: statements) {
-			print += "\t + " + s.printAst(level + 1) + "\n";
+			builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 		}
 		
-		return print;
+		builder.append("\n" + repeat("\t", level) + ")");
+		
+		return builder.toString();
 	}
 }

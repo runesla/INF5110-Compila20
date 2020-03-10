@@ -2,15 +2,19 @@ package syntaxtree;
 
 public class NotExpr extends Expr {
 
-	private Expr e;
+	private Expr expr;
 
-	public NotExpr(Expr e) {
-		this.e = e;
+	public NotExpr(Expr expr) {
+		this.expr = expr;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(NOT_EXPR " + e.printAst(level) + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(NOT_EXPR ");
+		builder.append(expr.printAst(level + 1));
+		builder.append(")");
+
+		return builder.toString();
 	}
 }

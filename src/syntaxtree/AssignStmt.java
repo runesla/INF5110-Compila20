@@ -22,13 +22,14 @@ public class AssignStmt extends Stmt {
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(ASSIGN_STMT ");
-		builder.append("\n" + repeat("\t", level + 1) + this.expr.printAst(level + 1));
 		
 		if(this.varExpr != null)
-			builder.append(this.varExpr.printAst(level + 1));
+			builder.append("\n" + repeat("\t", level + 1) + this.varExpr.printAst(level + 1));
 		else
-			builder.append(this.derefExpr.printAst(level + 1));
+			builder.append("\n" + repeat("\t", level + 1) + this.derefExpr.printAst(level + 1));
 		
+		builder.append("\n" + repeat("\t", level + 1) + " := ");
+		builder.append("\n" + repeat("\t", level + 1) + this.expr.printAst(level + 1));
 		builder.append("\n" + repeat("\t", level) + ")");
 		
 		return builder.toString();

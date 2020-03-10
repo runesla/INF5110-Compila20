@@ -27,10 +27,12 @@ public class RecDecl extends Decl {
 		builder.append(this.getName());
 		builder.append(")");		
 
-		for(ParamFieldDecl p: params) {
-			builder.append("\n" + repeat("\t", level+1) + p.printAst(level + 1));
+		if(params != null) {
+			for(ParamFieldDecl p: params) {
+				builder.append("\n" + repeat("\t", level+1) + "(VAR_DECL " + p.printAst(level + 1));
+			}
 		}
-		
+			
 		builder.append("\n" + repeat("\t", level) + ")");
 		
 		return builder.toString();

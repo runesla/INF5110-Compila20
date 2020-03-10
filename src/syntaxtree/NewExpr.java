@@ -13,8 +13,8 @@ public class NewExpr extends Expr {
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("(NEW_EXPR ");
-		builder.append("\n" + repeat("\t", level + 1) + this.type.printAst(level));
+		builder.append("(NEW ");
+		builder.append(this.type.printAst(level));
 		builder.append(")");
 
 		return builder.toString();

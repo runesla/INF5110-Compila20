@@ -2,14 +2,18 @@ package syntaxtree;
 
 public class RefVarExpr extends Expr {
 	
-	private VarExpr e;
+	private VarExpr expr;
 
-	public RefVarExpr(VarExpr e) {
-		this.e = e;
+	public RefVarExpr(VarExpr expr) {
+		this.expr = expr;
 	}
 
 	@Override
 	public String printAst(int level) {
-		return "(REF_VAR " + e.printAst(level) + ")";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(REF_VAR ");
+		builder.append(this.expr.printAst(level));
+		builder.append(")");
+		return builder.toString();
 	}
 }

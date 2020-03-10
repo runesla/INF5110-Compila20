@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class ArithOpExpr extends Expr {
 
 	private String operator;
@@ -14,7 +16,13 @@ public class ArithOpExpr extends Expr {
 
 	@Override
 	public String printAst(int level) {
-		String print = "(ARITH_OP_EXPR " + e1.printAst(level) + operator + e2.printAst(level) + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(ARITH_OP_EXPR ");
+		builder.append("\n" + repeat("\t", level + 1) + e1.printAst(level));
+		builder.append("\n" + repeat("\t", level + 1) + operator);
+		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level));
+		builder.append("\n" + repeat("\t", level) + ")");
+		
+		return builder.toString();
 	}
 }

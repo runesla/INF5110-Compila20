@@ -30,16 +30,15 @@ public class VarExpr extends Expr {
 
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("(VAR ");
-		builder.append(this.name);
-				
-		if(this.expr != null)
-			builder.append("\n" + repeat("\t", level + 1) + this.expr.printAst(level + 1));
 
-		if(this.type != null)
-			builder.append("\n" + repeat("\t", level + 1) + " : " + this.type.printAst(level + 1));
-		
-		builder.append("\n" + repeat("\t", level) + ")");
+		if(this.expr != null) {
+			builder.append(this.expr.printAst(level + 1));
+			builder.append(" . ");
+		}
+
+		builder.append("(NAME ");
+		builder.append(this.name);
+		builder.append(")");
 
 		return builder.toString();
 	}

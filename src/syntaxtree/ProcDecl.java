@@ -77,7 +77,7 @@ public class ProcDecl extends Decl {
 		
 		if(params != null) {
 			for(ParamFieldDecl p: params) {
-				builder.append("\n" + repeat("\t", level + 1) + p.printAst(level + 1));
+				builder.append("\n" + repeat("\t", level + 1) + "(PARAM_DECL " + p.printAst(level + 1));
 			}
 		}
 		
@@ -92,6 +92,8 @@ public class ProcDecl extends Decl {
 				builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 			}
 		}
+
+		builder.append("\n" + repeat("\t", level) + ")");
 		
 		return builder.toString();
 	}

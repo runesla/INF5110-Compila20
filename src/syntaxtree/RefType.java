@@ -10,6 +10,10 @@ public class RefType extends Type {
 
 	@Override
 	public String printAst(int level) {
-		return "(REF_TYPE " + type.printAst(level) + ")";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(REF_TYPE ");
+		builder.append(this.type.printAst(level));
+		builder.append(")");
+		return builder.toString();
 	}
 }

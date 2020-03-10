@@ -10,6 +10,11 @@ public class BoolLiteral extends LiteralExpr {
 
 	@Override
 	public String printAst(int level) {
-		return "(BOOL_LITERAL " + this.literal.toString() + ")";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(BOOL_LITERAL ");
+		builder.append(this.literal.toString());
+		builder.append(")");
+	
+		return builder.toString();
 	}
 }

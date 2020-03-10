@@ -11,7 +11,12 @@ public class ParamDecl extends Decl {
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(PARAM_DECL " + this.getName() + ":" + this.type.toString() + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(PARAM_DECL ");
+		builder.append(this.getName());
+		builder.append(this.type.printAst(level));
+		builder.append(")");
+
+		return builder.toString();
 	}
 }
