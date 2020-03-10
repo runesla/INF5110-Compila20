@@ -1,9 +1,11 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class VarExpr extends Expr {
 
 	private String name;
-	private Expr e;
+	private Expr expr;
 	private Type type;
 
 	public VarExpr(String name) {
@@ -15,19 +17,30 @@ public class VarExpr extends Expr {
 		this.type = type;
 	}
 
-	public VarExpr(String name, Expr e) {
+	public VarExpr(String name, Expr expr) {
 		this.name = name;
-		this.e = e;
+		this.expr = expr;
 	}
 
-	public VarExpr(String name, Type type, Expr e) {
+	public VarExpr(String name, Type type, Expr expr) {
 		this.name = name;
 		this.type = type;
-		this.e = e;
+		this.expr = expr;
 	}
 
 	public String printAst(int level) {
-		String print = "(VAR " + this.name + ((e != null) ? e.printAst(level) : "" ) + ":" + ((type != null) ? type.printAst(level) : "" ) + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(VAR ");
+		builder.append(this.name);
+				
+		if(this.expr != null)
+			builder.append("\n" + repeat("\t", level + 1) + this.expr.printAst(level + 1));
+
+		if(this.type != null)
+			builder.append("\n" + repeat("\t", level + 1) + " : " + this.type.printAst(level + 1));
+		
+		builder.append("\n" + repeat("\t", level) + ")");
+
+		return builder.toString();
 	}
 }

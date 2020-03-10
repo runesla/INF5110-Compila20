@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import java.util.*;
+import static syntaxtree.StringUtil.*;
 
 public class RecDecl extends Decl {
 
@@ -20,14 +21,18 @@ public class RecDecl extends Decl {
 
 	@Override
 	public String printAst(int level) {
-		String print = "(STRUCT " + this.getName();
-		
+		StringBuilder builder = new StringBuilder();
+		builder.append("(STRUCT ");
+		builder.append("(NAME ");
+		builder.append(this.getName());
+		builder.append(")");		
+
 		for(ParamFieldDecl p: params) {
-			print += "\n\t"+ p.printAst(level + 1);
+			builder.append("\n" + repeat("\t", level+1) + p.printAst(level + 1));
 		}
 		
-		print += ")";
+		builder.append("\n" + repeat("\t", level) + ")");
 		
-		return print;
+		return builder.toString();
 	}
 }

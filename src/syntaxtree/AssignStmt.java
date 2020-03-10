@@ -1,32 +1,37 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class AssignStmt extends Stmt {
 	
-	private Expr e;
-	private VarExpr var_e;
-	private DerefVarExpr deref_e;
+	private Expr expr;
+	private VarExpr varExpr;
+	private DerefVarExpr derefExpr;
 
-	public AssignStmt(VarExpr var_e, Expr e) {
-		this.var_e = var_e;
-		this.e = e;
+	public AssignStmt(VarExpr varExpr, Expr expr) {
+		this.varExpr = varExpr;
+		this.expr = expr;
 	}
 	
 	public AssignStmt(DerefVarExpr deref_e, Expr e) {
-		this.deref_e = deref_e;
-		this.e = e;
+		this.derefExpr = derefExpr;
+		this.expr = expr;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(ASSIGN_STMT " + this.e.printAst(level);
+		StringBuilder builder = new StringBuilder();
+		builder.append("(ASSIGN_STMT ");
+		builder.append("\n" + repeat("\t", level + 1));
+		builder.append(expr.printAst(level + 1));
 		
-		if(this.var_e != null)
-			print += var_e.printAst(level);
+		if(this.varExpr != null)
+			builder.append(this.varExpr.printAst(level + 1));
 		else
-			print += deref_e.printAst(level);
+			builder.append(this.derefExpr.printAst(level + 1));
 		
-		print += ")";
+		builder.append("\n" + repeat("\t", level) + ")");
 		
-		return print;
+		return builder.toString();
 	}
 }

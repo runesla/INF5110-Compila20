@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class VarDecl extends Decl {
 	
 	private Type type;
@@ -23,6 +25,15 @@ public class VarDecl extends Decl {
 
 	@Override
 	public String printAst(int level) {
-		return "(VAR_DECL " + this.type.printAst(level + 1) + " (NAME " + this.getName() + "))";
+		StringBuilder builder = new StringBuilder();
+		builder.append("(VAR_DECL ");
+		builder.append("\n" + repeat("\t", level + 1) + this.type.printAst(level));
+		builder.append(" : ");
+		builder.append(" (NAME ");
+		builder.append(this.getName());
+		builder.append(")");
+		builder.append("\n" + repeat("\t", level) + ")");
+
+		return builder.toString();
 	}
 }

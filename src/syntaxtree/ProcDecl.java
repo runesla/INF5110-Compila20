@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import java.util.*;
+import static syntaxtree.StringUtil.*;
 
 public class ProcDecl extends Decl {
 
@@ -65,31 +66,33 @@ public class ProcDecl extends Decl {
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(PROCEDURE " + this.getName();
+		StringBuilder builder = new StringBuilder();
+		builder.append("(PROCEDURE ");
+		builder.append("(NAME ");
+		builder.append(this.getName());
+		builder.append(")");
+
+		if(returnType != null)
+			builder.append(" : " + this.returnType.printAst(level));
 		
 		if(params != null) {
 			for(ParamFieldDecl p: params) {
-				print += "\t" + p.printAst(level + 1) + "\n";
+				builder.append("\n" + repeat("\t", level + 1) + p.printAst(level + 1));
 			}
 		}
 		
-		if(returnType != null)
-			print += this.returnType.toString();
-		
 		if(declarations != null) {
 			for(Decl d: declarations) {
-				print += "\t" + d.printAst(level + 1) + "\n";
+				builder.append("\n" + repeat("\t", level + 1) + d.printAst(level + 1));
 			}
 		}
 		
 		if(statements != null) {
 			for(Stmt s: statements) {
-				print += "\t" + s.printAst(level + 1) + "\n";
+				builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 			}
 		}
 		
-		print += ")";
-		
-		return print;
+		return builder.toString();
 	}
 }
