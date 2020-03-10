@@ -43,7 +43,8 @@
 			(TYPE Complex) :  (NAME retval)
 		)
 		(ASSIGN_STMT 
-			(NEW_EXPR syntaxtree.Type@51efea79)(VAR retval
+			(NEW_EXPR 
+				(TYPE Complex))(VAR retval
 			)
 		)
 		(ASSIGN_STMT 
@@ -74,10 +75,10 @@
 		))
 	(PROCEDURE (NAME Max) : (TYPE int)
 		(PARAMFIELD_DECL
-			(NAME a : syntaxtree.Type@5034c75a)
+			(NAME a : syntaxtree.Type@51efea79)
 		)
 		(PARAMFIELD_DECL
-			(NAME b : syntaxtree.Type@396a51ab)
+			(NAME b : syntaxtree.Type@5034c75a)
 		)
 		(IF_STMT (REL_OPR_EXPR (VAR a
 		)>(VAR b
@@ -89,7 +90,7 @@
 	(PROCEDURE (NAME main)
 		(PROCEDURE (NAME Square) : (TYPE float)
 			(PARAMFIELD_DECL
-				(NAME val : syntaxtree.Type@51081592)
+				(NAME val : syntaxtree.Type@396a51ab)
 			)
 			(RETURN_STMT (ARITH_OP_EXPR (VAR val
 			)^(FLOAT_LITERAL 2.0)))
@@ -108,7 +109,7 @@
 	(STRING_LITERAL null)
 
 		(CALL_STMT print_float
-	(CALL_EXPR syntaxtree.CallStmt@7f9a81e8)
+	(CALL_EXPR syntaxtree.CallStmt@51081592)
 
 		(RETURN_STMT )
 )

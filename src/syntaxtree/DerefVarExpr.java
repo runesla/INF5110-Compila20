@@ -2,15 +2,18 @@ package syntaxtree;
 
 public class DerefVarExpr extends Expr {
 
-	private VarExpr e;
+	private VarExpr expr;
 
-	public DerefVarExpr(VarExpr e) {
-		this.e = e;
+	public DerefVarExpr(VarExpr expr) {
+		this.expr = expr;
 	}
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(DEREF_VAR " + e.printAst(level) + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(DEREF_VAR ");
+		builder.append(this.expr.printAst(level));
+		builder.append(")");
+		return builder.toString();
 	}
 }

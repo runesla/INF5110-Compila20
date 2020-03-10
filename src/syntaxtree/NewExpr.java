@@ -1,5 +1,7 @@
 package syntaxtree;
 
+import static syntaxtree.StringUtil.*;
+
 public class NewExpr extends Expr {
 
 	private Type type;
@@ -10,7 +12,11 @@ public class NewExpr extends Expr {
 
 	@Override
 	public String printAst(int level) {
-		String print = "(NEW_EXPR " + this.type.toString() + ")";
-		return print;
+		StringBuilder builder = new StringBuilder();
+		builder.append("(NEW_EXPR ");
+		builder.append("\n" + repeat("\t", level + 1) + this.type.printAst(level));
+		builder.append(")");
+
+		return builder.toString();
 	}
 }
