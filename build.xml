@@ -6,6 +6,7 @@
 		<echo>generate				- Generate parser for CMP20</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
 		<echo>run-complexaddition			- Run example complexaddition</echo>
+		<echo>run-me				- Run example runme.cmp</echo>
 		<echo>run-test				- Run test example</echo>
 	</target>
 
@@ -75,4 +76,12 @@
 		</java>
 	</target>
 	
+	<!-- Run runme  -->
+	<target name="run-me" depends="init">
+		<java classname="compiler.Compiler" classpathref="path-run">
+			<arg value="./src/tests/fullprograms/runme.cmp" />
+			<arg value="./output/runme.ast" />
+		</java>
+	</target>
+
 </project>

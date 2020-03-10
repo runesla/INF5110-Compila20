@@ -20,11 +20,13 @@ public class RecDecl extends Decl {
 
 	@Override
 	public String printAst(int level) {
-		String print = "(STRUCT ";
+		String print = "(STRUCT " + this.getName();
 		
 		for(ParamFieldDecl p: params) {
-			print += "\t" + p.printAst(level + 1) + "\n";
+			print += "\n\t"+ p.printAst(level + 1);
 		}
+		
+		print += ")";
 		
 		return print;
 	}

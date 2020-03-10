@@ -7,4 +7,9 @@ public class TypeName {
 	public TypeName(String typeNameValue) {
 		this.typeNameValue = typeNameValue;
 	}
+	
+	@Override
+	public String toString() {
+		return this.typeNameValue;
+	}
 }

@@ -11,7 +11,7 @@ public class ParamFieldDecl extends Decl {
 	
 	@Override
 	public String printAst(int level) {
-		String print = "(PARAMFIELD_DECL " + this.getName() + ":" + this.type.toString() + ")";
+		String print = "(PARAMFIELD_DECL (NAME " + this.getName() + ") : " + this.type.toString() + ")";
 		
 		return print;
 	}
