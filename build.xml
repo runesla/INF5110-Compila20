@@ -3,8 +3,12 @@
 		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
 		<echo>build				- Build CMP20</echo>
+		<echo>buil-amb				- Build using ambiguous grammar</echo>
+		<echo>buil-amb				- Build using ambiguous grammar</echo>
 		<echo>generate				- Generate parser for CMP20</echo>
+		<echo>generate-amb			- Generate parser using ambiguous grammar</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
+		<echo>compile-amb				- Compile using ambiguous grammar</echo>
 		<echo>run-complexaddition			- Run example complexaddition</echo>
 		<echo>run-me				- Run example runme.cmp</echo>
 		<echo>run-test				- Run test example</echo>
@@ -52,27 +56,33 @@
 		<jflex file="./src/grammars/compila.lex" destdir="src" />
 		<cup srcfile="./src/grammars/compila.cup" destdir="src" interface="true" />
 	</target>
+
+	<!-- Generate scanner and parser using ambiguous grammar -->
+	<target name="generate-amb" depends="init, mkdir">
+		<jflex file="./src/grammars/compila.lex" destdir="src" />
+		<cup srcfile="./src/grammars/compila-amb.cup" destdir="src" interface="true" />
+	</target>
 	
 	<!-- Compile -->
 	<target name="compile" depends="generate">
 		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
 	</target>
 
+	<!-- Compile using ambiguous grammar -->
+	<target name="compile-amb" depends="generate-amb">
+		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
+	</target>
+
 	<!-- Main target -->
 	<target name="build" depends="compile" />
 	
+	<target name="build-amb" depends="compile-amb" />
+
 	<!-- Run complexaddition -->
 	<target name="run-complexaddition" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
 			<arg value="./output/complexaddition.ast" />
-		</java>
-	</target>
-
-	<target name="run-test" depends="init">
-		<java classname="compiler.Compiler" classpathref="path-run">
-			<arg value="./src/tests/parsing/test09.cmp" />
-			<arg value="./output/test.ast" />
 		</java>
 	</target>
 	

@@ -8,10 +8,14 @@ public class Compiler {
 
 	private String inFilename = null;
 	private String outFilename = null;
-
-	public Compiler(String inFilename, String outFilename){
+    private String binFilename = null;
+    public String syntaxError;
+    public String error;
+	
+	public Compiler(String inFilename, String outFilename, String binFilename){
 		this.inFilename = inFilename;
 		this.outFilename = outFilename;
+		this.binFilename = binFilename;
 	}
 
 	public void compile() throws Exception {
@@ -19,17 +23,38 @@ public class Compiler {
 		inputStream = new FileInputStream(this.inFilename);
 		Lexer lexer = new Lexer(inputStream);
 		parser parser = new parser(lexer);
+		Program program;
 		
 		try {
-			Program program = (Program)parser.parse().value;
-			createAST(program);
+			program = (Program)parser.parse().value;
+			//writeAST(program);
 		} catch(Exception e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
 		}
+		
+        // Check semanics.
+		if(false){ // If it is all ok:
+            writeAST(program);
+            generateCode(program);
+            return 0;
+        } else if (false){ // If there is a SYNTAX ERROR (Should not get that for the tests):
+            return 1;
+        } else { // If there is a SEMANTIC ERROR (Should get that for the test with "_fail" in the name):
+            return 2;
+        }
 	}
 	
-	public void createAST(Program program) {
+	private void generateCode(Program program) throws Exception {
+        CodeFile codeFile = new CodeFile();
+        program.generateCode(codeFile);
+        byte[] bytecode = codeFile.getBytecode();
+        DataOutputStream stream = new DataOutputStream(new FileOutputStream (this.binFilename));
+        stream.write(bytecode);
+        stream.close();
+    }
+	
+	public void writeAST(Program program) {
 		try {
 			BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
         	buf.write(program.printAst(0));
