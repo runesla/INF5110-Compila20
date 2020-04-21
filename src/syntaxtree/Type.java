@@ -7,7 +7,7 @@ public class Type extends Node {
 	private String name;
 	private TypeName typeName;
 
-	// Needed empty constructor in order to call RefType
+	// Need empty constructor in order to call RefType
 	public Type() { }
 
 	public Type(String name) {

@@ -46,5 +46,13 @@ public class IfStmt extends Stmt {
 		return builder.toString();		
 
 	}
-	
+
+	@Override
+	public void typeCheck() {
+		String condType = condition.get.Type();
+		
+		if(condType != "bool") {
+			throw new TypeException("condition in an if statement must be of type bool");
+		}
+	}
 }

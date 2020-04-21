@@ -1,5 +1,5 @@
 package syntaxtree;
 
-public abstract class Node implements PrintAst {
-	
-}
+import typesystem.*;
+
+public abstract class Node implements PrintAst, TypeChecker { }
