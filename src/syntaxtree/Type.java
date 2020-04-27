@@ -4,8 +4,8 @@ import static syntaxtree.StringUtil.*;
 
 public class Type extends Node {
 
-	private String name;
 	private TypeName typeName;
+	private String name;
 
 	// Need empty constructor in order to call RefType
 	public Type() { }
@@ -14,8 +14,16 @@ public class Type extends Node {
 		this.name = name;
 	}
 
-	public Type(TypeName type_name) {
+	public Type(TypeName typeName) {	//type_name
 		this.typeName = typeName;
+	}
+
+	public String get() {
+		if(typeName != null) {
+			return TypeName.typeNameValue;
+		}
+
+		return name;
 	}
 
 	@Override

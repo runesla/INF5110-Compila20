@@ -9,6 +9,11 @@ public class RefType extends Type {
 	}
 
 	@Override
+	public String get() {
+		return "(REF " + this.type.get() + ")";
+	}
+
+	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(REF_TYPE ");

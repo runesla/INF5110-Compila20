@@ -1,8 +1,7 @@
 package typesystem;
 
-public interface TypeChecker {
+public class TypeChecker {
 
-	void typeCheck();
-
-	String getType();
+	public static final String[] primitives = { "int", "string", "bool", "float" };
+	public static String[] userDefinedTypes = new String[];
 }

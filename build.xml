@@ -4,7 +4,6 @@
 		<echo>clean                		- Cleans up the project</echo>
 		<echo>build				- Build CMP20</echo>
 		<echo>buil-amb				- Build using ambiguous grammar</echo>
-		<echo>buil-amb				- Build using ambiguous grammar</echo>
 		<echo>generate				- Generate parser for CMP20</echo>
 		<echo>generate-amb			- Generate parser using ambiguous grammar</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
@@ -83,6 +82,7 @@
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
 			<arg value="./output/complexaddition.ast" />
+			<arg value="./output/compila.bin" />
 		</java>
 	</target>
 	
@@ -91,6 +91,7 @@
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="./src/tests/fullprograms/runme.cmp" />
 			<arg value="./output/runme.ast" />
+			<arg value="./output/compila.bin" />
 		</java>
 	</target>
 

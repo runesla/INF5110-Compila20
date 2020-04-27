@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import java.util.List;
+import bytecode.*;
 
 public class Program extends Node {
 
@@ -27,6 +28,13 @@ public class Program extends Node {
 
         sb.append(")");
         return sb.toString();
-        
+    }
+
+    public boolean typeCheck() {
+        return true;
+    }
+
+    public void generateCode(CodeFile codeFile) {
+
     }
 }

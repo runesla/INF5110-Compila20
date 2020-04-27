@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/typesystem/TypeCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Compiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/IfStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/RefType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/RefType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/TypeName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/TypeName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/VarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/VarDecl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/typesystem/TypeChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typesystem/TypeChecker.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1arDkiHUkXMF32QtdpGNesbrVK0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="" />
+      <created>1587484963846</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587484963846</updated>
+      <workItem from="1587484968726" duration="641000" />
+      <workItem from="1587485622960" duration="4621000" />
+      <workItem from="1587913539056" duration="4966000" />
+    </task>
+    <task id="LOCAL−00001" summary="Removed duplicates">
+      <created>1587486999177</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1587486999181</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Removed duplicates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed duplicates" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587996508633">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587996508633" />
+    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1587486997357">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587486997357" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1587820946967">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587820946967" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1587487005827">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587487005827" />
+    <state x="682" y="308" key="git4idea.merge.GitPullDialog" timestamp="1587485847535">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="682" y="308" key="git4idea.merge.GitPullDialog/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587485847535" />
+    <state x="748" y="419" key="git4idea.ui.GitStashDialog" timestamp="1587485840647">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="748" y="419" key="git4idea.ui.GitStashDialog/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587485840647" />
+  </component>
+</project>

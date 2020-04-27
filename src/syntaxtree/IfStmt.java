@@ -2,6 +2,7 @@ package syntaxtree;
 
 import java.util.*;
 import static syntaxtree.StringUtil.*;
+import error.*;
 
 public class IfStmt extends Stmt {
 	
@@ -43,8 +44,7 @@ public class IfStmt extends Stmt {
 		
 		builder.append("\n" + repeat("\t", level) + ")");
 		
-		return builder.toString();		
-
+		return builder.toString();
 	}
 
 	@Override

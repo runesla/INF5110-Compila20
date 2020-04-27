@@ -3,6 +3,7 @@ package compiler;
 import java.io.*;
 import syntaxtree.*;
 import parser.*;
+import bytecode.*;
 
 public class Compiler {
 
@@ -18,13 +19,14 @@ public class Compiler {
 		this.binFilename = binFilename;
 	}
 
-	public void compile() throws Exception {
+	public int compile() throws Exception {
 		InputStream inputStream = null;
 		inputStream = new FileInputStream(this.inFilename);
 		Lexer lexer = new Lexer(inputStream);
 		parser parser = new parser(lexer);
 		Program program;
-		
+
+		// Run lexer and parser
 		try {
 			program = (Program)parser.parse().value;
 			//writeAST(program);
@@ -33,14 +35,14 @@ public class Compiler {
 			e.printStackTrace();
 		}
 		
-        // Check semanics.
-		if(false){ // If it is all ok:
+        // Check semantics
+		if(program.typeCheck()){
             writeAST(program);
             generateCode(program);
             return 0;
-        } else if (false){ // If there is a SYNTAX ERROR (Should not get that for the tests):
+        } else if (false){ 		// If SYNTAX ERROR (Should not get that for the tests):
             return 1;
-        } else { // If there is a SEMANTIC ERROR (Should get that for the test with "_fail" in the name):
+        } else { 				// If SEMANTIC ERROR (Should get that for the test with "_fail" in the name):
             return 2;
         }
 	}
@@ -66,7 +68,7 @@ public class Compiler {
 	}
 
 	public static void main(String[] args) {
-		Compiler compiler = new Compiler(args[0], args[1]);
+		Compiler compiler = new Compiler(args[0], args[1], args[2]);
 		try {
 			compiler.compile();
 		} catch (Exception e) {

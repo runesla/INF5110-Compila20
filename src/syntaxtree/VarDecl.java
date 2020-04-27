@@ -23,6 +23,10 @@ public class VarDecl extends Decl {
 		this.expr = expr;
 	}
 
+	public Type getType() {
+		return type;
+	}
+
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
