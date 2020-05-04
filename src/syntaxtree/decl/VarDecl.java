@@ -37,7 +37,6 @@ public class VarDecl extends Decl {
 		builder.append(this.getName());
 		builder.append(")");
 		builder.append("\n" + repeat("\t", level) + ")");
-
 		return builder.toString();
 	}
 }

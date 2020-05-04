@@ -10,7 +10,7 @@ public class RefType extends Type {
 
 	@Override
 	public String get() {
-		return "(REF " + this.type.get() + ")";
+		return "(REF " + this.type.getTypeNameValue() + ")";
 	}
 
 	@Override

@@ -8,6 +8,9 @@ public class TypeName {
 		this.typeNameValue = typeNameValue;
 	}
 
+	public String getTypeNameValue() {
+		return this.typeNameValue;
+	}
 	/*
 	@Override
 	public String toString() {

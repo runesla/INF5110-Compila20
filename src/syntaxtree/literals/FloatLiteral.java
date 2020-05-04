@@ -16,4 +16,9 @@ public class FloatLiteral extends LiteralExpr {
 		builder.append(")");
 		return builder.toString();
 	}
+
+	@Override
+	public String getType() {
+		return "float";
+	}
 }

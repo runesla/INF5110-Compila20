@@ -27,4 +27,9 @@ public class WhileStmt extends Stmt {
 		
 		return builder.toString();
 	}
+
+	@Override
+	public String getType() {
+		return expr.getType();
+	}
 }

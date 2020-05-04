@@ -35,7 +35,7 @@ public class Compiler {
 			e.printStackTrace();
 		}
 		
-        // Check semantics
+        // Check semantics and generate code
 		if(program.typeCheck()){
             writeAST(program);
             generateCode(program);

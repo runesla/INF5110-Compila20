@@ -1,6 +1,7 @@
 package syntaxtree;
 
 import static syntaxtree.StringUtil.*;
+import typesystem.TypeCheck;
 
 public class VarExpr extends Expr {
 
@@ -28,6 +29,7 @@ public class VarExpr extends Expr {
 		this.expr = expr;
 	}
 
+	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 
@@ -41,5 +43,14 @@ public class VarExpr extends Expr {
 		builder.append(")");
 
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		if(type != null) {
+			return type.getTypeNameValue();
+		}
+
+		return this.name;
 	}
 }

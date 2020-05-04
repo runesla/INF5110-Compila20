@@ -5,10 +5,10 @@ import static syntaxtree.StringUtil.*;
 
 public class ProcDecl extends Decl {
 
-	List<ParamFieldDecl> params;
 	private Type returnType;
-	List<Decl> declarations;
-	List<Stmt> statements;
+	private List<ParamFieldDecl> params;
+	private List<Decl> declarations;
+	private List<Stmt> statements;
 	
 	// No return type, "default" constructor
 	public ProcDecl(String name) {
@@ -16,6 +16,12 @@ public class ProcDecl extends Decl {
 		this.params = new ArrayList<ParamFieldDecl>();
 		this.declarations = new ArrayList<Decl>();
 		this.statements = new ArrayList<Stmt>();
+	}
+
+	// No return type, given params
+	public ProcDecl(String name, List<ParamFieldDecl> params) {
+		super(name);
+		this.params = params;
 	}
 
 	// No return type, given params and statements
@@ -28,17 +34,23 @@ public class ProcDecl extends Decl {
 		this.statements = statements;
 	}
 
+	// Given return type
+	public ProcDecl(String name, Type returnType) {
+		super(name);
+		this.returnType = returnType;
+	}
+
 	// Given return type, given params and statements
 	public ProcDecl(String name,
        			List<ParamFieldDecl> params,
 				Type returnType,
        			List<Stmt> statements) {
-       		super(name);
+       	super(name);
 		this.returnType = returnType;
-       		this.params = params;
-       		this.declarations = declarations;
-       		this.statements = statements;
-       	}
+		this.params = params;
+       	this.declarations = declarations;
+       	this.statements = statements;
+	}
 
 	// No return type, given params, decl and stmts
 	public ProcDecl(String name, 

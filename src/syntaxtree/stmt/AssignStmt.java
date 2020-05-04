@@ -13,7 +13,7 @@ public class AssignStmt extends Stmt {
 		this.expr = expr;
 	}
 	
-	public AssignStmt(DerefVarExpr deref_e, Expr e) {
+	public AssignStmt(DerefVarExpr derefExpr, Expr expr) {	//DerefVarExpr deref_e, Expr e
 		this.derefExpr = derefExpr;
 		this.expr = expr;
 	}
@@ -33,5 +33,10 @@ public class AssignStmt extends Stmt {
 		builder.append("\n" + repeat("\t", level) + ")");
 		
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return this.varExpr.getType();
 	}
 }

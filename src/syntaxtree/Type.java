@@ -18,9 +18,9 @@ public class Type extends Node {
 		this.typeName = typeName;
 	}
 
-	public String get() {
+	public String getTypeNameValue() {
 		if(typeName != null) {
-			return TypeName.typeNameValue;
+			return typeName.getTypeNameValue();
 		}
 
 		return name;

@@ -1,20 +1,24 @@
 package syntaxtree;
 
-public class BoolLiteral extends LiteralExpr {
+public class IntLiteral extends LiteralExpr {
 
-	private Boolean literal;
+	private Integer literal;
 
-	public BoolLiteral(Boolean literal) {
+	public IntLiteral(Integer literal) {
 		this.literal = literal;
 	}
-
+	
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("(BOOL_LITERAL ");
+		builder.append("(INT_LITERAL ");
 		builder.append(this.literal.toString());
 		builder.append(")");
-	
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return "int";
 	}
 }

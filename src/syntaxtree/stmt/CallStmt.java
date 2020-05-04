@@ -7,6 +7,7 @@ public class CallStmt extends Stmt {
 
 	private String name;
 	private List<Expr> expr;
+	private String type;
 
 	public CallStmt(String name, List<Expr> expr) {
 		this.name = name;
@@ -26,5 +27,10 @@ public class CallStmt extends Stmt {
 		builder.append("\n" + repeat("\t", level) + ")");		
 		
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return this.type;
 	}
 }

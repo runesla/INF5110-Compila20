@@ -1,5 +1,5 @@
 package syntaxtree;
 
-public abstract class Stmt extends Node {
+import typesystem.TypeCheck;
 
-}
+public abstract class Stmt extends Node implements TypeCheck { }

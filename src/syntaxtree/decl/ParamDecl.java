@@ -16,7 +16,6 @@ public class ParamDecl extends Decl {
 		builder.append(this.getName());
 		builder.append(this.type.printAst(level));
 		builder.append(")");
-
 		return builder.toString();
 	}
 }

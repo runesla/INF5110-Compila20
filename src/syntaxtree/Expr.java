@@ -1,4 +1,5 @@
 package syntaxtree;
 
-public abstract class Expr extends Node {
-}
+import typesystem.*;
+
+public abstract class Expr extends Node  implements TypeCheck { }
