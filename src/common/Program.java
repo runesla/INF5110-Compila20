@@ -1,22 +1,16 @@
 package common;
 
 import common.error.*;
-import syntaxtree.DataType;
 import syntaxtree.Node;
 import syntaxtree.decl.Decl;
-import syntaxtree.decl.ParamFieldDecl;
-import syntaxtree.decl.ProcDecl;
 import bytecode.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class Program extends Node {
 
-    List<Decl> decls;
-    String name;
-    STL stdLib;
+    private List<Decl> decls;
+    private final String name;
+    private STL stdLib;
     //HashMap<String, ProcDecl> procs;
     //HashMap<String, String> types;
 

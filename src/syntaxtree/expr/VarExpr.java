@@ -1,6 +1,6 @@
 package syntaxtree.expr;
 
-import syntaxtree.DataType;
+import syntaxtree.types.DataType;
 
 public class VarExpr extends Expr {
 

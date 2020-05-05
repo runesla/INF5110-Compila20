@@ -3,7 +3,7 @@ package syntaxtree.decl;
 import common.SymbolTable;
 import common.error.SemanticException;
 import common.error.SyntaxException;
-import syntaxtree.DataType;
+import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
 import java.util.ArrayList;

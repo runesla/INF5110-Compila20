@@ -1,8 +1,8 @@
 package common;
 
 import common.error.SyntaxException;
-import syntaxtree.DataType;
-import syntaxtree.Type;
+import syntaxtree.types.DataType;
+import syntaxtree.types.Type;
 import syntaxtree.decl.ParamFieldDecl;
 import syntaxtree.decl.ProcDecl;
 import java.util.ArrayList;

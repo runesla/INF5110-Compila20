@@ -67,7 +67,8 @@
 	
 	<!-- Compile -->
 	<target name="compile" depends="generate">
-		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
+		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true"
+			   includes="**/*.java" classpathref="path-cup" /> <!-- sourcepath="${dir.src}"-->
 	</target>
 
 	<!-- Main target -->
@@ -81,7 +82,7 @@
 
 	<!-- Run tests -->
 	<target name="test" depends="compile-test">
-		<java classname="test.Tester" classpathref="path-run" >
+		<java classname="test.Tester" classpathref="path-run">
 			<arg value="tests"/>
 		</java>
 	</target>

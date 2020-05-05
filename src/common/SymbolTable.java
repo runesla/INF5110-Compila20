@@ -1,7 +1,7 @@
 package common;
 
 import common.error.SemanticException;
-import syntaxtree.DataType;
+import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.decl.ProcDecl;
 import syntaxtree.decl.RecDecl;

@@ -1,8 +1,8 @@
-package syntaxtree;
+package syntaxtree.types;
 
-public class RefDataType extends DataType implements ITypeCheck {
+public class RefDataType extends DataType {
 
-	private DataType dataType;
+	private final DataType dataType;
 
 	public RefDataType(DataType dataType) {
 		this.dataType = dataType;
@@ -20,10 +20,5 @@ public class RefDataType extends DataType implements ITypeCheck {
 		builder.append(this.dataType.printAst(level));
 		builder.append(")");
 		return builder.toString();
-	}
-
-	@Override
-	public String getDataType() {
-		return dataType.getTypeNameValue();
 	}
 }

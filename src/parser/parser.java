@@ -7,7 +7,8 @@
 package parser;
 
 import java_cup.runtime.*;
-import syntaxtree.*;
+import syntaxtree.types.Type;
+
 import java.util.*;
 
 /** CUP v0.11a beta 20060608 generated parser.

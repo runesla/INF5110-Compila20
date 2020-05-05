@@ -39,6 +39,7 @@ public class Compiler {
 		} catch(Exception e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
+			return GENERAL_ERROR;
 		}
 		
         // Check semantics and generate code

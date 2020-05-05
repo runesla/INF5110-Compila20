@@ -2,7 +2,7 @@ package syntaxtree.decl;
 
 import common.SymbolTable;
 import common.error.SemanticException;
-import syntaxtree.DataType;
+import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.Node;
 

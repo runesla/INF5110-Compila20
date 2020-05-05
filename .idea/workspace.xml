@@ -2,29 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/utils/ReturnValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/BuiltInTypes.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Program.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/STL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/STL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/utils/StringUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/SymbolTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Compiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/DataType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/types/DataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/RefDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/types/RefDataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/types/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/Decl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/Decl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ParamDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ParamDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ParamFieldDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ParamFieldDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/ArithOpExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/ArithOpExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/CallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/CallExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/LogOpExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/LogOpExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/RelOpExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/RelOpExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/CallStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/CallStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/NewExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/NewExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +55,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -72,6 +69,30 @@
       <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree" />
       <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree\literals" />
     </key>
+  </component>
+  <component name="RunManager" selected="Ant Target.compile-runme">
+    <configuration default="true" type="AntRunConfiguration">
+      <antsettings antfile="file://$PROJECT_DIR$/build.xml" target="build" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="build" type="AntRunConfiguration" nameIsGenerated="true">
+      <antsettings antfile="file://$PROJECT_DIR$/build.xml" target="build" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="compile-runme" type="AntRunConfiguration">
+      <antsettings antfile="file://$PROJECT_DIR$/build.xml" target="compile-runme" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Ant Target.compile-runme" />
+      <item itemvalue="Ant Target.build" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -87,7 +108,7 @@
       <workItem from="1587485622960" duration="4621000" />
       <workItem from="1587913539056" duration="14676000" />
       <workItem from="1588493231281" duration="822000" />
-      <workItem from="1588593652497" duration="43543000" />
+      <workItem from="1588593652497" duration="45334000" />
     </task>
     <task id="LOCAL−00001" summary="Removed duplicates">
       <created>1587486999177</created>
@@ -131,7 +152,13 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1588701193078</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="(probably) fixed built-in types. Getting classpath error in ant">
+      <created>1588704743921</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1588704743921</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,21 +172,26 @@
     <MESSAGE value="Changed logic for error handling" />
     <MESSAGE value="Major refurbishing, added symboltable. Semantic checks currently only on decls" />
     <MESSAGE value="Attempt at adding STL, problems with BuiltInTypes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attempt at adding STL, problems with BuiltInTypes" />
+    <MESSAGE value="(probably) fixed built-in types. Getting classpath error in ant" />
+    <option name="LAST_COMMIT_MESSAGE" value="(probably) fixed built-in types. Getting classpath error in ant" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588002875052">
+    <state x="440" y="94" key="#Project_Structure" timestamp="1588706010757">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588002875052" />
+    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706010757" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588706058708">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706058708" />
     <state x="701" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588610199423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="701" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588610199423" />
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1588696962384">
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1588705792343">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588696962384" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588705792343" />
     <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588493250657">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -176,22 +208,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="375" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588698957665" />
-    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588701190750">
+    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588704740355">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588701190750" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1587820946967">
+    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588704740355" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588706007647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1587820946967" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706007647" />
     <state x="440" y="94" key="SettingsEditor" timestamp="1588003153774">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588003153774" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588701194953">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588704749403">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588701194953" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588704749403" />
     <state x="682" y="308" key="git4idea.merge.GitPullDialog" timestamp="1587485847535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

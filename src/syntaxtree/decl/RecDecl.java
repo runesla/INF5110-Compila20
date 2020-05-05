@@ -2,16 +2,15 @@ package syntaxtree.decl;
 
 import common.SymbolTable;
 import common.error.SemanticException;
-import syntaxtree.DataType;
+import syntaxtree.types.DataType;
 import syntaxtree.Name;
-import syntaxtree.Type;
-
+import syntaxtree.types.Type;
 import java.util.*;
 import static common.utils.StringUtil.*;
 
 public class RecDecl extends Decl {
 
-	private List<ParamFieldDecl> params;
+	private final List<ParamFieldDecl> params;
 	
 	// Default constructor
 	public RecDecl(String name) {

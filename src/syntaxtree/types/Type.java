@@ -1,4 +1,6 @@
-package syntaxtree;
+package syntaxtree.types;
+
+import syntaxtree.Name;
 
 public enum Type {
 /*

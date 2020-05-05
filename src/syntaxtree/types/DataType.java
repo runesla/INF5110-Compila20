@@ -1,4 +1,7 @@
-package syntaxtree;
+package syntaxtree.types;
+
+import syntaxtree.Name;
+import syntaxtree.Node;
 
 public class DataType extends Node {
 
