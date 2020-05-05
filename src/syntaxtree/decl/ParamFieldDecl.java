@@ -10,8 +10,8 @@ public class ParamFieldDecl extends Decl {
 
 	private final DataType dataType;
 
-	public ParamFieldDecl(Name name, DataType dataType) {
-		super(name);
+	public ParamFieldDecl(String name, DataType dataType) {
+		super(new Name(name));
 		this.dataType = dataType;
 	}
 	

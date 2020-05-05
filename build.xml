@@ -6,7 +6,7 @@
 		<echo>compile				- Compile Java files for CMP20</echo>
 		<echo>build				- Build CMP20</echo>
 		<echo>compile-test 			- Compile for testprograms</echo>
-		<echo>test 					- Run tests</echo>
+		<echo>test 				- Run tests</echo>
 		<echo>compile-runme 			- Compile for testprogram RunMe</echo>
 		<echo>list-runme  			- List RunMe</echo>
 		<echo>run-runme 				- Run RunMe</echo>

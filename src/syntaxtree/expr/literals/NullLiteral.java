@@ -12,9 +12,4 @@ public class NullLiteral extends LiteralExpr {
 		builder.append("(NULL_LITERAL)");
 		return builder.toString();
 	}
-
-	@Override
-	public String getDataType() {
-		return "null";
-	}
 }

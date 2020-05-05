@@ -9,8 +9,8 @@ public class ParamDecl extends Decl {
 
 	private final DataType dataType;
 
-	public ParamDecl(Name name, DataType dataType) {
-		super(name);
+	public ParamDecl(String name, DataType dataType) {
+		super(new Name(name));
 		this.dataType = dataType;
 	}
 	

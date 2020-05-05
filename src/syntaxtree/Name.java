@@ -4,12 +4,8 @@ public class Name extends Node {
 
 	private final String nameValue;
 
-	public Name(String typeNameValue) {
-		this.nameValue = typeNameValue;
-	}
-
-	public String getNameValue() {
-		return this.nameValue;
+	public Name(String nameValue) {
+		this.nameValue = nameValue;
 	}
 
 	@Override

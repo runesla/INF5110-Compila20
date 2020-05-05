@@ -7,7 +7,6 @@ public class ArithOpExpr extends Expr {
 	private final String operator;
 	private final Expr e1;
 	private final Expr e2;
-	private String type;
 
 	public ArithOpExpr(Expr e1, String operator, Expr e2) {
 		this.e1 = e1;

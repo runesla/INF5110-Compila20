@@ -19,9 +19,4 @@ public class BoolLiteral extends LiteralExpr {
 	
 		return builder.toString();
 	}
-
-	@Override
-	public String getDataType() {
-		return "bool";
-	}
 }

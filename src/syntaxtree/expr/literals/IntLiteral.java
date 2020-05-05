@@ -18,9 +18,4 @@ public class IntLiteral extends LiteralExpr {
 		builder.append(")");
 		return builder.toString();
 	}
-
-	@Override
-	public String getDataType() {
-		return "int";
-	}
 }

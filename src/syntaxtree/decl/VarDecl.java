@@ -12,18 +12,18 @@ public class VarDecl extends Decl {
 	private DataType dataType;
 	private Expr expr;
 
-	public VarDecl(Name name, DataType dataType) {
-		super(name);
+	public VarDecl(String name, DataType dataType) {
+		super(new Name(name));
 		this.dataType = dataType;
 	}
 
-	public VarDecl(Name name, Expr expr) {
-		super(name);
+	public VarDecl(String name, Expr expr) {
+		super(new Name(name));
 		this.expr = expr;
 	}
 
-	public VarDecl(Name name, DataType dataType, Expr expr) {
-		super(name);
+	public VarDecl(String name, DataType dataType, Expr expr) {
+		super(new Name(name));
 		this.dataType = dataType;
 		this.expr = expr;
 	}

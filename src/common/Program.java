@@ -15,52 +15,17 @@ public class Program extends Node {
 
     List<Decl> decls;
     String name;
+    STL stdLib;
     //HashMap<String, ProcDecl> procs;
     //HashMap<String, String> types;
 
     public Program(String name, List<Decl> decls) {
         this.decls = decls;
         this.name = name;
+        this.stdLib = new STL();
         //this.procs = new HashMap<>();
        // this.types = new HashMap<>();
-        loadSTL();
-    }
-
-    // Standard library
-    private void loadSTL() {    //HashMap<String, ProcDecl> procs, HashMap<String, String> types
-/*
-        DataType primitiveInteger = new DataType("int");
-        DataType primitiveFloat = new DataType("float");
-        DataType primitiveString = new DataType("string");
-        DataType primitiveBool = new DataType("bool");
-
-        types.put("int", primitiveInteger.getTypeNameValue());
-        types.put("float", primitiveFloat.getTypeNameValue());
-        types.put("string", primitiveString.getTypeNameValue());
-        types.put("bool", primitiveBool.getTypeNameValue());
-
-        ProcDecl readint = new ProcDecl("readint", primitiveInteger);
-        ProcDecl readfloat = new ProcDecl("readfloat", primitiveFloat);
-        ProcDecl readchar = new ProcDecl("readchar", primitiveInteger);                                                          // Returns ASCII value. Return -1 for EOF
-        ProcDecl readstring = new ProcDecl("readstring", primitiveString);                                                       // Read string until first whitespace
-        ProcDecl readline = new ProcDecl("readline", primitiveString);                                                           // Read one line
-        ProcDecl printint = new ProcDecl("printint", Collections.singletonList(new ParamFieldDecl("i", primitiveInteger)));
-        ProcDecl printfloat = new ProcDecl("printfloat", Collections.singletonList(new ParamFieldDecl("f", primitiveFloat)));
-        ProcDecl printstr = new ProcDecl("printstr", Collections.singletonList(new ParamFieldDecl("s", primitiveString)));       // Write one string
-        ProcDecl printline = new ProcDecl("printline", Collections.singletonList(new ParamFieldDecl("s", primitiveString)));     // Write one line, followed by a "newline"
-
-        procs.put("readint", readint);
-        procs.put("readfloat", readfloat);
-        procs.put("readchar", readchar);
-        procs.put("readstring", readstring);
-        procs.put("readline", readline);
-        procs.put("printint", printint);
-        procs.put("printfloat", printfloat);
-        procs.put("printstr", printstr);
-        procs.put("printline", printline);
-
- */
-
+        //loadSTL();
     }
 
     @Override

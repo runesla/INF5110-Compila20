@@ -12,14 +12,14 @@ public class RecDecl extends Decl {
 	private List<ParamFieldDecl> params;
 	
 	// Default constructor
-	public RecDecl(Name name) {
-		super(name);
+	public RecDecl(String name) {
+		super(new Name(name));
 		this.params = new LinkedList<>();
 	}	
 
 	// Given params
-	public RecDecl(Name name, List<ParamFieldDecl> params) {
-		super(name);
+	public RecDecl(String name, List<ParamFieldDecl> params) {
+		super(new Name(name));
 		this.params = params;
 	}
 
