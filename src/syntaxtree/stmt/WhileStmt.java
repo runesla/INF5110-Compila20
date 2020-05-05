@@ -1,6 +1,8 @@
-package syntaxtree;
+package syntaxtree.stmt;
 
-import java.util.*;
+import syntaxtree.expr.Expr;
+
+import java.util.List;
 import static syntaxtree.StringUtil.*;
 
 public class WhileStmt extends Stmt {

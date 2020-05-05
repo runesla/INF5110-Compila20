@@ -1,8 +1,8 @@
-package syntaxtree;
+package syntaxtree.expr;
 
 public class ParExpr extends Expr {
 
-	private Expr expr;
+	private final Expr expr;
 
 	public ParExpr(Expr expr) {
 		this.expr = expr;
@@ -15,5 +15,10 @@ public class ParExpr extends Expr {
 		builder.append(expr.printAst(level));
 		builder.append(")");
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return expr.getType();
 	}
 }

@@ -1,4 +1,6 @@
-package syntaxtree;
+package syntaxtree.stmt;
+
+import syntaxtree.expr.Expr;
 
 public class ReturnStmt extends Stmt {
 	

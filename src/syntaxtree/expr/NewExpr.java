@@ -1,10 +1,10 @@
-package syntaxtree;
+package syntaxtree.expr;
 
-import static syntaxtree.StringUtil.*;
+import syntaxtree.Type;
 
 public class NewExpr extends Expr {
 
-	private Type type;
+	private final Type type;
 	
 	public NewExpr(Type type) {
 		this.type = type;
@@ -18,5 +18,10 @@ public class NewExpr extends Expr {
 		builder.append(")");
 
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return this.type.getTypeNameValue();
 	}
 }

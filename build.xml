@@ -3,14 +3,11 @@
 		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
 		<echo>build				- Build CMP20</echo>
-		<echo>buil-amb				- Build using ambiguous grammar</echo>
 		<echo>generate				- Generate parser for CMP20</echo>
-		<echo>generate-amb			- Generate parser using ambiguous grammar</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
-		<echo>compile-amb				- Compile using ambiguous grammar</echo>
-		<echo>run-complexaddition			- Run example complexaddition</echo>
-		<echo>run-me				- Run example runme.cmp</echo>
-		<echo>run-test				- Run test example</echo>
+		<echo>compile-runme 			- Compile for testprogram RunMe</echo>
+		<echo>list-runme  			- List RunMe</echo>
+		<echo>run-runme 				- Run RunMe</echo>
 	</target>
 
 	<!-- Path definitions -->
@@ -35,6 +32,7 @@
 		<property name="dir.build" value="${dir.base}/build"/>
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
+		<property name="dir.tests" value="${dir.base}/tests"/>
 
 		<!-- Directories and files to be created. -->
 		<property name="dir.classes" value="${dir.build}/classes"/>
@@ -52,14 +50,8 @@
 	
 	<!-- Generate scanner and parser -->
 	<target name="generate" depends="init, mkdir">
-		<jflex file="./src/grammars/compila.lex" destdir="src" />
-		<cup srcfile="./src/grammars/compila.cup" destdir="src" interface="true" />
-	</target>
-
-	<!-- Generate scanner and parser using ambiguous grammar -->
-	<target name="generate-amb" depends="init, mkdir">
-		<jflex file="./src/grammars/compila.lex" destdir="src" />
-		<cup srcfile="./src/grammars/compila-amb.cup" destdir="src" interface="true" />
+		<jflex file="${dir.src}/grammars/compila.lex" destdir="src" />
+		<cup srcfile="${dir.src}/grammars/compila.cup" destdir="src" interface="true" />
 	</target>
 	
 	<!-- Compile -->
@@ -67,31 +59,31 @@
 		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
 	</target>
 
-	<!-- Compile using ambiguous grammar -->
-	<target name="compile-amb" depends="generate-amb">
-		<javac includeantruntime="false" srcdir="${dir.src}" destdir="${dir.classes}" debug="true" includes="**/*.java" classpathref="path-cup" sourcepath="${dir.src}" />
-	</target>
-
 	<!-- Main target -->
 	<target name="build" depends="compile" />
-	
-	<target name="build-amb" depends="compile-amb" />
 
-	<!-- Run complexaddition -->
-	<target name="run-complexaddition" depends="init">
+
+	<!-- Run compiler on example RunMe -->
+	<target name="compile-runme" depends="init">
 		<java classname="compiler.Compiler" classpathref="path-run">
-			<arg value="./src/tests/fullprograms/complexaddition.cmp" />
-			<arg value="./output/complexaddition.ast" />
-			<arg value="./output/compila.bin" />
+			<arg value="${dir.tests}/fullprograms/runme.cmp"/>
+			<arg value="${dir.tests}/fullprograms/runme.ast"/>
+			<arg value="${dir.tests}/fullprograms/runme.bin"/>
 		</java>
 	</target>
-	
-	<!-- Run runme  -->
-	<target name="run-me" depends="init">
-		<java classname="compiler.Compiler" classpathref="path-run">
-			<arg value="./src/tests/fullprograms/runme.cmp" />
-			<arg value="./output/runme.ast" />
-			<arg value="./output/compila.bin" />
+
+	<!-- List example runme -->
+	<target name="list-runme" depends="init">
+		<java classname="runtime.VirtualMachine" classpathref="path-run">
+			<arg value="-l"/>
+			<arg value="${dir.tests}/fullprograms/runme.bin"/>
+		</java>
+	</target>
+
+	<!-- Run vm on example runme -->
+	<target name="run-runme" depends="init">
+		<java classname="runtime.VirtualMachine" classpathref="path-run">
+			<arg value="${dir.tests}/fullprograms/runme.bin"/>
 		</java>
 	</target>
 

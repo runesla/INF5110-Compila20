@@ -1,4 +1,8 @@
-package syntaxtree;
+package syntaxtree.decl;
+
+import error.SyntaxException;
+import syntaxtree.Type;
+import java.util.HashMap;
 
 public class ParamDecl extends Decl {
 
@@ -17,5 +21,15 @@ public class ParamDecl extends Decl {
 		builder.append(this.type.printAst(level));
 		builder.append(")");
 		return builder.toString();
+	}
+
+	@Override
+	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws SyntaxException {
+
+	}
+
+	@Override
+	public String getType() {
+		return this.type.getTypeNameValue();
 	}
 }

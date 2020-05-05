@@ -1,8 +1,10 @@
-package syntaxtree;
+package syntaxtree.literals;
+
+import syntaxtree.expr.LiteralExpr;
 
 public class IntLiteral extends LiteralExpr {
 
-	private Integer literal;
+	private final Integer literal;
 
 	public IntLiteral(Integer literal) {
 		this.literal = literal;

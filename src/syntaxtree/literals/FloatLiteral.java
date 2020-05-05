@@ -1,8 +1,10 @@
-package syntaxtree;
+package syntaxtree.literals;
+
+import syntaxtree.expr.LiteralExpr;
 
 public class FloatLiteral extends LiteralExpr {
 
-	private Float literal;
+	private final Float literal;
 
 	public FloatLiteral(Float literal) {
 		this.literal = literal;

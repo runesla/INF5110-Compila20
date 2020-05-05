@@ -1,8 +1,8 @@
-package syntaxtree;
+package syntaxtree.expr;
 
 public class DerefVarExpr extends Expr {
 
-	private VarExpr expr;
+	private final VarExpr expr;
 
 	public DerefVarExpr(VarExpr expr) {
 		this.expr = expr;
@@ -15,5 +15,10 @@ public class DerefVarExpr extends Expr {
 		builder.append(this.expr.printAst(level));
 		builder.append(")");
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return expr.getType();
 	}
 }

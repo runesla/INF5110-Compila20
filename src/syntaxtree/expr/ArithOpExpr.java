@@ -1,12 +1,13 @@
-package syntaxtree;
+package syntaxtree.expr;
 
 import static syntaxtree.StringUtil.*;
 
 public class ArithOpExpr extends Expr {
 
-	private String operator;
-	private Expr e1;
-	private Expr e2;
+	private final String operator;
+	private final Expr e1;
+	private final Expr e2;
+	private String type;
 
 	public ArithOpExpr(Expr e1, String operator, Expr e2) {
 		this.e1 = e1;
@@ -22,7 +23,11 @@ public class ArithOpExpr extends Expr {
 		builder.append("\n" + repeat("\t", level + 1) + operator);
 		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level));
 		builder.append("\n" + repeat("\t", level) + ")");
-		
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return this.type;
 	}
 }

@@ -1,7 +1,5 @@
 package syntaxtree;
 
-import static syntaxtree.StringUtil.*;
-
 public class Type extends Node {
 
 	private TypeName typeName;
@@ -20,10 +18,14 @@ public class Type extends Node {
 
 	public String getTypeNameValue() {
 		if(typeName != null) {
-			return typeName.getTypeNameValue();
+			return this.typeName.getTypeNameValue();
 		}
 
-		return name;
+		return this.name;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 	@Override

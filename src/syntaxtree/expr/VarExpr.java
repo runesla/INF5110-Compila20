@@ -1,11 +1,10 @@
-package syntaxtree;
+package syntaxtree.expr;
 
-import static syntaxtree.StringUtil.*;
-import typesystem.TypeCheck;
+import syntaxtree.Type;
 
 public class VarExpr extends Expr {
 
-	private String name;
+	private final String name;
 	private Expr expr;
 	private Type type;
 

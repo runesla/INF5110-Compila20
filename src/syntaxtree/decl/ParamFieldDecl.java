@@ -1,10 +1,13 @@
-package syntaxtree;
+package syntaxtree.decl;
 
+import error.SyntaxException;
+import syntaxtree.Type;
+import java.util.HashMap;
 import static syntaxtree.StringUtil.*;
 
 public class ParamFieldDecl extends Decl {
 
-	private Type type;
+	private final Type type;
 
 	public ParamFieldDecl(String name, Type type) {
 		super(name);
@@ -21,5 +24,15 @@ public class ParamFieldDecl extends Decl {
 		builder.append(")");
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return this.type.getTypeNameValue();
+	}
+
+	@Override
+	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws SyntaxException {
+
 	}
 }

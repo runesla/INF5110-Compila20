@@ -1,4 +1,4 @@
-package syntaxtree;
+package syntaxtree.decl;
 
 import static syntaxtree.StringUtil.*;
 

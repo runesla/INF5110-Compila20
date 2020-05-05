@@ -6,7 +6,7 @@ public class StringUtil {
 
 		StringBuilder builder = new StringBuilder();
 
-		for(int i = 0; i < n; i ++) {
+		for(int i = 0; i < n; i++) {
 			builder.append(in);			
 		}
 

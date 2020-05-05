@@ -1,4 +1,6 @@
-package syntaxtree;
+package syntaxtree.literals;
+
+import syntaxtree.expr.LiteralExpr;
 
 public class NullLiteral extends LiteralExpr {
 

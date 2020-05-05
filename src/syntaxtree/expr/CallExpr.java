@@ -1,10 +1,11 @@
-package syntaxtree;
+package syntaxtree.expr;
 
+import syntaxtree.stmt.CallStmt;
 import static syntaxtree.StringUtil.*;
 
 public class CallExpr extends Expr {
 	
-	private CallStmt callStmt;
+	private final CallStmt callStmt;
 
 	public CallExpr(CallStmt callStmt) {
 		this.callStmt = callStmt;
@@ -17,5 +18,10 @@ public class CallExpr extends Expr {
 		builder.append("\n" + repeat("\t", level + 1) + callStmt.printAst(level + 1));
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return callStmt.getType();
 	}
 }

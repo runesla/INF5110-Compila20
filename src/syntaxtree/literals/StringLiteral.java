@@ -1,10 +1,12 @@
-package syntaxtree;
+package syntaxtree.literals;
+
+import syntaxtree.expr.LiteralExpr;
 
 public class StringLiteral extends LiteralExpr {
 
-	private String literal;
+	private final String literal;
 
-	public StringLiteral(String litereal) {
+	public StringLiteral(String literal) {
 		this.literal = literal;
 	}
 	

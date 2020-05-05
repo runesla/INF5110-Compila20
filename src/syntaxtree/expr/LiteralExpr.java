@@ -1,6 +1,3 @@
-package syntaxtree;
+package syntaxtree.expr;
 
-public abstract class LiteralExpr extends Expr {
-	
-	
-}
+public abstract class LiteralExpr extends Expr { }

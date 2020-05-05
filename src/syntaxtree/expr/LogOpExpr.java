@@ -1,12 +1,12 @@
-package syntaxtree;
+package syntaxtree.expr;
 
 import static syntaxtree.StringUtil.*;
 
 public class LogOpExpr extends Expr {
 
-	private String operator;
-	private Expr e1;
-	private Expr e2;
+	private final String operator;
+	private final Expr e1;
+	private final Expr e2;
 
 	public LogOpExpr(Expr e1, String operator, Expr e2) {
 		this.e1 = e1;
@@ -23,5 +23,10 @@ public class LogOpExpr extends Expr {
 		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level + 1));
 
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return "bool";
 	}
 }

@@ -1,4 +1,8 @@
-package syntaxtree;
+package syntaxtree.stmt;
+
+import syntaxtree.expr.DerefVarExpr;
+import syntaxtree.expr.Expr;
+import syntaxtree.expr.VarExpr;
 
 import static syntaxtree.StringUtil.*;
 
@@ -13,7 +17,7 @@ public class AssignStmt extends Stmt {
 		this.expr = expr;
 	}
 	
-	public AssignStmt(DerefVarExpr derefExpr, Expr expr) {	//DerefVarExpr deref_e, Expr e
+	public AssignStmt(DerefVarExpr derefExpr, Expr expr) {
 		this.derefExpr = derefExpr;
 		this.expr = expr;
 	}

@@ -1,8 +1,8 @@
-package syntaxtree;
+package syntaxtree.expr;
 
 public class NotExpr extends Expr {
 
-	private Expr expr;
+	private final Expr expr;
 
 	public NotExpr(Expr expr) {
 		this.expr = expr;
@@ -16,5 +16,10 @@ public class NotExpr extends Expr {
 		builder.append(")");
 
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return expr.getType();
 	}
 }

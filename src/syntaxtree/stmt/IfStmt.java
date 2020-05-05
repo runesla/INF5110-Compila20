@@ -1,13 +1,13 @@
-package syntaxtree;
+package syntaxtree.stmt;
 
 import java.util.*;
 import static syntaxtree.StringUtil.*;
-import error.*;
+import syntaxtree.expr.Expr;
 
 public class IfStmt extends Stmt {
 	
-	private Expr expr;
-	private List<Stmt> stmt1;
+	private final Expr expr;
+	private final List<Stmt> stmt1;
 	private List<Stmt> stmt2;
 
 	// No ELSE-part constructor

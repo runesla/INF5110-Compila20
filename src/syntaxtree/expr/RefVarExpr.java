@@ -1,8 +1,8 @@
-package syntaxtree;
+package syntaxtree.expr;
 
 public class RefVarExpr extends Expr {
 	
-	private VarExpr expr;
+	private final VarExpr expr;
 
 	public RefVarExpr(VarExpr expr) {
 		this.expr = expr;
@@ -15,5 +15,10 @@ public class RefVarExpr extends Expr {
 		builder.append(this.expr.printAst(level));
 		builder.append(")");
 		return builder.toString();
+	}
+
+	@Override
+	public String getType() {
+		return expr.getType();
 	}
 }

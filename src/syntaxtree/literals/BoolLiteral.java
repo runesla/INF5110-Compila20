@@ -1,8 +1,10 @@
-package syntaxtree;
+package syntaxtree.literals;
+
+import syntaxtree.expr.LiteralExpr;
 
 public class BoolLiteral extends LiteralExpr {
 
-	private Boolean literal;
+	private final Boolean literal;
 
 	public BoolLiteral(Boolean literal) {
 		this.literal = literal;
