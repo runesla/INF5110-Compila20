@@ -1,6 +1,11 @@
 package parser;   
 import java_cup.runtime.*;
 import syntaxtree.*;
+import syntaxtree.decl.*;
+import syntaxtree.expr.*;
+import syntaxtree.expr.literals.*;
+import syntaxtree.stmt.*;
+import syntaxtree.types.*;
 import java.util.*;
 
 parser code {:
