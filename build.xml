@@ -1,4 +1,7 @@
 <project name="Compila20" default="menu" basedir=".">
+
+	<!-- /////////////////////////////////////////////// DISPLAY MENU //////////////////////////////////////////////-->
+
 	<target name="menu" >
 		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
@@ -11,6 +14,8 @@
 		<echo>list-runme  			- List RunMe</echo>
 		<echo>run-runme 				- Run RunMe</echo>
 	</target>
+
+	<!-- ////////////////////////////////////////////////// SETUP //////////////////////////////////////////////////-->
 
 	<!-- Path definitions -->
 	<path id="path-cup">
@@ -28,22 +33,28 @@
 
 	<!-- Target definitions -->
 	<target name="init">
+
 		<!-- Directories and files that exist. -->
 		<property name="dir.base" value="${basedir}"/>
 		<property name="dir.build" value="${dir.base}/build"/>
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
 		<property name="dir.tests" value="${dir.base}/tests"/>
+
 		<!-- Directories and files to be created. -->
 		<property name="dir.classes" value="${dir.build}/classes"/>
 	</target>
 
+	<!-- ///////////////////////////////////////////////// TARGETS /////////////////////////////////////////////////-->
+
+	<!-- Clean directory -->
 	<target name="clean" depends="init">
 		<delete includeemptydirs="true">
 			<fileset dir="${dir.build}" includes="**/*"/>
 		</delete>
 	</target>
 
+	<!-- Create directories -->
 	<target name="mkdir" depends="init">
 		<mkdir dir="${dir.classes}"/>
 	</target>

@@ -42,7 +42,7 @@ public class SymbolTable {
     }
 
     public VarDecl retrieveVariable(Name name) {
-        return variables.get(name);
+        return variables.get(   name);
     }
 
     public void insertRecord(RecDecl rec) throws SemanticException {

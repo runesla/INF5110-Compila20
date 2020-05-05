@@ -4,7 +4,7 @@ import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.DataType;
 import syntaxtree.Name;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class ParamFieldDecl extends Decl {
 

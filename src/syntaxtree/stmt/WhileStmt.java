@@ -2,7 +2,7 @@ package syntaxtree.stmt;
 
 import syntaxtree.expr.Expr;
 import java.util.List;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class WhileStmt extends Stmt {
 	

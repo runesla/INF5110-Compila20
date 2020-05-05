@@ -9,7 +9,7 @@ import syntaxtree.stmt.Stmt;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class ProcDecl extends Decl {
 

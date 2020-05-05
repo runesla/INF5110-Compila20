@@ -1,6 +1,6 @@
 package syntaxtree.expr;
 
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class RelOpExpr extends Expr {
 

@@ -5,24 +5,31 @@ import common.error.SemanticException;
 import syntaxtree.DataType;
 import syntaxtree.Name;
 import syntaxtree.expr.Expr;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class VarDecl extends Decl {
 	
 	private DataType dataType;
 	private Expr expr;
 
-	public VarDecl(String name, DataType dataType) {
+	public VarDecl(
+			String name,
+			DataType dataType) {
 		super(new Name(name));
 		this.dataType = dataType;
 	}
 
-	public VarDecl(String name, Expr expr) {
+	public VarDecl(
+			String name,
+			Expr expr) {
 		super(new Name(name));
 		this.expr = expr;
 	}
 
-	public VarDecl(String name, DataType dataType, Expr expr) {
+	public VarDecl(
+			String name,
+			DataType dataType,
+			Expr expr) {
 		super(new Name(name));
 		this.dataType = dataType;
 		this.expr = expr;

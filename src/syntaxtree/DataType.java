@@ -39,10 +39,9 @@ public class DataType extends Node {
 		return builder.toString();
 	}
 
-// TODO: needs fixing, either Type or Name
 	/*
 	@Override
-	public String printAst(int level) {
+	public String printAst(int level) { // TODO: needs fixing, either Type or Name
 		StringBuilder builder = new StringBuilder();
 		builder.append("(TYPE ");
 

@@ -7,11 +7,9 @@ import common.error.SemanticException;
 import common.error.SyntaxException;
 import parser.*;
 import bytecode.*;
+import static common.utils.ReturnValues.*;
 
 public class Compiler {
-
-	private static final int SYNTAX_ERROR = 1;
-	private static final int SEMANTIC_ERROR = 2;
 
 	private String inFilename = null;
 	private String outFilename = null;
@@ -32,7 +30,7 @@ public class Compiler {
 		inputStream = new FileInputStream(this.inFilename);
 		Lexer lexer = new Lexer(inputStream);
 		parser parser = new parser(lexer);			// TODO: getting error "Required type Scanner, Provided Lexer". Wtf!?
-		Program program;
+		Program program = null;
 
 		// Run lexer and parser
 		try {
@@ -44,10 +42,12 @@ public class Compiler {
 		}
 		
         // Check semantics and generate code
+		assert program != null;
+
 		if(program.checkSemantics(symbolTable)){
             writeAST(program);
             generateCode(program);
-            return 0;
+            return SUCCESS;
         } else if (false){ 		// If SYNTAX ERROR (Should not get that for the tests):
             //return 1;
 			return SYNTAX_ERROR;
@@ -74,7 +74,7 @@ public class Compiler {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
-			System.exit(-1);
+			System.exit(GENERAL_ERROR);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class Compiler {
 		catch (Exception e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
-			System.exit(-1);
+			System.exit(GENERAL_ERROR);
 		}
 	}
 }

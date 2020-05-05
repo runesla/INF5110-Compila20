@@ -1,7 +1,7 @@
 package syntaxtree.expr;
 
 import syntaxtree.stmt.CallStmt;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class CallExpr extends Expr {
 	

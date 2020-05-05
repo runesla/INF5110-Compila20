@@ -3,7 +3,7 @@ package syntaxtree.stmt;
 import syntaxtree.expr.DerefVarExpr;
 import syntaxtree.expr.Expr;
 import syntaxtree.expr.VarExpr;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class AssignStmt extends Stmt {
 	

@@ -4,8 +4,10 @@ import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.DataType;
 import syntaxtree.Name;
+import syntaxtree.Type;
+
 import java.util.*;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 
 public class RecDecl extends Decl {
 
@@ -44,7 +46,8 @@ public class RecDecl extends Decl {
 
 	@Override
 	public DataType getDataType() {
-		return new DataType(new Name("struct"));		// TODO: nonono, this is a quickfix only. Should be static somewhere
+		//return new DataType(new Name("struct"));		// TODO: nonono, this is a quickfix only. Should be static somewhere
+		return new DataType(Type.STRUCT);
 	}
 
 	@Override

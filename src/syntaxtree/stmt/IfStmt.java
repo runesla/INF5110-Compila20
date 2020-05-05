@@ -1,7 +1,7 @@
 package syntaxtree.stmt;
 
 import java.util.*;
-import static common.StringUtil.*;
+import static common.utils.StringUtil.*;
 import syntaxtree.expr.Expr;
 
 public class IfStmt extends Stmt {

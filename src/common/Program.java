@@ -7,6 +7,7 @@ import syntaxtree.decl.Decl;
 import syntaxtree.decl.ParamFieldDecl;
 import syntaxtree.decl.ProcDecl;
 import bytecode.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Program extends Node {
     //HashMap<String, ProcDecl> procs;
     //HashMap<String, String> types;
 
-    public Program(String name, List<Decl> decls) {
+    public Program(String name, List<Decl> decls) throws SyntaxException {
         this.decls = decls;
         this.name = name;
         this.stdLib = new STL();
