@@ -1,6 +1,7 @@
 package syntaxtree.decl;
 
 import error.SyntaxException;
+import error.TypeException;
 import syntaxtree.Type;
 import java.util.HashMap;
 import static syntaxtree.StringUtil.*;
@@ -32,7 +33,7 @@ public class ParamFieldDecl extends Decl {
 	}
 
 	@Override
-	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws SyntaxException {
+	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
 
 	}
 }

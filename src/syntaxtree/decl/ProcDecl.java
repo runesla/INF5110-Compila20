@@ -1,6 +1,7 @@
 package syntaxtree.decl;
 
 import error.SyntaxException;
+import error.TypeException;
 import syntaxtree.Type;
 import syntaxtree.stmt.Stmt;
 import java.util.ArrayList;
@@ -131,14 +132,14 @@ public class ProcDecl extends Decl {
 	}
 
 	@Override
-	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws SyntaxException {
+	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
 
 		procs.put(this.getName(), this);
 
 		// Check for duplicate parameters
 		for (ParamFieldDecl param: params) {
 			if(types.containsKey(param.getName())) {
-				throw new SyntaxException("Duplicate declaration found: " + param.getName() + " in procedure " + this.getName());
+				throw new TypeException("Duplicate declaration found: " + param.getName() + " in procedure " + this.getName());
 			}
 			types.put(param.getName(), param.getType());
 		}
@@ -146,13 +147,13 @@ public class ProcDecl extends Decl {
 		// Check all formal parameters being distinct
 		for (Decl decl: declarations) {
 			if(Collections.frequency(declarations, decl) > 1) {
-				throw new SyntaxException("Duplicate formal parameter found: " + decl.getName() + " in procedure " + this.getName());
+				throw new TypeException("Duplicate formal parameter found: " + decl.getName() + " in procedure " + this.getName());
 			}
 		}
 
 		// Check return type
 		if(!types.containsKey(this.returnType.getTypeNameValue())) {
-			throw new SyntaxException("Invalid return type: " + this.returnType.getName() + " in procedure " + this.getName());
+			throw new TypeException("Invalid return type: " + this.returnType.getName() + " in procedure " + this.getName());
 		}
 	}
 }

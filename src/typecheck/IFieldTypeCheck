@@ -1,12 +1,11 @@
 package typecheck;
 
-import error.SyntaxException;
-import syntaxtree.Type;
+import error.TypeException;
 import syntaxtree.decl.ProcDecl;
 import java.util.HashMap;
 
 public interface IFieldTypeCheck {
 
-    void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws SyntaxException;
+    void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException;
 
 }

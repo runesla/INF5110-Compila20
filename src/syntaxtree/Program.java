@@ -76,21 +76,23 @@ public class Program extends Node {
         return sb.toString();
     }
 
-    public boolean typeCheck() throws SyntaxException {
+    public boolean typeCheck() {
 
-        boolean typeCheckOk = false;
-
-        for(Decl d : decls) {
-            d.fieldTypeCheck(types, procs);
+        try {
+            for (Decl decl: decls) {
+                decl.fieldTypeCheck(types, procs);
+            }
+        } catch (TypeException e) {
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+            return false;
         }
-
+/*
         if(!procs.containsKey("main")) {
             throw new SyntaxException("No main procedure found");
         }
-
-        typeCheckOk = true;
-
-        return typeCheckOk;
+*/
+        return true;
     }
 
     public void generateCode(CodeFile codeFile) {

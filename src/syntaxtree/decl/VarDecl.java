@@ -1,5 +1,10 @@
 package syntaxtree.decl;
 
+import error.TypeException;
+import syntaxtree.Type;
+import syntaxtree.expr.Expr;
+import java.util.HashMap;
+
 import static syntaxtree.StringUtil.*;
 
 public class VarDecl extends Decl {
@@ -23,8 +28,9 @@ public class VarDecl extends Decl {
 		this.expr = expr;
 	}
 
-	public Type getType() {
-		return type;
+	@Override
+	public String getType() {
+		return this.type.getTypeNameValue();
 	}
 
 	@Override
@@ -38,5 +44,10 @@ public class VarDecl extends Decl {
 		builder.append(")");
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
+	}
+
+	@Override
+	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
+
 	}
 }

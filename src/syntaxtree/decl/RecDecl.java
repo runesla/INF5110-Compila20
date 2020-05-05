@@ -1,6 +1,8 @@
 package syntaxtree.decl;
 
 import error.SyntaxException;
+import error.TypeException;
+
 import java.util.*;
 import static syntaxtree.StringUtil.*;
 
@@ -45,12 +47,12 @@ public class RecDecl extends Decl {
 	}
 
 	@Override
-	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws SyntaxException {
+	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
 
 		// Check for duplicate parameters
 		for (ParamFieldDecl param : params) {
 			if(types.containsKey(param.getName())) {
-				throw new SyntaxException("Duplicate declaration: " + param.getName() + " in struct " + this.getName());
+				throw new TypeException("Duplicate declaration: " + param.getName() + " in struct " + this.getName());
 			}
 			types.put(param.getName(), param.getType());
 		}

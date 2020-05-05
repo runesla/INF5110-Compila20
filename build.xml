@@ -17,7 +17,6 @@
 		<pathelement location="./lib/java-cup-11a.jar"/>
 		<pathelement location="./lib/JFlex.jar"/>
 	</path>
-
 	<path id="path-run">
 		<path refid="path-cup"/>
 		<pathelement location="build/classes" />
@@ -35,7 +34,6 @@
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
 		<property name="dir.tests" value="${dir.base}/tests"/>
-
 		<!-- Directories and files to be created. -->
 		<property name="dir.classes" value="${dir.build}/classes"/>
 	</target>
@@ -76,7 +74,6 @@
 			<arg value="tests"/>
 		</java>
 	</target>
-
 
 	<!-- Run compiler on example RunMe -->
 	<target name="compile-runme" depends="init">
