@@ -19,7 +19,7 @@ changed in a given group, this material is *NOT* intended to work
 
 It's meant as /guidelines/ of what to to.
 
-The oblig is specified as the second part of the Compila20 document (type
+The oblig is specified as the second part of the Compila20 document (dataType
 checking and code generation). Therefore, also the documentation how do
 make use of the given library needs to be consulted. The documentation is
 (in your original project) under ~/doc/:
@@ -77,11 +77,11 @@ in this patch:
     - test files: For the test-compila-files: I include them here in the
       patch, there are files for testing the 
 
-           1) type checker and the static analysis phase
+           1) dataType checker and the static analysis phase
 	   2) code generator
 
       For the first ones: they are separated into those which should work
-      and those where the type checker should report an error.
+      and those where the dataType checker should report an common.error.
 
 
 

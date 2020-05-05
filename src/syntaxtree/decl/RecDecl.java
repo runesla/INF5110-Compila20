@@ -1,23 +1,24 @@
 package syntaxtree.decl;
 
-import error.SyntaxException;
-import error.TypeException;
-
+import common.SymbolTable;
+import common.error.SemanticException;
+import syntaxtree.DataType;
+import syntaxtree.Name;
 import java.util.*;
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class RecDecl extends Decl {
 
 	private List<ParamFieldDecl> params;
 	
 	// Default constructor
-	public RecDecl(String name) {
+	public RecDecl(Name name) {
 		super(name);
 		this.params = new LinkedList<>();
 	}	
 
 	// Given params
-	public RecDecl(String name, List<ParamFieldDecl> params) {
+	public RecDecl(Name name, List<ParamFieldDecl> params) {
 		super(name);
 		this.params = params;
 	}
@@ -42,21 +43,12 @@ public class RecDecl extends Decl {
 	}
 
 	@Override
-	public String getType() {
-		return "struct";
+	public DataType getDataType() {
+		return new DataType(new Name("struct"));		// TODO: nonono, this is a quickfix only. Should be static somewhere
 	}
 
 	@Override
-	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
-
-		// Check for duplicate parameters
-		for (ParamFieldDecl param : params) {
-			if(types.containsKey(param.getName())) {
-				throw new TypeException("Duplicate declaration: " + param.getName() + " in struct " + this.getName());
-			}
-			types.put(param.getName(), param.getType());
-		}
-
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
 	}
 }

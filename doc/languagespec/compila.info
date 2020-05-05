@@ -52,7 +52,7 @@ Static semantics / typing / evaluation.
 
 * Binding of names::
 * Typing of compound constructs::
-* Types and implicit type conversion::
+* Types and implicit dataType conversion::
 * Type inference::
 * Short-circuit evaluation::
 
@@ -186,9 +186,9 @@ The language has four built-in types and user-defined types:
        4. booleans (‘"bool"’).
 
    • _User-defined_ types:
-       1. Each (name of a) record represents a type.
+       1. Each (name of a) record represents a dataType.
        2. Reference types, representing references to elements of the
-          specified types.  The reference type constructor can be
+          specified types.  The reference dataType constructor can be
           nested.
 
 
@@ -204,8 +204,8 @@ _inheritance_ nor explicitly programmable _constructors_.  “Instance
 variables” are more commonly called record fields or just _fields_ when
 dealing with records.  Records do support _instantiation_, here via the
 ‘new’ keyword.  Another aspect which resembles classes as in Java is
-that variables of record type contains either a pointer to an element
-(“object”) of that record type or the special pointer value ‘null’.(1)
+that variables of record dataType contains either a pointer to an element
+(“object”) of that record dataType or the special pointer value ‘null’.(1)
 
    ---------- Footnotes ----------
 
@@ -218,7 +218,7 @@ File: compila.info,  Node: References,  Prev: Records,  Up: Data types
 ==============
 
 The language allows that variables can be declared to be of reference
-type ("pointers", if you will) by writing, e.g.,
+dataType ("pointers", if you will) by writing, e.g.,
 
      var x: ref(int);
 
@@ -398,7 +398,7 @@ are _copied_ into the corresponding formal parameters.(1)
    ---------- Footnotes ----------
 
    (1) The language supports reference types.  Variables or expressions
-of reference type are passed _by value_.  That leads to a behavior
+of reference dataType are passed _by value_.  That leads to a behavior
 resembling pretty much “call-by-reference”, but the parameter passing
 mechanism proper _is_ call-by-value (of reference data).  One may speak
 of call-by-value-reference.
@@ -465,7 +465,7 @@ File: compila.info,  Node: Static semantics / typing / evaluation,  Next: Proced
 
 * Binding of names::
 * Typing of compound constructs::
-* Types and implicit type conversion::
+* Types and implicit dataType conversion::
 * Type inference::
 * Short-circuit evaluation::
 
@@ -487,65 +487,65 @@ parameters count as declarations local to the procedure body.
 
    Use occurences of a name preceded by a dot correspond to the clause
 ‘EXP "." NAME’ in the production for the non-terminal ‘VAR’ in the
-grammar.  Those names are bound by looking at the type of ‘EXP’ (which
-is required to be a record-type) and look up the field with name ‘NAME’
-in that record.  It’s an error, if ‘EXP’ is not of record-type or else,
+grammar.  Those names are bound by looking at the dataType of ‘EXP’ (which
+is required to be a record-dataType) and look up the field with name ‘NAME’
+in that record.  It’s an common.error, if ‘EXP’ is not of record-dataType or else,
 there is not such field in that record,
 
 
-File: compila.info,  Node: Typing of compound constructs,  Next: Types and implicit type conversion,  Prev: Binding of names,  Up: Static semantics / typing / evaluation
+File: compila.info,  Node: Typing of compound constructs,  Next: Types and implicit dataType conversion,  Prev: Binding of names,  Up: Static semantics / typing / evaluation
 
 7.2 Typing of compound constructs
 =================================
 
-   • *expressions:* expressions need to be checked for type correctness
-     in the obvious manner.  The whole expression (if it type-checks)
-     will thus carry a type.
+   • *expressions:* expressions need to be checked for dataType correctness
+     in the obvious manner.  The whole expression (if it dataType-checks)
+     will thus carry a dataType.
    • *assignments:* Both sides of an assignment must be of the same
-     type.  Note: it is allowed to assign to the formal parameters of a
+     dataType.  Note: it is allowed to assign to the formal parameters of a
      procedure.  That applies to both call-by-value and
      call-by-reference parameters.  Of course, the effect of an
      assignment in these two mechanisms is different.
    • *conditionals and while loop:* the condition (i.e., expression) in
-     the conditional construct must be of type ‘bool’.  Same for the
+     the conditional construct must be of dataType ‘bool’.  Same for the
      condition in the while loop.
    • *field selection:*
         • the expression standing in front of a dot must be of record
-          type.
+          dataType.
         • the name standing after a dot are the name of a
-          field/attribute of the record type of the expression in front
-          of the dot.  The type of the field selection expression (if it
-          type checks) is the type as declared for the field of the
+          field/attribute of the record dataType of the expression in front
+          of the dot.  The dataType of the field selection expression (if it
+          dataType checks) is the dataType as declared for the field of the
           record.
 
 
-File: compila.info,  Node: Types and implicit type conversion,  Next: Type inference,  Prev: Typing of compound constructs,  Up: Static semantics / typing / evaluation
+File: compila.info,  Node: Types and implicit dataType conversion,  Next: Type inference,  Prev: Typing of compound constructs,  Up: Static semantics / typing / evaluation
 
-7.3 Types and implicit type conversion
+7.3 Types and implicit dataType conversion
 ======================================
 
-It is allowed to assign an expression of type ‘int’ to a variable of
-type ‘float’.  The inverse situation is not allowed.  There is no type
+It is allowed to assign an expression of dataType ‘int’ to a variable of
+dataType ‘float’.  The inverse situation is not allowed.  There is no dataType
 cast operator.  If an _arithmetic_ expression has at least one operand
-of type ‘float’, the operation is evaluated using floating point
-arithmetic and the result is of type ‘float’.  Exponentiation is
+of dataType ‘float’, the operation is evaluated using floating point
+arithmetic and the result is of dataType ‘float’.  Exponentiation is
 _always_ considered done with floating point arithmetic and the result
-is of type ‘float’.
+is of dataType ‘float’.
 
 
-File: compila.info,  Node: Type inference,  Next: Short-circuit evaluation,  Prev: Types and implicit type conversion,  Up: Static semantics / typing / evaluation
+File: compila.info,  Node: Type inference,  Next: Short-circuit evaluation,  Prev: Types and implicit dataType conversion,  Up: Static semantics / typing / evaluation
 
 7.4 Type inference
 ==================
 
-The language requires a tiny bit of type inference (so small that one
-might not even call type inference).  _Variables_ need to be declared,
-using the keyword ‘var’.  In particular, variables must have a type at
+The language requires a tiny bit of dataType inference (so small that one
+might not even call dataType inference).  _Variables_ need to be declared,
+using the keyword ‘var’.  In particular, variables must have a dataType at
 the point when they are declared.  The declaration can be combined with
 a definition of an initial value of introduced variable (using the
 syntax like ‘var x : int := 42’).  When provided with an initial
-expression, the type can be omitted (using a syntax like ‘var x := 42’),
-in which case an appropriate type needs to be inferred.
+expression, the dataType can be omitted (using a syntax like ‘var x := 42’),
+in which case an appropriate dataType needs to be inferred.
 
 
 File: compila.info,  Node: Short-circuit evaluation,  Prev: Type inference,  Up: Static semantics / typing / evaluation
@@ -570,7 +570,7 @@ File: compila.info,  Node: Procedures,  Next: Further conditions,  Prev: Static 
      procedure-local declarations of variables, procedures, and records
      are allowed.
    • Procedures called within an expression _must_ have a defined return
-     type.  That type must match with the way the call is _used_ in an
+     dataType.  That dataType must match with the way the call is _used_ in an
      expression.
    • Concerning the number and types of the parameters of a procedure:
      they must coincide comparing the declaration/definition of the
@@ -582,13 +582,13 @@ File: compila.info,  Node: Procedures,  Next: Further conditions,  Prev: Static 
           Such a statement marks that the procedure terminates (and
           returns).  In addition, the return statement gives an
           expression for the value to be returned to the caller.
-        • If a procedure is declared without return type, the procedure
+        • If a procedure is declared without return dataType, the procedure
           does not _need_ a return statement.  In that case, the
           procedure returns (without a return value) when the last
           statement in the procedure body has been executed.
-        • If a procedure has declared a return type, its body is
+        • If a procedure has declared a return dataType, its body is
           required to have a return statement (with corresponding
-          expression of the correct type).  That statement need to be
+          expression of the correct dataType).  That statement need to be
           the last statement in the procedure’s body.
 
 
@@ -633,7 +633,7 @@ Node: Standard library12919
 Node: Static semantics / typing / evaluation14032
 Node: Binding of names14392
 Node: Typing of compound constructs15599
-Node: Types and implicit type conversion16917
+Node: Types and implicit dataType conversion16917
 Node: Type inference17620
 Node: Short-circuit evaluation18383
 Node: Procedures18823

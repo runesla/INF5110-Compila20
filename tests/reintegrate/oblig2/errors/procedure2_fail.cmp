@@ -4,7 +4,7 @@ begin
 	proc Proc() : string 
 	begin
            in
-	   return  42  /* error, Proc declared as returning string */
+	   return  42  /* common.error, Proc declared as returning string */
 	end;
 
 	proc main()

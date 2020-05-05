@@ -46,8 +46,8 @@ public class Tester {
 			switch(res){
 			case 1:
 				testOk = false;
-				System.out.println("BAD: Test no " + number + " resulted in syntax error!");
-				System.out.println("Syntax error: " + compiler.syntaxError);
+				System.out.println("BAD: Test no " + number + " resulted in syntax common.error!");
+				System.out.println("Syntax common.error: " + compiler.syntaxError);
 				break;
 			case 2:
 				if( ! shouldFail){
@@ -63,7 +63,7 @@ public class Tester {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Test aborted because of error in Compiler: " + e);
+			System.out.println("Test aborted because of common.error in Compiler: " + e);
 			e.printStackTrace();
 			System.exit(1);
 		}

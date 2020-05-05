@@ -11,7 +11,7 @@ begin
 	         class Bogus begin var innerScope : int ; end;
 	         var inner : Bogus;
 	         inner := new Bogus;
-	         inner.outerScope := 123; // error, refers to local class object.
+	         inner.outerScope := 123; // common.error, refers to local class object.
 	    end;
 	    outer := new Bogus;
 	    outer.outerScope := 1337;

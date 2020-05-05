@@ -1,53 +1,58 @@
 package syntaxtree.decl;
 
-import error.TypeException;
-import syntaxtree.Type;
+import common.SymbolTable;
+import common.error.SemanticException;
+import syntaxtree.DataType;
+import syntaxtree.Name;
 import syntaxtree.expr.Expr;
-import java.util.HashMap;
-
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class VarDecl extends Decl {
 	
-	private Type type;
+	private DataType dataType;
 	private Expr expr;
 
-	public VarDecl(String name, Type type) {
+	public VarDecl(Name name, DataType dataType) {
 		super(name);
-		this.type = type;
+		this.dataType = dataType;
 	}
 
-	public VarDecl(String name, Expr expr) {
+	public VarDecl(Name name, Expr expr) {
 		super(name);
 		this.expr = expr;
 	}
 
-	public VarDecl(String name, Type type, Expr expr) {
+	public VarDecl(Name name, DataType dataType, Expr expr) {
 		super(name);
-		this.type = type;
+		this.dataType = dataType;
 		this.expr = expr;
 	}
 
 	@Override
-	public String getType() {
-		return this.type.getTypeNameValue();
+	public DataType getDataType() {
+		return this.dataType;
+	}
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {	// TODO: create hierarchy of symboltables because of scopes?
+
+		if(symbolTable.retrieveVariable(this.getName()) != null) {
+			throw new SemanticException("Duplicate variable declaration " + this.getName().toString());
+		}
+
+		symbolTable.insertVariable(this);
 	}
 
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(VAR_DECL ");
-		builder.append("\n" + repeat("\t", level + 1) + this.type.printAst(level));
+		builder.append("\n" + repeat("\t", level + 1) + this.dataType.printAst(level));
 		builder.append(" : ");
 		builder.append(" (NAME ");
 		builder.append(this.getName());
 		builder.append(")");
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
-	}
-
-	@Override
-	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
-
 	}
 }

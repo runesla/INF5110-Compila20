@@ -39,7 +39,7 @@ terminal                        TYPE_FLOAT;
 terminal                        TYPE_STRING;
 terminal                        TYPE_BOOL;
 terminal String			ID;
-non terminal Type		type;
+non terminal Type		dataType;
 
 /* Literals  */
 terminal Float			FLOAT_LITERAL;
@@ -104,8 +104,8 @@ decl		::= var_decl:vd {: RESULT = vd; :}
 		| rec_decl:rl {: RESULT = rl; :}
 		| proc_decl:pl {: RESULT = pl; :};
 
-var_decl	::= VAR ID:name COLON type:t {: RESULT = new VarDecl(name, t); :}
-		| VAR ID:name COLON type:t ASSIGN expr:e {: RESULT = new VarDecl(name, t, e); :}
+var_decl	::= VAR ID:name COLON dataType:t {: RESULT = new VarDecl(name, t); :}
+		| VAR ID:name COLON dataType:t ASSIGN expr:e {: RESULT = new VarDecl(name, t, e); :}
 		| VAR ID:name ASSIGN expr:e {: RESULT = new VarDecl(name, e); :};
 
 rec_decl	::= STRUCT ID:name LCURLY opt_rec_params:orp RCURLY {: RESULT = new RecDecl(name, orp); :};
@@ -118,8 +118,8 @@ rec_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<
 
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON type:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, osl); :};
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, osl); :};
 
 opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
 		| {: RESULT = new LinkedList<ParamFieldDecl>(); :};
@@ -127,7 +127,7 @@ opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
 proc_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pp = new LinkedList<ParamFieldDecl>(); pp.add(pfd); RESULT = pp; :}
 		| proc_params:pp COMMA paramfield_decl:pfd {: pp.add(pfd); RESULT = pp; :};
 
-paramfield_decl	::= ID:name COLON type:t {: RESULT = new ParamFieldDecl(name, t); :};
+paramfield_decl	::= ID:name COLON dataType:t {: RESULT = new ParamFieldDecl(name, t); :};
 
 expr		::= log_op_expr:e {: RESULT = e; :}
 		| NOT expr:e {: RESULT = new NotExpr(e); :} 
@@ -193,11 +193,11 @@ return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :}
 
 call_stmt	::= ID:name LPAR expr_list:e RPAR {: RESULT = new CallStmt(name, e); :};
 
-type		::= TYPE_INT {: RESULT = new Type("int"); :} 
+dataType		::= TYPE_INT {: RESULT = new Type("int"); :}
 		| TYPE_BOOL {: RESULT = new Type("bool"); :}
 		| TYPE_FLOAT {: RESULT = new Type("float"); :}
 		| TYPE_STRING {: RESULT = new Type("string"); :}
-		| REF LPAR type:t RPAR {: RESULT = new RefType(t); :}
+		| REF LPAR dataType:t RPAR {: RESULT = new RefType(t); :}
 		| ID:name {: RESULT = new Type(name); :};
 
 literal_expr	::= INT_LITERAL:il {: RESULT = new IntLiteral(il); :}

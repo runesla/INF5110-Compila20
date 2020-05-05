@@ -1,20 +1,20 @@
 package syntaxtree.expr;
 
-import syntaxtree.Type;
+import syntaxtree.DataType;
 
 public class VarExpr extends Expr {
 
 	private final String name;
 	private Expr expr;
-	private Type type;
+	private DataType dataType;
 
 	public VarExpr(String name) {
 		this.name = name;
 	}
 
-	public VarExpr(String name, Type type) {
+	public VarExpr(String name, DataType dataType) {
 		this.name = name;
-		this.type = type;
+		this.dataType = dataType;
 	}
 
 	public VarExpr(String name, Expr expr) {
@@ -22,9 +22,9 @@ public class VarExpr extends Expr {
 		this.expr = expr;
 	}
 
-	public VarExpr(String name, Type type, Expr expr) {
+	public VarExpr(String name, DataType dataType, Expr expr) {
 		this.name = name;
-		this.type = type;
+		this.dataType = dataType;
 		this.expr = expr;
 	}
 
@@ -44,12 +44,4 @@ public class VarExpr extends Expr {
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		if(type != null) {
-			return type.getTypeNameValue();
-		}
-
-		return this.name;
-	}
 }

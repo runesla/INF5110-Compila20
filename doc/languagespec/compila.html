@@ -11,7 +11,7 @@
 <meta name="author" content="INF5110, spring 2020" />
 <meta name="description" content="Compila 20 language specification"
  />
-<style type="text/css">
+<style dataType="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -195,9 +195,9 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="compilastyle.css" />
+<link rel="stylesheet" dataType="text/css" href="compilastyle.css" />
 <h1> Compila 20 language specification</h1>
-<script type="text/javascript">
+<script dataType="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
@@ -286,7 +286,7 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org7a400fa">7.1. Binding of names</a></li>
 <li><a href="#org5bda77e">7.2. Typing of compound constructs</a></li>
-<li><a href="#orgb891ed6">7.3. Types and implicit type conversion</a></li>
+<li><a href="#orgb891ed6">7.3. Types and implicit dataType conversion</a></li>
 <li><a href="#orgf1ae80d">7.4. Type inference</a></li>
 <li><a href="#org718d4b2">7.5. Short-circuit evaluation</a></li>
 </ul>
@@ -439,9 +439,9 @@ The language has four built-in types and user-defined types:
 
 <li><i>User-defined</i> types: 
 <ol class="org-ol">
-<li>Each (name of a) record represents a type.</li>
+<li>Each (name of a) record represents a dataType.</li>
 <li>Reference types, representing references to elements 
-of the specified types. The reference type constructor
+of the specified types. The reference dataType constructor
 can be nested.</li>
 </ol></li>
 </ul>
@@ -460,8 +460,8 @@ instance variables as members, but support neither <i>methods</i> nor
 variables'' are more commonly called record fields or just <i>fields</i> when
 dealing with records. Records do support <i>instantiation</i>, here via the
 <code>new</code> keyword. Another aspect which resembles classes as in Java is that
-variables of record type contains either a pointer to an element
-(``object'') of that record type or the special pointer value
+variables of record dataType contains either a pointer to an element
+(``object'') of that record dataType or the special pointer value
 <code>null</code>.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </p>
 </div>
@@ -471,7 +471,7 @@ variables of record type contains either a pointer to an element
 <h3 id="orge61e8b2"><span class="section-number-3">3.3</span> References</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-The language allows that variables can be declared to be of reference type
+The language allows that variables can be declared to be of reference dataType
 ("pointers", if you will) by writing, e.g., 
 </p>
 
@@ -821,9 +821,9 @@ declarations local to the procedure body.
 <p>
 Use occurences of a name preceded  by a dot correspond to the clause <code>EXP
 "." NAME</code> in the production for the non-terminal <code>VAR</code> in the grammar.
-Those names are bound by looking at the type of <code>EXP</code> (which is required to
-be a record-type) and look up the field with name <code>NAME</code> in that record. It's
-an error, if <code>EXP</code> is not of record-type or else, there is not such field in
+Those names are bound by looking at the dataType of <code>EXP</code> (which is required to
+be a record-dataType) and look up the field with name <code>NAME</code> in that record. It's
+an common.error, if <code>EXP</code> is not of record-dataType or else, there is not such field in
 that record,
 </p>
 </div>
@@ -834,23 +834,23 @@ that record,
 <h3 id="org5bda77e"><span class="section-number-3">7.2</span> Typing of compound constructs</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
-<li><b>expressions:</b> expressions need to be checked for type correctness in the
-obvious manner. The whole expression (if it type-checks) will thus
-carry a type.</li>
-<li><b>assignments:</b> Both sides of an assignment must be of the same type.
+<li><b>expressions:</b> expressions need to be checked for dataType correctness in the
+obvious manner. The whole expression (if it dataType-checks) will thus
+carry a dataType.</li>
+<li><b>assignments:</b> Both sides of an assignment must be of the same dataType.
 Note: it is allowed to assign to the formal parameters of a
 procedure. That applies to both call-by-value and call-by-reference
 parameters. Of course, the effect of an assignment in these two
 mechanisms is different.</li>
 <li><b>conditionals and while loop:</b> the condition (i.e., expression) in the
-conditional construct must be of type <code>bool</code>. Same for the condition in
+conditional construct must be of dataType <code>bool</code>. Same for the condition in
 the while loop.</li>
 <li><b>field selection:</b>
 <ul class="org-ul">
-<li>the expression standing in front of a dot must be of record type.</li>
+<li>the expression standing in front of a dot must be of record dataType.</li>
 <li>the name standing after a dot are the name of a field/attribute of the
-record type of the expression in front of the dot. The type of the field
-selection expression (if it type checks) is the type as declared for
+record dataType of the expression in front of the dot. The dataType of the field
+selection expression (if it dataType checks) is the dataType as declared for
 the field of the record.</li>
 </ul></li>
 </ul>
@@ -859,15 +859,15 @@ the field of the record.</li>
 
 
 <div id="outline-container-orgb891ed6" class="outline-3">
-<h3 id="orgb891ed6"><span class="section-number-3">7.3</span> Types and implicit type conversion</h3>
+<h3 id="orgb891ed6"><span class="section-number-3">7.3</span> Types and implicit dataType conversion</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
-It is allowed to assign an expression of type <code>int</code> to a variable of type
-<code>float</code>. The inverse situation is not allowed. There is no type cast
-operator. If an <i>arithmetic</i> expression has at least one operand of type
+It is allowed to assign an expression of dataType <code>int</code> to a variable of dataType
+<code>float</code>. The inverse situation is not allowed. There is no dataType cast
+operator. If an <i>arithmetic</i> expression has at least one operand of dataType
 <code>float</code>, the operation is evaluated using floating point arithmetic and the
-result is of type <code>float</code>. Exponentiation is <i>always</i> considered done with
-floating point arithmetic and the result is of type <code>float</code>.
+result is of dataType <code>float</code>. Exponentiation is <i>always</i> considered done with
+floating point arithmetic and the result is of dataType <code>float</code>.
 </p>
 </div>
 </div>
@@ -877,13 +877,13 @@ floating point arithmetic and the result is of type <code>float</code>.
 <h3 id="orgf1ae80d"><span class="section-number-3">7.4</span> Type inference</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
-The language requires a tiny bit of type inference (so small that one might
-not even call type inference).  <i>Variables</i> need to be declared, using the
-keyword <code>var</code>. In particular, variables must have a type at the point when
+The language requires a tiny bit of dataType inference (so small that one might
+not even call dataType inference).  <i>Variables</i> need to be declared, using the
+keyword <code>var</code>. In particular, variables must have a dataType at the point when
 they are declared. The declaration can be combined with a definition of an
 initial value of introduced variable (using the syntax like <code>var x : int :=
-42</code>). When provided with an initial expression, the type can be omitted
-(using a syntax like <code>var x := 42</code>), in which case an appropriate type
+42</code>). When provided with an initial expression, the dataType can be omitted
+(using a syntax like <code>var x := 42</code>), in which case an appropriate dataType
 needs to be inferred.
 </p>
 </div>
@@ -911,7 +911,7 @@ executable code (statements).  In a procedure, the <i>same</i> declarations
 are allowed as on the outermost, global scope, i.e., procedure-local
 declarations of variables, procedures, and records are allowed.</li>
 <li>Procedures called within an expression <i>must</i> have a defined return
-type. That type must match with the way the call is <i>used</i> in an
+dataType. That dataType must match with the way the call is <i>used</i> in an
 expression.</li>
 <li>Concerning the number and types of the parameters of a procedure: they
 must coincide comparing the declaration/definition of the procedure and
@@ -926,15 +926,15 @@ Return statements:
 statement marks that the procedure terminates (and returns). In
 addition, the return statement gives an expression for the value to be
 returned to the caller.</li>
-<li>If a procedure is declared without return type, the procedure does not
+<li>If a procedure is declared without return dataType, the procedure does not
 <i>need</i> a return statement. In that case, the procedure returns
 (without a return value) when the last statement in the procedure body
 has been  executed.</li>
 </ul>
 <ul class="org-ul">
-<li>If a procedure has declared a return type, its body is required to have
+<li>If a procedure has declared a return dataType, its body is required to have
 a return statement (with corresponding expression of the correct
-type). That statement need to be the last statement in the procedure's
+dataType). That statement need to be the last statement in the procedure's
 body.</li>
 </ul></li>
 </ul>
@@ -970,7 +970,7 @@ Records are sometimes also called ``structs''.
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
 The language supports reference types. Variables or expressions of
-reference type are passed <i>by value</i>. That leads to a behavior resembling
+reference dataType are passed <i>by value</i>. That leads to a behavior resembling
 pretty much ``call-by-reference'', but the parameter passing mechanism
 proper <i>is</i> call-by-value (of reference data). One may speak of
 call-by-value-reference.

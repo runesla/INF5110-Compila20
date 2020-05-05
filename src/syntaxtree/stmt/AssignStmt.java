@@ -3,8 +3,7 @@ package syntaxtree.stmt;
 import syntaxtree.expr.DerefVarExpr;
 import syntaxtree.expr.Expr;
 import syntaxtree.expr.VarExpr;
-
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class AssignStmt extends Stmt {
 	
@@ -39,8 +38,4 @@ public class AssignStmt extends Stmt {
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		return this.varExpr.getType();
-	}
 }

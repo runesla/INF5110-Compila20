@@ -1,7 +1,7 @@
 program wrong_not_operand_type_fail
 begin
 
-    /* Argument of the not operator not of type bool. */
+    /* Argument of the not operator not of dataType bool. */
     proc main()
     begin
         var b : bool;

@@ -72,7 +72,7 @@ public class Compiler {
             System.exit(result);
         } catch (Exception e) {
             System.out.println("ERROR: " + e);
-            // If unknown error.
+            // If unknown common.error.
             System.exit(3);
         }
     }

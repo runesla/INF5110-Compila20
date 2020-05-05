@@ -1,4 +1,4 @@
-package error;
+package common.error;
 
 public class SyntaxException extends Exception {
 

@@ -1,6 +1,8 @@
-package syntaxtree;
+package common;
 
-import error.*;
+import common.error.*;
+import syntaxtree.DataType;
+import syntaxtree.Node;
 import syntaxtree.decl.Decl;
 import syntaxtree.decl.ParamFieldDecl;
 import syntaxtree.decl.ProcDecl;
@@ -13,24 +15,24 @@ public class Program extends Node {
 
     List<Decl> decls;
     String name;
-    HashMap<String, ProcDecl> procs;
-    HashMap<String, String> types;
+    //HashMap<String, ProcDecl> procs;
+    //HashMap<String, String> types;
 
     public Program(String name, List<Decl> decls) {
         this.decls = decls;
         this.name = name;
-        this.procs = new HashMap<>();
-        this.types = new HashMap<>();
-        loadSTL(procs, types);
+        //this.procs = new HashMap<>();
+       // this.types = new HashMap<>();
+        loadSTL();
     }
 
     // Standard library
-    private void loadSTL(HashMap<String, ProcDecl> procs, HashMap<String, String> types) {
-
-        Type primitiveInteger = new Type("int");
-        Type primitiveFloat = new Type("float");
-        Type primitiveString = new Type("string");
-        Type primitiveBool = new Type("bool");
+    private void loadSTL() {    //HashMap<String, ProcDecl> procs, HashMap<String, String> types
+/*
+        DataType primitiveInteger = new DataType("int");
+        DataType primitiveFloat = new DataType("float");
+        DataType primitiveString = new DataType("string");
+        DataType primitiveBool = new DataType("bool");
 
         types.put("int", primitiveInteger.getTypeNameValue());
         types.put("float", primitiveFloat.getTypeNameValue());
@@ -57,6 +59,8 @@ public class Program extends Node {
         procs.put("printstr", printstr);
         procs.put("printline", printline);
 
+ */
+
     }
 
     @Override
@@ -76,13 +80,14 @@ public class Program extends Node {
         return sb.toString();
     }
 
-    public boolean typeCheck() {
+    public boolean checkSemantics(SymbolTable symbolTable) {
 
         try {
             for (Decl decl: decls) {
-                decl.fieldTypeCheck(types, procs);
+                decl.typeCheck(symbolTable);
+                //decl.fieldTypeCheck(types, procs);
             }
-        } catch (TypeException e) {
+        } catch (Exception e) {
             System.err.println("ERROR: " + e.getMessage());
             e.printStackTrace();
             return false;

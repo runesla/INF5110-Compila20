@@ -1,6 +1,6 @@
 package syntaxtree.expr;
 
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class ArithOpExpr extends Expr {
 
@@ -24,10 +24,5 @@ public class ArithOpExpr extends Expr {
 		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level));
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
-	}
-
-	@Override
-	public String getType() {
-		return this.type;
 	}
 }

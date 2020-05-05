@@ -6,6 +6,6 @@ begin
         var tmp : int
     in 
         tmp := 42;
-        tmp.Foox := 42 /* error */
+        tmp.Foox := 42 /* common.error */
     end
 end

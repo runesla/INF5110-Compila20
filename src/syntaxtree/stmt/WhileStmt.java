@@ -1,9 +1,8 @@
 package syntaxtree.stmt;
 
 import syntaxtree.expr.Expr;
-
 import java.util.List;
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class WhileStmt extends Stmt {
 	
@@ -28,10 +27,5 @@ public class WhileStmt extends Stmt {
 		builder.append("\n" + repeat("\t", level) + ")");
 		
 		return builder.toString();
-	}
-
-	@Override
-	public String getType() {
-		return expr.getType();
 	}
 }

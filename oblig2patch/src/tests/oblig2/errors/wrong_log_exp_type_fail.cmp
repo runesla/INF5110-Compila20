@@ -1,7 +1,7 @@
 program wrong_log_exp_type_fail
 begin
 
-    /* Arguments of a logical operator not of type bool. */
+    /* Arguments of a logical operator not of dataType bool. */
     proc main()
     begin
         var b : bool

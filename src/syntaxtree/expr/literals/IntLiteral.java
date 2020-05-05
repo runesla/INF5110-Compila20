@@ -1,4 +1,4 @@
-package syntaxtree.literals;
+package syntaxtree.expr.literals;
 
 import syntaxtree.expr.LiteralExpr;
 
@@ -20,7 +20,7 @@ public class IntLiteral extends LiteralExpr {
 	}
 
 	@Override
-	public String getType() {
+	public String getDataType() {
 		return "int";
 	}
 }

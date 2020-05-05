@@ -3,7 +3,7 @@ begin
     proc main()
     begin
     in
-        if 42 then  /* error, expression not bool */
+        if 42 then  /* common.error, expression not bool */
             printstr( "Should not happen" )
         fi
     end

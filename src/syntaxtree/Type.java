@@ -1,45 +1,20 @@
 package syntaxtree;
 
-public class Type extends Node {
+public class Type {
 
-	private TypeName typeName;
-	private String name;
+    public static final String primitiveInteger = "int";
+    public static final String primitiveFloat = "float";
+    public static final String primitiveBool = "bool";
+    public static final String primitiveString = "string";
+    public static final String primitiveRecord = "struct";
 
-	// Need empty constructor in order to call RefType
-	public Type() { }
+    private final Name name;
 
-	public Type(String name) {
-		this.name = name;
-	}
+    private Type(String name) {
+        this.name = new Name(name);
+    }
 
-	public Type(TypeName typeName) {	//type_name
-		this.typeName = typeName;
-	}
-
-	public String getTypeNameValue() {
-		if(typeName != null) {
-			return this.typeName.getTypeNameValue();
-		}
-
-		return this.name;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public String printAst(int level) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("(TYPE ");
-
-		if(this.name == null)
-			builder.append(this.typeName.toString());
-		else
-			builder.append(this.name);
-
-		builder.append(")");
-	
-		return builder.toString();
-	}
+    public Name getName() {
+        return this.name;
+    }
 }

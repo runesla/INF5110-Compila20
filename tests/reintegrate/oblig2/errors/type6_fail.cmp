@@ -3,6 +3,6 @@ begin
     proc main()
     begin 
     in
-       42.Foo := 42 /* error */
+       42.Foo := 42 /* common.error */
     end
 end

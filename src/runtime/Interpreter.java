@@ -356,7 +356,7 @@ public class Interpreter {
 				throw new RuntimeException("Could not find library procedure " + procedure.name);
 			}
 		} catch (IOException e) {
-			throw new RuntimeException("Could not invoke library procedure " + procedure.name + "because of error " +
+			throw new RuntimeException("Could not invoke library procedure " + procedure.name + "because of common.error " +
 					e);
 		}
 	}

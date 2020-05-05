@@ -1,6 +1,6 @@
-package typecheck;
+package syntaxtree;
 
-import error.TypeException;
+import common.error.TypeException;
 import syntaxtree.decl.ProcDecl;
 import java.util.HashMap;
 

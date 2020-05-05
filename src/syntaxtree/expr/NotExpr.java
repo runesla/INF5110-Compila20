@@ -18,8 +18,4 @@ public class NotExpr extends Expr {
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		return expr.getType();
-	}
 }

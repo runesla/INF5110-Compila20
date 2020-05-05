@@ -4,7 +4,7 @@ begin
 	proc Add( val1 : int , val2 : int ) : int
 	begin 
             in
-	    return /* error, no return value */
+	    return /* common.error, no return value */
 	end;
 	proc main()
 	begin 

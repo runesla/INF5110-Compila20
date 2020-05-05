@@ -8,6 +8,6 @@ begin
    proc main()
    begin 
       in
-      printint( Add( 40 ) ) /* error, procedure takes two arguments */
+      printint( Add( 40 ) ) /* common.error, procedure takes two arguments */
    end
 end

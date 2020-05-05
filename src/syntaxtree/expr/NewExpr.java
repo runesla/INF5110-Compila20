@@ -1,27 +1,23 @@
 package syntaxtree.expr;
 
-import syntaxtree.Type;
+import syntaxtree.DataType;
 
 public class NewExpr extends Expr {
 
-	private final Type type;
+	private final DataType dataType;
 	
-	public NewExpr(Type type) {
-		this.type = type;
+	public NewExpr(DataType dataType) {
+		this.dataType = dataType;
 	}
 
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(NEW ");
-		builder.append(this.type.printAst(level));
+		builder.append(this.dataType.printAst(level));
 		builder.append(")");
 
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		return this.type.getTypeNameValue();
-	}
 }

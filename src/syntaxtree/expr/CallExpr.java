@@ -1,7 +1,7 @@
 package syntaxtree.expr;
 
 import syntaxtree.stmt.CallStmt;
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class CallExpr extends Expr {
 	
@@ -20,8 +20,4 @@ public class CallExpr extends Expr {
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		return callStmt.getType();
-	}
 }

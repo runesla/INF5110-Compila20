@@ -11,7 +11,7 @@ begin
 	    var tmp : int
         in 
 	    tmp := 32;
-	    Proc( tmp ); /* error, ref type not used */
+	    Proc( tmp ); /* common.error, ref dataType not used */
 	    printint( tmp )
 	end
 end

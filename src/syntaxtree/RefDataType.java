@@ -1,13 +1,11 @@
 package syntaxtree;
 
-import typecheck.ITypeCheck;
+public class RefDataType extends DataType implements ITypeCheck {
 
-public class RefType extends Type implements ITypeCheck {
+	private DataType dataType;
 
-	private Type type;
-
-	public RefType(Type type) {
-		this.type = type;
+	public RefDataType(DataType dataType) {
+		this.dataType = dataType;
 	}
 /*
 	@Override
@@ -19,13 +17,13 @@ public class RefType extends Type implements ITypeCheck {
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(REF_TYPE ");
-		builder.append(this.type.printAst(level));
+		builder.append(this.dataType.printAst(level));
 		builder.append(")");
 		return builder.toString();
 	}
 
 	@Override
-	public String getType() {
-		return type.getTypeNameValue();
+	public String getDataType() {
+		return dataType.getTypeNameValue();
 	}
 }

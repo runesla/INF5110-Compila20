@@ -1,24 +1,24 @@
 package syntaxtree.decl;
 
-import error.SyntaxException;
-import error.TypeException;
-import syntaxtree.Type;
-import java.util.HashMap;
-import static syntaxtree.StringUtil.*;
+import common.SymbolTable;
+import common.error.SemanticException;
+import syntaxtree.DataType;
+import syntaxtree.Name;
+import static common.StringUtil.*;
 
 public class ParamFieldDecl extends Decl {
 
-	private final Type type;
+	private final DataType dataType;
 
-	public ParamFieldDecl(String name, Type type) {
+	public ParamFieldDecl(Name name, DataType dataType) {
 		super(name);
-		this.type = type;
+		this.dataType = dataType;
 	}
 	
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("\n" + repeat("\t", level + 1) + this.type.printAst(level + 1));
+		builder.append("\n" + repeat("\t", level + 1) + this.dataType.printAst(level + 1));
 		builder.append(":");
 		builder.append(" (NAME ");
 		builder.append(this.getName());
@@ -27,13 +27,14 @@ public class ParamFieldDecl extends Decl {
 		return builder.toString();
 	}
 
+
 	@Override
-	public String getType() {
-		return this.type.getTypeNameValue();
+	public DataType getDataType() {
+		return this.dataType;
 	}
 
 	@Override
-	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
 	}
 }

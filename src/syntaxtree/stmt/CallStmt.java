@@ -3,7 +3,7 @@ package syntaxtree.stmt;
 import syntaxtree.expr.Expr;
 
 import java.util.List;
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class CallStmt extends Stmt {
 
@@ -29,10 +29,5 @@ public class CallStmt extends Stmt {
 		builder.append("\n" + repeat("\t", level) + ")");		
 		
 		return builder.toString();
-	}
-
-	@Override
-	public String getType() {
-		return this.type;
 	}
 }

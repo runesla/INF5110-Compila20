@@ -1,24 +1,26 @@
 package syntaxtree.decl;
 
-import error.SyntaxException;
-import error.TypeException;
-import syntaxtree.Type;
+import common.SymbolTable;
+import common.error.SemanticException;
+import common.error.TypeException;
+import syntaxtree.DataType;
+import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class ProcDecl extends Decl {
 
-	private Type returnType;
+	private DataType returnDataType;
 	private final List<ParamFieldDecl> params;
 	private final List<Decl> declarations;
 	private final List<Stmt> statements;
 	
 	// No return type, "default" constructor
-	public ProcDecl(String name) {
+	public ProcDecl(Name name) {
 		super(name);
 		this.params = new ArrayList<>();
 		this.declarations = new ArrayList<>();
@@ -26,7 +28,9 @@ public class ProcDecl extends Decl {
 	}
 
 	// No return type, given params
-	public ProcDecl(String name, List<ParamFieldDecl> params) {
+	public ProcDecl(
+				Name name,
+				List<ParamFieldDecl> params) {
 		super(name);
 		this.params = params;
 		this.declarations = new ArrayList<>();
@@ -35,7 +39,7 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params and statements
 	public ProcDecl(
-				String name,
+				Name name,
 				List<ParamFieldDecl> params,
 				List<Stmt> statements) {
 		super(name);
@@ -45,9 +49,11 @@ public class ProcDecl extends Decl {
 	}
 
 	// Given return type
-	public ProcDecl(String name, Type returnType) {
+	public ProcDecl(
+				Name name,
+				DataType returnDataType) {
 		super(name);
-		this.returnType = returnType;
+		this.returnDataType = returnDataType;
 		this.params = new ArrayList<>();
 		this.statements = new ArrayList<>();
 		this.declarations = new ArrayList<>();
@@ -55,12 +61,12 @@ public class ProcDecl extends Decl {
 
 	// Given return type, given params and statements
 	public ProcDecl(
-				String name,
-				Type returnType,
+				Name name,
+				DataType returnDataType,
        			List<ParamFieldDecl> params,
        			List<Stmt> statements) {
        	super(name);
-		this.returnType = returnType;
+		this.returnDataType = returnDataType;
 		this.params = params;
        	this.statements = statements;
        	this.declarations = new ArrayList<>();
@@ -68,7 +74,7 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params, decl and stmts
 	public ProcDecl(
-				String name,
+				Name name,
 				List<ParamFieldDecl> params,
 				List<Decl> declarations,
 				List<Stmt> statements) {
@@ -80,13 +86,13 @@ public class ProcDecl extends Decl {
 
 	// Given return type, params, decl and stmts
 	public ProcDecl(
-				String name,
-				Type returnType,
+				Name name,
+				DataType returnDataType,
 				List<ParamFieldDecl> params,
 				List<Decl> declarations,
 				List<Stmt> statements) {
 		super(name);
-		this.returnType = returnType;
+		this.returnDataType = returnDataType;
 		this.params = params;
 		this.declarations = declarations;
 		this.statements = statements;
@@ -100,8 +106,8 @@ public class ProcDecl extends Decl {
 		builder.append(this.getName());
 		builder.append(")");
 
-		if(returnType != null)
-			builder.append(" : " + this.returnType.printAst(level));
+		if(returnDataType != null)
+			builder.append(" : " + this.returnDataType.printAst(level));
 		
 		if(params != null) {
 			for(ParamFieldDecl p: params) {
@@ -127,10 +133,33 @@ public class ProcDecl extends Decl {
 	}
 
 	@Override
-	public String getType() {
-		return this.returnType.getTypeNameValue();
+	public DataType getDataType() {
+		return this.returnDataType;
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+		// Check if exists
+		if(symbolTable.retrieveProcedure(this.getName()) != null) {
+			throw new SemanticException("Duplicate procedure declaration found: " + this.getName().toString());
+		}
+
+		// Check formal params
+		for(Decl decl: declarations) {
+			if(Collections.frequency(declarations, decl) > 1) {
+				throw new SemanticException("Duplicate formal parameter found: " + decl.getName() + " in procedure " + this.getName());
+			}
+		}
+
+		// Check return type
+		if(symbolTable.retrieveType(this.getName()) != null) {
+			throw new SemanticException("Undefined type in procedure " + this.getName());
+		}
+
+		symbolTable.insertProcedure(this);
+	}
+/*
 	@Override
 	public void fieldTypeCheck(HashMap<String, String> types, HashMap<String, ProcDecl> procs) throws TypeException {
 
@@ -141,7 +170,7 @@ public class ProcDecl extends Decl {
 			if(types.containsKey(param.getName())) {
 				throw new TypeException("Duplicate declaration found: " + param.getName() + " in procedure " + this.getName());
 			}
-			types.put(param.getName(), param.getType());
+			types.put(param.getName(), param.getDataType());
 		}
 
 		// Check all formal parameters being distinct
@@ -152,8 +181,10 @@ public class ProcDecl extends Decl {
 		}
 
 		// Check return type
-		if(!types.containsKey(this.returnType.getTypeNameValue())) {
-			throw new TypeException("Invalid return type: " + this.returnType.getName() + " in procedure " + this.getName());
+		if(!types.containsKey(this.returnDataType.getTypeNameValue())) {
+			throw new TypeException("Invalid return type: " + this.returnDataType.getName() + " in procedure " + this.getName());
 		}
 	}
+
+ */
 }

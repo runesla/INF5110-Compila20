@@ -1,7 +1,7 @@
 package syntaxtree.stmt;
 
 import java.util.*;
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 import syntaxtree.expr.Expr;
 
 public class IfStmt extends Stmt {
@@ -46,8 +46,4 @@ public class IfStmt extends Stmt {
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		return expr.getType();
-	}
 }

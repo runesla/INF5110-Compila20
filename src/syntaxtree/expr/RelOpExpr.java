@@ -1,6 +1,6 @@
 package syntaxtree.expr;
 
-import static syntaxtree.StringUtil.*;
+import static common.StringUtil.*;
 
 public class RelOpExpr extends Expr {
 
@@ -25,8 +25,4 @@ public class RelOpExpr extends Expr {
 		return builder.toString();
 	}
 
-	@Override
-	public String getType() {
-		return "bool";
-	}
 }

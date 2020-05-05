@@ -1,4 +1,4 @@
-program general4_fail /* error, no procedure main() */
+program general4_fail /* common.error, no procedure main() */
 begin
   proc Proc()
   begin
