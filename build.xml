@@ -2,9 +2,11 @@
 	<target name="menu" >
 		<echo>Targets                           </echo>
 		<echo>clean                		- Cleans up the project</echo>
-		<echo>build				- Build CMP20</echo>
 		<echo>generate				- Generate parser for CMP20</echo>
 		<echo>compile				- Compile Java files for CMP20</echo>
+		<echo>build				- Build CMP20</echo>
+		<echo>compile-test 			- Compile for testprograms</echo>
+		<echo>test 					- Run tests</echo>
 		<echo>compile-runme 			- Compile for testprogram RunMe</echo>
 		<echo>list-runme  			- List RunMe</echo>
 		<echo>run-runme 				- Run RunMe</echo>
@@ -61,6 +63,19 @@
 
 	<!-- Main target -->
 	<target name="build" depends="compile" />
+
+	<!-- Compile test classes -->
+	<target name="compile-test" depends="mkdir">
+		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true"
+			   includes="test/*.java" classpathref="path-cup" />
+	</target>
+
+	<!-- Run tests -->
+	<target name="test" depends="compile-test">
+		<java classname="test.Tester" classpathref="path-run" >
+			<arg value="tests"/>
+		</java>
+	</target>
 
 
 	<!-- Run compiler on example RunMe -->
