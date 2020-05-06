@@ -6,7 +6,6 @@ import common.error.SyntaxException;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -147,23 +146,29 @@ public class ProcDecl extends Decl {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		// Check if exists
-		if(symbolTable.retrieveProcedure(this.getName()) != null) {
-			throw new SemanticException("Duplicate procedure declaration found: " + this.getName().toString());
-		}
-
-		// Check formal params
-		for(Decl decl: declarations) {
-			if(Collections.frequency(declarations, decl) > 1) {
-				throw new SemanticException("Duplicate formal parameter found: " + decl.getName() + " in procedure " + this.getName());
-			}
-		}
-
-		// Check return type
-		if(symbolTable.retrieveType(this.getName()) != null) {
-			throw new SemanticException("Undefined type in procedure " + this.getName());
+		// Check return type for procedures that have this defined
+		if(symbolTable.retrieveType(this.getName()) != null && this.returnDataType != null) {
+			throw new SemanticException("Undefined return type in procedure " + this.getName().getNameValue());
 		}
 
 		symbolTable.insertProcedure(this);
+
+		// Create symbol table for this block
+		SymbolTable procSymbolTable = new SymbolTable();
+		symbolTable.getChildTables().add(procSymbolTable);
+
+		// Check formal params
+		for(Decl decl: declarations) {
+			if(Collections.frequency(declarations, decl.getName()) > 1) {
+				throw new SemanticException("Duplicate formal parameter found: " + decl.getName().getNameValue() + " in procedure " + this.getName().getNameValue());
+			}
+			decl.typeCheck(procSymbolTable);
+			procSymbolTable.insertVariable((VarDecl) decl);		// TODO: revise? a proc can only hold VarDecl? If so, need to refine grammar
+		}
+
+		// Check statements
+		for(Stmt stmt: statements) {
+			stmt.typeCheck(procSymbolTable);
+		}
 	}
 }

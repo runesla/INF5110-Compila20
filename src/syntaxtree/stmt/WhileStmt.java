@@ -1,6 +1,10 @@
 package syntaxtree.stmt;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.expr.Expr;
+import syntaxtree.types.DataType;
+
 import java.util.List;
 import static common.utils.StringUtil.*;
 
@@ -27,5 +31,19 @@ public class WhileStmt extends Stmt {
 		builder.append("\n" + repeat("\t", level) + ")");
 		
 		return builder.toString();
+	}
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		this.expr.typeCheck(symbolTable);
+
+		for(Stmt stmt: statements) {
+			stmt.typeCheck(symbolTable);
+		}
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
 	}
 }

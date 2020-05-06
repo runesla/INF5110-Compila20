@@ -5,7 +5,7 @@ import common.error.SemanticException;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 
-public class ParamDecl extends Decl {
+public class ParamDecl extends Decl {		// TODO: remove? Why do I even have this here
 
 	private final DataType dataType;
 
@@ -31,6 +31,6 @@ public class ParamDecl extends Decl {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-
+		symbolTable.insertUserDefinedType(this.dataType);
 	}
 }

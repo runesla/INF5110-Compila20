@@ -1,5 +1,7 @@
 package syntaxtree.expr;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.types.DataType;
 
 public class NewExpr extends Expr {
@@ -20,4 +22,14 @@ public class NewExpr extends Expr {
 		return builder.toString();
 	}
 
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+	}
+
+	@Override
+	public DataType getDataType() {
+		return this.dataType;
+	}
 }

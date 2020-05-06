@@ -1,11 +1,16 @@
 package syntaxtree.expr;
 
+import common.SymbolTable;
+import common.error.SemanticException;
+import syntaxtree.types.DataType;
+import syntaxtree.types.Type;
+
 import static common.utils.StringUtil.*;
 
 public class LogOpExpr extends Expr {
 
-	private final String operator;
 	private final Expr e1;
+	private final String operator;
 	private final Expr e2;
 
 	public LogOpExpr(Expr e1, String operator, Expr e2) {
@@ -25,4 +30,19 @@ public class LogOpExpr extends Expr {
 		return builder.toString();
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+		e1.typeCheck(symbolTable);
+		e2.typeCheck(symbolTable);
+
+		if(e1.getDataType().getType() != Type.BOOL || e2.getDataType().getType() != Type.BOOL) {
+			throw new SemanticException("Invalid type in arithmetic expression");
+		}
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
+	}
 }

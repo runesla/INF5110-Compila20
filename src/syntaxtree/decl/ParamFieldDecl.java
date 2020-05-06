@@ -35,6 +35,6 @@ public class ParamFieldDecl extends Decl {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-
+		symbolTable.insertUserDefinedType(this.dataType);
 	}
 }

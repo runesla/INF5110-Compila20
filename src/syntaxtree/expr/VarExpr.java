@@ -1,5 +1,7 @@
 package syntaxtree.expr;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.types.DataType;
 
 public class VarExpr extends Expr {
@@ -44,4 +46,18 @@ public class VarExpr extends Expr {
 		return builder.toString();
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+		expr.typeCheck(symbolTable);
+
+		if(expr.getDataType() != this.dataType) {
+			throw new SemanticException("Type mismatch between variable and expression");
+		}
+	}
+
+	@Override
+	public DataType getDataType() {
+		return this.dataType;
+	}
 }

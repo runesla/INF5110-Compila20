@@ -1,6 +1,10 @@
 package syntaxtree.expr.literals;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.expr.LiteralExpr;
+import syntaxtree.types.DataType;
+import syntaxtree.types.Type;
 
 public class BoolLiteral extends LiteralExpr {
 
@@ -18,5 +22,15 @@ public class BoolLiteral extends LiteralExpr {
 		builder.append(")");
 	
 		return builder.toString();
+	}
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+	}
+
+	@Override
+	public DataType getDataType() {
+		return new DataType(Type.BOOL);
 	}
 }

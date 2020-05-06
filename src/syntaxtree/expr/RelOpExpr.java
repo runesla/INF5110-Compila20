@@ -1,11 +1,17 @@
 package syntaxtree.expr;
 
+import common.SymbolTable;
+import common.error.SemanticException;
+import syntaxtree.types.DataType;
+import bytecode.instructions.*;
+import syntaxtree.types.Type;
+
 import static common.utils.StringUtil.*;
 
 public class RelOpExpr extends Expr {
 
-	private final String operator;
 	private final Expr e1;
+	private final String operator;
 	private final Expr e2;
 
 	public RelOpExpr(Expr e1, String operator, Expr e2) {
@@ -25,4 +31,38 @@ public class RelOpExpr extends Expr {
 		return builder.toString();
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+		e1.typeCheck(symbolTable);
+		e2.typeCheck(symbolTable);
+
+		if(e1.getDataType().getType() != Type.INT || e1.getDataType().getType() != Type.FLOAT
+				|| e2.getDataType().getType() != Type.INT || e2.getDataType().getType() != Type.FLOAT) {
+			throw new SemanticException("Invalid type in arithmetic expression");
+		}
+
+			/*
+		switch (operator) {
+			case EQ:
+				break;
+			case GT:
+				break;
+			case GTEQ:
+				break;
+			case LT:
+				break;
+			case LTEQ:
+				break;
+			default:
+				throw new SemanticException("Invalid relational operator");
+		}
+
+			 */
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
+	}
 }

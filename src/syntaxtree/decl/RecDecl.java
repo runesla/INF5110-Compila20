@@ -45,12 +45,24 @@ public class RecDecl extends Decl {
 
 	@Override
 	public DataType getDataType() {
-		//return new DataType(new Name("struct"));		// TODO: nonono, this is a quickfix only. Should be static somewhere
 		return new DataType(Type.STRUCT);
 	}
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		symbolTable.insertRecord(this);
 
+		// Create symbol table for this block
+		SymbolTable recSymbolTable = new SymbolTable();
+		symbolTable.getChildTables().add(recSymbolTable);
+
+		// Check params
+		for(ParamFieldDecl paramDecl: params) {
+			if(Collections.frequency(params, paramDecl.getName()) > 1) {
+				throw new SemanticException("Duplicate formal parameter found: " + paramDecl.getName().getNameValue() + " in struct " + this.getName().getNameValue());
+			}
+			paramDecl.typeCheck(recSymbolTable);
+			// TODO: recSymbolTable.insert
+		}
 	}
 }

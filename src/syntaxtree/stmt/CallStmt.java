@@ -1,17 +1,21 @@
 package syntaxtree.stmt;
 
+import common.SymbolTable;
+import common.error.SemanticException;
+import syntaxtree.Name;
 import syntaxtree.expr.Expr;
-import java.util.LinkedList;
+import syntaxtree.types.DataType;
+
 import java.util.List;
 import static common.utils.StringUtil.*;
 
 public class CallStmt extends Stmt {
 
-	private final String name;
-	private List<Expr> expr;
+	private final Name name;
+	private final List<Expr> expr;
 
 	public CallStmt(String name, List<Expr> expr) {
-		this.name = name;
+		this.name = new Name(name);
 		this.expr = expr;
 	}
 	
@@ -28,5 +32,23 @@ public class CallStmt extends Stmt {
 		builder.append("\n" + repeat("\t", level) + ")");		
 		
 		return builder.toString();
+	}
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+		// Check if called symbol exists
+		if(symbolTable.retrieveType(this.name) == null) {
+			throw new SemanticException("No declaration exists of symbol " + this.name.getNameValue());
+		}
+
+		for(Expr e: expr) {
+			e.typeCheck(symbolTable);
+		}
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
 	}
 }

@@ -1,6 +1,9 @@
 package syntaxtree.expr;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.stmt.CallStmt;
+import syntaxtree.types.DataType;
 import static common.utils.StringUtil.*;
 
 public class CallExpr extends Expr {
@@ -20,4 +23,13 @@ public class CallExpr extends Expr {
 		return builder.toString();
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		callStmt.typeCheck(symbolTable);
+	}
+
+	@Override
+	public DataType getDataType() {
+		return callStmt.getDataType();
+	}
 }

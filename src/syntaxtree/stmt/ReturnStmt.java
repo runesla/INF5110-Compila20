@@ -1,6 +1,9 @@
 package syntaxtree.stmt;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.expr.Expr;
+import syntaxtree.types.DataType;
 
 public class ReturnStmt extends Stmt {
 	
@@ -24,5 +27,15 @@ public class ReturnStmt extends Stmt {
 		builder.append(")");		
 
 		return builder.toString();
+	}
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		this.expr.typeCheck(symbolTable);
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
 	}
 }

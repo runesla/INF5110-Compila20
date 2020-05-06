@@ -1,25 +1,27 @@
-// That's for oblig 2 only. It does also not work together with
-// compiler.Compiler.java from Oblig 2 it needs the compiler.Compiler
-// version from oblig 2.
-
 package test;
 
 import java.io.File;
-
 import compiler.Compiler;
 
 public class Tester {
+
 	private String path = null;
+
 	public Tester(String path) {
 		this.path = path;
 	}
+
 	public void test() {
 		System.out.println("Testing compiler class.");
 		File file = new File(this.path);
+
 		if(file.isDirectory()){
 			int failed = 0;
+
 			System.out.println("Testing files in " + file.getAbsolutePath());
+
 			File[] files = file.listFiles(new FileEndingFilter("cmp"));
+
 			for (int i = 0; i < files.length; i++) {
 				String filename = files[i].getName();
 				boolean shouldFail = filename.contains("fail".subSequence(0, 4));
@@ -28,17 +30,21 @@ public class Tester {
 				Compiler compiler = new Compiler(this.path + File.separator + filename,
 						this.path + File.separator + outFileName(filename, ".ast"),
 						this.path + File.separator + outFileName(filename, ".bin"));
+
 				if( ! testCompiler(compiler, shouldFail, i+1))
 					failed++;
 			}
+
 			if(failed==0)
 				System.out.println("Test completed successfully.");
 			else
 				System.out.println("Some tests failed (" + failed + " / " + files.length + ")");
+
 		} else {
 			System.out.println("The path (" + this.path + ") is not a directory.");
 		}
 	}
+
 	public boolean testCompiler(Compiler compiler, boolean shouldFail, int number) {
 		boolean testOk = true;
 		try {
@@ -74,6 +80,7 @@ public class Tester {
 		int pos = fileName.lastIndexOf(".");
 		return fileName.substring(0, pos) + ending;
 	}
+
 	public static void main(String[] args) {
 		Tester tester = new Tester(args[0]);
 		tester.test();

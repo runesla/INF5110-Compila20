@@ -1,14 +1,18 @@
 package syntaxtree.stmt;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.expr.DerefVarExpr;
 import syntaxtree.expr.Expr;
 import syntaxtree.expr.VarExpr;
+import syntaxtree.types.DataType;
+
 import static common.utils.StringUtil.*;
 
 public class AssignStmt extends Stmt {
-	
-	private Expr expr;
+
 	private VarExpr varExpr;
+	private Expr expr;
 	private DerefVarExpr derefExpr;
 
 	public AssignStmt(VarExpr varExpr, Expr expr) {
@@ -38,4 +42,24 @@ public class AssignStmt extends Stmt {
 		return builder.toString();
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		// AssignStmt can reduce to one of two types, ensure only one is used and do type check
+		if(varExpr != null) {
+			if(varExpr.getDataType() != expr.getDataType()) {
+				throw new SemanticException("Variable type does not match expression type");
+			}
+			this.varExpr.typeCheck(symbolTable);
+		} else {
+			if(derefExpr.getDataType() != expr.getDataType()) {
+				throw new SemanticException("Dereference types does not match expression type");
+			}
+			this.derefExpr.typeCheck(symbolTable);
+		}
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
+	}
 }

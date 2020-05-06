@@ -53,14 +53,14 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${dir.build}" includes="**/*"/>
 		</delete>
-		<!--
 		<delete>
-			<fileset dir="{dir.src}/parser" includes="**/*"/>
+			<fileset dir="${dir.src}/parser" includes="**/*.java"/>
 		</delete>
-		-->
-		<delete file="${dir.src}/parser/Lexer.java"/>
+
+
+		<!--<delete file="${dir.src}/parser/Lexer.java"/>
 		<delete file="${dir.src}/parser/parser.java"/>
-		<delete file="${dir.src}/parser/sym.java"/>
+		<delete file="${dir.src}/parser/sym.java"/>-->
 	</target>
 
 	<!-- Create directories -->

@@ -2,7 +2,11 @@ package syntaxtree.stmt;
 
 import java.util.*;
 import static common.utils.StringUtil.*;
+
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.expr.Expr;
+import syntaxtree.types.DataType;
 
 public class IfStmt extends Stmt {
 	
@@ -46,4 +50,13 @@ public class IfStmt extends Stmt {
 		return builder.toString();
 	}
 
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+	}
+
+	@Override
+	public DataType getDataType() {
+		return null;
+	}
 }

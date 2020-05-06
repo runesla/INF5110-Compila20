@@ -41,7 +41,7 @@ public class VarDecl extends Decl {
 	}
 
 	@Override
-	public void typeCheck(SymbolTable symbolTable) throws SemanticException {	// TODO: create hierarchy of symboltables because of scopes?
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
 		if(symbolTable.retrieveVariable(this.getName()) != null) {
 			throw new SemanticException("Duplicate variable declaration " + this.getName().toString());
