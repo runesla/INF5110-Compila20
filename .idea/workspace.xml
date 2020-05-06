@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Compiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grammars/compila.cup" beforeDir="false" afterPath="$PROJECT_DIR$/src/grammars/compila.cup" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/sym.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/sym.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/types/RefDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/types/RefType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +95,7 @@
       <workItem from="1587485622960" duration="4621000" />
       <workItem from="1587913539056" duration="14676000" />
       <workItem from="1588493231281" duration="822000" />
-      <workItem from="1588593652497" duration="45749000" />
+      <workItem from="1588593652497" duration="48430000" />
     </task>
     <task id="LOCAL−00001" summary="Removed duplicates">
       <created>1587486999177</created>
@@ -148,7 +151,13 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1588706415445</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="Added missing imports in parser">
+      <created>1588706810078</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1588706810078</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +173,8 @@
     <MESSAGE value="Attempt at adding STL, problems with BuiltInTypes" />
     <MESSAGE value="(probably) fixed built-in types. Getting classpath error in ant" />
     <MESSAGE value="Some cleanup, added build configs for IntelliJ" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some cleanup, added build configs for IntelliJ" />
+    <MESSAGE value="Added missing imports in parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing imports in parser" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="94" key="#Project_Structure" timestamp="1588706010757">
@@ -199,10 +209,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="375" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588698957665" />
-    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588706413779">
+    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588706808625">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706413779" />
+    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706808625" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588706007647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -211,10 +221,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588003153774" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588706431532">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588706820868">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706431532" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706820868" />
     <state x="682" y="308" key="git4idea.merge.GitPullDialog" timestamp="1587485847535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

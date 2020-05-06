@@ -1,10 +1,10 @@
 package syntaxtree.types;
 
-public class RefDataType extends DataType {
+public class RefType extends DataType {
 
 	private final DataType dataType;
 
-	public RefDataType(DataType dataType) {
+	public RefType(DataType dataType) {
 		this.dataType = dataType;
 	}
 /*

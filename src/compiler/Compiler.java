@@ -15,8 +15,8 @@ public class Compiler {
 	private String outFilename = null;
     private String binFilename = null;
     private SymbolTable symbolTable = null;
-	//public String syntaxError;
-    //public String error;
+	public String syntaxError;
+    public String error;
 	
 	public Compiler(String inFilename, String outFilename, String binFilename){
 		this.inFilename = inFilename;

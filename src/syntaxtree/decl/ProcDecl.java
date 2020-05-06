@@ -6,6 +6,8 @@ import common.error.SyntaxException;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
+import syntaxtree.types.Type;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

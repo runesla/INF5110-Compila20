@@ -1,5 +1,6 @@
 package parser;   
 import java_cup.runtime.*;
+import common.Program;
 import syntaxtree.*;
 import syntaxtree.decl.*;
 import syntaxtree.expr.*;
@@ -17,72 +18,72 @@ terminal                        PROGRAM;
 terminal                        BEGIN, END;
 terminal                        RETURN;
 terminal                        PROCEDURE;
-terminal			IF, THEN, ELSE, FI;
-terminal			WHILE, DO, OD;
-terminal			NOT;
-terminal			NEW;
-terminal			REF, DEREF;
-terminal			IN;
-terminal			STRUCT;
+terminal			            IF, THEN, ELSE, FI;
+terminal			            WHILE, DO, OD;
+terminal			            NOT;
+terminal			            NEW;
+terminal			            REF, DEREF;
+terminal			            IN;
+terminal			            STRUCT;
 
 /* Symbols */
-terminal			LPAR, RPAR;
-terminal 			LCURLY, RCURLY;
-terminal 			COMMA;
-terminal			DOT;
-terminal			MULOP, DIVOP, ADDOP, SUBOP;
-terminal			EXP;
-terminal			COLON;
-terminal			SEMI;
-terminal			EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL;
-terminal			VAR;
-terminal			ASSIGN;
+terminal			            LPAR, RPAR;
+terminal 			            LCURLY, RCURLY;
+terminal 			            COMMA;
+terminal			            DOT;
+terminal			            MULOP, DIVOP, ADDOP, SUBOP;
+terminal			            EXP;
+terminal			            COLON;
+terminal			            SEMI;
+terminal			            EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL;
+terminal			            VAR;
+terminal			            ASSIGN;
 
 /* Types */
 terminal                        TYPE_INT;
 terminal                        TYPE_FLOAT;
 terminal                        TYPE_STRING;
 terminal                        TYPE_BOOL;
-terminal String			ID;
-non terminal Type		dataType;
+terminal String			        ID;
+non terminal DataType		    dataType;
 
 /* Literals  */
-terminal Float			FLOAT_LITERAL;
-terminal String			STRING_LITERAL;
-terminal Integer		INT_LITERAL;
-terminal Boolean		BOOL_LITERAL;
-terminal Null			NULL;
+terminal Float			        FLOAT_LITERAL;
+terminal String			        STRING_LITERAL;
+terminal Integer		        INT_LITERAL;
+terminal Boolean		        BOOL_LITERAL;
+terminal Null			        NULL;
 
 /* Declarations */
-non terminal Program            program;
-non terminal Decl		decl;
-non terminal VarDecl		var_decl;
-non terminal ProcDecl		proc_decl;
-non terminal RecDecl		rec_decl;
-non terminal ParamFieldDecl	paramfield_decl;
+non terminal Program                program;
+non terminal Decl		            decl;
+non terminal VarDecl		        var_decl;
+non terminal ProcDecl		        proc_decl;
+non terminal RecDecl		        rec_decl;
+non terminal ParamFieldDecl	        paramfield_decl;
 non terminal List<ParamFieldDecl>	proc_params, rec_params, opt_proc_params, opt_rec_params;
-non terminal List<Decl>		decl_list, opt_decl_list;
-non terminal List<Stmt>		opt_stmt_list;
+non terminal List<Decl>		        decl_list, opt_decl_list;
+non terminal List<Stmt>		        opt_stmt_list;
 
 /* Expressions  */
-non terminal Expr		expr;
-non terminal RefVarExpr		ref_var;
-non terminal DerefVarExpr	deref_var;
-non terminal VarExpr		var;
-non terminal LogOpExpr		log_op_expr;
-non terminal RelOpExpr		rel_op_expr;
-non terminal ArithOpExpr	arith_op_expr;
-non terminal LiteralExpr	literal_expr;
-non terminal List<Expr>		expr_list;
+non terminal Expr		        expr;
+non terminal RefVarExpr		    ref_var;
+non terminal DerefVarExpr	    deref_var;
+non terminal VarExpr		    var;
+non terminal LogOpExpr		    log_op_expr;
+non terminal RelOpExpr		    rel_op_expr;
+non terminal ArithOpExpr	    arith_op_expr;
+non terminal LiteralExpr	    literal_expr;
+non terminal List<Expr>		    expr_list;
 
 /* Statements  */
-non terminal Stmt		stmt;
-non terminal AssignStmt		assign_stmt;
-non terminal IfStmt		if_stmt;
-non terminal WhileStmt		while_stmt;
-non terminal ReturnStmt		return_stmt;
-non terminal CallStmt		call_stmt;
-non terminal List<Stmt>		stmt_list;
+non terminal Stmt		        stmt;
+non terminal AssignStmt		    assign_stmt;
+non terminal IfStmt		        if_stmt;
+non terminal WhileStmt		    while_stmt;
+non terminal ReturnStmt		    return_stmt;
+non terminal CallStmt		    call_stmt;
+non terminal List<Stmt>		    stmt_list;
 
 /* Associativity and precedence */
 precedence left LOG_OR;
@@ -121,10 +122,17 @@ opt_rec_params	::= rec_params:rp {: RESULT = rp; :}
 rec_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); RESULT = pfl; :}
 		| rec_params:rp SEMI paramfield_decl:pfd {: rp.add(pfd); RESULT = rp; :};
 
+/*
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, osl); :};
+*/
+
+proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, dl, osl); :}
+		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, osl); :};
 
 opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
 		| {: RESULT = new LinkedList<ParamFieldDecl>(); :};
@@ -140,7 +148,7 @@ expr		::= log_op_expr:e {: RESULT = e; :}
 		| arith_op_expr:e {: RESULT = e; :}
 		| literal_expr:le {: RESULT = le; :}
 		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
-		| NEW ID:name {: RESULT = new NewExpr(new Type(name)); :}
+		| NEW ID:name {: RESULT = new NewExpr(new DataType(new Name(name))); :}   /* new Type(name)) */
 		| var:v {: RESULT = v; :}
 		| ref_var:rv {: RESULT = rv; :}
 		| deref_var:dv {: RESULT = dv; :}
@@ -198,12 +206,12 @@ return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :}
 
 call_stmt	::= ID:name LPAR expr_list:e RPAR {: RESULT = new CallStmt(name, e); :};
 
-dataType		::= TYPE_INT {: RESULT = new Type("int"); :}
-		| TYPE_BOOL {: RESULT = new Type("bool"); :}
-		| TYPE_FLOAT {: RESULT = new Type("float"); :}
-		| TYPE_STRING {: RESULT = new Type("string"); :}
+dataType	::= TYPE_INT {: RESULT = new DataType(Type.INT); :}
+		| TYPE_BOOL {: RESULT = new DataType(Type.BOOL); :}            /* ("bool") */
+		| TYPE_FLOAT {: RESULT = new DataType(Type.FLOAT); :}          /* ("float") */
+		| TYPE_STRING {: RESULT = new DataType(Type.STRING); :}        /* ("string") */
 		| REF LPAR dataType:t RPAR {: RESULT = new RefType(t); :}
-		| ID:name {: RESULT = new Type(name); :};
+		| ID:name {: RESULT = new DataType(new Name(name)); :};         /* new DataType(name) */
 
 literal_expr	::= INT_LITERAL:il {: RESULT = new IntLiteral(il); :}
 		| FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
