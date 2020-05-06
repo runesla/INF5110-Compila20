@@ -28,8 +28,8 @@
 	</path>
 
 	<!-- Task definitions -->
-	<taskdef classname="JFlex.anttask.JFlexTask" name="jflex" classpathref="path-cup" />
-	<taskdef classname="java_cup.anttask.CUPTask" name="cup" classpathref="path-cup"/>
+	<taskdef classname="JFlex.anttask.JFlexTask" name="jflex" classpathref="path-cup" classpath="./lib/JFlex.jar" />
+	<taskdef classname="java_cup.anttask.CUPTask" name="cup" classpathref="path-cup" classpath="./lib/java-cup-11a.jar" />
 
 	<!-- Target definitions -->
 	<target name="init">
@@ -52,6 +52,14 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${dir.build}" includes="**/*"/>
 		</delete>
+		<!--
+		<delete>
+			<fileset dir="{dir.src}/parser" includes="**/*"/>
+		</delete>
+		-->
+		<delete file="${dir.src}/parser/Lexer.java"/>
+		<delete file="${dir.src}/parser/parser.java"/>
+		<delete file="${dir.src}/parser/sym.java"/>
 	</target>
 
 	<!-- Create directories -->
@@ -88,7 +96,7 @@
 	</target>
 
 	<!-- Run compiler on example RunMe -->
-	<target name="compile-runme" depends="init">
+	<target name="compile-runme" depends="init, build">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="${dir.tests}/fullprograms/runme.cmp"/>
 			<arg value="${dir.tests}/fullprograms/runme.ast"/>

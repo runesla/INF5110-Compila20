@@ -1,6 +1,6 @@
 package common;
 
-import common.error.*;
+import common.error.SyntaxException;
 import syntaxtree.Node;
 import syntaxtree.decl.Decl;
 import bytecode.*;
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Program extends Node {
 
-    private List<Decl> decls;
+    private final List<Decl> decls;
     private final String name;
-    private STL stdLib;
+    private final STL stdLib;
     //HashMap<String, ProcDecl> procs;
     //HashMap<String, String> types;
 
