@@ -99,8 +99,8 @@
 	<target name="compile-complexaddition" depends="init, build">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="${dir.tests}/fullprograms/complexaddition.cmp"/>
-			<arg value="${dir.tests}/fullprograms/complexaddition.ast"/>
-			<arg value="${dir.tests}/fullprograms/complexaddition.bin"/>
+			<arg value="${dir.tests}/output/complexaddition.ast"/>
+			<arg value="${dir.tests}/output/complexaddition.bin"/>
 		</java>
 	</target>
 
@@ -108,8 +108,8 @@
 	<target name="compile-runme" depends="init, build">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="${dir.tests}/fullprograms/runme.cmp"/>
-			<arg value="${dir.tests}/fullprograms/runme.ast"/>
-			<arg value="${dir.tests}/fullprograms/runme.bin"/>
+			<arg value="${dir.tests}/output/runme.ast"/>
+			<arg value="${dir.tests}/output/runme.bin"/>
 		</java>
 	</target>
 
@@ -117,14 +117,14 @@
 	<target name="list-runme" depends="init">
 		<java classname="runtime.VirtualMachine" classpathref="path-run">
 			<arg value="-l"/>
-			<arg value="${dir.tests}/fullprograms/runme.bin"/>
+			<arg value="${dir.tests}/output/runme.bin"/>
 		</java>
 	</target>
 
 	<!-- Run vm on example runme -->
 	<target name="run-runme" depends="init">
 		<java classname="runtime.VirtualMachine" classpathref="path-run">
-			<arg value="${dir.tests}/fullprograms/runme.bin"/>
+			<arg value="${dir.tests}/output/runme.bin"/>
 		</java>
 	</target>
 
