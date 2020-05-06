@@ -11,23 +11,35 @@ public enum Type {
     public static final String primitiveRecord = "struct";
 */
 
-/*      // TODO: nope no no nope. methods not accessible
+
     INT {
-        public DataType get() {
-            return new DataType(new Name("int"));
+        @Override
+        public String get() {
+            return "int";
         }
     },
     FLOAT {
-            return new DataType(new Name("float"));
+        @Override
+        public String get() {
+            return "float";
+        }
     },
     BOOL {
-        return new DataType(new Name("bool"));
+        @Override
+        public String get() {
+            return "bool";
+        }
     },
     STRING {
-        return new DataType(new Name("string"));
-    }
- */
-    // TODO: apparently, this works. Verify that it does the right job
+        @Override
+        public String get() {
+            return "string";
+        }
+    };
+
+    public abstract String get();
+
+    /*
     INT("int"),
     FLOAT("float"),
     STRING("string"),
@@ -43,4 +55,6 @@ public enum Type {
     public Name getName() {
         return this.name;
     }
+
+     */
 }

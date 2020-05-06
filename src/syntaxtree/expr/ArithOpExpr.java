@@ -4,8 +4,9 @@ import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
-
+import java.util.Arrays;
 import static common.utils.StringUtil.*;
+import static syntaxtree.types.operators.ArithOpr.*;
 
 public class ArithOpExpr extends Expr {
 
@@ -36,9 +37,15 @@ public class ArithOpExpr extends Expr {
 		e1.typeCheck(symbolTable);
 		e2.typeCheck(symbolTable);
 
+		// Check types of left- and right-hand side operands
 		if(e1.getDataType().getType() != Type.INT || e1.getDataType().getType() != Type.FLOAT
 				|| e2.getDataType().getType() != Type.INT || e2.getDataType().getType() != Type.FLOAT) {
 			throw new SemanticException("Invalid type in arithmetic expression");
+		}
+
+		// Check operator validity
+		if(!Arrays.asList(ADDOP.get(), SUBOP.get(), MULOP.get(), DIVOP.get(), EXP.get()).contains(this.operator)) {
+			throw new SemanticException("Invalid operator in arithmetic expression");
 		}
 	}
 

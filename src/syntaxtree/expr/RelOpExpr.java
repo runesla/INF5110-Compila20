@@ -3,10 +3,11 @@ package syntaxtree.expr;
 import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
-import bytecode.instructions.*;
 import syntaxtree.types.Type;
+import java.util.Arrays;
 
 import static common.utils.StringUtil.*;
+import static syntaxtree.types.operators.RelOpr.*;
 
 public class RelOpExpr extends Expr {
 
@@ -39,30 +40,17 @@ public class RelOpExpr extends Expr {
 
 		if(e1.getDataType().getType() != Type.INT || e1.getDataType().getType() != Type.FLOAT
 				|| e2.getDataType().getType() != Type.INT || e2.getDataType().getType() != Type.FLOAT) {
-			throw new SemanticException("Invalid type in arithmetic expression");
+			throw new SemanticException("Invalid type in relational expression");
+		}
+		if(!Arrays.asList(EQ.get(), GT.get(), LT.get(), LTEQUAL.get(), GTEQUAL.get(), NEQUAL.get()).contains(this.operator)) {
+			throw new SemanticException("Invalid operator in relational expression");
 		}
 
-			/*
-		switch (operator) {
-			case EQ:
-				break;
-			case GT:
-				break;
-			case GTEQ:
-				break;
-			case LT:
-				break;
-			case LTEQ:
-				break;
-			default:
-				throw new SemanticException("Invalid relational operator");
-		}
 
-			 */
 	}
 
 	@Override
 	public DataType getDataType() {
-		return null;
+		return new DataType(Type.BOOL);
 	}
 }

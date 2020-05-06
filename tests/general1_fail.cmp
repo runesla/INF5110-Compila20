@@ -1,6 +1,6 @@
 program general1_fail
 begin
-  proc Main()
+  proc main()
   begin
     proc Tmp() : string
     begin

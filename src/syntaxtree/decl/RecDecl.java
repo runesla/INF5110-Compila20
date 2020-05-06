@@ -4,7 +4,6 @@ import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
-import syntaxtree.types.Type;
 import java.util.*;
 import static common.utils.StringUtil.*;
 
@@ -45,11 +44,12 @@ public class RecDecl extends Decl {
 
 	@Override
 	public DataType getDataType() {
-		return new DataType(Type.STRUCT);
+		return new DataType(this.getName());
 	}
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
 		symbolTable.insertRecord(this);
 
 		// Create symbol table for this block

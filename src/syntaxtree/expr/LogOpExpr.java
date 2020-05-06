@@ -4,8 +4,9 @@ import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
-
+import java.util.Arrays;
 import static common.utils.StringUtil.*;
+import static syntaxtree.types.operators.LogOpr.*;
 
 public class LogOpExpr extends Expr {
 
@@ -36,8 +37,14 @@ public class LogOpExpr extends Expr {
 		e1.typeCheck(symbolTable);
 		e2.typeCheck(symbolTable);
 
+		// Check left- and right-hand side operands
 		if(e1.getDataType().getType() != Type.BOOL || e2.getDataType().getType() != Type.BOOL) {
-			throw new SemanticException("Invalid type in arithmetic expression");
+			throw new SemanticException("Invalid type in logical expression");
+		}
+
+		// Check operator validity
+		if(!Arrays.asList(LOG_OR.get(), LOG_AND.get()).contains(this.operator)) {
+			throw new SemanticException("Invalid operator in logical expression");
 		}
 	}
 
