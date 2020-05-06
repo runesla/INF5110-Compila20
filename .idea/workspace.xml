@@ -2,8 +2,76 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/common/error/ParseException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/ReturnValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/utils/ReturnValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Compiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Name.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test01.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test02.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test03.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test04.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test05.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test06.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test07.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test08.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/lexing/test09.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/parsing/test01.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/parsing/test02.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/parsing/test03.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/parsing/test04.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/parsing/test05.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/errors/parsing/test06.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fullprograms/complexaddition.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/fullprograms/complexaddition.cmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fullprograms/euclid.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/fullprograms/euclid.cmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fullprograms/plog.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/fullprograms/plog.cmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/fullprograms/runme.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/fullprograms/runme.cmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test01.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test02.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test03.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test04.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test05.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test06.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test07.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test08.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/parsing/test09.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/general1_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/general2_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/general3_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/general4_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/general5_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/procedure2_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/procedure3_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/procedure4_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/procedure5_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/procedure_unknown_returntype_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/return_contradicting_expression_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type1_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type2_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type3_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type4_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type5_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type6_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/type7_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/undeclared_new_argument_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/undeclared_struct_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/undeclared_struct_var_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/variable_scope_shadow_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/wrong_arith_operand_type_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/wrong_log_exp_type_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/wrong_new_arg_type_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/wrong_not_operand_type_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/errors/wrong_rel_operand_type_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/noerrors/test1.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/noerrors/test3.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/noerrors/test4.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/oblig2/noerrors/test5.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/unused/nested_class_shadow_fail.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/unused/procedure_return_null.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/unused/simpledummy.cmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/reintegrate/unused/test_nested_scopes.cmp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +113,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rune\Desktop\workspace\compila09\src" />
       <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree\stmt" />
       <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree\expr" />
       <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree\decl" />
       <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree" />
-      <recent name="C:\Users\Rune\Desktop\workspace\compila09\src\syntaxtree\literals" />
     </key>
   </component>
   <component name="RunManager" selected="Ant Target.compile-runme">
@@ -90,7 +158,7 @@
       <workItem from="1587485622960" duration="4621000" />
       <workItem from="1587913539056" duration="14676000" />
       <workItem from="1588493231281" duration="822000" />
-      <workItem from="1588593652497" duration="59252000" />
+      <workItem from="1588593652497" duration="63206000" />
     </task>
     <task id="LOCAL−00001" summary="Removed duplicates">
       <created>1587486999177</created>
@@ -176,7 +244,13 @@
       <option name="presentableId" value="LOCAL−00014" />
       <updated>1588765548087</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL−00015" summary="Fixed output dirs">
+      <created>1588766051135</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1588766051135</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +271,8 @@
     <MESSAGE value="Bughunt. Runs, but error parsing runme.cmp and not complexaddition.cmp" />
     <MESSAGE value="Bughunt, fixed error for empty expression list in CallStmt" />
     <MESSAGE value="Dunno why, but parsing of runme now works. Had problems with procs having paramfield list and decl list" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dunno why, but parsing of runme now works. Had problems with procs having paramfield list and decl list" />
+    <MESSAGE value="Fixed output dirs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed output dirs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="94" key="#Project_Structure" timestamp="1588706010757">
@@ -208,10 +283,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588706058708" />
-    <state x="701" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588610199423">
+    <state x="701" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588769384701">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="701" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588610199423" />
+    <state x="701" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588769384701" />
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1588705792343">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -232,10 +307,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="375" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588698957665" />
-    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588765546588">
+    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588766049835">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588765546588" />
+    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588766049835" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588706007647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -244,10 +319,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588003153774" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588765553183">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588766063201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588765553183" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588766063201" />
     <state x="682" y="308" key="git4idea.merge.GitPullDialog" timestamp="1587485847535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

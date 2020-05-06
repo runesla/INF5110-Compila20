@@ -6,4 +6,5 @@ public class ReturnValues {
     public static final int GENERAL_ERROR = -1;
     public static final int SYNTAX_ERROR = 1;
     public static final int SEMANTIC_ERROR = 2;
+    public static final int PARSE_ERROR = 3;
 }

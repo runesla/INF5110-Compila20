@@ -16,6 +16,10 @@ public class Name extends Node {
 		builder.append(")");
 		return builder.toString();
 	}
+
+	public String getNameValue() {
+		return this.nameValue;
+	}
 	/*
 	@Override
 	public String toString() {

@@ -3,6 +3,7 @@ package compiler;
 import java.io.*;
 import common.Program;
 import common.SymbolTable;
+import common.error.ParseException;
 import common.error.SemanticException;
 import common.error.SyntaxException;
 import parser.*;
@@ -35,16 +36,40 @@ public class Compiler {
 		// Run lexer and parser
 		try {
 			program = (Program)parser.parse().value;		// TODO: getting error "cannot resolve 'parse' in 'parser'". Also wtf!?
-			//writeAST(program);
-		} catch(Exception e) {
+		} catch(ParseException e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
-			return GENERAL_ERROR;
+			return PARSE_ERROR;
 		}
 		
-        // Check semantics and generate code
+        // Check semantics
 		assert program != null;
+		try {
+			program.checkSemantics(symbolTable);
+		} catch (SemanticException e) {
+			System.err.println("ERROR: " + e.getMessage());
+			e.printStackTrace();
+			return SEMANTIC_ERROR;
+		}
 
+		// Create AST
+		try {
+			writeAST(program);
+		} catch (Exception e) {		// TODO: if output ast file does not exist, it throws a FileNotFoundException
+			e.printStackTrace();
+			System.err.println("ERROR: " + e.getMessage());
+			System.exit(GENERAL_ERROR);
+		}
+
+		// Generate code
+		try {
+			generateCode(program);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("ERROR: " + e.getMessage());
+			System.exit(GENERAL_ERROR);
+		}
+/*
 		if(program.checkSemantics(symbolTable)){
             writeAST(program);
             generateCode(program);
@@ -56,6 +81,14 @@ public class Compiler {
             //return 2;
 			return SEMANTIC_ERROR;
         }
+ */
+		return SUCCESS;
+	}
+
+	public void writeAST(Program program) throws Exception {
+		BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
+		buf.write(program.printAst(0));
+		buf.close();
 	}
 	
 	private void generateCode(Program program) throws Exception {
@@ -66,21 +99,10 @@ public class Compiler {
         stream.write(bytecode);
         stream.close();
     }
-	
-	public void writeAST(Program program) {
-		try {
-			BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
-        	buf.write(program.printAst(0));
-            buf.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("ERROR: " + e.getMessage());
-			System.exit(GENERAL_ERROR);
-		}
-	}
 
 	public static void main(String[] args) {
 		Compiler compiler = new Compiler(args[0], args[1], args[2]);
+
 		try {
 			compiler.compile();
 		} catch(SemanticException e) {

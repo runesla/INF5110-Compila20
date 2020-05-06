@@ -9,7 +9,7 @@
 		<echo>compile				- Compile Java files for CMP20</echo>
 		<echo>build				- Build CMP20</echo>
 		<echo>compile-test 			- Compile for testprograms</echo>
-		<echo>test 				- Run tests</echo>
+		<echo>run-test 				- Run tests</echo>
 		<echo>compile-runme 			- Compile for testprogram RunMe</echo>
 		<echo>list-runme  			- List RunMe</echo>
 		<echo>run-runme 				- Run RunMe</echo>
@@ -39,7 +39,8 @@
 		<property name="dir.build" value="${dir.base}/build"/>
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
-		<property name="dir.tests" value="${dir.base}/tests"/>
+		<property name="dir.tests" value="/tests"/>
+		<property name="dir.output" value="${dir.base}/output"/>
 
 		<!-- Directories and files to be created. -->
 		<property name="dir.classes" value="${dir.build}/classes"/>
@@ -83,13 +84,13 @@
 	<target name="build" depends="compile" />
 
 	<!-- Compile test classes -->
-	<target name="compile-test" depends="mkdir">
+	<target name="compile-test" depends="generate">
 		<javac srcdir="${dir.src}" destdir="${dir.classes}" debug="true"
 			   includes="test/*.java" classpathref="path-cup" />
 	</target>
 
 	<!-- Run tests -->
-	<target name="test" depends="compile-test">
+	<target name="run-test" depends="compile-test">
 		<java classname="test.Tester" classpathref="path-run">
 			<arg value="tests"/>
 		</java>
@@ -99,8 +100,8 @@
 	<target name="compile-complexaddition" depends="init, build">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="${dir.tests}/fullprograms/complexaddition.cmp"/>
-			<arg value="${dir.tests}/output/complexaddition.ast"/>
-			<arg value="${dir.tests}/output/complexaddition.bin"/>
+			<arg value="${dir.output}/complexaddition.ast"/>
+			<arg value="${dir.output}/complexaddition.bin"/>
 		</java>
 	</target>
 
@@ -108,8 +109,8 @@
 	<target name="compile-runme" depends="init, build">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="${dir.tests}/fullprograms/runme.cmp"/>
-			<arg value="${dir.tests}/output/runme.ast"/>
-			<arg value="${dir.tests}/output/runme.bin"/>
+			<arg value="${dir.output}/runme.ast"/>
+			<arg value="${dir.output}/runme.bin"/>
 		</java>
 	</target>
 
@@ -117,7 +118,7 @@
 	<target name="list-runme" depends="init">
 		<java classname="runtime.VirtualMachine" classpathref="path-run">
 			<arg value="-l"/>
-			<arg value="${dir.tests}/output/runme.bin"/>
+			<arg value="${dir.output}/runme.bin"/>
 		</java>
 	</target>
 
