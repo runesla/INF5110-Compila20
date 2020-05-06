@@ -74,7 +74,7 @@ non terminal LogOpExpr		    log_op_expr;
 non terminal RelOpExpr		    rel_op_expr;
 non terminal ArithOpExpr	    arith_op_expr;
 non terminal LiteralExpr	    literal_expr;
-non terminal List<Expr>		    expr_list;
+non terminal List<Expr>		    expr_list, opt_expr_list;
 
 /* Statements  */
 non terminal Stmt		        stmt;
@@ -154,6 +154,9 @@ expr		::= log_op_expr:e {: RESULT = e; :}
 		| deref_var:dv {: RESULT = dv; :}
 		| LPAR expr:e RPAR {: RESULT = new ParExpr(e); :};
 
+opt_expr_list   ::= expr_list:el {: RESULT = el; :}
+                | {: RESULT = new LinkedList<Expr>(); :};
+
 expr_list	::= expr:e {: List<Expr> el = new LinkedList<Expr>(); el.add(e); RESULT = el; :}
 		| expr:e COMMA expr_list:el {: el.add(e); RESULT = el; :};
 
@@ -204,7 +207,7 @@ while_stmt	::= WHILE expr:e DO opt_stmt_list:sl OD {: RESULT = new WhileStmt(e, 
 return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :}
 		| RETURN {: RESULT = new ReturnStmt(); :};
 
-call_stmt	::= ID:name LPAR expr_list:e RPAR {: RESULT = new CallStmt(name, e); :};
+call_stmt	::= ID:name LPAR opt_expr_list:e RPAR {: RESULT = new CallStmt(name, e); :};
 
 dataType	::= TYPE_INT {: RESULT = new DataType(Type.INT); :}
 		| TYPE_BOOL {: RESULT = new DataType(Type.BOOL); :}            /* ("bool") */

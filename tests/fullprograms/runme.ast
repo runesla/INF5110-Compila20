@@ -1,47 +1,24 @@
-(PROGRAM (NAME ComplexAddition)
-	(STRUCT (NAME syntaxtree.Name@5b94b04d)
+(PROGRAM (NAME runme)
+	(STRUCT (NAME syntaxtree.Name@550de6b8)
 		(VAR_DECL 
-			(TYPE ): (NAME syntaxtree.Name@7ee8290b)
+			(TYPE ): (NAME syntaxtree.Name@594d9f07)
 		)
 		(VAR_DECL 
-			(TYPE ): (NAME syntaxtree.Name@192c3f1e)
+			(TYPE ): (NAME syntaxtree.Name@1a565afb)
 		)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@6a2f6f80)
-		(PARAM_DECL 
-			(REF_TYPE (TYPE )): (NAME syntaxtree.Name@561b6512)
-		)
-		(PARAM_DECL 
-			(REF_TYPE (TYPE )): (NAME syntaxtree.Name@1757cd72)
-		)
-		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@49e5f737)
-		)
-		(ASSIGN_STMT 
-			(NAME tmp)
-			 := 
-			(NAME a)
-		)
-		(ASSIGN_STMT 
-			(NAME a)
-			 := 
-			(NAME b)
-		)
-		(ASSIGN_STMT 
-			(NAME b)
-			 := 
-			(NAME tmp)
-		)
+	(VAR_DECL 
+		(NAME ) :  (NAME syntaxtree.Name@188598ad)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@45b4c3a9) : (NAME )
+	(PROCEDURE (NAME syntaxtree.Name@40d23c82) : (NAME )
 		(PARAM_DECL 
-			(NAME ): (NAME syntaxtree.Name@ed7f8b4)
+			(NAME ): (NAME syntaxtree.Name@314b9e4b)
 		)
 		(PARAM_DECL 
-			(NAME ): (NAME syntaxtree.Name@4c309d4d)
+			(NAME ): (NAME syntaxtree.Name@51dae791)
 		)
 		(VAR_DECL 
-			(NAME ) :  (NAME syntaxtree.Name@38102d01)
+			(NAME ) :  (NAME syntaxtree.Name@688a2c09)
 		)
 		(ASSIGN_STMT 
 			(NAME retval)
@@ -68,53 +45,209 @@
 		)
 		(RETURN_STMT (NAME retval))
 	)
-	(PROCEDURE (NAME syntaxtree.Name@399c4be1) : (TYPE )
+	(PROCEDURE (NAME syntaxtree.Name@7cf78c85) : (TYPE )
 		(PARAM_DECL 
-			(TYPE ): (NAME syntaxtree.Name@1dac5ef)
+			(TYPE ): (NAME syntaxtree.Name@5b9499fe)
 		)
 		(PARAM_DECL 
-			(TYPE ): (NAME syntaxtree.Name@5c90e579)
+			(TYPE ): (NAME syntaxtree.Name@74d6736)
+		)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@52a33c3f)
 		)
 		(IF_STMT (REL_OPR_EX 
 			(NAME a)
 			>
 			(NAME b)
-			(RETURN_STMT (NAME a))
-		)
-		(RETURN_STMT (NAME b))
-	)
-	(PROCEDURE (NAME syntaxtree.Name@291caca8)
-		(PROCEDURE (NAME syntaxtree.Name@291b4bf5) : (TYPE )
-			(PARAM_DECL 
-				(TYPE ): (NAME syntaxtree.Name@2d2ffcb7)
+			(ASSIGN_STMT 
+				(NAME res)
+				 := 
+				(NAME a)
 			)
-			(RETURN_STMT (ARITH_OP_EXPR 
-					(NAME val)
-					^
-					(FLOAT_LITERAL 2.0)
-				))
+			(ASSIGN_STMT 
+				(NAME res)
+				 := 
+				(NAME b)
+			)
+		)
+		(RETURN_STMT (NAME res))
+	)
+	(PROCEDURE (NAME syntaxtree.Name@ebe067d)
+		(PARAM_DECL 
+			(NAME ): (NAME syntaxtree.Name@40fa8766)
+		)
+		(CALL_STMT printstr
+			(STRING_LITERAL Real )
+		)
+		(CALL_STMT printfloat
+			(PAR_EXPR (NAME pr)) . (NAME Real)
+		)
+		(CALL_STMT printline
+			(STRING_LITERAL )
+		)
+		(CALL_STMT printstr
+			(STRING_LITERAL Imag )
+		)
+		(CALL_STMT printfloat
+			(PAR_EXPR (NAME pr)) . (NAME Imag)
+		)
+		(CALL_STMT printline
+			(STRING_LITERAL )
+		)
+	)
+	(PROCEDURE (NAME syntaxtree.Name@3a4ab7f7)
+		(VAR_DECL 
+			(NAME ) :  (NAME syntaxtree.Name@5d7399f9)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@31f9b85e)
+			(NAME ) :  (NAME syntaxtree.Name@49a6f486)
+		)
+		(VAR_DECL 
+			(NAME ) :  (NAME syntaxtree.Name@14fded9d)
+		)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@bc6288b)
+		)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@4a3bd45b)
+		)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@34c70b5e)
+		)
+		(ASSIGN_STMT 
+			(NAME c1)
+			 := 
+			(NEW (NAME ))
+		)
+		(ASSIGN_STMT 
+			(NAME c2)
+			 := 
+			(NEW (NAME ))
+		)
+		(ASSIGN_STMT 
+			(NAME c1) . (NAME Real)
+			 := 
+			(INT_LITERAL 1)
+		)
+		(ASSIGN_STMT 
+			(NAME c1) . (NAME Imag)
+			 := 
+			(INT_LITERAL 2)
+		)
+		(ASSIGN_STMT 
+			(NAME c2) . (NAME Real)
+			 := 
+			(INT_LITERAL 3)
+		)
+		(ASSIGN_STMT 
+			(NAME c2) . (NAME Imag)
+			 := 
+			(INT_LITERAL 4)
+		)
+		(CALL_STMT printCmplx
+			(CALL_EXPR 
+				(CALL_STMT Add
+					(NAME c2)
+					(NAME c1)
+				)
+			)
+		)
+		(ASSIGN_STMT 
+			(NAME x)
+			 := 
+			(INT_LITERAL 3)
+		)
+		(ASSIGN_STMT 
+			(NAME y)
+			 := 
+			(INT_LITERAL 7)
+		)
+		(ASSIGN_STMT 
+			(NAME max)
+			 := 
+			(CALL_EXPR 
+				(CALL_STMT Max
+					(NAME x)
+					(NAME y)
+				)
+			)
+		)
+	)
+	(PROCEDURE (NAME syntaxtree.Name@6badba10)
+		(PARAM_DECL 
+			(TYPE ): (NAME syntaxtree.Name@6198e9b5)
+		)
+		(CALL_STMT printstr
+			(NAME str)
+		)
+	)
+	(PROCEDURE (NAME syntaxtree.Name@2b7e8044)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@6d099323)
+		)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@4ecd00b5)
+		)
+		(VAR_DECL 
+			(TYPE ) :  (NAME syntaxtree.Name@10947c4e)
 		)
 		(ASSIGN_STMT 
 			(NAME num)
 			 := 
 			(FLOAT_LITERAL 6.48074)
 		)
-		(CALL_STMT print_float
+		(CALL_STMT printfloat
 			(NAME num)
 		)
-		(CALL_STMT print_str
-			(STRING_LITERAL  squared is )
+		(CALL_STMT printline
+			(STRING_LITERAL )
 		)
-		(CALL_STMT print_float
-			(CALL_EXPR 
-				(CALL_STMT Square
-					(NAME num)
-				)
-			)
+		(ASSIGN_STMT 
+			(NAME num2)
+			 := 
+			(INT_LITERAL 7)
 		)
-		(RETURN_STMT )
+		(CALL_STMT printint
+			(NAME num2)
+		)
+		(CALL_STMT printline
+			(STRING_LITERAL )
+		)
+		(ASSIGN_STMT 
+			(NAME navn)
+			 := 
+			(STRING_LITERAL TestNavn)
+		)
+		(CALL_STMT printStr
+			(NAME navn)
+		)
+		(CALL_STMT printline
+			(STRING_LITERAL )
+		)
+		(CALL_STMT test
+		)
+		(CALL_STMT inOutTest
+		)
+		(ASSIGN_STMT 
+			(NAME dummy)
+			 := 
+			(NEW (NAME ))
+		)
+		(ASSIGN_STMT 
+			(NAME dummy) . (NAME Real)
+			 := 
+			(FLOAT_LITERAL 1.0)
+		)
+		(ASSIGN_STMT 
+			(NAME dummy) . (NAME Imag)
+			 := 
+			(FLOAT_LITERAL 2.0)
+		)
+		(CALL_STMT printCmplx
+			(NAME dummy)
+		)
+		(CALL_STMT printline
+			(STRING_LITERAL DONE)
+		)
 	)
 )

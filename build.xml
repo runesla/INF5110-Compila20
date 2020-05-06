@@ -96,6 +96,15 @@
 	</target>
 
 	<!-- Run compiler on example RunMe -->
+	<target name="compile-complexaddition" depends="init, build">
+		<java classname="compiler.Compiler" classpathref="path-run">
+			<arg value="${dir.tests}/fullprograms/complexaddition.cmp"/>
+			<arg value="${dir.tests}/fullprograms/complexaddition.ast"/>
+			<arg value="${dir.tests}/fullprograms/complexaddition.bin"/>
+		</java>
+	</target>
+
+	<!-- Run compiler on example RunMe -->
 	<target name="compile-runme" depends="init, build">
 		<java classname="compiler.Compiler" classpathref="path-run">
 			<arg value="${dir.tests}/fullprograms/runme.cmp"/>

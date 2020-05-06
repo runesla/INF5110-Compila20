@@ -1,15 +1,14 @@
 package syntaxtree.stmt;
 
 import syntaxtree.expr.Expr;
-
+import java.util.LinkedList;
 import java.util.List;
 import static common.utils.StringUtil.*;
 
 public class CallStmt extends Stmt {
 
 	private final String name;
-	private final List<Expr> expr;
-	private String type;
+	private List<Expr> expr;
 
 	public CallStmt(String name, List<Expr> expr) {
 		this.name = name;
