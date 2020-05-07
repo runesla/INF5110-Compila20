@@ -9,7 +9,7 @@ import static common.utils.StringUtil.*;
 
 public class RecDecl extends Decl {
 
-	private final List<ParamFieldDecl> params;
+	private final List<ParamDecl> params;
 	
 	// Default constructor
 	public RecDecl(String name) {
@@ -18,7 +18,7 @@ public class RecDecl extends Decl {
 	}	
 
 	// Given params
-	public RecDecl(String name, List<ParamFieldDecl> params) {
+	public RecDecl(String name, List<ParamDecl> params) {
 		super(new Name(name));
 		this.params = params;
 	}
@@ -32,7 +32,7 @@ public class RecDecl extends Decl {
 		builder.append(")");		
 
 		if(params != null) {
-			for(ParamFieldDecl p: params) {
+			for(ParamDecl p: params) {
 				builder.append("\n" + repeat("\t", level+1) + "(VAR_DECL " + p.printAst(level + 1));
 			}
 		}
@@ -50,19 +50,16 @@ public class RecDecl extends Decl {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		symbolTable.insertRecord(this);
+		symbolTable.insertUserDefinedType(this.getDataType());
 
 		// Create symbol table for this block
 		SymbolTable recSymbolTable = new SymbolTable();
 		symbolTable.getChildTables().add(recSymbolTable);
 
 		// Check params
-		for(ParamFieldDecl paramDecl: params) {
-			if(Collections.frequency(params, paramDecl.getName()) > 1) {
-				throw new SemanticException("Duplicate formal parameter found: " + paramDecl.getName().getNameValue() + " in struct " + this.getName().getNameValue());
-			}
+		for(ParamDecl paramDecl: params) {
+			recSymbolTable.insertVariable(paramDecl);
 			paramDecl.typeCheck(recSymbolTable);
-			// TODO: recSymbolTable.insert
 		}
 	}
 }

@@ -13,9 +13,11 @@ public class DataType extends Node {
 
 	public DataType(Name name) {
 		this.name = name;
+		this.type = Type.UDT;
 	}
 
 	public DataType(Type type) {
+		this.name = type.getName();
 		this.type = type;
 	}
 
@@ -41,22 +43,4 @@ public class DataType extends Node {
 		builder.append(")");
 		return builder.toString();
 	}
-
-	/*
-	@Override
-	public String printAst(int level) { // TODO: needs fixing, either Type or Name
-		StringBuilder builder = new StringBuilder();
-		builder.append("(TYPE ");
-
-		if(this.name == null)
-			builder.append(this.name.getNameValue());	//toString()
-		else
-			builder.append(this.name);
-
-		builder.append(")");
-	
-		return builder.toString();
-	}
-
-	 */
 }

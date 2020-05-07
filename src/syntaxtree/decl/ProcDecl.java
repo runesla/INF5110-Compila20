@@ -3,6 +3,7 @@ package syntaxtree.decl;
 import common.SymbolTable;
 import common.error.SemanticException;
 import common.error.SyntaxException;
+import syntaxtree.stmt.ReturnStmt;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
@@ -14,7 +15,7 @@ import static common.utils.StringUtil.*;
 public class ProcDecl extends Decl {
 
 	private DataType returnDataType;
-	private final List<ParamFieldDecl> params;
+	private final List<ParamDecl> params;
 	private final List<Decl> declarations;
 	private final List<Stmt> statements;
 	
@@ -29,7 +30,7 @@ public class ProcDecl extends Decl {
 	// No return type, given params
 	public ProcDecl(
 				String name,
-				List<ParamFieldDecl> params) {
+				List<ParamDecl> params) {
 		super(new Name(name));
 		this.params = params;
 		this.declarations = new ArrayList<>();
@@ -39,7 +40,7 @@ public class ProcDecl extends Decl {
 	// No return type, given params and statements
 	public ProcDecl(
 				String name,
-				List<ParamFieldDecl> params,
+				List<ParamDecl> params,
 				List<Stmt> statements) {
 		super(new Name(name));
 		this.params = params;
@@ -62,7 +63,7 @@ public class ProcDecl extends Decl {
 	public ProcDecl(
 				String name,
 				DataType returnDataType,
-       			List<ParamFieldDecl> params,
+       			List<ParamDecl> params,
        			List<Stmt> statements) {
 		super(new Name(name));
 		this.returnDataType = returnDataType;
@@ -74,7 +75,7 @@ public class ProcDecl extends Decl {
 	// No return type, given params, decl and stmts
 	public ProcDecl(
 				String name,
-				List<ParamFieldDecl> params,
+				List<ParamDecl> params,
 				List<Decl> declarations,
 				List<Stmt> statements) {
 		super(new Name(name));
@@ -87,7 +88,7 @@ public class ProcDecl extends Decl {
 	public ProcDecl(
 				String name,
 				DataType returnDataType,
-				List<ParamFieldDecl> params,
+				List<ParamDecl> params,
 				List<Decl> declarations,
 				List<Stmt> statements) {
 		super(new Name(name));
@@ -97,7 +98,7 @@ public class ProcDecl extends Decl {
 		this.statements = statements;
 	}
 
-	public void addParameter(ParamFieldDecl param) throws SyntaxException {
+	public void addParameter(ParamDecl param) throws SyntaxException {
 		if(params == null) {
 			throw new SyntaxException("Procedure has no parameters");
 		}
@@ -116,7 +117,7 @@ public class ProcDecl extends Decl {
 			builder.append(" : " + this.returnDataType.printAst(level));
 		
 		if(params != null) {
-			for(ParamFieldDecl p: params) {
+			for(ParamDecl p: params) {
 				builder.append("\n" + repeat("\t", level + 1) + "(PARAM_DECL " + p.printAst(level + 1));
 			}
 		}
@@ -157,18 +158,43 @@ public class ProcDecl extends Decl {
 		SymbolTable procSymbolTable = new SymbolTable();
 		symbolTable.getChildTables().add(procSymbolTable);
 
+		// Check actual params
+		for(ParamDecl paramDecl: params) {
+			/*
+			if(Collections.frequency(params, paramDecl.getName()) > 1) {
+				throw new SemanticException("Duplicate actual parameter found: " + paramDecl.getName().getNameValue() + " in procedure " + this.getName().getNameValue());
+			}
+
+			 */
+			procSymbolTable.insertVariable(paramDecl);
+			paramDecl.typeCheck(procSymbolTable);
+		}
+
 		// Check formal params
 		for(Decl decl: declarations) {
-			if(Collections.frequency(declarations, decl.getName()) > 1) {
-				throw new SemanticException("Duplicate formal parameter found: " + decl.getName().getNameValue() + " in procedure " + this.getName().getNameValue());
-			}
+			procSymbolTable.insertVariable((VarDecl) decl);
 			decl.typeCheck(procSymbolTable);
-			procSymbolTable.insertVariable((VarDecl) decl);		// TODO: revise? a proc can only hold VarDecl? If so, need to refine grammar
 		}
+
+		boolean returnStmtPresent = false;
 
 		// Check statements
 		for(Stmt stmt: statements) {
 			stmt.typeCheck(procSymbolTable);
+
+			if(stmt instanceof ReturnStmt) {
+
+				returnStmtPresent = true;
+
+				if (stmt.getDataType() != this.returnDataType) {
+					throw new SemanticException("Type mismatch between procedure and return statement");
+				}
+			}
+		}
+
+		// Check return statement
+		if(!returnStmtPresent && returnDataType != null) {
+			throw new SemanticException("Missing return statement");
 		}
 	}
 }

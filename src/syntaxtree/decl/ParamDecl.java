@@ -3,14 +3,13 @@ package syntaxtree.decl;
 import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
-import syntaxtree.Name;
 
-public class ParamDecl extends Decl {		// TODO: remove? Why do I even have this here
+public class ParamDecl extends VarDecl {
 
 	private final DataType dataType;
 
 	public ParamDecl(String name, DataType dataType) {
-		super(new Name(name));
+		super(name);
 		this.dataType = dataType;
 	}
 	
@@ -24,6 +23,7 @@ public class ParamDecl extends Decl {		// TODO: remove? Why do I even have this 
 		return builder.toString();
 	}
 
+	/*
 	@Override
 	public DataType getDataType() {
 		return this.dataType;
@@ -33,4 +33,6 @@ public class ParamDecl extends Decl {		// TODO: remove? Why do I even have this 
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 		symbolTable.insertUserDefinedType(this.dataType);
 	}
+
+	 */
 }

@@ -20,12 +20,4 @@ public class Name extends Node {
 	public String getNameValue() {
 		return this.nameValue;
 	}
-	/*
-	@Override
-	public String toString() {
-		//return this.typeNameValue;
-		return "typeNameValue";s
-	}
-	
-	 */
 }

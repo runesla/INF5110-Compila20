@@ -1,9 +1,9 @@
 package common;
 
 import common.error.SyntaxException;
+import syntaxtree.decl.ParamDecl;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
-import syntaxtree.decl.ParamFieldDecl;
 import syntaxtree.decl.ProcDecl;
 import java.util.ArrayList;
 
@@ -26,16 +26,16 @@ public class STL {
         STL.add(readline);
 
         ProcDecl printint = new ProcDecl("printint");
-        printint.addParameter(new ParamFieldDecl("i", new DataType(Type.INT)));
+        printint.addParameter(new ParamDecl("i", new DataType(Type.INT)));
 
         ProcDecl printfloat = new ProcDecl("printfloat");
-        printfloat.addParameter(new ParamFieldDecl("f", new DataType(Type.FLOAT)));
+        printfloat.addParameter(new ParamDecl("f", new DataType(Type.FLOAT)));
 
         ProcDecl printstr = new ProcDecl("printstr");                           // Write one string
-        printstr.addParameter(new ParamFieldDecl("s", new DataType(Type.STRING)));
+        printstr.addParameter(new ParamDecl("s", new DataType(Type.STRING)));
 
         ProcDecl printline = new ProcDecl("printline");                         // Write one line, followed by a "newline"
-        printstr.addParameter(new ParamFieldDecl("s", new DataType(Type.STRING)));
+        printstr.addParameter(new ParamDecl("s", new DataType(Type.STRING)));
 
         STL.add(printint);
         STL.add(printfloat);

@@ -3,14 +3,6 @@ package syntaxtree.types;
 import syntaxtree.Name;
 
 public enum Type {
-/*
-    public static final String primitiveInteger = "int";
-    public static final String primitiveFloat = "float";
-    public static final String primitiveBool = "bool";
-    public static final String primitiveString = "string";
-    public static final String primitiveRecord = "struct";
-*/
-
 
     INT {
         @Override
@@ -35,26 +27,24 @@ public enum Type {
         public String get() {
             return "string";
         }
+    },
+    UDT {
+        @Override
+        public String get() {
+            return null;
+        }
     };
 
-    public abstract String get();
+    private Name name;
 
-    /*
-    INT("int"),
-    FLOAT("float"),
-    STRING("string"),
-    BOOL("bool"),
-    STRUCT("struct");
-
-    private final Name name;
-
-    Type(String name) {
+    public void Name(String name) {
         this.name = new Name(name);
     }
 
+    public abstract String get();
+
     public Name getName() {
-        return this.name;
+        return name;
     }
 
-     */
 }

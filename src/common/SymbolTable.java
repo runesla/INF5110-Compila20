@@ -1,34 +1,44 @@
 package common;
 
 import common.error.SemanticException;
+import syntaxtree.decl.*;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
-import syntaxtree.decl.ProcDecl;
-import syntaxtree.decl.RecDecl;
-import syntaxtree.decl.VarDecl;
+import syntaxtree.types.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import static syntaxtree.types.Type.*;
 
 public class SymbolTable {
 
     private Map<Name, ProcDecl> procedures;
     private Map<Name, VarDecl> variables;
-    private Map<Name, RecDecl> records;
     private Map<Name, DataType> userDefinedTypes;
     private ArrayList<SymbolTable> childTables;
 
     public SymbolTable() {
         this.procedures = new HashMap<>();
         this.variables = new HashMap<>();
-        this.records = new HashMap<>();
         this.userDefinedTypes = new HashMap<>();
         this.childTables = new ArrayList<>();
     }
 
+    public void insert(Decl decl) throws SemanticException {
+        if(decl instanceof ProcDecl) {
+            insertProcedure((ProcDecl) decl);
+        } else if (decl instanceof ParamDecl) {
+            insertVariable((ParamDecl) decl);
+        } else if (decl instanceof VarDecl) {
+            insertVariable((VarDecl) decl);
+        } else if (decl instanceof RecDecl) {
+            insertUserDefinedType(decl.getDataType());
+        }
+    }
+
     public void insertProcedure(ProcDecl proc) throws SemanticException {
         if(procedures.containsKey(proc.getName())) {
-            throw new SemanticException("Duplicate procedure declaration");
+            throw new SemanticException("Duplicate procedure declaration " + proc.getName().getNameValue());
         }
         procedures.put(proc.getName(), proc);
     }
@@ -38,32 +48,25 @@ public class SymbolTable {
     }
 
     public void insertVariable(VarDecl var) throws SemanticException {
+
         if(variables.containsKey(var.getName())) {
-            throw new SemanticException("Duplicate variable declaration");
+            throw new SemanticException("Duplicate variable declaration " + var.getName().getNameValue() + " of type " + var.getDataType().getType().toString());
         }
         variables.put(var.getName(), var);
+
     }
 
     public VarDecl retrieveVariable(Name name) {
-        return variables.get(   name);
-    }
-
-    public void insertRecord(RecDecl rec) throws SemanticException {
-        if(records.containsKey(rec.getName())) {
-            throw new SemanticException("Duplicate struct declaration");
-        }
-        records.put(rec.getName(), rec);
-    }
-
-    public RecDecl retrieveRecord(Name name) {
-        return records.get(name);
+        return variables.get(name);
     }
 
     public void insertUserDefinedType(DataType dataType) throws SemanticException {
-        if(userDefinedTypes.containsKey(dataType.getName())) {
-            throw new SemanticException("Duplicate type declaration");
+        if(!isPrimitive(dataType.getType())) {
+            if(userDefinedTypes.containsKey(dataType.getName())) {
+                throw new SemanticException("Duplicate type declaration " + dataType.getName().getNameValue());
+            }
+            userDefinedTypes.put(dataType.getName(), dataType);
         }
-        userDefinedTypes.put(dataType.getName(), dataType);
     }
 
     public DataType retrieveType(Name name) {
@@ -72,5 +75,9 @@ public class SymbolTable {
 
     public ArrayList<SymbolTable> getChildTables() {
         return this.childTables;
+    }
+
+    private boolean isPrimitive(Type type) {
+        return type == INT || type == BOOL || type == FLOAT || type == STRING;
     }
 }

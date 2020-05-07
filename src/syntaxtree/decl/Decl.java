@@ -7,18 +7,6 @@ import syntaxtree.Name;
 import syntaxtree.Node;
 
 public abstract class Decl extends Node {
-	/*
-	private final String name;
-
-	public Decl(String name) {
-		this.name = name;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	 */
 
 	private final Name name;
 

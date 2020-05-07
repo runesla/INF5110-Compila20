@@ -60,8 +60,8 @@ non terminal Decl		            decl;
 non terminal VarDecl		        var_decl;
 non terminal ProcDecl		        proc_decl;
 non terminal RecDecl		        rec_decl;
-non terminal ParamFieldDecl	        paramfield_decl;
-non terminal List<ParamFieldDecl>	proc_params, rec_params, opt_proc_params, opt_rec_params;
+non terminal ParamDecl	            param_decl;
+non terminal List<ParamDecl>	    proc_params, rec_params, opt_proc_params, opt_rec_params;
 non terminal List<Decl>		        decl_list, opt_decl_list;
 non terminal List<Stmt>		        opt_stmt_list;
 
@@ -117,10 +117,10 @@ var_decl	::= VAR ID:name COLON dataType:t {: RESULT = new VarDecl(name, t); :}
 rec_decl	::= STRUCT ID:name LCURLY opt_rec_params:orp RCURLY {: RESULT = new RecDecl(name, orp); :};
 
 opt_rec_params	::= rec_params:rp {: RESULT = rp; :}
-		| {: RESULT = new LinkedList<ParamFieldDecl>(); :};
+		| {: RESULT = new LinkedList<ParamDecl>(); :};
 
-rec_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pfl = new LinkedList<ParamFieldDecl>(); pfl.add(pfd); RESULT = pfl; :}
-		| rec_params:rp SEMI paramfield_decl:pfd {: rp.add(pfd); RESULT = rp; :};
+rec_params	::= param_decl:pfd {: List<ParamDecl> pfl = new LinkedList<ParamDecl>(); pfl.add(pfd); RESULT = pfl; :}
+		| rec_params:rp SEMI param_decl:pfd {: rp.add(pfd); RESULT = rp; :};
 
 /*
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
@@ -135,12 +135,12 @@ proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_lis
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, osl); :};
 
 opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
-		| {: RESULT = new LinkedList<ParamFieldDecl>(); :};
+		| {: RESULT = new LinkedList<ParamDecl>(); :};
 
-proc_params	::= paramfield_decl:pfd {: List<ParamFieldDecl> pp = new LinkedList<ParamFieldDecl>(); pp.add(pfd); RESULT = pp; :}
-		| proc_params:pp COMMA paramfield_decl:pfd {: pp.add(pfd); RESULT = pp; :};
+proc_params	::= param_decl:pfd {: List<ParamDecl> pp = new LinkedList<ParamDecl>(); pp.add(pfd); RESULT = pp; :}
+		| proc_params:pp COMMA param_decl:pfd {: pp.add(pfd); RESULT = pp; :};
 
-paramfield_decl	::= ID:name COLON dataType:t {: RESULT = new ParamFieldDecl(name, t); :};
+param_decl	::= ID:name COLON dataType:t {: RESULT = new ParamDecl(name, t); :};
 
 expr		::= log_op_expr:e {: RESULT = e; :}
 		| NOT expr:e {: RESULT = new NotExpr(e); :} 

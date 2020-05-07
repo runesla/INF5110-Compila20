@@ -39,7 +39,7 @@
 		<property name="dir.build" value="${dir.base}/build"/>
 		<property name="dir.src" value="${dir.base}/src"/>
 		<property name="dir.desc" value="${dir.base}/desc"/>
-		<property name="dir.tests" value="/tests"/>
+		<property name="dir.tests" value="${dir.base}/tests"/>
 		<property name="dir.output" value="${dir.base}/output"/>
 
 		<!-- Directories and files to be created. -->

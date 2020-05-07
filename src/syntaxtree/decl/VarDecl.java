@@ -12,6 +12,10 @@ public class VarDecl extends Decl {
 	private DataType dataType;
 	private Expr expr;
 
+	public VarDecl(String name) {
+		super(new Name(name));
+	}
+
 	public VarDecl(
 			String name,
 			DataType dataType) {
@@ -42,12 +46,13 @@ public class VarDecl extends Decl {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		symbolTable.insertVariable(this);
 
-		if(symbolTable.retrieveVariable(this.getName()) != null) {
-			throw new SemanticException("Duplicate variable declaration " + this.getName().toString());
+		if(this.dataType != expr.getDataType()) {
+			throw new SemanticException("Type mismatch between variable declaration and expression");
 		}
 
-		symbolTable.insertVariable(this);
+		expr.typeCheck(symbolTable);
 	}
 
 	@Override

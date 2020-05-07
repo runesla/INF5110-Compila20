@@ -6,7 +6,7 @@ import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import static common.utils.StringUtil.*;
 
-public class ParamFieldDecl extends Decl {
+public class ParamFieldDecl extends Decl {		// TODO: remove?s
 
 	private final DataType dataType;
 
@@ -35,6 +35,6 @@ public class ParamFieldDecl extends Decl {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-		symbolTable.insertUserDefinedType(this.dataType);
+
 	}
 }

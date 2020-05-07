@@ -5,7 +5,6 @@ import common.error.SemanticException;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
 import java.util.Arrays;
-
 import static common.utils.StringUtil.*;
 import static syntaxtree.types.operators.RelOpr.*;
 
@@ -38,15 +37,16 @@ public class RelOpExpr extends Expr {
 		e1.typeCheck(symbolTable);
 		e2.typeCheck(symbolTable);
 
+		// Check left- and right-hand side operands
 		if(e1.getDataType().getType() != Type.INT || e1.getDataType().getType() != Type.FLOAT
 				|| e2.getDataType().getType() != Type.INT || e2.getDataType().getType() != Type.FLOAT) {
 			throw new SemanticException("Invalid type in relational expression");
 		}
+
+		// Check operator validity
 		if(!Arrays.asList(EQ.get(), GT.get(), LT.get(), LTEQUAL.get(), GTEQUAL.get(), NEQUAL.get()).contains(this.operator)) {
 			throw new SemanticException("Invalid operator in relational expression");
 		}
-
-
 	}
 
 	@Override

@@ -5,6 +5,8 @@ import common.error.SyntaxException;
 import syntaxtree.Node;
 import syntaxtree.decl.Decl;
 import bytecode.*;
+import syntaxtree.decl.ProcDecl;
+
 import java.util.List;
 
 public class Program extends Node {
@@ -41,9 +43,10 @@ public class Program extends Node {
         boolean hasMain = false;
 
         for (Decl decl: decls) {
+            symbolTable.insert(decl);
             decl.typeCheck(symbolTable);
 
-            if(decl.getName().getNameValue().equals("main")) {
+            if(decl instanceof ProcDecl && decl.getName().getNameValue().equals("main")) {
                 hasMain = true;
             }
         }
