@@ -50,7 +50,7 @@ public class ArithOpExpr extends Expr {
 	}
 
 	@Override
-	public DataType getDataType() {
+	public DataType getDataType() throws SemanticException {
 		if(e1.getDataType().getType() == Type.FLOAT || e2.getDataType().getType() == Type.FLOAT) {
 			return new DataType(Type.FLOAT);
 		}

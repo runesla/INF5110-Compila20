@@ -28,7 +28,7 @@ public class RefVarExpr extends Expr {
 	}
 
 	@Override
-	public DataType getDataType() {
+	public DataType getDataType() throws SemanticException {
 		return this.expr.getDataType();
 	}
 }

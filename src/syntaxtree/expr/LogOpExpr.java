@@ -50,6 +50,6 @@ public class LogOpExpr extends Expr {
 
 	@Override
 	public DataType getDataType() {
-		return null;
+		return new DataType(Type.BOOL);
 	}
 }

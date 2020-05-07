@@ -112,30 +112,25 @@ public class ProcDecl extends Decl {
 		builder.append("(NAME ");
 		builder.append(this.getName());
 		builder.append(")");
-
-		if(returnDataType != null)
+		if(returnDataType != null) {
 			builder.append(" : " + this.returnDataType.printAst(level));
-		
+		}
 		if(params != null) {
 			for(ParamDecl p: params) {
 				builder.append("\n" + repeat("\t", level + 1) + "(PARAM_DECL " + p.printAst(level + 1));
 			}
 		}
-		
 		if(declarations != null) {
 			for(Decl d: declarations) {
 				builder.append("\n" + repeat("\t", level + 1) + d.printAst(level + 1));
 			}
 		}
-		
 		if(statements != null) {
 			for(Stmt s: statements) {
 				builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 			}
 		}
-
 		builder.append("\n" + repeat("\t", level) + ")");
-		
 		return builder.toString();
 	}
 
@@ -147,25 +142,11 @@ public class ProcDecl extends Decl {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		// Check return type for procedures that have this defined
-		if(symbolTable.retrieveType(this.getName()) != null && this.returnDataType != null) {
-			throw new SemanticException("Undefined return type in procedure " + this.getName().getNameValue());
-		}
-
-		symbolTable.insertProcedure(this);
-
 		// Create symbol table for this block
-		SymbolTable procSymbolTable = new SymbolTable();
-		symbolTable.getChildTables().add(procSymbolTable);
+		SymbolTable procSymbolTable = symbolTable.createChildTable();
 
 		// Check actual params
 		for(ParamDecl paramDecl: params) {
-			/*
-			if(Collections.frequency(params, paramDecl.getName()) > 1) {
-				throw new SemanticException("Duplicate actual parameter found: " + paramDecl.getName().getNameValue() + " in procedure " + this.getName().getNameValue());
-			}
-
-			 */
 			procSymbolTable.insertVariable(paramDecl);
 			paramDecl.typeCheck(procSymbolTable);
 		}
@@ -185,6 +166,10 @@ public class ProcDecl extends Decl {
 			if(stmt instanceof ReturnStmt) {
 
 				returnStmtPresent = true;
+
+				if(symbolTable.retrieveType(this.returnDataType.getName()) == null) {
+					throw new SemanticException("Invalid return type");
+				}
 
 				if (stmt.getDataType() != this.returnDataType) {
 					throw new SemanticException("Type mismatch between procedure and return statement");

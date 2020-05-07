@@ -1,16 +1,11 @@
 package syntaxtree.decl;
 
-import common.SymbolTable;
-import common.error.SemanticException;
 import syntaxtree.types.DataType;
 
 public class ParamDecl extends VarDecl {
 
-	private final DataType dataType;
-
 	public ParamDecl(String name, DataType dataType) {
-		super(name);
-		this.dataType = dataType;
+		super(name, dataType);
 	}
 	
 	@Override
@@ -18,21 +13,9 @@ public class ParamDecl extends VarDecl {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(PARAM_DECL ");
 		builder.append(this.getName());
-		builder.append(this.dataType.printAst(level));
+		builder.append(this.getDataType().printAst(level));
 		builder.append(")");
 		return builder.toString();
 	}
 
-	/*
-	@Override
-	public DataType getDataType() {
-		return this.dataType;
-	}
-
-	@Override
-	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-		symbolTable.insertUserDefinedType(this.dataType);
-	}
-
-	 */
 }

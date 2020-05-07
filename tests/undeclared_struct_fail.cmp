@@ -1,8 +1,8 @@
 program undeclared_struct_fail
 begin
-    proc main()
+    procedure main()
     begin
     in
-        (zot).bar := 42 /* common.error, zot.bar not declared */
+        (zot).bar := 42 (* error: zot.bar not declared *)
     end
 end

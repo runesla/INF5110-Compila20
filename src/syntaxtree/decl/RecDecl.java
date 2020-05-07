@@ -10,7 +10,7 @@ import static common.utils.StringUtil.*;
 public class RecDecl extends Decl {
 
 	private final List<ParamDecl> params;
-	
+
 	// Default constructor
 	public RecDecl(String name) {
 		super(new Name(name));
@@ -29,16 +29,13 @@ public class RecDecl extends Decl {
 		builder.append("(STRUCT ");
 		builder.append("(NAME ");
 		builder.append(this.getName());
-		builder.append(")");		
-
+		builder.append(")");
 		if(params != null) {
 			for(ParamDecl p: params) {
 				builder.append("\n" + repeat("\t", level+1) + "(VAR_DECL " + p.printAst(level + 1));
 			}
 		}
-			
 		builder.append("\n" + repeat("\t", level) + ")");
-		
 		return builder.toString();
 	}
 
@@ -49,8 +46,6 @@ public class RecDecl extends Decl {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-
-		symbolTable.insertUserDefinedType(this.getDataType());
 
 		// Create symbol table for this block
 		SymbolTable recSymbolTable = new SymbolTable();

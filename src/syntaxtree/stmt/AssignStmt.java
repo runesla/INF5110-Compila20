@@ -44,18 +44,27 @@ public class AssignStmt extends Stmt {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
+		this.varExpr.typeCheck(symbolTable);
+		this.expr.typeCheck(symbolTable);
+/*
 		// AssignStmt can reduce to one of two types, ensure only one is used and do type check
-		if(varExpr != null) {
-			if(varExpr.getDataType() != expr.getDataType()) {
+		if(this.varExpr != null) {
+			this.varExpr.typeCheck(symbolTable);
+
+			if(this.varExpr.getDataType() != this.expr.getDataType()) {
 				throw new SemanticException("Variable type does not match expression type");
 			}
-			this.varExpr.typeCheck(symbolTable);
 		} else {
-			if(derefExpr.getDataType() != expr.getDataType()) {
+			this.derefExpr.typeCheck(symbolTable);
+
+			if(this.derefExpr.getDataType() != this.expr.getDataType()) {
 				throw new SemanticException("Dereference types does not match expression type");
 			}
-			this.derefExpr.typeCheck(symbolTable);
 		}
+
+ */
+
 	}
 
 	@Override

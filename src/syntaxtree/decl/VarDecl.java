@@ -12,10 +12,6 @@ public class VarDecl extends Decl {
 	private DataType dataType;
 	private Expr expr;
 
-	public VarDecl(String name) {
-		super(new Name(name));
-	}
-
 	public VarDecl(
 			String name,
 			DataType dataType) {
@@ -46,13 +42,26 @@ public class VarDecl extends Decl {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-		symbolTable.insertVariable(this);
 
-		if(this.dataType != expr.getDataType()) {
-			throw new SemanticException("Type mismatch between variable declaration and expression");
+		if(this.expr != null) {
+			this.expr.typeCheck(symbolTable);
 		}
 
-		expr.typeCheck(symbolTable);
+// TODO: for debugging
+		if(this.dataType == null) {
+			System.out.println("VarDecl " + this.getName().getNameValue() + " has no type");
+		}
+		if (this.expr == null) {
+			System.out.println("VarDecl " + this.getName().getNameValue() + " has no expr");
+		}
+		if (this.dataType != null) {
+			System.out.println("VarDecl " + this.getName().getNameValue() + " has type " + this.getDataType().getName().getNameValue());
+		}
+
+		// Check type matching between declaration and expression
+		if(this.expr != null && (this.dataType != this.expr.getDataType())) {
+			throw new SemanticException("Type mismatch between variable declaration and expression");
+		}
 	}
 
 	@Override

@@ -1,13 +1,12 @@
 program procedure2_fail
 begin
-
-	proc Proc() : string 
+	procedure Proc() : string 
 	begin
            in
-	   return  42  /* common.error, Proc declared as returning string */
+	   return  42  (* error, Proc declared as returning string *)
 	end;
 
-	proc main()
+	procedure main()
 	begin
 	   in
 	   Proc()

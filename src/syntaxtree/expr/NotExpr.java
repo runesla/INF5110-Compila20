@@ -3,6 +3,7 @@ package syntaxtree.expr;
 import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
+import syntaxtree.types.Type;
 
 public class NotExpr extends Expr {
 
@@ -28,7 +29,7 @@ public class NotExpr extends Expr {
 	}
 
 	@Override
-	public DataType getDataType() {
-		return this.expr.getDataType();
+	public DataType getDataType() throws SemanticException {
+		return new DataType(Type.BOOL);
 	}
 }

@@ -46,6 +46,7 @@ terminal                        TYPE_STRING;
 terminal                        TYPE_BOOL;
 terminal String			        ID;
 non terminal DataType		    dataType;
+non terminal Name               name;
 
 /* Literals  */
 terminal Float			        FLOAT_LITERAL;
@@ -122,13 +123,6 @@ opt_rec_params	::= rec_params:rp {: RESULT = rp; :}
 rec_params	::= param_decl:pfd {: List<ParamDecl> pfl = new LinkedList<ParamDecl>(); pfl.add(pfd); RESULT = pfl; :}
 		| rec_params:rp SEMI param_decl:pfd {: rp.add(pfd); RESULT = rp; :};
 
-/*
-proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, dl, osl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, t, osl); :};
-*/
-
 proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
 		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, dl, osl); :}
@@ -148,11 +142,11 @@ expr		::= log_op_expr:e {: RESULT = e; :}
 		| arith_op_expr:e {: RESULT = e; :}
 		| literal_expr:le {: RESULT = le; :}
 		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
-		| NEW ID:name {: RESULT = new NewExpr(new DataType(new Name(name))); :}   /* new Type(name)) */
+		| NEW ID:name {: RESULT = new NewExpr(new DataType(new Name(name))); :}             /* new DataType(name)) */
 		| var:v {: RESULT = v; :}
 		| ref_var:rv {: RESULT = rv; :}
 		| deref_var:dv {: RESULT = dv; :}
-		| LPAR expr:e RPAR {: RESULT = new ParExpr(e); :};
+		| LPAR expr:e RPAR {: RESULT = e; :};
 
 opt_expr_list   ::= expr_list:el {: RESULT = el; :}
                 | {: RESULT = new LinkedList<Expr>(); :};
@@ -181,7 +175,8 @@ ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :}
 		| DEREF LPAR deref_var:dv RPAR {: RESULT = dv; :};
 
-var		::= ID:name {: RESULT = new VarExpr(name); :}
+var		::= name:name {: RESULT = new VarExpr(name); :}                                       /* TODO: must be changed from ID to NAME ?      */
+        | name:name COLON dataType:t {: RESULT = new VarExpr(name, t); :}                   /* TODO: added for testing purposes */
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
 opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}

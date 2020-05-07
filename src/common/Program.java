@@ -6,7 +6,6 @@ import syntaxtree.Node;
 import syntaxtree.decl.Decl;
 import bytecode.*;
 import syntaxtree.decl.ProcDecl;
-
 import java.util.List;
 
 public class Program extends Node {
@@ -28,17 +27,16 @@ public class Program extends Node {
         sb.append("(NAME ");
         sb.append(this.name);
         sb.append(")\n");
-
         for (Decl decl : decls) {
             sb.append("\t" + decl.printAst(level + 1));
             sb.append("\n");
         }
-
         sb.append(")");
         return sb.toString();
     }
 
-    public void checkSemantics(SymbolTable symbolTable) throws SemanticException {
+    @Override
+    public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
         boolean hasMain = false;
 

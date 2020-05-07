@@ -1,7 +1,6 @@
 program test1
 begin
-
-	proc Main()
+	procedure main()  (* main not capital this year *)
 	begin
 	    var flag : bool;
 	    var val : int ;
@@ -9,9 +8,9 @@ begin
          in
 	    val := 42;
 	    flag := val > 40;
-	    real := val; /* implicit conversion int=>float */
+	    real := val; (* implicit conversion int=>float *)
 	    printfloat( real );
-	    printfloat( val ); /* implicit conversion int=>float */
+	    printfloat( val ); (* implicit conversion int=>float *)
 	    printint( val )
 	end
 

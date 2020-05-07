@@ -1,5 +1,7 @@
 package syntaxtree.types;
 
+import common.SymbolTable;
+import common.error.SemanticException;
 import syntaxtree.Name;
 import syntaxtree.Node;
 
@@ -42,5 +44,10 @@ public class DataType extends Node {
 
 		builder.append(")");
 		return builder.toString();
+	}
+
+	@Override
+	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
 	}
 }

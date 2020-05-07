@@ -7,7 +7,7 @@ import syntaxtree.types.DataType;
 
 public abstract class Expr extends Node {
 
-    public abstract void typeCheck(SymbolTable symbolTable) throws SemanticException;
+    //public abstract void typeCheck(SymbolTable symbolTable) throws SemanticException;
 
-    public abstract DataType getDataType();
+    public abstract DataType getDataType() throws SemanticException;
 }

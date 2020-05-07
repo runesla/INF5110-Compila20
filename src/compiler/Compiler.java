@@ -8,6 +8,11 @@ import common.error.SemanticException;
 import common.error.SyntaxException;
 import parser.*;
 import bytecode.*;
+import syntaxtree.decl.Decl;
+import syntaxtree.decl.ProcDecl;
+import syntaxtree.decl.VarDecl;
+import syntaxtree.types.DataType;
+
 import static common.utils.ReturnValues.*;
 
 public class Compiler {
@@ -45,10 +50,11 @@ public class Compiler {
         // Check semantics
 		assert program != null;
 		try {
-			program.checkSemantics(symbolTable);
+			program.typeCheck(symbolTable);
 		} catch (SemanticException e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
+			printSymTable();				// TODO: for debugging
 			return SEMANTIC_ERROR;
 		}
 
@@ -99,6 +105,20 @@ public class Compiler {
         stream.write(bytecode);
         stream.close();
     }
+
+    private void printSymTable() {
+		for(ProcDecl procs: symbolTable.getProcs()) {
+			System.out.println("PROCEDURE: " + procs.getName().getNameValue());
+		}
+
+		for(VarDecl vars: symbolTable.getVars()) {
+			System.out.println("VARIABLE: " + vars.getName().getNameValue());
+		}
+
+		for(DataType types: symbolTable.getRegisteredTypes()) {
+			System.out.println("TYPE: " + types.getName().getNameValue());
+		}
+	}
 
 	public static void main(String[] args) {
 		Compiler compiler = new Compiler(args[0], args[1], args[2]);

@@ -20,5 +20,5 @@ public abstract class Decl extends Node {
 
 	public abstract DataType getDataType();
 
-	public abstract void typeCheck(SymbolTable symbolTable) throws SemanticException;
+	//public abstract void typeCheck(SymbolTable symbolTable) throws SemanticException;
 }
