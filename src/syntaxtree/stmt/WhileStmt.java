@@ -23,13 +23,10 @@ public class WhileStmt extends Stmt {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(WHILE_STMT ");
 		builder.append(this.expr.printAst(level));
-		
 		for(Stmt s: statements) {
 			builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 		}
-		
 		builder.append("\n" + repeat("\t", level) + ")");
-		
 		return builder.toString();
 	}
 

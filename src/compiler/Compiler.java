@@ -8,7 +8,6 @@ import common.error.SemanticException;
 import common.error.SyntaxException;
 import parser.*;
 import bytecode.*;
-import syntaxtree.decl.Decl;
 import syntaxtree.decl.ProcDecl;
 import syntaxtree.decl.VarDecl;
 import syntaxtree.types.DataType;

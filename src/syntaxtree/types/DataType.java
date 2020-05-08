@@ -34,14 +34,12 @@ public class DataType extends Node {
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
-
 		if(this.name == null) {
 			builder.append("(TYPE ");
 		}
 		else {
 			builder.append("(NAME ");
 		}
-
 		builder.append(")");
 		return builder.toString();
 	}

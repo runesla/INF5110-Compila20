@@ -29,9 +29,9 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params
 	public ProcDecl(
-				String name,
+				Name name,
 				List<ParamDecl> params) {
-		super(new Name(name));
+		super(name);
 		this.params = params;
 		this.declarations = new ArrayList<>();
 		this.statements = new ArrayList<>();
@@ -39,10 +39,10 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params and statements
 	public ProcDecl(
-				String name,
+			Name name,
 				List<ParamDecl> params,
 				List<Stmt> statements) {
-		super(new Name(name));
+		super(name);
 		this.params = params;
 		this.statements = statements;
 		this.declarations = new ArrayList<>();
@@ -50,9 +50,9 @@ public class ProcDecl extends Decl {
 
 	// Given return type
 	public ProcDecl(
-				String name,
+			Name name,
 				DataType returnDataType) {
-		super(new Name(name));
+		super(name);
 		this.returnDataType = returnDataType;
 		this.params = new ArrayList<>();
 		this.statements = new ArrayList<>();
@@ -61,11 +61,11 @@ public class ProcDecl extends Decl {
 
 	// Given return type, given params and statements
 	public ProcDecl(
-				String name,
+				Name name,
 				DataType returnDataType,
        			List<ParamDecl> params,
        			List<Stmt> statements) {
-		super(new Name(name));
+		super(name);
 		this.returnDataType = returnDataType;
 		this.params = params;
        	this.statements = statements;
@@ -74,11 +74,11 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params, decl and stmts
 	public ProcDecl(
-				String name,
+				Name name,
 				List<ParamDecl> params,
 				List<Decl> declarations,
 				List<Stmt> statements) {
-		super(new Name(name));
+		super(name);
 		this.params = params;
 		this.declarations = declarations;
 		this.statements = statements;
@@ -86,12 +86,12 @@ public class ProcDecl extends Decl {
 
 	// Given return type, params, decl and stmts
 	public ProcDecl(
-				String name,
+				Name name,
 				DataType returnDataType,
 				List<ParamDecl> params,
 				List<Decl> declarations,
 				List<Stmt> statements) {
-		super(new Name(name));
+		super(name);
 		this.returnDataType = returnDataType;
 		this.params = params;
 		this.declarations = declarations;
@@ -110,7 +110,7 @@ public class ProcDecl extends Decl {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(PROCEDURE ");
 		builder.append("(NAME ");
-		builder.append(this.getName());
+		builder.append(this.getName().getNameValue());
 		builder.append(")");
 		if(returnDataType != null) {
 			builder.append(" : " + this.returnDataType.printAst(level));

@@ -13,24 +13,24 @@ public class VarDecl extends Decl {
 	private Expr expr;
 
 	public VarDecl(
-			String name,
+			Name name,
 			DataType dataType) {
-		super(new Name(name));
+		super(name);
 		this.dataType = dataType;
 	}
 
 	public VarDecl(
-			String name,
+			Name name,
 			Expr expr) {
-		super(new Name(name));
+		super(name);
 		this.expr = expr;
 	}
 
 	public VarDecl(
-			String name,
+			Name name,
 			DataType dataType,
 			Expr expr) {
-		super(new Name(name));
+		super(name);
 		this.dataType = dataType;
 		this.expr = expr;
 	}
@@ -71,7 +71,7 @@ public class VarDecl extends Decl {
 		builder.append("\n" + repeat("\t", level + 1) + this.dataType.printAst(level));
 		builder.append(" : ");
 		builder.append(" (NAME ");
-		builder.append(this.getName());
+		builder.append(this.getName().getNameValue());
 		builder.append(")");
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();

@@ -20,12 +20,10 @@ public class ReturnStmt extends Stmt {
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(RETURN_STMT ");
-	
-		if(expr != null)
+		if(expr != null) {
 			builder.append(expr.printAst(level + 1));
-
-		builder.append(")");		
-
+		}
+		builder.append(")");
 		return builder.toString();
 	}
 

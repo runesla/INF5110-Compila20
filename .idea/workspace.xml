@@ -4,65 +4,23 @@
     <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/SymbolTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/STL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/STL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Compiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grammars/compila.cup" beforeDir="false" afterPath="$PROJECT_DIR$/src/grammars/compila.cup" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/sym.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/sym.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Name.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ClassDecl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/Decl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/Decl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ParamDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ParamDecl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ParamFieldDecl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/ArithOpExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/ArithOpExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/DerefVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/DerefVarExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/Expr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/Expr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/LogOpExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/LogOpExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/NewExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/NewExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/NotExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/NotExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/ParExpr.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/RefVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/RefVarExpr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/Stmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/Stmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/CallStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/CallStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/ReturnStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/ReturnStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/types/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/types/DataType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/types/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/types/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/general1_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/general1_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/general2_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/general2_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/general3_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/general3_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/general4_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/general4_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/general5_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/general5_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/procedure2_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/procedure2_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/procedure3_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/procedure3_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/procedure4_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/procedure4_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/procedure5_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/procedure5_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/procedure_unknown_returntype_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/procedure_unknown_returntype_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/return_contradicting_expression_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/return_contradicting_expression_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test1.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test1.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test3.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test3.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test4.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test4.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test5.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test5.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type1_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type1_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type2_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type2_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type3_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type3_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type4_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type4_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type5_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type5_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type6_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type6_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/type7_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/type7_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/undeclared_new_argument_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/undeclared_new_argument_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/undeclared_struct_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/undeclared_struct_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/undeclared_struct_var_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/undeclared_struct_var_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/variable_scope_shadow_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/variable_scope_shadow_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/wrong_arith_operand_type_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/wrong_arith_operand_type_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/wrong_log_exp_type_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/wrong_log_exp_type_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/wrong_new_arg_type_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/wrong_new_arg_type_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/wrong_not_operand_type_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/wrong_not_operand_type_fail.cmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/wrong_rel_operand_type_fail.cmp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/wrong_rel_operand_type_fail.cmp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +107,7 @@
       <workItem from="1587485622960" duration="4621000" />
       <workItem from="1587913539056" duration="14676000" />
       <workItem from="1588493231281" duration="822000" />
-      <workItem from="1588593652497" duration="118685000" />
+      <workItem from="1588593652497" duration="123543000" />
     </task>
     <task id="LOCAL−00001" summary="Removed duplicates">
       <created>1587486999177</created>
@@ -265,7 +223,13 @@
       <option name="presentableId" value="LOCAL−00019" />
       <updated>1588849954353</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL−00020" summary="Still crashing on retval assignment operation in runme, probably because grammar is not quite in order">
+      <created>1588884691182</created>
+      <option name="number" value="LOCAL−00020" />
+      <option name="presentableId" value="LOCAL−00020" />
+      <updated>1588884691182</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +255,8 @@
     <MESSAGE value="Some foundational implementation for typechecking using symboltable" />
     <MESSAGE value="Added operators for rel, log and arithmetics. Git gud" />
     <MESSAGE value="Compiles until second &quot;Complex&quot; symbol in runme, throws duplication error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Compiles until second &quot;Complex&quot; symbol in runme, throws duplication error" />
+    <MESSAGE value="Still crashing on retval assignment operation in runme, probably because grammar is not quite in order" />
+    <option name="LAST_COMMIT_MESSAGE" value="Still crashing on retval assignment operation in runme, probably because grammar is not quite in order" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="94" key="#Project_Structure" timestamp="1588706010757">
@@ -326,10 +291,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="375" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588698957665" />
-    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588849951773">
+    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1588884688297">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588849951773" />
+    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588884688297" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588706007647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -338,10 +303,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588003153774" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588849969053">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588884701156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588849969053" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588884701156" />
     <state x="715" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1588771029664">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

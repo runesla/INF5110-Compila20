@@ -14,23 +14,29 @@ public class VarExpr extends Expr {
 	private Expr expr;
 	private DataType dataType;
 
-	public VarExpr(String name) {
-		this.name = new Name(name);
-		this.dataType = null;
+	public VarExpr(Name name) {
+		this.name = name;
 	}
 
-	public VarExpr(String name, DataType dataType) {
-		this.name = new Name(name);
+	public VarExpr(
+				Name name,
+				DataType dataType) {
+		this.name = name;
 		this.dataType = dataType;
 	}
 
-	public VarExpr(String name, Expr expr) {
-		this.name = new Name(name);
+	public VarExpr(
+				Name name,
+				Expr expr) {
+		this.name = name;
 		this.expr = expr;
 	}
 
-	public VarExpr(String name, DataType dataType, Expr expr) {
-		this.name = new Name(name);
+	public VarExpr(
+				Name name,
+				DataType dataType,
+				Expr expr) {
+		this.name = name;
 		this.dataType = dataType;
 		this.expr = expr;
 	}
@@ -43,7 +49,7 @@ public class VarExpr extends Expr {
 			builder.append(" . ");
 		}
 		builder.append("(NAME ");
-		builder.append(this.name);
+		builder.append(this.name.getNameValue());
 		builder.append(")");
 		return builder.toString();
 	}
@@ -56,7 +62,7 @@ public class VarExpr extends Expr {
 		}
 
 		if(this.expr == null) {
-			VarDecl var = symbolTable.retrieveVariable(this.name);
+			VarDecl var = symbolTable.retrieveVariable(this.name);	// TODO: possibly not finding the name because it is passed as string in grammar
 			this.dataType = var.getDataType();
 		}
 

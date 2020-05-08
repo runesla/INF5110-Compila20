@@ -33,20 +33,16 @@ public class IfStmt extends Stmt {
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(IF_STMT ");
-		builder.append(expr.printAst(level));	
-
+		builder.append(expr.printAst(level));
 		for(Stmt s : stmt1) {
 			builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 		}
-		
 		if(stmt2 != null) {
 			for(Stmt s: stmt2) {
 				builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 			}
 		}
-		
 		builder.append("\n" + repeat("\t", level) + ")");
-		
 		return builder.toString();
 	}
 

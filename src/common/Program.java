@@ -2,6 +2,7 @@ package common;
 
 import common.error.SemanticException;
 import common.error.SyntaxException;
+import syntaxtree.Name;
 import syntaxtree.Node;
 import syntaxtree.decl.Decl;
 import bytecode.*;
@@ -10,13 +11,13 @@ import java.util.List;
 
 public class Program extends Node {
 
+    private final Name name;
     private final List<Decl> decls;
-    private final String name;
     private final STL stdLib;
 
-    public Program(String name, List<Decl> decls) throws SyntaxException {
-        this.decls = decls;
+    public Program(Name name, List<Decl> decls) throws SyntaxException {
         this.name = name;
+        this.decls = decls;
         this.stdLib = new STL();
     }
 

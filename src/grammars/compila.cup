@@ -14,46 +14,47 @@ parser code {:
 :};
 
 /* Keywords */
-terminal                        PROGRAM;
-terminal                        BEGIN, END;
-terminal                        RETURN;
-terminal                        PROCEDURE;
-terminal			            IF, THEN, ELSE, FI;
-terminal			            WHILE, DO, OD;
-terminal			            NOT;
-terminal			            NEW;
-terminal			            REF, DEREF;
-terminal			            IN;
-terminal			            STRUCT;
+terminal                            PROGRAM;
+terminal                            BEGIN, END;
+terminal                            RETURN;
+terminal                            PROCEDURE;
+terminal			                IF, THEN, ELSE, FI;
+terminal			                WHILE, DO, OD;
+terminal			                NOT;
+terminal    			            NEW;
+terminal	    		            REF, DEREF;
+terminal		    	            IN;
+terminal			                STRUCT;
 
 /* Symbols */
-terminal			            LPAR, RPAR;
-terminal 			            LCURLY, RCURLY;
-terminal 			            COMMA;
-terminal			            DOT;
-terminal			            MULOP, DIVOP, ADDOP, SUBOP;
-terminal			            EXP;
-terminal			            COLON;
-terminal			            SEMI;
-terminal			            EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL;
-terminal			            VAR;
-terminal			            ASSIGN;
+terminal    			            LPAR, RPAR;
+terminal 	    		            LCURLY, RCURLY;
+terminal 		    	            COMMA;
+terminal			                DOT;
+terminal			                MULOP, DIVOP, ADDOP, SUBOP;
+terminal			                EXP;
+terminal			                COLON;
+terminal    			            SEMI;
+terminal	    		            EQ, GT, LT, LTEQUAL, GTEQUAL, LOG_AND, LOG_OR, NEQUAL;
+terminal		    	            VAR;
+terminal			                ASSIGN;
 
 /* Types */
-terminal                        TYPE_INT;
-terminal                        TYPE_FLOAT;
-terminal                        TYPE_STRING;
-terminal                        TYPE_BOOL;
-terminal String			        ID;
-non terminal DataType		    dataType;
-non terminal Name               name;
+terminal                            TYPE_INT;
+terminal                            TYPE_FLOAT;
+terminal                            TYPE_STRING;
+terminal                            TYPE_BOOL;
+terminal Name			            ID;
+terminal String                     ID_VAL;         /* TODO: for testing */
+non terminal DataType		        dataType;
+/*non terminal Name                 name;*/
 
 /* Literals  */
-terminal Float			        FLOAT_LITERAL;
-terminal String			        STRING_LITERAL;
-terminal Integer		        INT_LITERAL;
-terminal Boolean		        BOOL_LITERAL;
-terminal Null			        NULL;
+terminal Float  			        FLOAT_LITERAL;
+terminal String	    		        STRING_LITERAL;
+terminal Integer	    	        INT_LITERAL;
+terminal Boolean		            BOOL_LITERAL;
+terminal Null			            NULL;
 
 /* Declarations */
 non terminal Program                program;
@@ -67,24 +68,24 @@ non terminal List<Decl>		        decl_list, opt_decl_list;
 non terminal List<Stmt>		        opt_stmt_list;
 
 /* Expressions  */
-non terminal Expr		        expr;
-non terminal RefVarExpr		    ref_var;
-non terminal DerefVarExpr	    deref_var;
-non terminal VarExpr		    var;
-non terminal LogOpExpr		    log_op_expr;
-non terminal RelOpExpr		    rel_op_expr;
-non terminal ArithOpExpr	    arith_op_expr;
-non terminal LiteralExpr	    literal_expr;
-non terminal List<Expr>		    expr_list, opt_expr_list;
+non terminal Expr		            expr;
+non terminal RefVarExpr		        ref_var;
+non terminal DerefVarExpr   	    deref_var;
+non terminal VarExpr		        var;
+non terminal LogOpExpr		        log_op_expr;
+non terminal RelOpExpr  		    rel_op_expr;
+non terminal ArithOpExpr    	    arith_op_expr;
+non terminal LiteralExpr	        literal_expr;
+non terminal List<Expr>		        expr_list, opt_expr_list;
 
 /* Statements  */
-non terminal Stmt		        stmt;
-non terminal AssignStmt		    assign_stmt;
-non terminal IfStmt		        if_stmt;
-non terminal WhileStmt		    while_stmt;
-non terminal ReturnStmt		    return_stmt;
-non terminal CallStmt		    call_stmt;
-non terminal List<Stmt>		    stmt_list;
+non terminal Stmt	    	        stmt;
+non terminal AssignStmt	    	    assign_stmt;
+non terminal IfStmt		            if_stmt;
+non terminal WhileStmt		        while_stmt;
+non terminal ReturnStmt 		    return_stmt;
+non terminal CallStmt	    	    call_stmt;
+non terminal List<Stmt>		        stmt_list;
 
 /* Associativity and precedence */
 precedence left LOG_OR;
@@ -100,6 +101,8 @@ precedence left DOT;
 start with program;
 
 program         ::= PROGRAM ID:name BEGIN opt_decl_list:dl END {: RESULT = new Program(name, dl); :};
+
+name            ::= ID_VAL:name {: RESULT = new Name(name); :};     /* TODO: for testing */
 
 opt_decl_list	::= decl_list:dl {: RESULT = dl; :}
 		| {: RESULT = new LinkedList<Decl>(); :};
@@ -142,7 +145,7 @@ expr		::= log_op_expr:e {: RESULT = e; :}
 		| arith_op_expr:e {: RESULT = e; :}
 		| literal_expr:le {: RESULT = le; :}
 		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
-		| NEW ID:name {: RESULT = new NewExpr(new DataType(new Name(name))); :}             /* new DataType(name)) */
+		| NEW ID:name {: RESULT = new NewExpr(new DataType(name)); :}             /* new DataType(name)) */
 		| var:v {: RESULT = v; :}
 		| ref_var:rv {: RESULT = rv; :}
 		| deref_var:dv {: RESULT = dv; :}
@@ -175,8 +178,8 @@ ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :}
 		| DEREF LPAR deref_var:dv RPAR {: RESULT = dv; :};
 
-var		::= name:name {: RESULT = new VarExpr(name); :}                                       /* TODO: must be changed from ID to NAME ?      */
-        | name:name COLON dataType:t {: RESULT = new VarExpr(name, t); :}                   /* TODO: added for testing purposes */
+var		::= ID:name {: RESULT = new VarExpr(name); :}                                       /* TODO: must be changed from ID to NAME ?      */
+        | ID:name COLON dataType:t {: RESULT = new VarExpr(name, t); :}                   /* TODO: added for testing purposes */
 		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
 
 opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}
@@ -209,7 +212,7 @@ dataType	::= TYPE_INT {: RESULT = new DataType(Type.INT); :}
 		| TYPE_FLOAT {: RESULT = new DataType(Type.FLOAT); :}          /* ("float") */
 		| TYPE_STRING {: RESULT = new DataType(Type.STRING); :}        /* ("string") */
 		| REF LPAR dataType:t RPAR {: RESULT = new RefType(t); :}
-		| ID:name {: RESULT = new DataType(new Name(name)); :};         /* new DataType(name) */
+		| ID:name {: RESULT = new DataType(name); :};
 
 literal_expr	::= INT_LITERAL:il {: RESULT = new IntLiteral(il); :}
 		| FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}

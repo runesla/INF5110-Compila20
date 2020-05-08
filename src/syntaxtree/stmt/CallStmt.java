@@ -14,8 +14,8 @@ public class CallStmt extends Stmt {
 	private final Name name;
 	private final List<Expr> expr;
 
-	public CallStmt(String name, List<Expr> expr) {
-		this.name = new Name(name);
+	public CallStmt(Name name, List<Expr> expr) {
+		this.name = name;
 		this.expr = expr;
 	}
 	
@@ -23,14 +23,11 @@ public class CallStmt extends Stmt {
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(CALL_STMT ");
-		builder.append(this.name);
-		
+		builder.append(this.name.getNameValue());
 		for(Expr e: expr) {
 			builder.append("\n" + repeat("\t", level + 1) + e.printAst(level + 1));
 		}
-		
-		builder.append("\n" + repeat("\t", level) + ")");		
-		
+		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
 	}
 

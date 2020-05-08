@@ -12,14 +12,14 @@ public class RecDecl extends Decl {
 	private final List<ParamDecl> params;
 
 	// Default constructor
-	public RecDecl(String name) {
-		super(new Name(name));
+	public RecDecl(Name name) {
+		super(name);
 		this.params = new LinkedList<>();
 	}	
 
 	// Given params
-	public RecDecl(String name, List<ParamDecl> params) {
-		super(new Name(name));
+	public RecDecl(Name name, List<ParamDecl> params) {
+		super(name);
 		this.params = params;
 	}
 
@@ -28,7 +28,7 @@ public class RecDecl extends Decl {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(STRUCT ");
 		builder.append("(NAME ");
-		builder.append(this.getName());
+		builder.append(this.getName().getNameValue());
 		builder.append(")");
 		if(params != null) {
 			for(ParamDecl p: params) {
