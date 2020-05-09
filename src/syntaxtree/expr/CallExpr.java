@@ -1,7 +1,12 @@
 package syntaxtree.expr;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.CALL;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
+import syntaxtree.decl.ProcDecl;
 import syntaxtree.stmt.CallStmt;
 import syntaxtree.types.DataType;
 import static common.utils.StringUtil.*;
@@ -26,6 +31,11 @@ public class CallExpr extends Expr {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 		callStmt.typeCheck(symbolTable);
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		callStmt.generateCode(proc);
 	}
 
 	@Override

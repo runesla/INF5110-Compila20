@@ -1,5 +1,7 @@
 package syntaxtree.decl;
 
+import bytecode.CodeFile;
+import common.error.CodeGenException;
 import syntaxtree.Name;
 import syntaxtree.types.DataType;
 
@@ -19,4 +21,9 @@ public class ParamDecl extends VarDecl {
 		return builder.toString();
 	}
 
+	@Override
+	public void generateCode(CodeFile codeFile) throws CodeGenException {
+		// TODO: probably not needed
+
+	}
 }

@@ -1,6 +1,8 @@
 package syntaxtree.expr;
 
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
 
@@ -29,5 +31,10 @@ public class DerefVarExpr extends Expr {
 	@Override
 	public DataType getDataType() throws SemanticException {
 		return this.expr.getDataType();
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		this.expr.generateCode(proc);
 	}
 }

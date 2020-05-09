@@ -1,6 +1,10 @@
 package syntaxtree.stmt;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.CALL;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.Name;
 import syntaxtree.expr.Expr;
@@ -15,6 +19,7 @@ public class CallStmt extends Stmt {
 	private final List<Expr> expr;
 
 	public CallStmt(Name name, List<Expr> expr) {
+		//this.name = new Name(name);
 		this.name = name;
 		this.expr = expr;
 	}
@@ -42,6 +47,16 @@ public class CallStmt extends Stmt {
 		for(Expr e: expr) {
 			e.typeCheck(symbolTable);
 		}
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+
+		for(Expr exp: expr) {
+			exp.generateCode(proc);
+		}
+
+		proc.addInstruction(new CALL(proc.procedureNumber(proc.getName())));
 	}
 
 	@Override

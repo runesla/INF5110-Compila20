@@ -1,20 +1,24 @@
 package syntaxtree.decl;
 
+import bytecode.CodeFile;
+import bytecode.CodeStruct;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
-import syntaxtree.types.DataType;
+import common.utils.BytecodeTypes;
 import syntaxtree.Name;
+import syntaxtree.types.DataType;
 import java.util.*;
 import static common.utils.StringUtil.*;
 
 public class RecDecl extends Decl {
 
-	private final List<ParamDecl> params;
+	private List<ParamDecl> params;
 
 	// Default constructor
 	public RecDecl(Name name) {
 		super(name);
-		this.params = new LinkedList<>();
+		//this.params = new LinkedList<>();
 	}	
 
 	// Given params
@@ -48,13 +52,29 @@ public class RecDecl extends Decl {
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
 		// Create symbol table for this block
-		SymbolTable recSymbolTable = new SymbolTable();
-		symbolTable.getChildTables().add(recSymbolTable);
+		//SymbolTable recSymbolTable = symbolTable.createChildTable();
 
 		// Check params
 		for(ParamDecl paramDecl: params) {
-			recSymbolTable.insertVariable(paramDecl);
-			paramDecl.typeCheck(recSymbolTable);
+			symbolTable.insertVariable(paramDecl);
+			paramDecl.typeCheck(symbolTable);
 		}
+	}
+
+	@Override
+	public void generateCode(CodeFile codeFile) throws CodeGenException {
+
+		String recName = this.getName().getNameValue();
+
+		codeFile.addStruct(recName);
+		CodeStruct rec = new CodeStruct(recName);
+
+		// Generate code for params and add to struct
+		for(ParamDecl paramDecl: params) {
+			paramDecl.generateCode(codeFile);
+			rec.addVariable(paramDecl.getName().getNameValue(), BytecodeTypes.getCodeType(paramDecl.getDataType()));
+		}
+
+		codeFile.updateStruct(rec);
 	}
 }

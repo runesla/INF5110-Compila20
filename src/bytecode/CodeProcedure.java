@@ -2,7 +2,6 @@ package bytecode;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import bytecode.instructions.Instruction;
 import bytecode.instructions.JMP;
 import bytecode.instructions.JMPFALSE;

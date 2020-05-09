@@ -1,6 +1,8 @@
 package syntaxtree.expr.literals;
 
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.LiteralExpr;
 import syntaxtree.types.DataType;
@@ -20,7 +22,6 @@ public class BoolLiteral extends LiteralExpr {
 		builder.append("(BOOL_LITERAL ");
 		builder.append(this.literal.toString());
 		builder.append(")");
-	
 		return builder.toString();
 	}
 
@@ -32,5 +33,10 @@ public class BoolLiteral extends LiteralExpr {
 	@Override
 	public DataType getDataType() {
 		return new DataType(Type.BOOL);
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+
 	}
 }

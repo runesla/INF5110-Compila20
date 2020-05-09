@@ -64,7 +64,6 @@ public class SymbolTable {
             }
             userDefinedTypes.put(udt.getName(), udt);
         }
-        System.out.println("Type " + udt.getName().getNameValue() + " added to symboltable");
     }
 
     public RecDecl retrieveType(Name name) {
@@ -85,12 +84,6 @@ public class SymbolTable {
         childTable.variables.putAll(this.variables);
         childTable.userDefinedTypes.putAll(this.userDefinedTypes);
         return childTable;
-    }
-
-    public void copyToChild(SymbolTable childTable) {
-        childTable.procedures.putAll(procedures);
-        childTable.variables.putAll(variables);
-        childTable.userDefinedTypes.putAll(userDefinedTypes);
     }
 
     private boolean isPrimitive(Type type) {
@@ -119,13 +112,13 @@ public class SymbolTable {
         return vars;
     }
 
-    public List<DataType> getRegisteredTypes() {
-        List<DataType> types = new ArrayList<>();
+    public List<RecDecl> getRegisteredTypes() {
+        List<RecDecl> types = new ArrayList<>();
         Iterator itr = userDefinedTypes.entrySet().iterator();
 
         while(itr.hasNext()) {
             Map.Entry pair = (Map.Entry)itr.next();
-            types.add((DataType) pair.getValue());
+            types.add((RecDecl) pair.getValue());
         }
         return types;
     }

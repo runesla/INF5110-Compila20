@@ -1,12 +1,13 @@
 package syntaxtree.stmt;
 
 import java.util.*;
-import static common.utils.StringUtil.*;
-
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.Expr;
 import syntaxtree.types.DataType;
+import static common.utils.StringUtil.*;
 
 public class IfStmt extends Stmt {
 	
@@ -54,5 +55,18 @@ public class IfStmt extends Stmt {
 	@Override
 	public DataType getDataType() {
 		return null;
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		this.expr.generateCode(proc);
+
+		for(Stmt stmt: stmt1) {
+			stmt.generateCode(proc);
+		}
+
+		for(Stmt stmt: stmt2) {
+			stmt.generateCode(proc);
+		}
 	}
 }

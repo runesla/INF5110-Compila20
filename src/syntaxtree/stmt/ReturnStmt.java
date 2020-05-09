@@ -1,6 +1,9 @@
 package syntaxtree.stmt;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.RETURN;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.Expr;
 import syntaxtree.types.DataType;
@@ -33,7 +36,14 @@ public class ReturnStmt extends Stmt {
 	}
 
 	@Override
-	public DataType getDataType() {
-		return null;
+	public DataType getDataType() throws SemanticException {				// TODO: can return have no expr? Must have null checker if so
+		return this.expr.getDataType();
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {	// TODO: can return have no expr? Must have null checker if so
+		this.expr.generateCode(proc);
+
+		proc.addInstruction(new RETURN());
 	}
 }

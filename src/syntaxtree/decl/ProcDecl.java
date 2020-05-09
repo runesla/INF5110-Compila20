@@ -1,14 +1,20 @@
 package syntaxtree.decl;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
+import bytecode.instructions.LOADLOCAL;
+import bytecode.type.*;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import common.error.SyntaxException;
+import common.utils.BytecodeTypes;
 import syntaxtree.stmt.ReturnStmt;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import static common.utils.StringUtil.*;
 
@@ -20,8 +26,8 @@ public class ProcDecl extends Decl {
 	private final List<Stmt> statements;
 	
 	// No return type, "default" constructor
-	public ProcDecl(String name) {
-		super(new Name(name));
+	public ProcDecl(Name name) {
+		super(name);
 		this.params = new ArrayList<>();
 		this.declarations = new ArrayList<>();
 		this.statements = new ArrayList<>();
@@ -29,8 +35,8 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params
 	public ProcDecl(
-				Name name,
-				List<ParamDecl> params) {
+			Name name,
+			List<ParamDecl> params) {
 		super(name);
 		this.params = params;
 		this.declarations = new ArrayList<>();
@@ -40,8 +46,8 @@ public class ProcDecl extends Decl {
 	// No return type, given params and statements
 	public ProcDecl(
 			Name name,
-				List<ParamDecl> params,
-				List<Stmt> statements) {
+			List<ParamDecl> params,
+			List<Stmt> statements) {
 		super(name);
 		this.params = params;
 		this.statements = statements;
@@ -51,7 +57,7 @@ public class ProcDecl extends Decl {
 	// Given return type
 	public ProcDecl(
 			Name name,
-				DataType returnDataType) {
+			DataType returnDataType) {
 		super(name);
 		this.returnDataType = returnDataType;
 		this.params = new ArrayList<>();
@@ -61,10 +67,10 @@ public class ProcDecl extends Decl {
 
 	// Given return type, given params and statements
 	public ProcDecl(
-				Name name,
-				DataType returnDataType,
-       			List<ParamDecl> params,
-       			List<Stmt> statements) {
+			Name name,
+			DataType returnDataType,
+       		List<ParamDecl> params,
+       		List<Stmt> statements) {
 		super(name);
 		this.returnDataType = returnDataType;
 		this.params = params;
@@ -74,10 +80,10 @@ public class ProcDecl extends Decl {
 
 	// No return type, given params, decl and stmts
 	public ProcDecl(
-				Name name,
-				List<ParamDecl> params,
-				List<Decl> declarations,
-				List<Stmt> statements) {
+			Name name,
+			List<ParamDecl> params,
+			List<Decl> declarations,
+			List<Stmt> statements) {
 		super(name);
 		this.params = params;
 		this.declarations = declarations;
@@ -86,11 +92,11 @@ public class ProcDecl extends Decl {
 
 	// Given return type, params, decl and stmts
 	public ProcDecl(
-				Name name,
-				DataType returnDataType,
-				List<ParamDecl> params,
-				List<Decl> declarations,
-				List<Stmt> statements) {
+			Name name,
+			DataType returnDataType,
+			List<ParamDecl> params,
+			List<Decl> declarations,
+			List<Stmt> statements) {
 		super(name);
 		this.returnDataType = returnDataType;
 		this.params = params;
@@ -181,5 +187,45 @@ public class ProcDecl extends Decl {
 		if(!returnStmtPresent && returnDataType != null) {
 			throw new SemanticException("Missing return statement");
 		}
+	}
+
+	@Override
+	public void generateCode(CodeFile codeFile) throws CodeGenException {
+
+		String procName = this.getName().getNameValue();
+		CodeType returnType = BytecodeTypes.getCodeType(this.returnDataType);
+
+		codeFile.addProcedure(procName);
+		CodeProcedure proc = new CodeProcedure(procName, returnType, codeFile);
+
+		// Set procedure to main if main
+		if(procName.equals("main")) {
+			codeFile.setMain(procName);
+		}
+
+		// Generate code for params and add to procedure
+		for(ParamDecl paramDecl: params) {
+			paramDecl.generateCode(codeFile);
+			proc.addParameter(paramDecl.getName().getNameValue(), BytecodeTypes.getCodeType(paramDecl.getDataType()));
+			proc.addInstruction(new LOADLOCAL(proc.variableNumber(paramDecl.getName().getNameValue())));
+		}
+
+		// Generate code for declarations and add to procedure
+		for(Decl varDecl: declarations) {
+			varDecl.generateCode(codeFile);
+			proc.addLocalVariable(varDecl.getName().getNameValue(), BytecodeTypes.getCodeType(varDecl.getDataType()));
+		}
+
+		// Generate code for statements and add instructions to procedure
+		for(Stmt stmt: statements) {
+
+			stmt.generateCode(proc);
+
+			//if(stmt instanceof ReturnStmt) {
+			//	proc.addInstruction(new RETURN());
+			//}
+		}
+
+		codeFile.updateProcedure(proc);
 	}
 }

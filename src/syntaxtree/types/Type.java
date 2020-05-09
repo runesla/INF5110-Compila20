@@ -33,6 +33,12 @@ public enum Type {
         public String get() {
             return "UDT";
         }
+    },
+    NULL("null") {
+        @Override
+        public String get() {
+            return "null";
+        }
     };
 
     private Name name;

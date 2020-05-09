@@ -11,7 +11,6 @@ import bytecode.*;
 import syntaxtree.decl.ProcDecl;
 import syntaxtree.decl.VarDecl;
 import syntaxtree.types.DataType;
-
 import static common.utils.ReturnValues.*;
 
 public class Compiler {
@@ -72,7 +71,7 @@ public class Compiler {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
-			System.exit(GENERAL_ERROR);
+			System.exit(CODEGEN_ERROR);
 		}
 /*
 		if(program.checkSemantics(symbolTable)){
@@ -95,7 +94,7 @@ public class Compiler {
 		buf.write(program.printAst(0));
 		buf.close();
 	}
-	
+
 	private void generateCode(Program program) throws Exception {
         CodeFile codeFile = new CodeFile();
         program.generateCode(codeFile);

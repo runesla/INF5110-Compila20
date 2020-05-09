@@ -44,10 +44,9 @@ terminal                            TYPE_INT;
 terminal                            TYPE_FLOAT;
 terminal                            TYPE_STRING;
 terminal                            TYPE_BOOL;
-terminal Name			            ID;
-terminal String                     ID_VAL;         /* TODO: for testing */
+terminal String			            ID;             /* terminal Name ID; */
 non terminal DataType		        dataType;
-/*non terminal Name                 name;*/
+non terminal Name                   name;
 
 /* Literals  */
 terminal Float  			        FLOAT_LITERAL;
@@ -98,124 +97,123 @@ precedence right EXP;
 precedence left DOT;
 
 /* The grammar */
-start with program;
+start with program;         /* TODO: !!!! NB !!!! for testing using Name over String for ID, ID:name has been replaced with name:name */
 
-program         ::= PROGRAM ID:name BEGIN opt_decl_list:dl END {: RESULT = new Program(name, dl); :};
+program         ::= PROGRAM name:name BEGIN opt_decl_list:dl END {: RESULT = new Program(name, dl); :};
 
-name            ::= ID_VAL:name {: RESULT = new Name(name); :};     /* TODO: for testing */
+name            ::= ID:name {: RESULT = new Name(name); :};   /* TODO: for testing with the var null name type thingy */
 
 opt_decl_list	::= decl_list:dl {: RESULT = dl; :}
-		| {: RESULT = new LinkedList<Decl>(); :};
+		        | {: RESULT = new LinkedList<Decl>(); :};
 
-decl_list	::= decl:d {: List<Decl> dl = new LinkedList<Decl>(); dl.add(d); RESULT = dl; :}
-		| decl_list:dl SEMI decl:d {: dl.add(d); RESULT = dl; :};
+decl_list	    ::= decl:d {: List<Decl> dl = new LinkedList<Decl>(); dl.add(d); RESULT = dl; :}
+		        | decl_list:dl SEMI decl:d {: dl.add(d); RESULT = dl; :};
 
-decl		::= var_decl:vd {: RESULT = vd; :}
-		| rec_decl:rl {: RESULT = rl; :}
-		| proc_decl:pl {: RESULT = pl; :};
+decl		    ::= var_decl:vd {: RESULT = vd; :}
+		        | rec_decl:rl {: RESULT = rl; :}
+		        | proc_decl:pl {: RESULT = pl; :};
 
-var_decl	::= VAR ID:name COLON dataType:t {: RESULT = new VarDecl(name, t); :}
-		| VAR ID:name COLON dataType:t ASSIGN expr:e {: RESULT = new VarDecl(name, t, e); :}
-		| VAR ID:name ASSIGN expr:e {: RESULT = new VarDecl(name, e); :};
+var_decl	    ::= VAR name:name COLON dataType:t {: RESULT = new VarDecl(name, t); :}
+		        | VAR name:name COLON dataType:t ASSIGN expr:e {: RESULT = new VarDecl(name, t, e); :}
+		        | VAR name:name ASSIGN expr:e {: RESULT = new VarDecl(name, e); :};
 
-rec_decl	::= STRUCT ID:name LCURLY opt_rec_params:orp RCURLY {: RESULT = new RecDecl(name, orp); :};
+rec_decl	    ::= STRUCT name:name LCURLY opt_rec_params:orp RCURLY {: RESULT = new RecDecl(name, orp); :};
 
 opt_rec_params	::= rec_params:rp {: RESULT = rp; :}
-		| {: RESULT = new LinkedList<ParamDecl>(); :};
+		        | {: RESULT = new LinkedList<ParamDecl>(); :};
 
-rec_params	::= param_decl:pfd {: List<ParamDecl> pfl = new LinkedList<ParamDecl>(); pfl.add(pfd); RESULT = pfl; :}
-		| rec_params:rp SEMI param_decl:pfd {: rp.add(pfd); RESULT = rp; :};
+rec_params	    ::= param_decl:pfd {: List<ParamDecl> pfl = new LinkedList<ParamDecl>(); pfl.add(pfd); RESULT = pfl; :}
+		        | rec_params:rp SEMI param_decl:pfd {: rp.add(pfd); RESULT = rp; :};
 
-proc_decl	::= PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, dl, osl); :}
-		| PROCEDURE ID:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, osl); :};
+proc_decl	    ::= PROCEDURE name:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
+		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
+		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, dl, osl); :}
+		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, osl); :};
 
 opt_proc_params	::= proc_params:pp {: RESULT = pp; :}
-		| {: RESULT = new LinkedList<ParamDecl>(); :};
+		        | {: RESULT = new LinkedList<ParamDecl>(); :};
 
-proc_params	::= param_decl:pfd {: List<ParamDecl> pp = new LinkedList<ParamDecl>(); pp.add(pfd); RESULT = pp; :}
-		| proc_params:pp COMMA param_decl:pfd {: pp.add(pfd); RESULT = pp; :};
+proc_params	    ::= param_decl:pfd {: List<ParamDecl> pp = new LinkedList<ParamDecl>(); pp.add(pfd); RESULT = pp; :}
+		        | proc_params:pp COMMA param_decl:pfd {: pp.add(pfd); RESULT = pp; :};
 
-param_decl	::= ID:name COLON dataType:t {: RESULT = new ParamDecl(name, t); :};
+param_decl	    ::= name:name COLON dataType:t {: RESULT = new ParamDecl(name, t); :};
 
-expr		::= log_op_expr:e {: RESULT = e; :}
-		| NOT expr:e {: RESULT = new NotExpr(e); :} 
-		| rel_op_expr:e {: RESULT = e; :}
-		| arith_op_expr:e {: RESULT = e; :}
-		| literal_expr:le {: RESULT = le; :}
-		| call_stmt:cs {: RESULT = new CallExpr(cs); :}
-		| NEW ID:name {: RESULT = new NewExpr(new DataType(name)); :}             /* new DataType(name)) */
-		| var:v {: RESULT = v; :}
-		| ref_var:rv {: RESULT = rv; :}
-		| deref_var:dv {: RESULT = dv; :}
-		| LPAR expr:e RPAR {: RESULT = e; :};
+expr		    ::= log_op_expr:e {: RESULT = e; :}
+		        | NOT expr:e {: RESULT = new NotExpr(e); :}
+		        | rel_op_expr:e {: RESULT = e; :}
+		        | arith_op_expr:e {: RESULT = e; :}
+		        | literal_expr:le {: RESULT = le; :}
+		        | call_stmt:cs {: RESULT = new CallExpr(cs); :}
+		        | NEW name:name {: RESULT = new NewExpr(new DataType(name)); :}     /* TODO: new DataType(new Name(name))  */
+		        | var:v {: RESULT = v; :}
+		        | ref_var:rv {: RESULT = rv; :}
+		        | deref_var:dv {: RESULT = dv; :}
+		        | LPAR expr:e RPAR {: RESULT = e; :};
 
 opt_expr_list   ::= expr_list:el {: RESULT = el; :}
                 | {: RESULT = new LinkedList<Expr>(); :};
 
-expr_list	::= expr:e {: List<Expr> el = new LinkedList<Expr>(); el.add(e); RESULT = el; :}
-		| expr:e COMMA expr_list:el {: el.add(e); RESULT = el; :};
+expr_list	    ::= expr:e {: List<Expr> el = new LinkedList<Expr>(); el.add(e); RESULT = el; :}
+		        | expr:e COMMA expr_list:el {: el.add(e); RESULT = el; :};
 
-log_op_expr	::= expr:e1 LOG_AND expr:e2 {: RESULT = new LogOpExpr(e1, "&&", e2); :}
-		| expr:e1 LOG_OR expr:e2 {: RESULT = new LogOpExpr(e1, "||", e2); :};
+log_op_expr	    ::= expr:e1 LOG_AND expr:e2 {: RESULT = new LogOpExpr(e1, "&&", e2); :}
+		        | expr:e1 LOG_OR expr:e2 {: RESULT = new LogOpExpr(e1, "||", e2); :};
 
-rel_op_expr	::= expr:e1 GT expr:e2 {: RESULT = new RelOpExpr(e1, ">", e2); :}
-		| expr:e1 LT expr:e2 {: RESULT = new RelOpExpr(e1, "<", e2); :}
-		| expr:e1 GTEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, ">=", e2); :}
-		| expr:e1 LTEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, "<=", e2); :}
-		| expr:e1 EQ expr:e2 {: RESULT = new RelOpExpr(e1, "=", e2); :}
-		| expr:e1 NEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, "<>", e2); :};
+rel_op_expr	    ::= expr:e1 GT expr:e2 {: RESULT = new RelOpExpr(e1, ">", e2); :}
+		        | expr:e1 LT expr:e2 {: RESULT = new RelOpExpr(e1, "<", e2); :}
+		        | expr:e1 GTEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, ">=", e2); :}
+	        	| expr:e1 LTEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, "<=", e2); :}
+	        	| expr:e1 EQ expr:e2 {: RESULT = new RelOpExpr(e1, "=", e2); :}
+		        | expr:e1 NEQUAL expr:e2 {: RESULT = new RelOpExpr(e1, "<>", e2); :};
 
 arith_op_expr	::= expr:e1 ADDOP expr:e2 {: RESULT = new ArithOpExpr(e1, "+", e2); :}
-		| expr:e1 SUBOP expr:e2 {: RESULT = new ArithOpExpr(e1, "-", e2); :}
-		| expr:e1 MULOP expr:e2 {: RESULT = new ArithOpExpr(e1, "*", e2); :}
-		| expr:e1 DIVOP expr:e2 {: RESULT = new ArithOpExpr(e1, "/", e2); :}
-		| expr:e1 EXP expr:e2 {: RESULT = new ArithOpExpr(e1, "^", e2); :};
+		        | expr:e1 SUBOP expr:e2 {: RESULT = new ArithOpExpr(e1, "-", e2); :}
+		        | expr:e1 MULOP expr:e2 {: RESULT = new ArithOpExpr(e1, "*", e2); :}
+		        | expr:e1 DIVOP expr:e2 {: RESULT = new ArithOpExpr(e1, "/", e2); :}
+	        	| expr:e1 EXP expr:e2 {: RESULT = new ArithOpExpr(e1, "^", e2); :};
 
-ref_var		::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
+ref_var		    ::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 
-deref_var	::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :}
-		| DEREF LPAR deref_var:dv RPAR {: RESULT = dv; :};
+deref_var	    ::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :}
+		        | DEREF LPAR deref_var:dv RPAR {: RESULT = dv; :};
 
-var		::= ID:name {: RESULT = new VarExpr(name); :}                                       /* TODO: must be changed from ID to NAME ?      */
-        | ID:name COLON dataType:t {: RESULT = new VarExpr(name, t); :}                   /* TODO: added for testing purposes */
-		| expr:e DOT ID:name {: RESULT = new VarExpr(name, e); :};
+var		        ::= name:name {: RESULT = new VarExpr(name); :}                                       /* TODO: must be changed from ID to NAME ?  ID:name -> Name:name    */
+		        | expr:e DOT name:name {: RESULT = new VarExpr(name, e); :};
 
 opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}
-		| {: RESULT = new LinkedList<Stmt>(); :};
+		        | {: RESULT = new LinkedList<Stmt>(); :};
 
-stmt_list	::= stmt:s {: List<Stmt> sl = new LinkedList<Stmt>(); sl.add(s); RESULT = sl; :}
-		| stmt_list:sl SEMI stmt:s {: sl.add(s); RESULT = sl; :};
+stmt_list	    ::= stmt:s {: List<Stmt> sl = new LinkedList<Stmt>(); sl.add(s); RESULT = sl; :}
+		        | stmt_list:sl SEMI stmt:s {: sl.add(s); RESULT = sl; :};
 
-stmt		::= assign_stmt:as {: RESULT = as; :}
-		| if_stmt:ifs {: RESULT = ifs; :}
-		| while_stmt:ws {: RESULT = ws; :}
-		| return_stmt:rs {: RESULT = rs; :}
-		| call_stmt:cs {: RESULT = cs; :};
+stmt		    ::= assign_stmt:as {: RESULT = as; :}
+		        | if_stmt:ifs {: RESULT = ifs; :}
+		        | while_stmt:ws {: RESULT = ws; :}
+		        | return_stmt:rs {: RESULT = rs; :}
+		        | call_stmt:cs {: RESULT = cs; :};
 
-assign_stmt	::= var:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :}
-		| deref_var:dv ASSIGN expr:e {: RESULT = new AssignStmt(dv, e); :};
+assign_stmt	    ::= var:v ASSIGN expr:e {: RESULT = new AssignStmt(v, e); :}
+		        | deref_var:dv ASSIGN expr:e {: RESULT = new AssignStmt(dv, e); :};
 
-if_stmt		::= IF expr:e THEN opt_stmt_list:osl FI {: RESULT = new IfStmt(e, osl); :}
-		| IF expr:e THEN opt_stmt_list:osl1 ELSE opt_stmt_list:osl2 FI {: RESULT = new IfStmt(e, osl1, osl2); :};
+if_stmt		    ::= IF expr:e THEN opt_stmt_list:osl FI {: RESULT = new IfStmt(e, osl); :}
+		        | IF expr:e THEN opt_stmt_list:osl1 ELSE opt_stmt_list:osl2 FI {: RESULT = new IfStmt(e, osl1, osl2); :};
 
-while_stmt	::= WHILE expr:e DO opt_stmt_list:sl OD {: RESULT = new WhileStmt(e, sl); :};
+while_stmt	    ::= WHILE expr:e DO opt_stmt_list:sl OD {: RESULT = new WhileStmt(e, sl); :};
 
-return_stmt	::= RETURN expr:e {: RESULT = new ReturnStmt(e); :}
-		| RETURN {: RESULT = new ReturnStmt(); :};
+return_stmt	    ::= RETURN expr:e {: RESULT = new ReturnStmt(e); :}
+		        | RETURN {: RESULT = new ReturnStmt(); :};
 
-call_stmt	::= ID:name LPAR opt_expr_list:e RPAR {: RESULT = new CallStmt(name, e); :};
+call_stmt	    ::= name:name LPAR opt_expr_list:e RPAR {: RESULT = new CallStmt(name, e); :};
 
-dataType	::= TYPE_INT {: RESULT = new DataType(Type.INT); :}
-		| TYPE_BOOL {: RESULT = new DataType(Type.BOOL); :}            /* ("bool") */
-		| TYPE_FLOAT {: RESULT = new DataType(Type.FLOAT); :}          /* ("float") */
-		| TYPE_STRING {: RESULT = new DataType(Type.STRING); :}        /* ("string") */
-		| REF LPAR dataType:t RPAR {: RESULT = new RefType(t); :}
-		| ID:name {: RESULT = new DataType(name); :};
+dataType	    ::= TYPE_INT {: RESULT = new DataType(Type.INT); :}
+		        | TYPE_BOOL {: RESULT = new DataType(Type.BOOL); :}            /* ("bool") */
+		        | TYPE_FLOAT {: RESULT = new DataType(Type.FLOAT); :}          /* ("float") */
+		        | TYPE_STRING {: RESULT = new DataType(Type.STRING); :}        /* ("string") */
+		        | REF LPAR dataType:t RPAR {: RESULT = new RefType(t); :}
+		        | name:name {: RESULT = new DataType(name); :};         /* TODO: new DataType(new Name(name)) */
 
 literal_expr	::= INT_LITERAL:il {: RESULT = new IntLiteral(il); :}
-		| FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
-		| STRING_LITERAL:sl {: RESULT = new StringLiteral(sl); :}
-		| BOOL_LITERAL:bl {: RESULT = new BoolLiteral(bl); :}
-		| NULL {: RESULT = new NullLiteral(); :};
+		        | FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}
+		        | STRING_LITERAL:sl {: RESULT = new StringLiteral(sl); :}
+		        | BOOL_LITERAL:bl {: RESULT = new BoolLiteral(bl); :}
+		        | NULL {: RESULT = new NullLiteral(); :};

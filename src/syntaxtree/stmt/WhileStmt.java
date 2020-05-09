@@ -1,6 +1,8 @@
 package syntaxtree.stmt;
 
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.Expr;
 import syntaxtree.types.DataType;
@@ -10,7 +12,7 @@ import static common.utils.StringUtil.*;
 
 public class WhileStmt extends Stmt {
 	
-	private Expr expr;
+	private final Expr expr;
 	private List<Stmt> statements;
 
 	public WhileStmt(Expr expr, List<Stmt> statements) {
@@ -40,7 +42,16 @@ public class WhileStmt extends Stmt {
 	}
 
 	@Override
-	public DataType getDataType() {
-		return null;
+	public DataType getDataType() throws SemanticException {
+		return this.expr.getDataType();
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		this.expr.generateCode(proc);
+
+		for(Stmt stmt: statements) {
+			stmt.generateCode(proc);
+		}
 	}
 }

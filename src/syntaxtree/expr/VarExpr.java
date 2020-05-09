@@ -1,6 +1,9 @@
 package syntaxtree.expr;
 
+import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.Name;
 import syntaxtree.decl.RecDecl;
@@ -15,28 +18,31 @@ public class VarExpr extends Expr {
 	private DataType dataType;
 
 	public VarExpr(Name name) {
+		//this.name = new Name(name);
 		this.name = name;
 	}
 
 	public VarExpr(
-				Name name,
-				DataType dataType) {
+			Name name,
+			DataType dataType) {
+		//this.name = new Name(name);;
 		this.name = name;
 		this.dataType = dataType;
 	}
 
 	public VarExpr(
-				Name name,
-				Expr expr) {
+			Name name,
+			Expr expr) {
+		//this.name = new Name(name);;
 		this.name = name;
 		this.expr = expr;
 	}
 
 	public VarExpr(
-				Name name,
-				DataType dataType,
-				Expr expr) {
-		this.name = name;
+			String name,
+			DataType dataType,
+			Expr expr) {
+		this.name = new Name(name);;
 		this.dataType = dataType;
 		this.expr = expr;
 	}
@@ -57,32 +63,23 @@ public class VarExpr extends Expr {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		if(this.expr == null && this.dataType == null) {			// TODO: for debugging
-			System.out.println("VarExpr " + this.name.getNameValue() + " have no expr or type");
-		}
-
-		if(this.expr == null) {
-			VarDecl var = symbolTable.retrieveVariable(this.name);	// TODO: possibly not finding the name because it is passed as string in grammar
-			this.dataType = var.getDataType();
-		}
-
+		// Assign datatype based on registered type
 		if(this.dataType == null) {
-			System.out.println("STILL NULL");
+			this.dataType = symbolTable.retrieveVariable(this.name).getDataType();
 		}
-		this.expr.typeCheck(symbolTable);
-
-//		if(this.expr.getDataType().getType() != Type.UDT) {
-//			throw new SemanticException("Expression is not a user-defined type");
-//		}
 
 		// Check valid type
-//		if(this.dataType != null) {
-//			if (this.expr.getDataType().getType() != this.dataType.getType()) {
-//				throw new SemanticException("Type mismatch between variable and expression");
-//			}
-//		}
+		if(this.expr != null) {
+			this.expr.typeCheck(symbolTable);
 
+			if(this.expr.getDataType().getType() != this.dataType.getType()) {
+				throw new SemanticException("Type mismatch between variable and expression");
+			}
+		}
+	}
 
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
 
 	}
 

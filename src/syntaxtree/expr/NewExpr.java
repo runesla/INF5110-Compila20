@@ -1,6 +1,9 @@
 package syntaxtree.expr;
 
+import bytecode.CodeProcedure;
+import bytecode.instructions.NEW;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
@@ -34,5 +37,10 @@ public class NewExpr extends Expr {
 	@Override
 	public DataType getDataType() {
 		return this.dataType;
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		proc.addInstruction(new NEW(proc.structNumber(dataType.getName().getNameValue())));
 	}
 }

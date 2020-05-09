@@ -1,7 +1,10 @@
 package syntaxtree.expr;
 
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
+import common.utils.BytecodeTypes;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
 import java.util.Arrays;
@@ -52,5 +55,12 @@ public class RelOpExpr extends Expr {
 	@Override
 	public DataType getDataType() {
 		return new DataType(Type.BOOL);
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		this.e1.generateCode(proc);
+		this.e2.generateCode(proc);
+		proc.addInstruction(BytecodeTypes.getRelationalOperator(this.operator));
 	}
 }

@@ -1,6 +1,8 @@
 package syntaxtree.expr.literals;
 
+import bytecode.CodeProcedure;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.LiteralExpr;
 import syntaxtree.types.DataType;
@@ -24,5 +26,11 @@ public class NullLiteral extends LiteralExpr {
 	@Override
 	public DataType getDataType() {
 		return null;
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+
+
 	}
 }

@@ -1,5 +1,6 @@
 package common;
 
+import common.error.CodeGenException;
 import common.error.SemanticException;
 import common.error.SyntaxException;
 import syntaxtree.Name;
@@ -16,6 +17,7 @@ public class Program extends Node {
     private final STL stdLib;
 
     public Program(Name name, List<Decl> decls) throws SyntaxException {
+        //this.name = new Name(name);
         this.name = name;
         this.decls = decls;
         this.stdLib = new STL();
@@ -55,7 +57,14 @@ public class Program extends Node {
         }
     }
 
-    public void generateCode(CodeFile codeFile) {
+    public void generateCode(CodeFile codeFile) throws CodeGenException {
 
+        for(ProcDecl procDecl: stdLib.getSTL()) {           // TODO: does this work?
+            procDecl.generateCode(codeFile);
+        }
+
+        for(Decl decl: decls) {
+            decl.generateCode(codeFile);
+        }
     }
 }

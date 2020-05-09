@@ -5,6 +5,8 @@ import common.error.SemanticException;
 import syntaxtree.Name;
 import syntaxtree.Node;
 
+import java.util.Objects;
+
 public class DataType extends Node {
 
 	private Name name;
@@ -47,5 +49,23 @@ public class DataType extends Node {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		DataType dataType = (DataType) o;
+
+		if (!Objects.equals(name, dataType.name)) return false;
+		return type == dataType.type;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = name != null ? name.hashCode() : 0;
+		result = 31 * result + (type != null ? type.hashCode() : 0);
+		return result;
 	}
 }

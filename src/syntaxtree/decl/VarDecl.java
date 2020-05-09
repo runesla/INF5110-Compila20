@@ -1,7 +1,10 @@
 package syntaxtree.decl;
 
+import bytecode.CodeFile;
 import common.SymbolTable;
+import common.error.CodeGenException;
 import common.error.SemanticException;
+import common.utils.BytecodeTypes;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.expr.Expr;
@@ -43,25 +46,26 @@ public class VarDecl extends Decl {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		if(this.expr != null) {
-			this.expr.typeCheck(symbolTable);
-		}
-
-// TODO: for debugging
 		if(this.dataType == null) {
-			System.out.println("VarDecl " + this.getName().getNameValue() + " has no type");
-		}
-		if (this.expr == null) {
-			System.out.println("VarDecl " + this.getName().getNameValue() + " has no expr");
-		}
-		if (this.dataType != null) {
-			System.out.println("VarDecl " + this.getName().getNameValue() + " has type " + this.getDataType().getName().getNameValue());
+			this.expr.typeCheck(symbolTable);
+			this.dataType = this.expr.getDataType();
 		}
 
 		// Check type matching between declaration and expression
-		if(this.expr != null && (this.dataType != this.expr.getDataType())) {
-			throw new SemanticException("Type mismatch between variable declaration and expression");
-		}
+	//	if(this.expr != null) {
+	//		if(this.dataType != this.expr.getDataType()) {
+	//			throw new SemanticException("Type mismatch between variable declaration and expression");
+	//		}
+	//	}
+	}
+
+	@Override
+	public void generateCode(CodeFile codeFile) throws CodeGenException {
+
+		String var = this.getName().getNameValue();
+
+		codeFile.addVariable(var);
+		codeFile.updateVariable(var, BytecodeTypes.getCodeType(this.dataType));
 	}
 
 	@Override
