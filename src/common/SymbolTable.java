@@ -5,10 +5,7 @@ import common.utils.TypeChecker;
 import syntaxtree.decl.*;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
-import syntaxtree.types.Type;
 import java.util.*;
-import static syntaxtree.types.Type.*;
-import static common.utils.TypeChecker.*;
 
 public class SymbolTable {
 
@@ -84,6 +81,9 @@ public class SymbolTable {
         childTable.procedures.putAll(this.procedures);
         childTable.variables.putAll(this.variables);
         childTable.userDefinedTypes.putAll(this.userDefinedTypes);
+
+        this.getChildTables().add(childTable);
+
         return childTable;
     }
 

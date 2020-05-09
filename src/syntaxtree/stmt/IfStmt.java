@@ -6,7 +6,6 @@ import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.Expr;
-import syntaxtree.types.DataType;
 import static common.utils.StringUtil.*;
 
 public class IfStmt extends Stmt {

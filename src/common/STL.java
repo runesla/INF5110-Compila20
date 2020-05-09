@@ -20,14 +20,6 @@ public class STL {
         ProcDecl readstring = new ProcDecl(new Name("readstring"), new DataType(Type.STRING));      // Read string until first whitespace
         ProcDecl readline = new ProcDecl(new Name("readline"), new DataType(Type.STRING));
 
-
-        /*
-        ProcDecl readint = new ProcDecl("readint", new DataType(Type.INT));
-        ProcDecl readfloat = new ProcDecl("readfloat", new DataType(Type.FLOAT));
-        ProcDecl readchar = new ProcDecl("readchar", new DataType(Type.INT));             // Returns ASCII value. Return -1 for EOF
-        ProcDecl readstring = new ProcDecl("readstring", new DataType(Type.STRING));      // Read string until first whitespace
-        ProcDecl readline = new ProcDecl("readline", new DataType(Type.STRING));
-*/
         STL.add(readint);
         STL.add(readfloat);
         STL.add(readchar);
@@ -46,20 +38,6 @@ public class STL {
         ProcDecl printline = new ProcDecl(new Name("printline"));                         // Write one line, followed by a "newline"
         printstr.addParameter(new ParamDecl(new Name("s"), new DataType(Type.STRING)));
 
-
-/*
-        ProcDecl printint = new ProcDecl("printint");
-        printint.addParameter(new ParamDecl("i", new DataType(Type.INT)));
-
-        ProcDecl printfloat = new ProcDecl("printfloat");
-        printfloat.addParameter(new ParamDecl("f", new DataType(Type.FLOAT)));
-
-        ProcDecl printstr = new ProcDecl("printstr");                           // Write one string
-        printstr.addParameter(new ParamDecl("s", new DataType(Type.STRING)));
-
-        ProcDecl printline = new ProcDecl("printline");                         // Write one line, followed by a "newline"
-        printstr.addParameter(new ParamDecl("s", new DataType(Type.STRING)));
-*/
         STL.add(printint);
         STL.add(printfloat);
         STL.add(printstr);

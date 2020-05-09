@@ -14,7 +14,6 @@ import syntaxtree.stmt.ReturnStmt;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
-
 import java.util.ArrayList;
 import java.util.List;
 import static common.utils.StringUtil.*;
@@ -179,10 +178,6 @@ public class ProcDecl extends Decl {
 					throw new SemanticException("Multiple return statements in procedure " + this.getName().getNameValue());
 				}
 
-				//if(symbolTable.retrieveType(this.returnDataType.getName()) == null) {
-				//	throw new SemanticException("Invalid return type");
-				//}
-
 				if (!(TypeChecker.isCompatibleType(((ReturnStmt) stmt).getDataType(), this.returnDataType))) {
 					throw new SemanticException("Type mismatch between procedure and return statement in procedure " + this.getName().getNameValue());
 				}
@@ -224,12 +219,7 @@ public class ProcDecl extends Decl {
 
 		// Generate code for statements and add instructions to procedure
 		for(Stmt stmt: statements) {
-
 			stmt.generateCode(proc);
-
-			//if(stmt instanceof ReturnStmt) {
-			//	proc.addInstruction(new RETURN());
-			//}
 		}
 
 		codeFile.updateProcedure(proc);

@@ -1,15 +1,12 @@
 package syntaxtree.expr;
 
-import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
-import common.utils.TypeChecker;
 import syntaxtree.Name;
 import syntaxtree.decl.ParamDecl;
 import syntaxtree.decl.RecDecl;
-import syntaxtree.decl.VarDecl;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
 
@@ -20,14 +17,12 @@ public class VarExpr extends Expr {
 	private DataType dataType;
 
 	public VarExpr(Name name) {
-		//this.name = new Name(name);
 		this.name = name;
 	}
 
 	public VarExpr(
 			Name name,
 			DataType dataType) {
-		//this.name = new Name(name);;
 		this.name = name;
 		this.dataType = dataType;
 	}
@@ -35,7 +30,6 @@ public class VarExpr extends Expr {
 	public VarExpr(
 			Name name,
 			Expr expr) {
-		//this.name = new Name(name);;
 		this.name = name;
 		this.expr = expr;
 	}

@@ -1,6 +1,5 @@
 package syntaxtree.stmt;
 
-import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import bytecode.instructions.CALL;
 import common.SymbolTable;
@@ -20,7 +19,6 @@ public class CallStmt extends Stmt {
 	private DataType dataType;
 
 	public CallStmt(Name name, List<Expr> expr) {
-		//this.name = new Name(name);
 		this.name = name;
 		this.expr = expr;
 	}

@@ -5,8 +5,6 @@ import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.expr.Expr;
-import syntaxtree.types.DataType;
-
 import java.util.List;
 import static common.utils.StringUtil.*;
 

@@ -1,6 +1,5 @@
 package syntaxtree.stmt;
 
-import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import common.SymbolTable;
 import common.error.CodeGenException;
@@ -9,7 +8,6 @@ import common.utils.TypeChecker;
 import syntaxtree.expr.DerefVarExpr;
 import syntaxtree.expr.Expr;
 import syntaxtree.expr.VarExpr;
-import syntaxtree.types.DataType;
 import static common.utils.StringUtil.*;
 
 public class AssignStmt extends Stmt {

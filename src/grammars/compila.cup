@@ -44,7 +44,7 @@ terminal                            TYPE_INT;
 terminal                            TYPE_FLOAT;
 terminal                            TYPE_STRING;
 terminal                            TYPE_BOOL;
-terminal String			            ID;             /* terminal Name ID; */
+terminal String			            ID;
 non terminal DataType		        dataType;
 non terminal Name                   name;
 
@@ -97,11 +97,11 @@ precedence right EXP;
 precedence left DOT;
 
 /* The grammar */
-start with program;         /* TODO: !!!! NB !!!! for testing using Name over String for ID, ID:name has been replaced with name:name */
+start with program;
 
 program         ::= PROGRAM name:name BEGIN opt_decl_list:dl END {: RESULT = new Program(name, dl); :};
 
-name            ::= ID:name {: RESULT = new Name(name); :};   /* TODO: for testing with the var null name type thingy */
+name            ::= ID:name {: RESULT = new Name(name); :};
 
 opt_decl_list	::= decl_list:dl {: RESULT = dl; :}
 		        | {: RESULT = new LinkedList<Decl>(); :};
@@ -144,7 +144,7 @@ expr		    ::= log_op_expr:e {: RESULT = e; :}
 		        | arith_op_expr:e {: RESULT = e; :}
 		        | literal_expr:le {: RESULT = le; :}
 		        | call_stmt:cs {: RESULT = new CallExpr(cs); :}
-		        | NEW name:name {: RESULT = new NewExpr(new DataType(name)); :}     /* TODO: new DataType(new Name(name))  */
+		        | NEW name:name {: RESULT = new NewExpr(new DataType(name)); :}
 		        | var:v {: RESULT = v; :}
 		        | ref_var:rv {: RESULT = rv; :}
 		        | deref_var:dv {: RESULT = dv; :}
@@ -177,7 +177,7 @@ ref_var		    ::= REF LPAR var:e RPAR {: RESULT = new RefVarExpr(e); :};
 deref_var	    ::= DEREF LPAR var:e RPAR {: RESULT = new DerefVarExpr(e); :}
 		        | DEREF LPAR deref_var:dv RPAR {: RESULT = dv; :};
 
-var		        ::= name:name {: RESULT = new VarExpr(name); :}                                       /* TODO: must be changed from ID to NAME ?  ID:name -> Name:name    */
+var		        ::= name:name {: RESULT = new VarExpr(name); :}
 		        | expr:e DOT name:name {: RESULT = new VarExpr(name, e); :};
 
 opt_stmt_list	::= stmt_list:sl {: RESULT = sl; :}
@@ -210,7 +210,7 @@ dataType	    ::= TYPE_INT {: RESULT = new DataType(Type.INT); :}
 		        | TYPE_FLOAT {: RESULT = new DataType(Type.FLOAT); :}          /* ("float") */
 		        | TYPE_STRING {: RESULT = new DataType(Type.STRING); :}        /* ("string") */
 		        | REF LPAR dataType:t RPAR {: RESULT = new RefType(t); :}
-		        | name:name {: RESULT = new DataType(name); :};         /* TODO: new DataType(new Name(name)) */
+		        | name:name {: RESULT = new DataType(name); :};
 
 literal_expr	::= INT_LITERAL:il {: RESULT = new IntLiteral(il); :}
 		        | FLOAT_LITERAL:fl {: RESULT = new FloatLiteral(fl); :}

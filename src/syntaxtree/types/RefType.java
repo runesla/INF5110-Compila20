@@ -7,12 +7,7 @@ public class RefType extends DataType {
 	public RefType(DataType dataType) {
 		this.dataType = dataType;
 	}
-/*
-	@Override
-	public String get() {
-		return "(REF " + this.type.getTypeNameValue() + ")";
-	}
-*/
+
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();

@@ -1,8 +1,6 @@
 package syntaxtree;
 
-import bytecode.CodeFile;
 import common.SymbolTable;
-import common.error.CodeGenException;
 import common.error.SemanticException;
 
 public abstract class Node {

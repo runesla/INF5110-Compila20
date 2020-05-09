@@ -3,7 +3,6 @@ package common.utils;
 import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
 import static syntaxtree.types.Type.*;
-import static syntaxtree.types.Type.STRING;
 
 public class TypeChecker {
 

@@ -2,7 +2,6 @@ package compiler;
 
 import java.io.*;
 import java.util.List;
-
 import common.Program;
 import common.SymbolTable;
 import common.error.ParseException;
@@ -13,7 +12,6 @@ import bytecode.*;
 import syntaxtree.decl.ProcDecl;
 import syntaxtree.decl.RecDecl;
 import syntaxtree.decl.VarDecl;
-import syntaxtree.types.DataType;
 import static common.utils.ReturnValues.*;
 
 public class Compiler {
@@ -36,12 +34,12 @@ public class Compiler {
 		InputStream inputStream = null;
 		inputStream = new FileInputStream(this.inFilename);
 		Lexer lexer = new Lexer(inputStream);
-		parser parser = new parser(lexer);			// TODO: getting error "Required type Scanner, Provided Lexer". Wtf!?
+		parser parser = new parser(lexer);
 		Program program = null;
 
 		// Run lexer and parser
 		try {
-			program = (Program)parser.parse().value;		// TODO: getting error "cannot resolve 'parse' in 'parser'". Also wtf!?
+			program = (Program)parser.parse().value;
 		} catch(ParseException e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
@@ -67,7 +65,9 @@ public class Compiler {
 			System.exit(GENERAL_ERROR);
 		}
 
-		printSymTable();// TODO: for debugging
+		// Uncomment for post-typechecking printout of symbol tables
+		printSymTable();
+
 		// Generate code
 		try {
 		//	generateCode(program);
@@ -76,19 +76,7 @@ public class Compiler {
 			System.err.println("ERROR: " + e.getMessage());
 			System.exit(CODEGEN_ERROR);
 		}
-/*
-		if(program.checkSemantics(symbolTable)){
-            writeAST(program);
-            generateCode(program);
-            return SUCCESS;
-        } else if (false){ 		// If SYNTAX ERROR (Should not get that for the tests):
-            //return 1;
-			return SYNTAX_ERROR;
-        } else { 				// If SEMANTIC ERROR (Should get that for the test with "_fail" in the name):
-            //return 2;
-			return SEMANTIC_ERROR;
-        }
- */
+
 		return SUCCESS;
 	}
 
@@ -109,33 +97,38 @@ public class Compiler {
 
     private void printSymTable() {
 		for(ProcDecl procs: symbolTable.getProcs()) {
-			System.out.println("PROCEDURE: " + procs.getName().getNameValue());
+			System.out.println("PROCEDURE: " + procs.getName().getNameValue() + " WITH RETURN VALUE "
+					+ (procs.getDataType() != null ? procs.getDataType().getName().getNameValue() : " VOID "));
 		}
 
 		for(VarDecl vars: symbolTable.getVars()) {
-			System.out.println("VARIABLE: " + vars.getName().getNameValue());
+			System.out.println("VARIABLE: " + vars.getName().getNameValue()
+					+ " WITH DATATYPE " + vars.getDataType().getName().getNameValue());
 		}
 
 		for(RecDecl types: symbolTable.getRegisteredTypes()) {
-			System.out.println("TYPE: " + types.getName().getNameValue());
+			System.out.println("TYPE: " + types.getName().getNameValue()
+					+ " WITH DATATYPE " + types.getDataType().getName().getNameValue());
 		}
 
 		List<SymbolTable> childTables = symbolTable.getChildTables();
 
+		System.out.println("Number of child tables: " + childTables.size());
 		System.out.println("\nIN CHILD TABLES:");
 
 		for(SymbolTable sym: childTables) {
-			for(ProcDecl childprocs: sym.getProcs()) {
-				System.out.println("PROCEDURE: " + childprocs.getName().getNameValue());
+			//for (ProcDecl childprocs : sym.getProcs()) {
+			//	System.out.println("CHILD TABLE PROCEDURE: " + childprocs.getName().getNameValue());
+			//}
+
+			for (VarDecl childvars : sym.getVars()) {
+				System.out.println("CHILD TABLE VARIABLE: " + childvars.getName().getNameValue()
+						+ " WITH DATATYPE " + childvars.getDataType().getName().getNameValue());
 			}
 
-			for(VarDecl childvars: sym.getVars()) {
-				System.out.println("VARIABLE: " + childvars.getName().getNameValue());
-			}
-
-			for(RecDecl childtypes: sym.getRegisteredTypes()) {
-				System.out.println("TYPE: " + childtypes.getName().getNameValue());
-			}
+			//for (RecDecl childtypes : sym.getRegisteredTypes()) {
+			//	System.out.println("CHILD TABLE TYPE: " + childtypes.getName().getNameValue());
+			//}
 		}
 	}
 
