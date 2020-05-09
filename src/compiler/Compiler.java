@@ -1,6 +1,8 @@
 package compiler;
 
 import java.io.*;
+import java.util.List;
+
 import common.Program;
 import common.SymbolTable;
 import common.error.ParseException;
@@ -9,6 +11,7 @@ import common.error.SyntaxException;
 import parser.*;
 import bytecode.*;
 import syntaxtree.decl.ProcDecl;
+import syntaxtree.decl.RecDecl;
 import syntaxtree.decl.VarDecl;
 import syntaxtree.types.DataType;
 import static common.utils.ReturnValues.*;
@@ -52,7 +55,6 @@ public class Compiler {
 		} catch (SemanticException e) {
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
-			printSymTable();				// TODO: for debugging
 			return SEMANTIC_ERROR;
 		}
 
@@ -65,9 +67,10 @@ public class Compiler {
 			System.exit(GENERAL_ERROR);
 		}
 
+		printSymTable();// TODO: for debugging
 		// Generate code
 		try {
-			generateCode(program);
+		//	generateCode(program);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
@@ -113,8 +116,26 @@ public class Compiler {
 			System.out.println("VARIABLE: " + vars.getName().getNameValue());
 		}
 
-		for(DataType types: symbolTable.getRegisteredTypes()) {
+		for(RecDecl types: symbolTable.getRegisteredTypes()) {
 			System.out.println("TYPE: " + types.getName().getNameValue());
+		}
+
+		List<SymbolTable> childTables = symbolTable.getChildTables();
+
+		System.out.println("\nIN CHILD TABLES:");
+
+		for(SymbolTable sym: childTables) {
+			for(ProcDecl childprocs: sym.getProcs()) {
+				System.out.println("PROCEDURE: " + childprocs.getName().getNameValue());
+			}
+
+			for(VarDecl childvars: sym.getVars()) {
+				System.out.println("VARIABLE: " + childvars.getName().getNameValue());
+			}
+
+			for(RecDecl childtypes: sym.getRegisteredTypes()) {
+				System.out.println("TYPE: " + childtypes.getName().getNameValue());
+			}
 		}
 	}
 

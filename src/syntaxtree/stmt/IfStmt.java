@@ -53,11 +53,6 @@ public class IfStmt extends Stmt {
 	}
 
 	@Override
-	public DataType getDataType() {
-		return null;
-	}
-
-	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
 		this.expr.generateCode(proc);
 

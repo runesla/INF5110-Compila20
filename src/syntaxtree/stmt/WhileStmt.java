@@ -42,11 +42,6 @@ public class WhileStmt extends Stmt {
 	}
 
 	@Override
-	public DataType getDataType() throws SemanticException {
-		return this.expr.getDataType();
-	}
-
-	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
 		this.expr.generateCode(proc);
 

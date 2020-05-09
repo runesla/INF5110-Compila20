@@ -1,24 +1,16 @@
-(PROGRAM (NAME runme)
-	(STRUCT (NAME syntaxtree.Name@14fded9d)
-		(VAR_DECL 
-			(TYPE ): (NAME syntaxtree.Name@4f2d995e)
-		)
-		(VAR_DECL 
-			(TYPE ): (NAME syntaxtree.Name@6d099323)
-		)
+(PROGRAM (NAME syntaxtree.Name@67d5182)
+	(STRUCT (NAME Complex)
+		(VAR_DECL (PARAM_DECL Real(NAME ))
+		(VAR_DECL (PARAM_DECL Imag(NAME ))
 	)
 	(VAR_DECL 
-		(NAME ) :  (NAME syntaxtree.Name@75babb67)
+		(NAME ) :  (NAME dummy)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@3eb3232b) : (NAME )
-		(PARAM_DECL 
-			(NAME ): (NAME syntaxtree.Name@27df95e)
-		)
-		(PARAM_DECL 
-			(NAME ): (NAME syntaxtree.Name@2b0e9f30)
-		)
+	(PROCEDURE (NAME Add) : (NAME )
+		(PARAM_DECL (PARAM_DECL a(NAME ))
+		(PARAM_DECL (PARAM_DECL b(NAME ))
 		(VAR_DECL 
-			(NAME ) :  (NAME syntaxtree.Name@5eea5627)
+			(NAME ) :  (NAME retval)
 		)
 		(ASSIGN_STMT 
 			(NAME retval)
@@ -45,15 +37,11 @@
 		)
 		(RETURN_STMT (NAME retval))
 	)
-	(PROCEDURE (NAME syntaxtree.Name@69cd1085) : (TYPE )
-		(PARAM_DECL 
-			(TYPE ): (NAME syntaxtree.Name@5dbb50f3)
-		)
-		(PARAM_DECL 
-			(TYPE ): (NAME syntaxtree.Name@4a2e7bcb)
-		)
+	(PROCEDURE (NAME Max) : (NAME )
+		(PARAM_DECL (PARAM_DECL a(NAME ))
+		(PARAM_DECL (PARAM_DECL b(NAME ))
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@575c3e9b)
+			(NAME ) :  (NAME res)
 		)
 		(IF_STMT (REL_OPR_EX 
 			(NAME a)
@@ -72,15 +60,13 @@
 		)
 		(RETURN_STMT (NAME res))
 	)
-	(PROCEDURE (NAME syntaxtree.Name@60bb7995)
-		(PARAM_DECL 
-			(NAME ): (NAME syntaxtree.Name@3e36b7a0)
-		)
+	(PROCEDURE (NAME printCmplx)
+		(PARAM_DECL (PARAM_DECL pr(NAME ))
 		(CALL_STMT printstr
 			(STRING_LITERAL Real )
 		)
 		(CALL_STMT printfloat
-			(PAR_EXPR (NAME pr)) . (NAME Real)
+			(NAME pr) . (NAME Real)
 		)
 		(CALL_STMT printline
 			(STRING_LITERAL )
@@ -89,30 +75,30 @@
 			(STRING_LITERAL Imag )
 		)
 		(CALL_STMT printfloat
-			(PAR_EXPR (NAME pr)) . (NAME Imag)
+			(NAME pr) . (NAME Imag)
 		)
 		(CALL_STMT printline
 			(STRING_LITERAL )
 		)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@40fa8766)
+	(PROCEDURE (NAME test)
 		(VAR_DECL 
-			(NAME ) :  (NAME syntaxtree.Name@3c66b7d8)
+			(NAME ) :  (NAME c1)
 		)
 		(VAR_DECL 
-			(NAME ) :  (NAME syntaxtree.Name@37e69c43)
+			(NAME ) :  (NAME c2)
 		)
 		(VAR_DECL 
-			(NAME ) :  (NAME syntaxtree.Name@5c7dfc05)
+			(NAME ) :  (NAME cAdd)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@345d053b)
+			(NAME ) :  (NAME x)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@3d0cac1f)
+			(NAME ) :  (NAME y)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@3e8b3b79)
+			(NAME ) :  (NAME max)
 		)
 		(ASSIGN_STMT 
 			(NAME c1)
@@ -173,20 +159,18 @@
 			)
 		)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@67774e29)
-		(PARAM_DECL 
-			(TYPE ): (NAME syntaxtree.Name@939ff41)
-		)
+	(PROCEDURE (NAME printStr)
+		(PARAM_DECL (PARAM_DECL str(NAME ))
 		(CALL_STMT printstr
 			(NAME str)
 		)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@663f237a)
+	(PROCEDURE (NAME inOutTest)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@6e0e5dec)
+			(NAME ) :  (NAME v1)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@48a663e9)
+			(NAME ) :  (NAME v2)
 		)
 		(CALL_STMT printline
 			(STRING_LITERAL skriv v1)
@@ -225,15 +209,15 @@
 			(STRING_LITERAL )
 		)
 	)
-	(PROCEDURE (NAME syntaxtree.Name@5d7399f9)
+	(PROCEDURE (NAME main)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@777d0bc3)
+			(NAME ) :  (NAME num)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@3178219a)
+			(NAME ) :  (NAME num2)
 		)
 		(VAR_DECL 
-			(TYPE ) :  (NAME syntaxtree.Name@2d85fb64)
+			(NAME ) :  (NAME navn)
 		)
 		(ASSIGN_STMT 
 			(NAME num)

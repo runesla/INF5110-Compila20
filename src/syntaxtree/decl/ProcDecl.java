@@ -9,6 +9,7 @@ import common.error.CodeGenException;
 import common.error.SemanticException;
 import common.error.SyntaxException;
 import common.utils.BytecodeTypes;
+import common.utils.TypeChecker;
 import syntaxtree.stmt.ReturnStmt;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
@@ -171,14 +172,19 @@ public class ProcDecl extends Decl {
 
 			if(stmt instanceof ReturnStmt) {
 
-				returnStmtPresent = true;
-
-				if(symbolTable.retrieveType(this.returnDataType.getName()) == null) {
-					throw new SemanticException("Invalid return type");
+				// Ensure only one presence of return statements
+				if(!returnStmtPresent) {
+					returnStmtPresent = true;
+				} else {
+					throw new SemanticException("Multiple return statements in procedure " + this.getName().getNameValue());
 				}
 
-				if (stmt.getDataType() != this.returnDataType) {
-					throw new SemanticException("Type mismatch between procedure and return statement");
+				//if(symbolTable.retrieveType(this.returnDataType.getName()) == null) {
+				//	throw new SemanticException("Invalid return type");
+				//}
+
+				if (!(TypeChecker.isCompatibleType(((ReturnStmt) stmt).getDataType(), this.returnDataType))) {
+					throw new SemanticException("Type mismatch between procedure and return statement in procedure " + this.getName().getNameValue());
 				}
 			}
 		}

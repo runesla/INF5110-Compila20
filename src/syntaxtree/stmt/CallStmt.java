@@ -7,9 +7,9 @@ import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
 import syntaxtree.Name;
+import syntaxtree.decl.ProcDecl;
 import syntaxtree.expr.Expr;
 import syntaxtree.types.DataType;
-
 import java.util.List;
 import static common.utils.StringUtil.*;
 
@@ -17,11 +17,19 @@ public class CallStmt extends Stmt {
 
 	private final Name name;
 	private final List<Expr> expr;
+	private DataType dataType;
 
 	public CallStmt(Name name, List<Expr> expr) {
 		//this.name = new Name(name);
 		this.name = name;
 		this.expr = expr;
+	}
+
+	public DataType getDataType() throws SemanticException {
+		if(this.dataType == null) {
+			throw new SemanticException("No datatype defined for call statement");
+		}
+		return this.dataType;
 	}
 	
 	@Override
@@ -40,9 +48,13 @@ public class CallStmt extends Stmt {
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
 		// Check if called symbol exists
-		if(symbolTable.retrieveType(this.name) == null) {
+		ProcDecl proc = symbolTable.retrieveProcedure(this.name);
+
+		if(proc == null) {
 			throw new SemanticException("No declaration exists of symbol " + this.name.getNameValue());
 		}
+
+		this.dataType = proc.getDataType();
 
 		for(Expr e: expr) {
 			e.typeCheck(symbolTable);
@@ -57,10 +69,5 @@ public class CallStmt extends Stmt {
 		}
 
 		proc.addInstruction(new CALL(proc.procedureNumber(proc.getName())));
-	}
-
-	@Override
-	public DataType getDataType() {
-		return null;
 	}
 }

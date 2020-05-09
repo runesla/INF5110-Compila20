@@ -41,8 +41,8 @@ public class ArithOpExpr extends Expr {
 		e2.typeCheck(symbolTable);
 
 		// Check types of left- and right-hand side operands
-		if(e1.getDataType().getType() != Type.INT || e1.getDataType().getType() != Type.FLOAT
-				|| e2.getDataType().getType() != Type.INT || e2.getDataType().getType() != Type.FLOAT) {
+		if(!(e1.getDataType().getType() == Type.INT || e1.getDataType().getType() == Type.FLOAT)
+				|| !(e2.getDataType().getType() == Type.INT || e2.getDataType().getType() == Type.FLOAT)) {
 			throw new SemanticException("Invalid type in arithmetic expression");
 		}
 

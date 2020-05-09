@@ -5,7 +5,9 @@ import bytecode.CodeProcedure;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
+import common.utils.TypeChecker;
 import syntaxtree.Name;
+import syntaxtree.decl.ParamDecl;
 import syntaxtree.decl.RecDecl;
 import syntaxtree.decl.VarDecl;
 import syntaxtree.types.DataType;
@@ -63,24 +65,30 @@ public class VarExpr extends Expr {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		// Assign datatype based on registered type
-		if(this.dataType == null) {
+		// Assign datatype based on registered variable type
+		// This is if the expression is not a DOT operator
+		if(this.expr == null) {
 			this.dataType = symbolTable.retrieveVariable(this.name).getDataType();
+
+			return;
 		}
 
-		// Check valid type
-		if(this.expr != null) {
-			this.expr.typeCheck(symbolTable);
+		// Else if expression is a DOT operator, access the appropriate declaration
+		this.expr.typeCheck(symbolTable);
 
-			if(this.expr.getDataType().getType() != this.dataType.getType()) {
-				throw new SemanticException("Type mismatch between variable and expression");
+		if(this.expr.getDataType().getType() == Type.UDT) {
+			RecDecl rec = symbolTable.retrieveType(this.expr.getDataType());
+
+			for(ParamDecl par: rec.getParams()) {
+				if(this.name.equals(par.getName())) {
+					this.dataType = par.getDataType();
+
+					return;
+				}
 			}
+		} else {
+			throw new SemanticException("Type cannot be primitive");
 		}
-	}
-
-	@Override
-	public void generateCode(CodeProcedure proc) throws CodeGenException {
-
 	}
 
 	@Override
@@ -90,5 +98,10 @@ public class VarExpr extends Expr {
 		}
 
 		return this.dataType;
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+
 	}
 }

@@ -5,9 +5,12 @@ import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
 import common.utils.BytecodeTypes;
+import common.utils.TypeChecker;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.expr.Expr;
+import syntaxtree.types.Type;
+
 import static common.utils.StringUtil.*;
 
 public class VarDecl extends Decl {
@@ -47,16 +50,49 @@ public class VarDecl extends Decl {
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
 		if(this.dataType == null) {
-			this.expr.typeCheck(symbolTable);
-			this.dataType = this.expr.getDataType();
+			VarDecl var = symbolTable.retrieveVariable(this.getName());
+
+			if(var == null) {
+				throw new SemanticException("Undeclared type");
+			}
+
+			this.dataType = var.getDataType();
 		}
 
-		// Check type matching between declaration and expression
-	//	if(this.expr != null) {
-	//		if(this.dataType != this.expr.getDataType()) {
-	//			throw new SemanticException("Type mismatch between variable declaration and expression");
-	//		}
-	//	}
+		if(this.expr != null) {
+			this.expr.typeCheck(symbolTable);
+		}
+
+/*		// ATTEMPT #2
+		if(!(TypeChecker.isPrimitive(this.dataType.getType()))) {
+			if(this.dataType.getType() == Type.UDT) {
+
+				DataType type = symbolTable.retrieveType(this.getName()).getDataType();
+
+				if(this.dataType.equals(type)) {
+					throw new SemanticException("Undeclared struct " + this.dataType.getName().getNameValue());
+				}
+			} else {
+				throw new SemanticException("Invalid type " + this.getDataType().getName().getNameValue() +
+						" for declaration " + this.getName().getNameValue());
+			}
+		}
+
+ */
+		/* // ATTEMPT #1
+		if(this.dataType == null) {
+			this.expr.typeCheck(symbolTable);
+			this.dataType = symbolTable.retrieveVariable(this.getName()).getDataType();
+
+		} else {
+			if(!(TypeChecker.isPrimitive(this.dataType.getType()))) {
+				if (symbolTable.retrieveType(this.dataType.getName()) == null) {
+					throw new SemanticException("Undeclared struct or invalid type " + this.dataType.getName().getNameValue());
+				}
+			}
+		}
+
+		 */
 	}
 
 	@Override

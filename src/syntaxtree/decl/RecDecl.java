@@ -27,6 +27,10 @@ public class RecDecl extends Decl {
 		this.params = params;
 	}
 
+	public List<ParamDecl> getParams() {
+		return this.params;
+	}
+
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();

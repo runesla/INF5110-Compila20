@@ -18,6 +18,13 @@ public class ReturnStmt extends Stmt {
 	public ReturnStmt(Expr expr) {
 		this.expr = expr;
 	}
+
+	public DataType getDataType() throws SemanticException {
+		if(expr.getDataType() == null) {
+			throw new SemanticException("No data type defined for return statement");
+		}
+		return expr.getDataType();
+	}
 	
 	@Override
 	public String printAst(int level) {
@@ -33,11 +40,6 @@ public class ReturnStmt extends Stmt {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 		this.expr.typeCheck(symbolTable);
-	}
-
-	@Override
-	public DataType getDataType() throws SemanticException {				// TODO: can return have no expr? Must have null checker if so
-		return this.expr.getDataType();
 	}
 
 	@Override

@@ -22,7 +22,6 @@ public class NewExpr extends Expr {
 		builder.append("(NEW ");
 		builder.append(this.dataType.printAst(level));
 		builder.append(")");
-
 		return builder.toString();
 	}
 
@@ -30,7 +29,8 @@ public class NewExpr extends Expr {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 		if(this.dataType.getType() != Type.UDT) {
-			throw new SemanticException("Invalid type for 'new' expression, cannot be primitive or string type");
+			throw new SemanticException("Invalid type '" + this.dataType.getName().getNameValue() +
+					"' for 'new' expression, cannot be primitive or string type");
 		}
 	}
 

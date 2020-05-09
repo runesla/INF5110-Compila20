@@ -43,6 +43,10 @@ public class Program extends Node {
 
         boolean hasMain = false;
 
+        for(ProcDecl proc: stdLib.getSTL()) {
+            symbolTable.insertProcedure(proc);
+        }
+
         for (Decl decl: decls) {
             symbolTable.insert(decl);
             decl.typeCheck(symbolTable);

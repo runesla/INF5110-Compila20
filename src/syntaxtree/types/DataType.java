@@ -4,7 +4,6 @@ import common.SymbolTable;
 import common.error.SemanticException;
 import syntaxtree.Name;
 import syntaxtree.Node;
-
 import java.util.Objects;
 
 public class DataType extends Node {

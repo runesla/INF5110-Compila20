@@ -1,13 +1,14 @@
 package common;
 
 import common.error.SemanticException;
+import common.utils.TypeChecker;
 import syntaxtree.decl.*;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.types.Type;
 import java.util.*;
-
 import static syntaxtree.types.Type.*;
+import static common.utils.TypeChecker.*;
 
 public class SymbolTable {
 
@@ -58,7 +59,7 @@ public class SymbolTable {
     }
 
     public void insertUserDefinedType(RecDecl udt) throws SemanticException {
-        if(!isPrimitive(udt.getDataType().getType())) {
+        if(!(TypeChecker.isPrimitive(udt.getDataType().getType()))) {
             if (userDefinedTypes.containsKey(udt.getName())) {
                 throw new SemanticException("Duplicate type declaration " + udt.getName().getNameValue());
             }
@@ -70,7 +71,7 @@ public class SymbolTable {
         return userDefinedTypes.get(name);
     }
 
-    public RecDecl retrieveType(Type type) {
+    public RecDecl retrieveType(DataType type) {
         return userDefinedTypes.get(type.getName());
     }
 
@@ -84,10 +85,6 @@ public class SymbolTable {
         childTable.variables.putAll(this.variables);
         childTable.userDefinedTypes.putAll(this.userDefinedTypes);
         return childTable;
-    }
-
-    private boolean isPrimitive(Type type) {
-        return type == INT || type == BOOL || type == FLOAT || type == STRING;
     }
 
     public List<ProcDecl> getProcs() {
