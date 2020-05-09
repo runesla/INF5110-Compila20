@@ -1,7 +1,5 @@
 package syntaxtree.types.operators;
 
-import syntaxtree.Name;
-
 public enum RelOpr {
 
     EQ {
@@ -42,4 +40,23 @@ public enum RelOpr {
     };
 
     public abstract String get();
+
+    public static RelOpr getOpr(String opr) {
+        switch (opr) {
+            case "=":
+                return EQ;
+            case "<":
+                return LT;
+            case ">":
+                return GT;
+            case "<=":
+                return LTEQUAL;
+            case ">=":
+                return GTEQUAL;
+            case "<>":
+                return NEQUAL;
+            default:
+                throw new IllegalArgumentException("Not a valid operator: " + opr);
+        }
+    }
 }

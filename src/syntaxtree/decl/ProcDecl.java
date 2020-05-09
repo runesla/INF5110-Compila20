@@ -14,6 +14,7 @@ import syntaxtree.stmt.ReturnStmt;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
+import syntaxtree.types.Type;
 import java.util.ArrayList;
 import java.util.List;
 import static common.utils.StringUtil.*;
@@ -28,6 +29,7 @@ public class ProcDecl extends Decl {
 	// No return type, "default" constructor
 	public ProcDecl(Name name) {
 		super(name);
+		this.returnDataType = new DataType(Type.VOID);
 		this.params = new ArrayList<>();
 		this.declarations = new ArrayList<>();
 		this.statements = new ArrayList<>();
@@ -38,6 +40,7 @@ public class ProcDecl extends Decl {
 			Name name,
 			List<ParamDecl> params) {
 		super(name);
+		this.returnDataType = new DataType(Type.VOID);
 		this.params = params;
 		this.declarations = new ArrayList<>();
 		this.statements = new ArrayList<>();
@@ -49,6 +52,7 @@ public class ProcDecl extends Decl {
 			List<ParamDecl> params,
 			List<Stmt> statements) {
 		super(name);
+		this.returnDataType = new DataType(Type.VOID);
 		this.params = params;
 		this.statements = statements;
 		this.declarations = new ArrayList<>();

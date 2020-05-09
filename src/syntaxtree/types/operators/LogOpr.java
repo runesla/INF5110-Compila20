@@ -16,4 +16,15 @@ public enum LogOpr {
     };
 
     public abstract String get();
+
+    public static LogOpr getOpr(String opr) {
+        switch (opr) {
+            case "||":
+                return LOG_OR;
+            case "&&":
+                return LOG_AND;
+            default:
+                throw new IllegalArgumentException("Not a valid operator: " + opr);
+        }
+    }
 }

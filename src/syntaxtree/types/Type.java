@@ -39,6 +39,12 @@ public enum Type {
         public String get() {
             return "null";
         }
+    },
+    VOID(null) {
+        @Override
+        public String get() {
+            return "void";
+        }
     };
 
     private Name name;

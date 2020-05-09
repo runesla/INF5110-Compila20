@@ -63,11 +63,13 @@ public class Program extends Node {
 
     public void generateCode(CodeFile codeFile) throws CodeGenException {
 
-        for(ProcDecl procDecl: stdLib.getSTL()) {           // TODO: does this work?
+        for(ProcDecl procDecl: stdLib.getSTL()) {
+            System.out.println("CodeGen for stdlib: " + procDecl.getName().getNameValue());
             procDecl.generateCode(codeFile);
         }
 
         for(Decl decl: decls) {
+            System.out.println("CodeGen for decl: " + decl.getName().getNameValue());
             decl.generateCode(codeFile);
         }
     }

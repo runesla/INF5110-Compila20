@@ -4,7 +4,6 @@ import syntaxtree.Name;
 
 public enum ArithOpr {
 
-
     ADDOP("+") {
         @Override
         public String get() {
@@ -47,4 +46,21 @@ public enum ArithOpr {
     }
 
     public abstract String get();
+
+    public static ArithOpr getOpr(String opr) {
+        switch(opr) {
+            case "+":
+                return ArithOpr.ADDOP;
+            case "-":
+                return ArithOpr.SUBOP;
+            case "*":
+                return ArithOpr.MULOP;
+            case "/":
+                return ArithOpr.DIVOP;
+            case "^":
+                return ArithOpr.EXP;
+            default:
+                throw new IllegalArgumentException("Not a valid operator: " + opr);
+        }
+    }
 }

@@ -26,16 +26,16 @@ public class STL {
         STL.add(readstring);
         STL.add(readline);
 
-        ProcDecl printint = new ProcDecl(new Name("printint"));
+        ProcDecl printint = new ProcDecl(new Name("printint"), new DataType(Type.VOID));
         printint.addParameter(new ParamDecl(new Name("i"), new DataType(Type.INT)));
 
-        ProcDecl printfloat = new ProcDecl(new Name("printfloat"));
+        ProcDecl printfloat = new ProcDecl(new Name("printfloat"), new DataType(Type.VOID));
         printfloat.addParameter(new ParamDecl(new Name("f"), new DataType(Type.FLOAT)));
 
-        ProcDecl printstr = new ProcDecl(new Name("printstr"));                           // Write one string
+        ProcDecl printstr = new ProcDecl(new Name("printstr"), new DataType(Type.VOID));                                     // Write one string
         printstr.addParameter(new ParamDecl(new Name("s"), new DataType(Type.STRING)));
 
-        ProcDecl printline = new ProcDecl(new Name("printline"));                         // Write one line, followed by a "newline"
+        ProcDecl printline = new ProcDecl(new Name("printline"), new DataType(Type.VOID));                                   // Write one line, followed by a "newline"
         printstr.addParameter(new ParamDecl(new Name("s"), new DataType(Type.STRING)));
 
         STL.add(printint);

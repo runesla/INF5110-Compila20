@@ -19,10 +19,10 @@ public class BytecodeTypes {
                 return BoolType.TYPE;
             case STRING:
                 return StringType.TYPE;
-            case NULL:
+            case VOID:
                 return VoidType.TYPE;
             case UDT:
-                return new RefType(1);	//rec.structNumber(this.getName().getNameValue())
+                return new RefType(1);	// TODO: rec.structNumber(this.getName().getNameValue())
             default:
                 throw new CodeGenException("Could not determine return type");
         }
@@ -30,7 +30,7 @@ public class BytecodeTypes {
 
     public static Instruction getArithmeticOperator(String operator) throws CodeGenException {
 
-        switch (ArithOpr.valueOf(operator)) {
+        switch (ArithOpr.getOpr(operator)) {
             case ADDOP:
                 return new ADD();
             case SUBOP:
@@ -48,7 +48,7 @@ public class BytecodeTypes {
 
     public static Instruction getLogicalOperator(String operator) throws CodeGenException {
 
-        switch (LogOpr.valueOf(operator)) {
+        switch (LogOpr.getOpr(operator)) {
             case LOG_AND:
                 return new AND();
             case LOG_OR:
@@ -60,7 +60,7 @@ public class BytecodeTypes {
 
     public static Instruction getRelationalOperator(String operator) throws CodeGenException {
 
-        switch (RelOpr.valueOf(operator)) {
+        switch (RelOpr.getOpr(operator)) {
             case EQ:
                 return new EQ();
             case LT:
