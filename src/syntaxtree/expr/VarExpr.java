@@ -97,5 +97,10 @@ public class VarExpr extends Expr {
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
 
+		if(this.expr == null) {
+			// TODO: what do I even do here
+		} else {
+			this.expr.generateCode(proc);
+		}
 	}
 }

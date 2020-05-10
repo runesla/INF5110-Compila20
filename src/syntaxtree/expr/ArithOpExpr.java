@@ -13,23 +13,23 @@ import static syntaxtree.types.operators.ArithOpr.*;
 
 public class ArithOpExpr extends Expr {
 
-	private final Expr e1;
+	private final Expr leftExor;
 	private final String operator;
-	private final Expr e2;
+	private final Expr rightExpr;
 
-	public ArithOpExpr(Expr e1, String operator, Expr e2) {
-		this.e1 = e1;
+	public ArithOpExpr(Expr leftExor, String operator, Expr rightExpr) {
+		this.leftExor = leftExor;
 		this.operator = operator;
-		this.e2 = e2;
+		this.rightExpr = rightExpr;
 	}
 
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(ARITH_OP_EXPR ");
-		builder.append("\n" + repeat("\t", level + 1) + e1.printAst(level));
+		builder.append("\n" + repeat("\t", level + 1) + leftExor.printAst(level));
 		builder.append("\n" + repeat("\t", level + 1) + operator);
-		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level));
+		builder.append("\n" + repeat("\t", level + 1) + rightExpr.printAst(level));
 		builder.append("\n" + repeat("\t", level) + ")");
 		return builder.toString();
 	}
@@ -37,12 +37,12 @@ public class ArithOpExpr extends Expr {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		e1.typeCheck(symbolTable);
-		e2.typeCheck(symbolTable);
+		leftExor.typeCheck(symbolTable);
+		rightExpr.typeCheck(symbolTable);
 
 		// Check types of left- and right-hand side operands
-		if(!(e1.getDataType().getType() == Type.INT || e1.getDataType().getType() == Type.FLOAT)
-				|| !(e2.getDataType().getType() == Type.INT || e2.getDataType().getType() == Type.FLOAT)) {
+		if(!(leftExor.getDataType().getType() == Type.INT || leftExor.getDataType().getType() == Type.FLOAT)
+				|| !(rightExpr.getDataType().getType() == Type.INT || rightExpr.getDataType().getType() == Type.FLOAT)) {
 			throw new SemanticException("Invalid type in arithmetic expression");
 		}
 
@@ -54,7 +54,7 @@ public class ArithOpExpr extends Expr {
 
 	@Override
 	public DataType getDataType() throws SemanticException {
-		if(e1.getDataType().getType() == Type.FLOAT || e2.getDataType().getType() == Type.FLOAT) {
+		if(leftExor.getDataType().getType() == Type.FLOAT || rightExpr.getDataType().getType() == Type.FLOAT) {
 			return new DataType(Type.FLOAT);
 		}
 		return new DataType(Type.INT);
@@ -62,8 +62,8 @@ public class ArithOpExpr extends Expr {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-		this.e1.generateCode(proc);
-		this.e2.generateCode(proc);
+		this.leftExor.generateCode(proc);
+		this.rightExpr.generateCode(proc);
 		proc.addInstruction(BytecodeTypes.getArithmeticOperator(this.operator));
 	}
 }

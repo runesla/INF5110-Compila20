@@ -2,9 +2,7 @@ package syntaxtree.decl;
 
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
-import bytecode.instructions.LOADLOCAL;
 import bytecode.instructions.RETURN;
-import bytecode.instructions.STORELOCAL;
 import bytecode.type.*;
 import common.SymbolTable;
 import common.error.CodeGenException;
@@ -18,7 +16,6 @@ import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
 import syntaxtree.types.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import static common.utils.StringUtil.*;
 
@@ -220,10 +217,8 @@ public class ProcDecl extends Decl {
 
 			if(paramDecl.getDataType().getType() == Type.UDT) {
 				paramType = new RefType(codeFile.structNumber(paramDecl.getDataType().getName().getNameValue()));
-				//proc.addParameter(paramDecl.getName().getNameValue(), new RefType(codeFile.structNumber(paramDecl.getDataType().getName().getNameValue())));
 			} else {
 				paramType = BytecodeTypes.getCodeType(paramDecl.getDataType());
-				//proc.addParameter(paramDecl.getName().getNameValue(), BytecodeTypes.getCodeType(paramDecl.getDataType()));
 			}
 			proc.addParameter(paramDecl.getName().getNameValue(), paramType);
 			//proc.addInstruction(new STORELOCAL(proc.variableNumber(paramDecl.getName().getNameValue())));		// TODO: move to VarExpr?

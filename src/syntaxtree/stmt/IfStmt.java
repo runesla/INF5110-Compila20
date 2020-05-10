@@ -11,22 +11,22 @@ import static common.utils.StringUtil.*;
 public class IfStmt extends Stmt {
 	
 	private final Expr expr;
-	private final List<Stmt> stmt1;
-	private List<Stmt> stmt2;
+	private final List<Stmt> ifThenStmt;
+	private List<Stmt> elseStmt;
 
 	// No ELSE-part constructor
-	public IfStmt(Expr expr, List<Stmt> stmt1) {
+	public IfStmt(Expr expr, List<Stmt> ifThenStmt) {
 		this.expr = expr;
-		this.stmt1 = stmt1;
+		this.ifThenStmt = ifThenStmt;
 	}
 
 	// ELSE-part constructor
 	public IfStmt(Expr expr, 
-			List<Stmt> stmt1, 
-			List<Stmt> stmt2) {
+			List<Stmt> ifThenStmt,
+			List<Stmt> elseStmt) {
 		this.expr = expr;
-		this.stmt1 = stmt1;
-		this.stmt2 = stmt2;
+		this.ifThenStmt = ifThenStmt;
+		this.elseStmt = elseStmt;
 	}
 	
 	@Override
@@ -34,11 +34,11 @@ public class IfStmt extends Stmt {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(IF_STMT ");
 		builder.append(expr.printAst(level));
-		for(Stmt s : stmt1) {
+		for(Stmt s : ifThenStmt) {
 			builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 		}
-		if(stmt2 != null) {
-			for(Stmt s: stmt2) {
+		if(elseStmt != null) {
+			for(Stmt s: elseStmt) {
 				builder.append("\n" + repeat("\t", level + 1) + s.printAst(level + 1));
 			}
 		}
@@ -48,19 +48,31 @@ public class IfStmt extends Stmt {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+		this.expr.typeCheck(symbolTable);
 
+		for(Stmt stmt: ifThenStmt) {
+			stmt.typeCheck(symbolTable);
+		}
+
+		if(elseStmt != null) {
+			for (Stmt stmt: elseStmt) {
+				stmt.typeCheck(symbolTable);
+			}
+		}
 	}
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
 		this.expr.generateCode(proc);
 
-		for(Stmt stmt: stmt1) {
+		for(Stmt stmt: ifThenStmt) {
 			stmt.generateCode(proc);
 		}
 
-		for(Stmt stmt: stmt2) {
-			stmt.generateCode(proc);
+		if(elseStmt != null) {
+			for (Stmt stmt : elseStmt) {
+				stmt.generateCode(proc);
+			}
 		}
 	}
 }

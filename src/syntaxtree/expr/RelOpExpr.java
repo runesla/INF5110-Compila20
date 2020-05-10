@@ -13,23 +13,23 @@ import static syntaxtree.types.operators.RelOpr.*;
 
 public class RelOpExpr extends Expr {
 
-	private final Expr e1;
+	private final Expr leftExpr;
 	private final String operator;
-	private final Expr e2;
+	private final Expr rightExpr;
 
-	public RelOpExpr(Expr e1, String operator, Expr e2) {
-		this.e1 = e1;
+	public RelOpExpr(Expr leftExpr, String operator, Expr rightExpr) {
+		this.leftExpr = leftExpr;
 		this.operator = operator;
-		this.e2 = e2;
+		this.rightExpr = rightExpr;
 	}
 
 	@Override
 	public String printAst(int level) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("(REL_OPR_EX ");
-		builder.append("\n" + repeat("\t", level + 1) + e1.printAst(level + 1));
+		builder.append("\n" + repeat("\t", level + 1) + leftExpr.printAst(level + 1));
 		builder.append("\n" + repeat("\t", level + 1) + operator);
-		builder.append("\n" + repeat("\t", level + 1) + e2.printAst(level + 1));
+		builder.append("\n" + repeat("\t", level + 1) + rightExpr.printAst(level + 1));
 		
 		return builder.toString();
 	}
@@ -37,12 +37,12 @@ public class RelOpExpr extends Expr {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		e1.typeCheck(symbolTable);
-		e2.typeCheck(symbolTable);
+		leftExpr.typeCheck(symbolTable);
+		rightExpr.typeCheck(symbolTable);
 
 		// Check left- and right-hand side operands
-		if(e1.getDataType().getType() != Type.INT || e1.getDataType().getType() != Type.FLOAT
-				|| e2.getDataType().getType() != Type.INT || e2.getDataType().getType() != Type.FLOAT) {
+		if(!(leftExpr.getDataType().getType() == Type.INT || leftExpr.getDataType().getType() == Type.FLOAT)
+				|| !(rightExpr.getDataType().getType() == Type.INT || rightExpr.getDataType().getType() == Type.FLOAT)) {
 			throw new SemanticException("Invalid type in relational expression");
 		}
 
@@ -59,8 +59,8 @@ public class RelOpExpr extends Expr {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-		this.e1.generateCode(proc);
-		this.e2.generateCode(proc);
+		this.leftExpr.generateCode(proc);
+		this.rightExpr.generateCode(proc);
 		proc.addInstruction(BytecodeTypes.getRelationalOperator(this.operator));
 	}
 }
