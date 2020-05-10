@@ -51,8 +51,14 @@ public class Program extends Node {
             symbolTable.insert(decl);
             decl.typeCheck(symbolTable);
 
-            if(decl instanceof ProcDecl && decl.getName().getNameValue().equals("main")) {
-                hasMain = true;
+            if(decl instanceof ProcDecl && (decl.getName().getNameValue().equals("main"))) {
+
+                // Ensure only one presence of main procedures
+                if(!hasMain) {
+                    hasMain = true;
+                } else {
+                    throw new SemanticException("Multiple main procedures defined");
+                }
             }
         }
 
@@ -63,13 +69,18 @@ public class Program extends Node {
 
     public void generateCode(CodeFile codeFile) throws CodeGenException {
 
+        // Generate code for STL
         for(ProcDecl procDecl: stdLib.getSTL()) {
-            System.out.println("CodeGen for stdlib: " + procDecl.getName().getNameValue());
             procDecl.generateCode(codeFile);
         }
 
+        // Generate code for input file
         for(Decl decl: decls) {
-            System.out.println("CodeGen for decl: " + decl.getName().getNameValue());
+
+            if(decl instanceof ProcDecl && (decl.getName().getNameValue().equals("main"))) {
+                codeFile.setMain(((ProcDecl) decl).getName().getNameValue());
+            }
+
             decl.generateCode(codeFile);
         }
     }

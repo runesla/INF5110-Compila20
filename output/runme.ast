@@ -60,7 +60,7 @@
 		)
 		(RETURN_STMT (NAME res))
 	)
-	(PROCEDURE (NAME printCmplx)
+	(PROCEDURE (NAME printCmplx) : (NAME )
 		(PARAM_DECL (PARAM_DECL pr(NAME ))
 		(CALL_STMT printstr
 			(STRING_LITERAL Real )
@@ -81,7 +81,7 @@
 			(STRING_LITERAL )
 		)
 	)
-	(PROCEDURE (NAME test)
+	(PROCEDURE (NAME test) : (NAME )
 		(VAR_DECL 
 			(NAME ) :  (NAME c1)
 		)
@@ -159,13 +159,13 @@
 			)
 		)
 	)
-	(PROCEDURE (NAME printStr)
+	(PROCEDURE (NAME printStr) : (NAME )
 		(PARAM_DECL (PARAM_DECL str(NAME ))
 		(CALL_STMT printstr
 			(NAME str)
 		)
 	)
-	(PROCEDURE (NAME inOutTest)
+	(PROCEDURE (NAME inOutTest) : (NAME )
 		(VAR_DECL 
 			(NAME ) :  (NAME v1)
 		)
@@ -209,7 +209,7 @@
 			(STRING_LITERAL )
 		)
 	)
-	(PROCEDURE (NAME main)
+	(PROCEDURE (NAME main) : (NAME )
 		(VAR_DECL 
 			(NAME ) :  (NAME num)
 		)

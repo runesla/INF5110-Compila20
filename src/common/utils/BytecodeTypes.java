@@ -21,8 +21,6 @@ public class BytecodeTypes {
                 return StringType.TYPE;
             case VOID:
                 return VoidType.TYPE;
-            case UDT:
-                return new RefType(1);	// TODO: rec.structNumber(this.getName().getNameValue())
             default:
                 throw new CodeGenException("Could not determine return type");
         }

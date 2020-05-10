@@ -43,7 +43,7 @@ public class ReturnStmt extends Stmt {
 	}
 
 	@Override
-	public void generateCode(CodeProcedure proc) throws CodeGenException {	// TODO: can return have no expr? Must have null checker if so
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
 		this.expr.generateCode(proc);
 
 		proc.addInstruction(new RETURN());

@@ -40,7 +40,7 @@ public enum Type {
             return "null";
         }
     },
-    VOID(null) {
+    VOID("void") {
         @Override
         public String get() {
             return "void";

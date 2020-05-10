@@ -1,6 +1,7 @@
 package syntaxtree.decl;
 
 import bytecode.CodeFile;
+import bytecode.type.RefType;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
@@ -8,6 +9,8 @@ import common.utils.BytecodeTypes;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.expr.Expr;
+import syntaxtree.types.Type;
+
 import static common.utils.StringUtil.*;
 
 public class VarDecl extends Decl {
@@ -67,7 +70,12 @@ public class VarDecl extends Decl {
 		String var = this.getName().getNameValue();
 
 		codeFile.addVariable(var);
-		codeFile.updateVariable(var, BytecodeTypes.getCodeType(this.dataType));
+
+		if(this.getDataType().getType() == Type.UDT) {
+			codeFile.updateVariable(var, new RefType(codeFile.structNumber(this.getDataType().getName().getNameValue())));
+		} else {
+			codeFile.updateVariable(var, BytecodeTypes.getCodeType(this.dataType));
+		}
 	}
 
 	@Override

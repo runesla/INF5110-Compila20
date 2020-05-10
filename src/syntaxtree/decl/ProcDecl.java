@@ -3,6 +3,8 @@ package syntaxtree.decl;
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import bytecode.instructions.LOADLOCAL;
+import bytecode.instructions.RETURN;
+import bytecode.instructions.STORELOCAL;
 import bytecode.type.*;
 import common.SymbolTable;
 import common.error.CodeGenException;
@@ -16,12 +18,13 @@ import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
 import syntaxtree.types.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import static common.utils.StringUtil.*;
 
 public class ProcDecl extends Decl {
 
-	private DataType returnDataType;
+	private final DataType returnDataType;
 	private final List<ParamDecl> params;
 	private final List<Decl> declarations;
 	private final List<Stmt> statements;
@@ -89,6 +92,7 @@ public class ProcDecl extends Decl {
 			List<Decl> declarations,
 			List<Stmt> statements) {
 		super(name);
+		this.returnDataType = new DataType(Type.VOID);
 		this.params = params;
 		this.declarations = declarations;
 		this.statements = statements;
@@ -189,7 +193,7 @@ public class ProcDecl extends Decl {
 		}
 
 		// Check return statement
-		if(!returnStmtPresent && returnDataType != null) {
+		if(!returnStmtPresent && (returnDataType.getType() != Type.VOID)) {
 			throw new SemanticException("Missing return statement");
 		}
 	}
@@ -198,32 +202,53 @@ public class ProcDecl extends Decl {
 	public void generateCode(CodeFile codeFile) throws CodeGenException {
 
 		String procName = this.getName().getNameValue();
-		CodeType returnType = BytecodeTypes.getCodeType(this.returnDataType);
+		CodeType returnType = null;
+
+		if(this.returnDataType.getType() == Type.UDT) {
+			returnType = new RefType(codeFile.structNumber(this.returnDataType.getName().getNameValue()));
+		} else {
+			returnType = BytecodeTypes.getCodeType(this.returnDataType);
+		}
 
 		codeFile.addProcedure(procName);
 		CodeProcedure proc = new CodeProcedure(procName, returnType, codeFile);
 
-		// Set procedure to main if main
-		if(procName.equals("main")) {
-			codeFile.setMain(procName);
-		}
-
 		// Generate code for params and add to procedure
 		for(ParamDecl paramDecl: params) {
 			paramDecl.generateCode(codeFile);
-			proc.addParameter(paramDecl.getName().getNameValue(), BytecodeTypes.getCodeType(paramDecl.getDataType()));
-			proc.addInstruction(new LOADLOCAL(proc.variableNumber(paramDecl.getName().getNameValue())));
+			CodeType paramType = null;
+
+			if(paramDecl.getDataType().getType() == Type.UDT) {
+				paramType = new RefType(codeFile.structNumber(paramDecl.getDataType().getName().getNameValue()));
+				//proc.addParameter(paramDecl.getName().getNameValue(), new RefType(codeFile.structNumber(paramDecl.getDataType().getName().getNameValue())));
+			} else {
+				paramType = BytecodeTypes.getCodeType(paramDecl.getDataType());
+				//proc.addParameter(paramDecl.getName().getNameValue(), BytecodeTypes.getCodeType(paramDecl.getDataType()));
+			}
+			proc.addParameter(paramDecl.getName().getNameValue(), paramType);
+			//proc.addInstruction(new STORELOCAL(proc.variableNumber(paramDecl.getName().getNameValue())));		// TODO: move to VarExpr?
 		}
 
 		// Generate code for declarations and add to procedure
 		for(Decl varDecl: declarations) {
 			varDecl.generateCode(codeFile);
-			proc.addLocalVariable(varDecl.getName().getNameValue(), BytecodeTypes.getCodeType(varDecl.getDataType()));
+			CodeType varType = null;
+
+			if(varDecl.getDataType().getType() == Type.UDT) {
+				varType = new RefType(codeFile.structNumber(varDecl.getDataType().getName().getNameValue()));
+			} else {
+				varType = BytecodeTypes.getCodeType(varDecl.getDataType());
+			}
+			proc.addLocalVariable(varDecl.getName().getNameValue(), varType);
 		}
 
 		// Generate code for statements and add instructions to procedure
 		for(Stmt stmt: statements) {
 			stmt.generateCode(proc);
+
+			if(stmt instanceof ReturnStmt) {
+				proc.addInstruction(new RETURN());
+			}
 		}
 
 		codeFile.updateProcedure(proc);

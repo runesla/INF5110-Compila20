@@ -55,9 +55,6 @@ public class RecDecl extends Decl {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		// Create symbol table for this block
-		//SymbolTable recSymbolTable = symbolTable.createChildTable();
-
 		// Check params
 		for(ParamDecl paramDecl: params) {
 			symbolTable.insertVariable(paramDecl);

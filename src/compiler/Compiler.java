@@ -66,11 +66,11 @@ public class Compiler {
 		}
 
 		// Uncomment for post-typechecking printout of symbol tables
-		printSymTable();
+		//printSymTable();
 
 		// Generate code
 		try {
-		//	generateCode(program);
+			generateCode(program);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
@@ -97,8 +97,7 @@ public class Compiler {
 
     private void printSymTable() {
 		for(ProcDecl procs: symbolTable.getProcs()) {
-			System.out.println("PROCEDURE: " + procs.getName().getNameValue() + " WITH RETURN VALUE "
-					+ (procs.getDataType() != null ? procs.getDataType().getName().getNameValue() : " VOID "));
+			System.out.println("PROCEDURE: " + procs.getName().getNameValue() + " WITH RETURN VALUE " + procs.getDataType().getName().getNameValue());
 		}
 
 		for(VarDecl vars: symbolTable.getVars()) {

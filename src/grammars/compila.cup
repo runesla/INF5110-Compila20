@@ -125,8 +125,8 @@ opt_rec_params	::= rec_params:rp {: RESULT = rp; :}
 rec_params	    ::= param_decl:pfd {: List<ParamDecl> pfl = new LinkedList<ParamDecl>(); pfl.add(pfd); RESULT = pfl; :}
 		        | rec_params:rp SEMI param_decl:pfd {: rp.add(pfd); RESULT = rp; :};
 
-proc_decl	    ::= PROCEDURE name:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}
-		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}
+proc_decl	    ::= PROCEDURE name:name LPAR opt_proc_params:opp RPAR BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, osl); :}                                                      /* , new DataType(Type.VOID) */
+		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, opp, dl, osl);  :}                               /* , new DataType(Type.VOID) */
 		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_decl_list:dl IN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, dl, osl); :}
 		        | PROCEDURE name:name LPAR opt_proc_params:opp RPAR COLON dataType:t BEGIN opt_stmt_list:osl END {: RESULT = new ProcDecl(name, t, opp, osl); :};
 
