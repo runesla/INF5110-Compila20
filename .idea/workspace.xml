@@ -2,33 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/syntaxtree/decl/LibProcDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/runme.bin" beforeDir="false" afterPath="$PROJECT_DIR$/output/runme.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/STL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/STL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/utils/BytecodeTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/utils/BytecodeTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/Compiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/sym.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/sym.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/runtime/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runtime/Interpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/Decl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/Decl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ParamDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ParamDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/ProcDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/DerefVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/DerefVarExpr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/literals/BoolLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/literals/BoolLiteral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/literals/FloatLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/literals/FloatLiteral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/literals/IntLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/literals/IntLiteral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/literals/NullLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/literals/NullLiteral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/literals/StringLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/literals/StringLiteral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +100,7 @@
       <workItem from="1587485622960" duration="4621000" />
       <workItem from="1587913539056" duration="14676000" />
       <workItem from="1588493231281" duration="822000" />
-      <workItem from="1588593652497" duration="220754000" />
+      <workItem from="1588593652497" duration="228790000" />
     </task>
     <task id="LOCAL−00001" summary="Removed duplicates">
       <created>1587486999177</created>
@@ -279,14 +264,19 @@
       <option name="presentableId" value="LOCAL−00027" />
       <updated>1589114012163</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL−00028" summary="Added STL-specific gencode and logic for global variable decls">
+      <created>1589192822381</created>
+      <option name="number" value="LOCAL−00028" />
+      <option name="presentableId" value="LOCAL−00028" />
+      <updated>1589192822383</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="More refurbishing, modified ant config" />
     <MESSAGE value="Added tests to ant" />
     <MESSAGE value="Changed logic for error handling" />
     <MESSAGE value="Major refurbishing, added symboltable. Semantic checks currently only on decls" />
@@ -311,7 +301,8 @@
     <MESSAGE value="Added VOID type and refined printout" />
     <MESSAGE value="Fixed type assign bug for VOID proc types. Refurbished code type assign for decls" />
     <MESSAGE value="Forgot semantic checks on ifstmt. Renamed some parts of the syntaxtree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Forgot semantic checks on ifstmt. Renamed some parts of the syntaxtree" />
+    <MESSAGE value="Added STL-specific gencode and logic for global variable decls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added STL-specific gencode and logic for global variable decls" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="94" key="#Project_Structure" timestamp="1588706010757">
@@ -346,10 +337,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="375" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588698957665" />
-    <state x="582" y="88" key="CommitChangelistDialog2" timestamp="1589114010423">
+    <state x="235" y="53" width="1591" height="898" key="CommitChangelistDialog2" timestamp="1589192812997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589114010423" />
+    <state x="235" y="53" width="1591" height="898" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589192812997" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588706007647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -358,10 +349,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588003153774" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589111331064">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589192842227">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589111331064" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589192842227" />
     <state x="715" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1588771029664">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -386,5 +377,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588880773489" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1589195376052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589195376052" />
   </component>
 </project>

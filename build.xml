@@ -115,7 +115,7 @@
 	</target>
 
 	<!-- List example runme -->
-	<target name="list-runme" depends="init">
+	<target name="list-runme" depends="init, compile-runme">
 		<java classname="runtime.VirtualMachine" classpathref="path-run">
 			<arg value="-l"/>
 			<arg value="${dir.output}/runme.bin"/>
@@ -123,7 +123,7 @@
 	</target>
 
 	<!-- Run vm on example runme -->
-	<target name="run-runme" depends="init">
+	<target name="run-runme" depends="init, compile-runme">
 		<java classname="runtime.VirtualMachine" classpathref="path-run">
 			<arg value="${dir.output}/runme.bin"/>
 		</java>

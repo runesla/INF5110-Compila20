@@ -72,7 +72,7 @@ public class IfStmt extends Stmt {
 		this.expr.generateCode(proc);
 
 		//int labelIfThenStmt = proc.addInstruction(new NOP());
-		int labelIfThenStmt = proc.addInstruction(new JMPFALSE(0));
+		//int labelIfThenStmt = proc.addInstruction(new JMPFALSE(0));
 
 		for(Stmt stmt: ifThenStmt) {
 			stmt.generateCode(proc);
@@ -93,8 +93,8 @@ public class IfStmt extends Stmt {
 			//proc.replaceInstruction(labelIfThenStmtExecuted, new JMP(labelElseStmtExecuted));
 		}
 
-		int labelIfStmtCompleted = proc.addInstruction(new NOP());
-		proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfStmtCompleted));
+		//int labelIfStmtCompleted = proc.addInstruction(new NOP());
+		//proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfStmtCompleted));
 
 		//proc.replaceInstruction(labelIfThenStmt, new JMPTRUE(labelIfThenStmt));
 		//proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfThenStmtExecuted));

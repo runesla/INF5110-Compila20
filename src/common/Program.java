@@ -81,9 +81,9 @@ public class Program extends Node {
         for(Decl decl: decls) {
 
             // Global variable
-            if(decl instanceof VarDecl) {
-                decl.generateCode(codeFile);
-            }
+            //if(decl instanceof VarDecl) {
+            //   decl.generateCode(codeFile);
+            //}
 
             decl.generateCode(codeFile);
         }

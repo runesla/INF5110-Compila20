@@ -2,6 +2,7 @@ package syntaxtree.decl;
 
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
+import bytecode.type.CodeType;
 import bytecode.type.RefType;
 import common.SymbolTable;
 import common.error.CodeGenException;
@@ -86,12 +87,15 @@ public class VarDecl extends Decl {
 		String var = this.getName().getNameValue();
 
 		codeFile.addVariable(var);
+		CodeType varType= null;
 
 		if(this.getDataType().getType() == Type.UDT) {
-			codeFile.updateVariable(var, new RefType(codeFile.structNumber(this.getDataType().getName().getNameValue())));
+			varType =  new RefType(codeFile.structNumber(this.getDataType().getName().getNameValue()));
 		} else {
-			codeFile.updateVariable(var, BytecodeTypes.getCodeType(this.dataType));
+			varType = BytecodeTypes.getCodeType(this.dataType);
 		}
+
+		codeFile.updateVariable(var, varType);
 	}
 
 	@Override

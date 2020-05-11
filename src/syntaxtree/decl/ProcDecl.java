@@ -169,7 +169,7 @@ public class ProcDecl extends Decl {
 		boolean returnStmtPresent = false;
 
 		// Check statements
-		for(Stmt stmt: statements) {
+		for(Stmt stmt: statements) {													// TODO: use iterator to ensure last statement is return
 			stmt.typeCheck(procSymbolTable);
 
 			if(stmt instanceof ReturnStmt) {
@@ -223,7 +223,6 @@ public class ProcDecl extends Decl {
 
 		// Generate code for declarations and add to procedure
 		for(Decl varDecl: declarations) {
-			//varDecl.generateCode(codeFile);		// TODO: move to program.java
 			varDecl.generateCode(proc);
 			CodeType varType = null;
 
@@ -238,11 +237,10 @@ public class ProcDecl extends Decl {
 		// Generate code for statements and add instructions to procedure
 		for(Stmt stmt: statements) {
 			stmt.generateCode(proc);
-/*
-			if(stmt instanceof ReturnStmt) {
-				proc.addInstruction(new RETURN());
-			}
- */
+
+			//if(stmt instanceof ReturnStmt) {
+			//	proc.addInstruction(new RETURN());
+			//}
 		}
 
 		codeFile.updateProcedure(proc);

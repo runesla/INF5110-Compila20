@@ -3,6 +3,7 @@ package syntaxtree.decl;
 import bytecode.CodeFile;
 import bytecode.CodeProcedure;
 import bytecode.CodeStruct;
+import bytecode.instructions.NEW;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
@@ -70,6 +71,7 @@ public class RecDecl extends Decl {
 
 		codeFile.addStruct(recName);
 		CodeStruct rec = new CodeStruct(recName);
+		//proc.addInstruction(new NEW(proc.structNumber(this.getName().getNameValue())));
 
 		// Generate code for params and add to struct
 		for(ParamDecl paramDecl: params) {
@@ -84,6 +86,6 @@ public class RecDecl extends Decl {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-		// TODO: not needed
+		// TODO: not needed, cannot have procedure in structs
 	}
 }

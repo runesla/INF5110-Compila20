@@ -120,9 +120,17 @@ public class VarExpr extends Expr {
 		} else {
 			this.expr.generateCode(proc);
 
-			instr = new GETFIELD(proc.fieldNumber(
-					this.getName().getNameValue(), this.getName().getNameValue()),
-					proc.structNumber(this.getName().getNameValue()));
+			try {
+				instr = new GETFIELD(
+						proc.fieldNumber(
+								this.expr.getDataType().getName().getNameValue(),
+								this.getName().getNameValue()
+						),
+						proc.structNumber(this.expr.getDataType().getName().getNameValue())
+				);
+			} catch (SemanticException e) {
+				e.printStackTrace();
+			}
 		}
 
 		proc.addInstruction(instr);
@@ -143,9 +151,19 @@ public class VarExpr extends Expr {
 		} else {
 			this.expr.generateCode(proc);
 
-			instr = new PUTFIELD(proc.fieldNumber(
-					this.getName().getNameValue(), this.getName().getNameValue()),
-					proc.structNumber(this.getName().getNameValue()));
+
+			try {
+				instr = new PUTFIELD(
+						proc.fieldNumber(
+								this.expr.getDataType().getName().getNameValue(),
+								this.getName().getNameValue()
+						),
+						proc.structNumber(this.expr.getDataType().getName().getNameValue())
+				);
+			} catch (SemanticException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		proc.addInstruction(instr);
