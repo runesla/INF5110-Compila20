@@ -7,7 +7,6 @@ import bytecode.type.*;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
-import common.error.SyntaxException;
 import common.utils.BytecodeTypes;
 import common.utils.TypeChecker;
 import syntaxtree.stmt.ReturnStmt;
@@ -167,10 +166,25 @@ public class ProcDecl extends Decl {
 			decl.typeCheck(procSymbolTable);
 		}
 
-		boolean returnStmtPresent = false;
-
 		// Check statements
-		for(Stmt stmt: statements) {													// TODO: use iterator to ensure last statement is return
+		boolean returnStmtPresent = false;
+		Iterator<Stmt> itr = statements.iterator();
+		Stmt procStmt = null;
+
+		while(itr.hasNext()) {
+			procStmt = itr.next();
+			procStmt.typeCheck(procSymbolTable);
+
+			if(!(itr.hasNext()) && procStmt instanceof ReturnStmt) {
+				returnStmtPresent = true;
+
+				if(!(TypeChecker.isCompatibleType(((ReturnStmt) procStmt).getDataType(), this.returnDataType))) {
+					throw new SemanticException("Type mismatch between procedure and return statement in procedure " + this.getName().getNameValue());
+				}
+			}
+		}
+/*
+		for(Stmt stmt: statements) {
 			stmt.typeCheck(procSymbolTable);
 
 			if(stmt instanceof ReturnStmt) {
@@ -187,6 +201,7 @@ public class ProcDecl extends Decl {
 				}
 			}
 		}
+ */
 
 		// Check return statement
 		if(!returnStmtPresent && (returnDataType.getType() != Type.VOID)) {
@@ -238,11 +253,6 @@ public class ProcDecl extends Decl {
 		boolean returnStmtPresent = false;
 
 		// Generate code for statements and add instructions to procedure
-		//Iterator<Stmt> itr = statements.iterator();
-		//while(itr.hasNext()) {
-		//	procStmt = itr.next();
-		//	procStmt.generateCode(proc);
-		//}
 		for(Stmt stmt: statements) {
 			stmt.generateCode(proc);
 

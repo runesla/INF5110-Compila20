@@ -3,7 +3,6 @@ package syntaxtree.stmt;
 import bytecode.CodeProcedure;
 import bytecode.instructions.JMP;
 import bytecode.instructions.JMPFALSE;
-import bytecode.instructions.JMPTRUE;
 import bytecode.instructions.NOP;
 import common.SymbolTable;
 import common.error.CodeGenException;

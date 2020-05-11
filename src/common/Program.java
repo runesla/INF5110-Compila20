@@ -9,8 +9,6 @@ import syntaxtree.decl.Decl;
 import bytecode.*;
 import syntaxtree.decl.LibProcDecl;
 import syntaxtree.decl.ProcDecl;
-import syntaxtree.decl.VarDecl;
-
 import java.util.List;
 
 public class Program extends Node {
@@ -79,12 +77,6 @@ public class Program extends Node {
 
         // Generate code for input file
         for(Decl decl: decls) {
-
-            // Global variable
-            //if(decl instanceof VarDecl) {
-            //   decl.generateCode(codeFile);
-            //}
-
             decl.generateCode(codeFile);
         }
 

@@ -6,10 +6,7 @@ import bytecode.instructions.*;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
-import common.utils.BytecodeTypes;
 import syntaxtree.expr.Expr;
-import syntaxtree.expr.VarExpr;
-
 import static common.utils.StringUtil.*;
 
 public class IfStmt extends Stmt {
