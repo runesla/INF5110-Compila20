@@ -59,7 +59,7 @@ public class Compiler {
 		// Create AST
 		try {
 			writeAST(program);
-		} catch (Exception e) {								// TODO: if output ast file does not exist, it throws a FileNotFoundException
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
 			System.exit(GENERAL_ERROR);
@@ -81,7 +81,7 @@ public class Compiler {
 	}
 
 	public void writeAST(Program program) throws Exception {
-		BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename));
+		BufferedWriter buf = new BufferedWriter(new FileWriter(this.outFilename, false));
 		buf.write(program.printAst(0));
 		buf.close();
 	}
