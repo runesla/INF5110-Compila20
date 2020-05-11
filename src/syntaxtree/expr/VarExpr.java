@@ -112,7 +112,7 @@ public class VarExpr extends Expr {
 		if(this.expr == null) {
 
 			if(proc.variableNumber(this.getName().getNameValue()) == -1) {
-				instr = new LOADGLOBAL(proc.variableNumber(this.getName().getNameValue()));
+				instr = new LOADGLOBAL(proc.globalVariableNumber(this.getName().getNameValue()));
 			} else {
 				instr = new LOADLOCAL(proc.variableNumber(this.getName().getNameValue()));
 			}
@@ -144,7 +144,7 @@ public class VarExpr extends Expr {
 		if(this.expr == null) {
 
 			if(proc.variableNumber(this.getName().getNameValue()) == -1) {
-				instr = new STOREGLOBAL(proc.variableNumber(this.getName().getNameValue()));
+				instr = new STOREGLOBAL(proc.globalVariableNumber(this.getName().getNameValue()));
 			} else {
 				instr = new STORELOCAL(proc.variableNumber(this.getName().getNameValue()));
 			}
