@@ -2,10 +2,14 @@ package syntaxtree.stmt;
 
 import java.util.*;
 import bytecode.CodeProcedure;
+import bytecode.instructions.*;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
+import common.utils.BytecodeTypes;
 import syntaxtree.expr.Expr;
+import syntaxtree.expr.VarExpr;
+
 import static common.utils.StringUtil.*;
 
 public class IfStmt extends Stmt {
@@ -48,6 +52,7 @@ public class IfStmt extends Stmt {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
+
 		this.expr.typeCheck(symbolTable);
 
 		for(Stmt stmt: ifThenStmt) {
@@ -63,16 +68,35 @@ public class IfStmt extends Stmt {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
+
 		this.expr.generateCode(proc);
+
+		//int labelIfThenStmt = proc.addInstruction(new NOP());
+		int labelIfThenStmt = proc.addInstruction(new JMPFALSE(0));
 
 		for(Stmt stmt: ifThenStmt) {
 			stmt.generateCode(proc);
 		}
 
+		//int labelIfThenStmtExecuted = proc.addInstruction(new NOP());
+		int labelIfThenStmtExecuted = -1;
+
 		if(elseStmt != null) {
+
+			labelIfThenStmtExecuted = proc.addInstruction(new JMP(0));
+
 			for (Stmt stmt : elseStmt) {
 				stmt.generateCode(proc);
 			}
+
+			//int labelElseStmtExecuted = proc.addInstruction(new NOP());
+			//proc.replaceInstruction(labelIfThenStmtExecuted, new JMP(labelElseStmtExecuted));
 		}
+
+		int labelIfStmtCompleted = proc.addInstruction(new NOP());
+		proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfStmtCompleted));
+
+		//proc.replaceInstruction(labelIfThenStmt, new JMPTRUE(labelIfThenStmt));
+		//proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfThenStmtExecuted));
 	}
 }

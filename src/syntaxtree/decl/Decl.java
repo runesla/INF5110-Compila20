@@ -1,6 +1,7 @@
 package syntaxtree.decl;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import common.error.CodeGenException;
 import syntaxtree.types.DataType;
 import syntaxtree.Name;
@@ -21,4 +22,6 @@ public abstract class Decl extends Node {
 	public abstract DataType getDataType();
 
 	public abstract void generateCode(CodeFile codeFile) throws CodeGenException;
+
+	public abstract void generateCode(CodeProcedure proc) throws CodeGenException;
 }

@@ -1,6 +1,7 @@
 package syntaxtree.expr.literals;
 
 import bytecode.CodeProcedure;
+import bytecode.instructions.PUSHBOOL;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
@@ -37,6 +38,6 @@ public class BoolLiteral extends LiteralExpr {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-
+		proc.addInstruction(new PUSHBOOL(literal));
 	}
 }

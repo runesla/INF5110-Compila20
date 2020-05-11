@@ -74,10 +74,11 @@ public class AssignStmt extends Stmt {
 
 		// Generate code for left- and right-hand side expressions
 		// Only one of two possible right-hand side expressions, do code generation only for one
+		// Left-hand side need to do STORE instructions, while right-hand side need to do LOAD instructions
 		if(this.varExpr != null) {
-			this.varExpr.generateCode(proc);
+			this.varExpr.generateStoreCode(proc);
 		} else {
-			this.derefExpr.generateCode(proc);
+			this.derefExpr.generateStoreCode(proc);
 		}
 		this.expr.generateCode(proc);
 	}

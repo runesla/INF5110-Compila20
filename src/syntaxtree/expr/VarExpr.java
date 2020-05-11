@@ -1,6 +1,7 @@
 package syntaxtree.expr;
 
 import bytecode.CodeProcedure;
+import bytecode.instructions.*;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
@@ -41,6 +42,10 @@ public class VarExpr extends Expr {
 		this.name = new Name(name);;
 		this.dataType = dataType;
 		this.expr = expr;
+	}
+
+	public Name getName() {
+		return this.name;
 	}
 
 	@Override
@@ -96,11 +101,53 @@ public class VarExpr extends Expr {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		generateLoadCode(proc);
+	}
 
+	public void generateLoadCode(CodeProcedure proc) throws CodeGenException {
+
+		Instruction instr = null;
+
+		// Check if expression is a dot operator
 		if(this.expr == null) {
-			// TODO: what do I even do here
+
+			if(proc.variableNumber(this.getName().getNameValue()) == -1) {
+				instr = new LOADGLOBAL(proc.variableNumber(this.getName().getNameValue()));
+			} else {
+				instr = new LOADLOCAL(proc.variableNumber(this.getName().getNameValue()));
+			}
+
 		} else {
 			this.expr.generateCode(proc);
+
+			instr = new GETFIELD(proc.fieldNumber(
+					this.getName().getNameValue(), this.getName().getNameValue()),
+					proc.structNumber(this.getName().getNameValue()));
 		}
+
+		proc.addInstruction(instr);
+	}
+
+	public void generateStoreCode(CodeProcedure proc) throws CodeGenException {
+
+		Instruction instr = null;
+
+		// Check if expression is a dot operator
+		if(this.expr == null) {
+
+			if(proc.variableNumber(this.getName().getNameValue()) == -1) {
+				instr = new STOREGLOBAL(proc.variableNumber(this.getName().getNameValue()));
+			} else {
+				instr = new STORELOCAL(proc.variableNumber(this.getName().getNameValue()));
+			}
+		} else {
+			this.expr.generateCode(proc);
+
+			instr = new PUTFIELD(proc.fieldNumber(
+					this.getName().getNameValue(), this.getName().getNameValue()),
+					proc.structNumber(this.getName().getNameValue()));
+		}
+
+		proc.addInstruction(instr);
 	}
 }

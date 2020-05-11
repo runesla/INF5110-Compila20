@@ -35,6 +35,10 @@ public class DerefVarExpr extends Expr {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-		this.expr.generateCode(proc);
+		generateStoreCode(proc);
+	}
+
+	public void generateStoreCode(CodeProcedure proc) throws CodeGenException {
+		this.expr.generateLoadCode(proc);
 	}
 }

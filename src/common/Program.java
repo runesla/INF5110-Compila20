@@ -7,7 +7,10 @@ import syntaxtree.Name;
 import syntaxtree.Node;
 import syntaxtree.decl.Decl;
 import bytecode.*;
+import syntaxtree.decl.LibProcDecl;
 import syntaxtree.decl.ProcDecl;
+import syntaxtree.decl.VarDecl;
+
 import java.util.List;
 
 public class Program extends Node {
@@ -70,18 +73,21 @@ public class Program extends Node {
     public void generateCode(CodeFile codeFile) throws CodeGenException {
 
         // Generate code for STL
-        for(ProcDecl procDecl: stdLib.getSTL()) {
-            procDecl.generateCode(codeFile);
+        for(LibProcDecl libProcDecl: stdLib.getSTL()) {
+            libProcDecl.generateCode(codeFile);
         }
 
         // Generate code for input file
         for(Decl decl: decls) {
 
-            if(decl instanceof ProcDecl && (decl.getName().getNameValue().equals("main"))) {
-                codeFile.setMain(((ProcDecl) decl).getName().getNameValue());
+            // Global variable
+            if(decl instanceof VarDecl) {
+                decl.generateCode(codeFile);
             }
 
             decl.generateCode(codeFile);
         }
+
+        codeFile.setMain("main");
     }
 }

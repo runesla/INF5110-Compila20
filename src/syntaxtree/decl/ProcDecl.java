@@ -108,13 +108,6 @@ public class ProcDecl extends Decl {
 		this.declarations = declarations;
 		this.statements = statements;
 	}
-
-	public void addParameter(ParamDecl param) throws SyntaxException {
-		if(params == null) {
-			throw new SyntaxException("Procedure has no parameters");
-		}
-		this.params.add(param);
-	}
 	
 	@Override
 	public String printAst(int level) {
@@ -164,6 +157,11 @@ public class ProcDecl extends Decl {
 
 		// Check formal params
 		for(Decl decl: declarations) {
+
+			if(!(decl instanceof VarDecl)) {
+				throw new SemanticException("Only variable declarations allowed in procedure");
+			}
+
 			procSymbolTable.insertVariable((VarDecl) decl);
 			decl.typeCheck(procSymbolTable);
 		}
@@ -212,7 +210,7 @@ public class ProcDecl extends Decl {
 
 		// Generate code for params and add to procedure
 		for(ParamDecl paramDecl: params) {
-			paramDecl.generateCode(codeFile);
+			paramDecl.generateCode(proc);
 			CodeType paramType = null;
 
 			if(paramDecl.getDataType().getType() == Type.UDT) {
@@ -221,12 +219,12 @@ public class ProcDecl extends Decl {
 				paramType = BytecodeTypes.getCodeType(paramDecl.getDataType());
 			}
 			proc.addParameter(paramDecl.getName().getNameValue(), paramType);
-			//proc.addInstruction(new STORELOCAL(proc.variableNumber(paramDecl.getName().getNameValue())));		// TODO: move to VarExpr?
 		}
 
 		// Generate code for declarations and add to procedure
 		for(Decl varDecl: declarations) {
-			varDecl.generateCode(codeFile);
+			//varDecl.generateCode(codeFile);		// TODO: move to program.java
+			varDecl.generateCode(proc);
 			CodeType varType = null;
 
 			if(varDecl.getDataType().getType() == Type.UDT) {
@@ -240,12 +238,18 @@ public class ProcDecl extends Decl {
 		// Generate code for statements and add instructions to procedure
 		for(Stmt stmt: statements) {
 			stmt.generateCode(proc);
-
+/*
 			if(stmt instanceof ReturnStmt) {
 				proc.addInstruction(new RETURN());
 			}
+ */
 		}
 
 		codeFile.updateProcedure(proc);
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		// TODO: not needed, although according to the grammar, nested procedures is allowed
 	}
 }

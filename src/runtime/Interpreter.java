@@ -53,6 +53,8 @@ public class Interpreter {
 		Object[] globals = new Object[this.variables.length];
 		Stack stack = new Stack(1000);
 		Heap heap = new Heap(1000);
+		System.out.println(this.mainNum);
+		System.out.println(this.procedures.length);
 		ActivationBlock current = new ActivationBlock(this.procedures[this.mainNum]);
 		initializeParams(current, stack);
 		initializeCallVars(current);

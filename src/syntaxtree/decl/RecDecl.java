@@ -1,6 +1,7 @@
 package syntaxtree.decl;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import bytecode.CodeStruct;
 import common.SymbolTable;
 import common.error.CodeGenException;
@@ -55,7 +56,7 @@ public class RecDecl extends Decl {
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
-		// Check params
+		// Check struct params
 		for(ParamDecl paramDecl: params) {
 			symbolTable.insertVariable(paramDecl);
 			paramDecl.typeCheck(symbolTable);
@@ -73,9 +74,16 @@ public class RecDecl extends Decl {
 		// Generate code for params and add to struct
 		for(ParamDecl paramDecl: params) {
 			paramDecl.generateCode(codeFile);
-			rec.addVariable(paramDecl.getName().getNameValue(), BytecodeTypes.getCodeType(paramDecl.getDataType()));
+			rec.addVariable(
+					paramDecl.getName().getNameValue(),
+					BytecodeTypes.getCodeType(paramDecl.getDataType()));
 		}
 
 		codeFile.updateStruct(rec);
+	}
+
+	@Override
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		// TODO: not needed
 	}
 }

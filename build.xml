@@ -125,7 +125,7 @@
 	<!-- Run vm on example runme -->
 	<target name="run-runme" depends="init">
 		<java classname="runtime.VirtualMachine" classpathref="path-run">
-			<arg value="${dir.tests}/output/runme.bin"/>
+			<arg value="${dir.output}/runme.bin"/>
 		</java>
 	</target>
 

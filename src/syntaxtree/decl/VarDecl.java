@@ -1,6 +1,7 @@
 package syntaxtree.decl;
 
 import bytecode.CodeFile;
+import bytecode.CodeProcedure;
 import bytecode.type.RefType;
 import common.SymbolTable;
 import common.error.CodeGenException;
@@ -46,6 +47,20 @@ public class VarDecl extends Decl {
 		return this.dataType;
 	}
 
+
+	@Override
+	public String printAst(int level) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("(VAR_DECL ");
+		builder.append("\n" + repeat("\t", level + 1) + this.dataType.printAst(level));
+		builder.append(" : ");
+		builder.append(" (NAME ");
+		builder.append(this.getName().getNameValue());
+		builder.append(")");
+		builder.append("\n" + repeat("\t", level) + ")");
+		return builder.toString();
+	}
+
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
 
@@ -64,6 +79,7 @@ public class VarDecl extends Decl {
 		}
 	}
 
+	// Global variable
 	@Override
 	public void generateCode(CodeFile codeFile) throws CodeGenException {
 
@@ -79,15 +95,7 @@ public class VarDecl extends Decl {
 	}
 
 	@Override
-	public String printAst(int level) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("(VAR_DECL ");
-		builder.append("\n" + repeat("\t", level + 1) + this.dataType.printAst(level));
-		builder.append(" : ");
-		builder.append(" (NAME ");
-		builder.append(this.getName().getNameValue());
-		builder.append(")");
-		builder.append("\n" + repeat("\t", level) + ")");
-		return builder.toString();
+	public void generateCode(CodeProcedure proc) throws CodeGenException {
+		// TODO: not needed, handled in procedure
 	}
 }

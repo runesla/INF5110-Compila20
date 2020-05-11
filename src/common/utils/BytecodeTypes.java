@@ -1,5 +1,6 @@
 package common.utils;
 
+import bytecode.CodeFile;
 import bytecode.instructions.*;
 import bytecode.type.*;
 import common.error.CodeGenException;
@@ -21,6 +22,8 @@ public class BytecodeTypes {
                 return StringType.TYPE;
             case VOID:
                 return VoidType.TYPE;
+            //case UDT:
+            //    return new RefType(codeFile.structNumber(dataType.getName().getNameValue()));
             default:
                 throw new CodeGenException("Could not determine return type");
         }

@@ -59,7 +59,7 @@ public class Compiler {
 		// Create AST
 		try {
 			writeAST(program);
-		} catch (Exception e) {		// TODO: if output ast file does not exist, it throws a FileNotFoundException
+		} catch (Exception e) {								// TODO: if output ast file does not exist, it throws a FileNotFoundException
 			e.printStackTrace();
 			System.err.println("ERROR: " + e.getMessage());
 			System.exit(GENERAL_ERROR);
