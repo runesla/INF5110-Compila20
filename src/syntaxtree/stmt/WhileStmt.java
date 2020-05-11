@@ -45,17 +45,25 @@ public class WhileStmt extends Stmt {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
+
+		// Label - top - of loop
+		int labelLoopTop = proc.addInstruction(new NOP());
+
 		this.expr.generateCode(proc);
 
-		int labelTopLoop = proc.addInstruction(new NOP());
+		// Label post-expression evaluation
+		int labelLoopPostExpr = proc.addInstruction(new NOP());
 
 		for(Stmt stmt: statements) {
 			stmt.generateCode(proc);
 		}
 
-		int labelSkipLoop = proc.addInstruction(new NOP());
+		proc.addInstruction(new JMP(labelLoopTop));
 
-		proc.addInstruction(new JMPTRUE(labelTopLoop));			// TODO: how?
-		proc.addInstruction(new JMPFALSE(labelSkipLoop));
+		// Post-loop label
+		int labelLoopEnd = proc.addInstruction(new NOP());
+
+		// If top of stack is false, replace start-label with end-label
+		proc.replaceInstruction(labelLoopPostExpr, new JMPFALSE(labelLoopEnd));
 	}
 }

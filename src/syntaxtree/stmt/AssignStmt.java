@@ -72,14 +72,13 @@ public class AssignStmt extends Stmt {
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
 
-		// Generate code for left- and right-hand side expressions
-		// Only one of two possible right-hand side expressions, do code generation only for one
 		// Left-hand side need to do STORE instructions, while right-hand side need to do LOAD instructions
+		this.expr.generateCode(proc);
+
 		if(this.varExpr != null) {
 			this.varExpr.generateStoreCode(proc);
 		} else {
 			this.derefExpr.generateStoreCode(proc);
 		}
-		this.expr.generateCode(proc);
 	}
 }

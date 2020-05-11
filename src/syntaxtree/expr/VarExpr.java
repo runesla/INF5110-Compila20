@@ -111,10 +111,10 @@ public class VarExpr extends Expr {
 		// Check if expression is a dot operator
 		if(this.expr == null) {
 
-			if(proc.variableNumber(this.getName().getNameValue()) == -1) {
-				instr = new LOADGLOBAL(proc.globalVariableNumber(this.getName().getNameValue()));
+			if(proc.variableNumber(this.name.getNameValue()) == -1) {
+				instr = new LOADGLOBAL(proc.globalVariableNumber(this.name.getNameValue()));
 			} else {
-				instr = new LOADLOCAL(proc.variableNumber(this.getName().getNameValue()));
+				instr = new LOADLOCAL(proc.variableNumber(this.name.getNameValue()));
 			}
 
 		} else {
@@ -124,7 +124,7 @@ public class VarExpr extends Expr {
 				instr = new GETFIELD(
 						proc.fieldNumber(
 								this.expr.getDataType().getName().getNameValue(),
-								this.getName().getNameValue()
+								this.name.getNameValue()
 						),
 						proc.structNumber(this.expr.getDataType().getName().getNameValue())
 				);
@@ -137,26 +137,25 @@ public class VarExpr extends Expr {
 	}
 
 	public void generateStoreCode(CodeProcedure proc) throws CodeGenException {
-
 		Instruction instr = null;
 
 		// Check if expression is a dot operator
 		if(this.expr == null) {
 
-			if(proc.variableNumber(this.getName().getNameValue()) == -1) {
-				instr = new STOREGLOBAL(proc.globalVariableNumber(this.getName().getNameValue()));
+			if(proc.variableNumber(this.name.getNameValue()) == -1) {
+				instr = new STOREGLOBAL(proc.globalVariableNumber(this.name.getNameValue()));
 			} else {
-				instr = new STORELOCAL(proc.variableNumber(this.getName().getNameValue()));
+				instr = new STORELOCAL(proc.variableNumber(this.name.getNameValue()));
 			}
+
 		} else {
 			this.expr.generateCode(proc);
-
 
 			try {
 				instr = new PUTFIELD(
 						proc.fieldNumber(
 								this.expr.getDataType().getName().getNameValue(),
-								this.getName().getNameValue()
+								this.name.getNameValue()
 						),
 						proc.structNumber(this.expr.getDataType().getName().getNameValue())
 				);
@@ -165,7 +164,6 @@ public class VarExpr extends Expr {
 			}
 
 		}
-
 		proc.addInstruction(instr);
 	}
 }

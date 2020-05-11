@@ -71,32 +71,34 @@ public class IfStmt extends Stmt {
 
 		this.expr.generateCode(proc);
 
-		//int labelIfThenStmt = proc.addInstruction(new NOP());
-		//int labelIfThenStmt = proc.addInstruction(new JMPFALSE(0));
+		// Start - top - of conditional
+		int labelConditionalIfStart = proc.addInstruction(new NOP());
 
 		for(Stmt stmt: ifThenStmt) {
 			stmt.generateCode(proc);
 		}
 
-		//int labelIfThenStmtExecuted = proc.addInstruction(new NOP());
-		int labelIfThenStmtExecuted = -1;
+		// After then-stmt
+		int labelConditionalIfComplete = proc.addInstruction(new NOP());
 
 		if(elseStmt != null) {
 
-			labelIfThenStmtExecuted = proc.addInstruction(new JMP(0));
+			// Start - top - of else-stmt
+			int labelConditionalElseStart = proc.addInstruction(new NOP());
 
 			for (Stmt stmt : elseStmt) {
 				stmt.generateCode(proc);
 			}
 
-			//int labelElseStmtExecuted = proc.addInstruction(new NOP());
-			//proc.replaceInstruction(labelIfThenStmtExecuted, new JMP(labelElseStmtExecuted));
+			// After else-stmt
+			int labelConditionalElseComplete = proc.addInstruction(new NOP());
+
+			// If top of stack is false, replace start (top) label with else label
+			proc.replaceInstruction(labelConditionalIfStart, new JMPFALSE(labelConditionalElseStart));
+			proc.replaceInstruction(labelConditionalIfComplete, new JMP(labelConditionalElseComplete));
 		}
 
-		//int labelIfStmtCompleted = proc.addInstruction(new NOP());
-		//proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfStmtCompleted));
-
-		//proc.replaceInstruction(labelIfThenStmt, new JMPTRUE(labelIfThenStmt));
-		//proc.replaceInstruction(labelIfThenStmt, new JMPFALSE(labelIfThenStmtExecuted));
+		// If top of stack is false, replace start (top) label with if-stmt-complete label
+		proc.replaceInstruction(labelConditionalIfStart, new JMPFALSE(labelConditionalIfComplete));
 	}
 }

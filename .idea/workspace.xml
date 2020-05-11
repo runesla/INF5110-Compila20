@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="2a39f122-9987-4225-8a7a-548db6353f35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/utils/BytecodeTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/utils/BytecodeTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/runme.bin" beforeDir="false" afterPath="$PROJECT_DIR$/output/runme.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/sym.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/sym.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/RecDecl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/decl/VarDecl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expr/VarExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/AssignStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/IfStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/stmt/WhileStmt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +97,7 @@
       <workItem from="1587485622960" duration="4621000" />
       <workItem from="1587913539056" duration="14676000" />
       <workItem from="1588493231281" duration="822000" />
-      <workItem from="1588593652497" duration="229978000" />
+      <workItem from="1588593652497" duration="235627000" />
     </task>
     <task id="LOCAL−00001" summary="Removed duplicates">
       <created>1587486999177</created>
@@ -277,14 +279,19 @@
       <option name="presentableId" value="LOCAL−00030" />
       <updated>1589202422330</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL−00031" summary="Fixed big derp bug in BytecodeTypes, returned bool type for floats">
+      <created>1589203846531</created>
+      <option name="number" value="LOCAL−00031" />
+      <option name="presentableId" value="LOCAL−00031" />
+      <updated>1589203846531</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Major refurbishing, added symboltable. Semantic checks currently only on decls" />
     <MESSAGE value="Attempt at adding STL, problems with BuiltInTypes" />
     <MESSAGE value="(probably) fixed built-in types. Getting classpath error in ant" />
     <MESSAGE value="Some cleanup, added build configs for IntelliJ" />
@@ -309,7 +316,8 @@
     <MESSAGE value="Added STL-specific gencode and logic for global variable decls" />
     <MESSAGE value="Fixed bug in GET- and PUTFIELD" />
     <MESSAGE value="Fixed bug in global store and load for VarExpr" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in global store and load for VarExpr" />
+    <MESSAGE value="Fixed big derp bug in BytecodeTypes, returned bool type for floats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed big derp bug in BytecodeTypes, returned bool type for floats" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="94" key="#Project_Structure" timestamp="1588706010757">
@@ -344,10 +352,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="375" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588698957665" />
-    <state x="235" y="53" width="1591" height="898" key="CommitChangelistDialog2" timestamp="1589202420440">
+    <state x="171" y="79" width="1591" height="898" key="CommitChangelistDialog2" timestamp="1589203844351">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="235" y="53" width="1591" height="898" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589202420440" />
+    <state x="171" y="79" width="1591" height="898" key="CommitChangelistDialog2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589203844351" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588706007647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -356,10 +364,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1588003153774" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589202431190">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589203895255">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589202431190" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-46.1080.1880@0.0.1920.1040" timestamp="1589203895255" />
     <state x="715" y="254" key="VcsDiffUtil.ChangesDialog" timestamp="1588771029664">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
