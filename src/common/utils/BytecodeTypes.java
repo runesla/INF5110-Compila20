@@ -17,11 +17,13 @@ public class BytecodeTypes {
             case INT:
                 return IntType.TYPE;
             case FLOAT:
-                return BoolType.TYPE;
+                return FloatType.TYPE;
             case STRING:
                 return StringType.TYPE;
             case VOID:
                 return VoidType.TYPE;
+            case BOOL:
+                return BoolType.TYPE;
             //case UDT:
             //    return new RefType(codeFile.structNumber(dataType.getName().getNameValue()));
             default:

@@ -12,7 +12,6 @@ import syntaxtree.types.DataType;
 import syntaxtree.Name;
 import syntaxtree.expr.Expr;
 import syntaxtree.types.Type;
-
 import static common.utils.StringUtil.*;
 
 public class VarDecl extends Decl {
