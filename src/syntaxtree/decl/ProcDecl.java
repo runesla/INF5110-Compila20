@@ -16,6 +16,7 @@ import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
 import syntaxtree.types.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import static common.utils.StringUtil.*;
 
@@ -234,13 +235,24 @@ public class ProcDecl extends Decl {
 			proc.addLocalVariable(varDecl.getName().getNameValue(), varType);
 		}
 
+		boolean returnStmtPresent = false;
+
 		// Generate code for statements and add instructions to procedure
+		//Iterator<Stmt> itr = statements.iterator();
+		//while(itr.hasNext()) {
+		//	procStmt = itr.next();
+		//	procStmt.generateCode(proc);
+		//}
 		for(Stmt stmt: statements) {
 			stmt.generateCode(proc);
 
-			//if(stmt instanceof ReturnStmt) {
-			//	proc.addInstruction(new RETURN());
-			//}
+			if(stmt instanceof ReturnStmt) {
+				returnStmtPresent = true;
+			}
+		}
+
+		if(!returnStmtPresent) {
+			proc.addInstruction(new RETURN());
 		}
 
 		codeFile.updateProcedure(proc);

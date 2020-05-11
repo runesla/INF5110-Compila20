@@ -61,11 +61,10 @@ public class CallStmt extends Stmt {
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-
 		for(Expr exp: expr) {
 			exp.generateCode(proc);
 		}
 
-		proc.addInstruction(new CALL(proc.procedureNumber(proc.getName())));
+		proc.addInstruction(new CALL(proc.procedureNumber(name.getNameValue())));
 	}
 }

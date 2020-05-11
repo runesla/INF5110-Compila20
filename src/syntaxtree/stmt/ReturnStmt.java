@@ -39,12 +39,16 @@ public class ReturnStmt extends Stmt {
 
 	@Override
 	public void typeCheck(SymbolTable symbolTable) throws SemanticException {
-		this.expr.typeCheck(symbolTable);
+		if(this.expr != null) {
+			this.expr.typeCheck(symbolTable);
+		}
 	}
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-		this.expr.generateCode(proc);
+		if(this.expr != null) {
+			this.expr.generateCode(proc);
+		}
 
 		proc.addInstruction(new RETURN());
 	}
