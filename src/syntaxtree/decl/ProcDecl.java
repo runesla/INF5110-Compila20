@@ -10,13 +10,11 @@ import common.error.SemanticException;
 import common.utils.BytecodeTypes;
 import common.utils.TypeChecker;
 import syntaxtree.stmt.ReturnStmt;
-import syntaxtree.types.DataType;
-import syntaxtree.Name;
 import syntaxtree.stmt.Stmt;
+import syntaxtree.types.DataType;
 import syntaxtree.types.Type;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import syntaxtree.Name;
+import java.util.*;
 import static common.utils.StringUtil.*;
 
 public class ProcDecl extends Decl {
@@ -56,6 +54,17 @@ public class ProcDecl extends Decl {
 		this.params = params;
 		this.statements = statements;
 		this.declarations = new ArrayList<>();
+	}
+
+	public ProcDecl(
+			Name name,
+			DataType returnDataType,
+			List<ParamDecl> params) {
+		super(name);
+		this.returnDataType = returnDataType;
+		this.params = params;
+		this.declarations = new ArrayList<>();
+		this.statements = new ArrayList<>();
 	}
 
 	// Given return type
@@ -107,6 +116,10 @@ public class ProcDecl extends Decl {
 		this.params = params;
 		this.declarations = declarations;
 		this.statements = statements;
+	}
+
+	public List<ParamDecl> getParams() {
+		return this.params;
 	}
 	
 	@Override

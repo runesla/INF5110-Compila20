@@ -5,10 +5,13 @@ import bytecode.instructions.CALL;
 import common.SymbolTable;
 import common.error.CodeGenException;
 import common.error.SemanticException;
+import common.utils.TypeChecker;
 import syntaxtree.Name;
+import syntaxtree.decl.ParamDecl;
 import syntaxtree.decl.ProcDecl;
 import syntaxtree.expr.Expr;
 import syntaxtree.types.DataType;
+import java.util.ArrayList;
 import java.util.List;
 import static common.utils.StringUtil.*;
 
@@ -54,14 +57,36 @@ public class CallStmt extends Stmt {
 
 		this.dataType = proc.getDataType();
 
-		for(Expr e: expr) {
+		List<ParamDecl> args = new ArrayList<>();
+
+		for (Expr e : this.expr) {
 			e.typeCheck(symbolTable);
+
+			args.add(new ParamDecl(e.getDataType()));
+		}
+
+		// Check argument matching against procedure parameters
+		if(args.size() != proc.getParams().size()) {
+			throw new SemanticException("Number of arguments does not match procedure parameters");
+		} else {
+			ParamDecl arg = null;
+			ParamDecl par = null;
+
+			for(int i = 0; i < args.size(); i++) {
+				arg = args.get(i);
+				par = proc.getParams().get(i);
+
+				if(!(TypeChecker.isCompatibleType(arg.getDataType(), par.getDataType()))) {
+					throw new SemanticException("Argument " + arg.getDataType().getType().getName().getNameValue()
+							+ " does not match procedure parameter " + par.getDataType().getType().getName().getNameValue());
+				}
+			}
 		}
 	}
 
 	@Override
 	public void generateCode(CodeProcedure proc) throws CodeGenException {
-		for(Expr exp: expr) {
+		for(Expr exp: this.expr) {
 			exp.generateCode(proc);
 		}
 

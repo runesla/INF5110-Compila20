@@ -5,6 +5,10 @@ import syntaxtree.types.DataType;
 
 public class ParamDecl extends VarDecl {
 
+	public ParamDecl(DataType dataType) {
+		super(new Name(dataType.getName().getNameValue()), dataType);
+	}
+
 	public ParamDecl(Name name, DataType dataType) {
 		super(name, dataType);
 	}
