@@ -2,7 +2,7 @@
 
 Project folder for the course [INF5110 Compiler Construction](https://www.uio.no/studier/emner/matnat/ifi/INF5110/) at University of Oslo
 
-Project based on source from [msteffen@GitHub UIO](https://github.uio.no/msteffen/compila)
+Based on source from [msteffen@GitHub UIO](https://github.uio.no/msteffen/compila)
 
 ## How to use
 
